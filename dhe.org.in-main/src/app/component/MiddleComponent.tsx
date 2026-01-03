@@ -14,7 +14,7 @@ const DepartmentInfo: React.FC = () => {
         skill development, and committed to the holistic development of every
         learner. True education goes beyond academic scores—it engages the
         heart, mind, and hands, nurturing responsible citizens, innovative
-        thinkers, and ethical leaders prepared for global challenges.xnxx
+        thinkers, and ethical leaders prepared for global challenges.
       </p>
 
       {/* SEO H2 */}
