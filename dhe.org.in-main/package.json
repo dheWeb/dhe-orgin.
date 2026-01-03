@@ -34,7 +34,7 @@
     "heroicons-react": "^1.4.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
-    "next": "^15.0.3",
+    "next": "15.0.7",
     "next-qrcode": "^2.5.1",
     "nextjs-toploader": "^1.5.3",
     "nodemailer": "^6.9.13",
