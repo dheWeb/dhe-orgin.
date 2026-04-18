@@ -102,7 +102,6 @@ export default function RootLayout({
             <p>
      <strong>शिक्षा महाकुंभ अभियान</strong> – 6th Edition is going to be held
               at <strong>NIT Hamirpur</strong>.            </p>
-            <p>
             
           </div>
 
