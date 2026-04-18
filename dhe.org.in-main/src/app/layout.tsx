@@ -103,10 +103,7 @@ export default function RootLayout({
      <strong>शिक्षा महाकुंभ अभियान</strong> – 6th Edition is going to be held
               at <strong>NIT Hamirpur</strong>.            </p>
             <p>
-             <a href="https://drive.google.com/drive/folders/1XnauGu1-dQ2KCpTzvIMHhUwlBF-6GDEN" className="text-white">
-                Link
-             </a>
-            </p>
+            
           </div>
 
         </Modal>
