@@ -59,10 +59,10 @@ export default function Home() {
       {/* <CompanyInfo /> */}
 
       {/* MARQUEE */}
-       {/* <Marquees > */}
-
+{/* <Marquees /> */}
+        
       {/* HERO SECTION */}
-      // <section className="relative bg-gradient-to-b from-[#07111f] via-[#0f172a] to-[#111827] overflow-hidden">
+      <section className="relative bg-gradient-to-b from-[#07111f] via-[#0f172a] to-[#111827] overflow-hidden">
 
         {/* Background Blur */}
        <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
@@ -255,7 +255,7 @@ export default function Home() {
 
        //  <div className="relative max-w-6xl mx-auto px-4 lg:px-8 text-center"> 
 
-          {/* <div className="inline-flex items-center px-5 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-semibold mb-6 border border-orange-500/20">
+           {/* <div className="inline-flex items-center px-5 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-semibold mb-6 border border-orange-500/20">
             Join the Educational Transformation Movement
           </div>
 
@@ -318,10 +318,10 @@ export default function Home() {
               "
             >
               Visit Official Website
-            </a>
+            </a> */}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* FOOTER */}
     //    <BottomView />
