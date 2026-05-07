@@ -148,7 +148,7 @@ export default function Home() {
             // </div>
 
             {/* RIGHT SIDE */}
-            <div className="lg:col-span-4 space-y-8">
+            // <div className="lg:col-span-4 space-y-8">
 
               {/* NOTICE BOARD */}
               <div className="bg-white rounded-[35px] shadow-2xl overflow-hidden border border-orange-100">
