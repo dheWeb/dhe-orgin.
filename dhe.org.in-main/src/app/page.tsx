@@ -1,5 +1,12 @@
-import SlideShow from "./component/SlideShow";
-import NoticeBoard from "./component/NoticeBoard";
+import BottomView from "./component/BottomView"; 
+import CompanyInfo from "./component/CompanyInfo"; 
+import Marquees from "./component/Marquees"; 
+import MiddleComponent from "./component/MiddleComponent"; 
+import SlideShow from "./component/SlideShow"; 
+import NoticeBoard from "./component/NoticeBoard"; 
+import PastEvent from "./component/PastEvent"; 
+import UpcomingEvent from "./component/UpcomingEvent"; 
+
 
 
 export default function Home() {
@@ -96,39 +103,6 @@ export default function Home() {
               <div className="p-5">
                 <NoticeBoard />
               </div>
-
-            </div>
-
-            {/* DHE INFO */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-[35px] shadow-2xl p-8 text-white">
-
-              <h2 className="text-3xl font-bold mb-6">
-                DHE Mission
-              </h2>
-
-              <p className="leading-8 text-orange-50">
-                Building a holistic educational ecosystem rooted in
-                Bharatiya values, innovation, leadership,
-                entrepreneurship, and NEP 2020 aligned transformation.
-              </p>
-
-              <div className="mt-8 space-y-4">
-
-                <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
-                  Educational Leadership
-                </div>
-
-                <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
-                  Research & Innovation
-                </div>
-
-                <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
-                  Digital Transformation
-                </div>
-
-                <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
-                  Holistic Development
-                </div>
 
               </div>
 
