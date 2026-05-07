@@ -1,5 +1,4 @@
 import BottomView from "./component/BottomView";
-import CompanyInfo from "./component/CompanyInfo";
 import Marquees from "./component/Marquees";
 import MiddleComponent from "./component/MiddleComponent";
 import SlideShow from "./component/SlideShow";
@@ -59,7 +58,6 @@ export default function Home() {
     <main className="bg-white overflow-hidden">
 
       {/* Top Components */}
-      <CompanyInfo />
       <Marquees />
 
       {/* HERO SECTION */}
