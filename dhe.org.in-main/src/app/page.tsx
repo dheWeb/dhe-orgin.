@@ -4,8 +4,6 @@ import Marquees from "./component/Marquees";
 import MiddleComponent from "./component/MiddleComponent"; 
 import SlideShow from "./component/SlideShow"; 
 import NoticeBoard from "./component/NoticeBoard"; 
-import PastEvent from "./component/PastEvent"; 
-import UpcomingEvent from "./component/UpcomingEvent"; 
 
 
 
@@ -61,6 +59,10 @@ export default function Home() {
 
   return (
      <main className="bg-white overflow-hidden">
+
+    {/* Top Components */}
+      <CompanyInfo />
+      <Marquees />     
         
          {/* HERO SECTION */}
     <section className="relative bg-gradient-to-b from-[#07111f] via-[#0f172a] to-[#111827] overflow-hidden">
@@ -106,16 +108,17 @@ export default function Home() {
 
               </div>
 
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-);
-}
+            </section>      
+          
+          {/* Middle Section */}     
+          <section className="py-16 bg-white">        
+            <div className="max-w-7xl mx-auto px-4">          
+              <MiddleComponent />       
+            </div>    
+          </section>    
+       
+          {/* Footer */}     
+          <BottomView />   
+        </main>  
+        );
+        }
