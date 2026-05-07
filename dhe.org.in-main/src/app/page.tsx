@@ -53,27 +53,27 @@ export default function Home() {
   ];
 
   return (
-    // <main className="bg-white overflow-hidden">
+     <main className="bg-white overflow-hidden">
 
       {/* COMPANY INFO */}
       {/* <CompanyInfo /> */}
 
       {/* MARQUEE */}
-      // <Marquees />
+       {/* <Marquees > */}
 
       {/* HERO SECTION */}
       // <section className="relative bg-gradient-to-b from-[#07111f] via-[#0f172a] to-[#111827] overflow-hidden">
 
         {/* Background Blur */}
-        {/* <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
+       <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-10 blur-3xl rounded-full"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 lg:px-8 py-10 lg:py-16">
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"> */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"> 
 
             {/* LEFT SIDE */}
-            {/* <div className="lg:col-span-8"> */}
+            <div className="lg:col-span-8"> 
 
               {/* HERO TEXT */}
               {/* <div className="mb-10">
@@ -103,7 +103,7 @@ export default function Home() {
               </div>
 
               {/* STATS */}
-            //   <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+            {/* //   <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
 
             //     <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6">
             //       <h2 className="text-4xl font-bold text-orange-400">
@@ -145,10 +145,10 @@ export default function Home() {
             //       </p>
             //     </div>
             //   </div>
-            // </div>
+            // </div> */}
 
             {/* RIGHT SIDE */}
-            // <div className="lg:col-span-4 space-y-8">
+             <div className="lg:col-span-4 space-y-8">
 
               {/* NOTICE BOARD */}
               <div className="bg-white rounded-[35px] shadow-2xl overflow-hidden border border-orange-100">
@@ -325,6 +325,6 @@ export default function Home() {
 
       {/* FOOTER */}
     //    <BottomView />
-    // </main>
+    </main>
   );
 }
