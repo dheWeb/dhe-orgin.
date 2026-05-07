@@ -1,11 +1,9 @@
-import BottomView from "./component/BottomView"; 
-import CompanyInfo from "./component/CompanyInfo"; 
-import Marquees from "./component/Marquees"; 
-import MiddleComponent from "./component/MiddleComponent"; 
-import SlideShow from "./component/SlideShow"; 
-import NoticeBoard from "./component/NoticeBoard"; 
-
-
+import BottomView from "./component/BottomView";
+import CompanyInfo from "./component/CompanyInfo";
+import Marquees from "./component/Marquees";
+import MiddleComponent from "./component/MiddleComponent";
+import SlideShow from "./component/SlideShow";
+import NoticeBoard from "./component/NoticeBoard";
 
 export default function Home() {
 
@@ -58,67 +56,76 @@ export default function Home() {
   ];
 
   return (
-     <main className="bg-white overflow-hidden">
+    <main className="bg-white overflow-hidden">
 
-    {/* Top Components */}
+      {/* Top Components */}
       <CompanyInfo />
-      <Marquees />     
-        
-         {/* HERO SECTION */}
-    <section className="relative bg-gradient-to-b from-[#07111f] via-[#0f172a] to-[#111827] overflow-hidden">
+      <Marquees />
 
-      {/* Background Blur */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
+      {/* HERO SECTION */}
+      <section className="relative bg-gradient-to-b from-[#07111f] via-[#0f172a] to-[#111827] overflow-hidden">
 
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-10 blur-3xl rounded-full"></div>
+        {/* Background Blur */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 lg:px-8 py-10 lg:py-16">
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-10 blur-3xl rounded-full"></div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="relative max-w-7xl mx-auto px-4 lg:px-8 py-10 lg:py-16">
 
-          {/* LEFT SIDE */}
-          <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-         {/* SLIDESHOW */}
-            <div className="overflow-hidden rounded-[35px] shadow-2xl border border-white/10">
-              <SlideShow slides={slides1} />
+            {/* LEFT SIDE */}
+            <div className="lg:col-span-8">
+
+              {/* SLIDESHOW */}
+              <div className="overflow-hidden rounded-[35px] shadow-2xl border border-white/10">
+                <SlideShow slides={slides1} />
+              </div>
+
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div className="lg:col-span-4 space-y-8">
+
+              {/* NOTICE BOARD */}
+              <div className="bg-white rounded-[35px] shadow-2xl overflow-hidden border border-orange-100">
+
+                <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-5">
+                  <h2 className="text-2xl font-bold text-white">
+                    Latest Notices
+                  </h2>
+
+                  <p className="text-orange-100 mt-1 text-sm">
+                    Announcements & Updates
+                  </p>
+                </div>
+
+                <div className="p-5">
+                  <NoticeBoard />
+                </div>
+
+              </div>
+
             </div>
 
           </div>
 
-       {/* RIGHT SIDE */}
-          <div className="lg:col-span-4 space-y-8">
+        </div>
 
-            {/* NOTICE BOARD */}
-            <div className="bg-white rounded-[35px] shadow-2xl overflow-hidden border border-orange-100">
+      </section>
 
-              <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-5">
-                <h2 className="text-2xl font-bold text-white">
-                  Latest Notices
-                </h2>
+      {/* Middle Section */}
+      <section className="py-16 bg-white">
 
-                <p className="text-orange-100 mt-1 text-sm">
-                  Announcements & Updates
-                </p>
-              </div>
+        <div className="max-w-7xl mx-auto px-4">
+          <MiddleComponent />
+        </div>
 
-              <div className="p-5">
-                <NoticeBoard />
-              </div>
+      </section>
 
-              </div>
+      {/* Footer */}
+      <BottomView />
 
-            </section>      
-          
-          {/* Middle Section */}     
-          <section className="py-16 bg-white">        
-            <div className="max-w-7xl mx-auto px-4">          
-              <MiddleComponent />       
-            </div>    
-          </section>    
-       
-          {/* Footer */}     
-          <BottomView />   
-        </main>  
-        );
-        }
+    </main>
+  );
+}
