@@ -324,7 +324,7 @@ export default function Home() {
       </section> */}
 
       {/* FOOTER */}
-      {/* <BottomView />
-    </main>
+    //    <BottomView />
+    // </main>
   );
-} */}
+}
