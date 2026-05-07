@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+
 import {
   faFacebook,
   faInstagram,
@@ -10,7 +11,9 @@ import {
   faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   addDoc,
   collection,
@@ -21,6 +24,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+
 import toast from "react-hot-toast";
 import { Spin } from "antd";
 import { db } from "@/app/firebase";
@@ -48,7 +52,10 @@ const BottomView: React.FC = () => {
         }
 
         if (!dailyDocSnap.exists()) {
-          await setDoc(dailyDocRef, { count: 0, date: today });
+          await setDoc(dailyDocRef, {
+            count: 0,
+            date: today,
+          });
         }
 
         await updateDoc(totalDocRef, {
@@ -109,9 +116,19 @@ const BottomView: React.FC = () => {
 
   const initiatives = [
     {
+      name: "DHE",
+      image: "/logo.png",
+      link: "https://www.dhe.org.in/",
+    },
+    {
       name: "RASE",
       image: "/logos/rase.png",
       link: "https://www.rase.co.in/",
+    },
+    {
+      name: "Vidya Bharti",
+      image: "/vidyabharti.png",
+      link: "https://vidyabharti.net/",
     },
     {
       name: "Sarvatra",
@@ -119,9 +136,9 @@ const BottomView: React.FC = () => {
       link: "https://www.sarvatr.co.in/",
     },
     {
-      name: "Tredul",
-      image: "/tre-dul.png",
-      link: "https://tredul.in/",
+      name: "All Temples",
+      image: "/holistic.jpeg",
+      link: "https://www.alltemples.org.in/",
     },
     {
       name: "Jobs 360°",
@@ -129,26 +146,51 @@ const BottomView: React.FC = () => {
       link: "https://jobs360degree.com/",
     },
     {
+      name: "Poojawala",
+      image: "/pooja.png",
+      link: "https://poojawala.in/",
+    },
+    {
       name: "Swadeshi Bazaar",
       image: "/sb.png",
       link: "https://www.swadeshibazaar.co.in/",
+    },
+    {
+      name: "Tredul",
+      image: "/tre-dul.png",
+      link: "https://tredul.in/",
+    },
+    {
+      name: "ITR Chandigarh",
+      image: "/logo 2.png",
+      link: "https://www.itrchandigarh.org/",
+    },
+    {
+      name: "Viksit India",
+      image: "/vi.png",
+      link: "https://vi.rase.co.in/",
     },
     {
       name: "TuDu",
       image: "/Tudu.png",
       link: "https://tudu.co.in/",
     },
+    {
+      name: "Punjab Super 100",
+      image: "/pb100.png",
+      link: "https://punjabsuper100.com/",
+    },
   ];
 
   return (
-    <footer className="bg-[#0b1220] text-white pt-14 border-t border-orange-200">
+    <footer className="bg-[#0b1220] text-white border-t border-orange-200 pt-14">
       
-      {/* Top Section */}
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        
+
+        {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-gray-700">
           
-          {/* About DHE */}
+          {/* About */}
           <div>
             <div className="flex items-center gap-3 mb-5">
               <Image
@@ -160,12 +202,12 @@ const BottomView: React.FC = () => {
               />
 
               <div>
-                <h2 className="text-xl font-bold text-white">
+                <h2 className="text-xl font-bold">
                   Department of Holistic Education
                 </h2>
 
                 <p className="text-sm text-orange-300">
-                  Educational Transformation Platform
+                  National Educational Transformation Platform
                 </p>
               </div>
             </div>
@@ -176,7 +218,7 @@ const BottomView: React.FC = () => {
               learning aligned with NEP 2020.
             </p>
 
-            {/* Social Icons */}
+            {/* Social Media */}
             <div className="flex items-center gap-4 mt-6">
               
               <a
@@ -265,7 +307,7 @@ const BottomView: React.FC = () => {
           {/* Initiatives */}
           <div>
             <h3 className="text-lg font-bold mb-5 text-orange-300">
-              DHE Initiatives
+              DHE Ecosystem
             </h3>
 
             <div className="grid grid-cols-3 gap-4">
@@ -275,15 +317,21 @@ const BottomView: React.FC = () => {
                   key={index}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white rounded-xl p-3 hover:scale-105 transition duration-300 shadow-lg"
+                  className="bg-white rounded-2xl p-4 hover:scale-105 transition duration-300 shadow-lg border border-gray-200 hover:border-orange-300"
                 >
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={60}
-                    height={60}
-                    className="object-contain mx-auto h-12"
-                  />
+                  <div className="flex items-center justify-center h-16">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={70}
+                      height={70}
+                      className="object-contain max-h-14 w-auto"
+                    />
+                  </div>
+
+                  <p className="text-center text-xs font-semibold text-gray-700 mt-2">
+                    {item.name}
+                  </p>
                 </a>
               ))}
             </div>
@@ -325,7 +373,7 @@ const BottomView: React.FC = () => {
           </div>
         </div>
 
-        {/* Visitor Stats + Map */}
+        {/* Visitor + Map */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 py-10 border-b border-gray-700">
           
           {/* Visitors */}
