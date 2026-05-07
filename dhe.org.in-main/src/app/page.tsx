@@ -1,7 +1,4 @@
-import BottomView from "./component/BottomView";
-import CompanyInfo from "./component/CompanyInfo";
 import Marquees from "./component/Marquees";
-import MiddleComponent from "./component/MiddleComponent";
 import SlideShow from "./component/SlideShow";
 import NoticeBoard from "./component/NoticeBoard";
 
@@ -60,7 +57,7 @@ export default function Home() {
     <main className="bg-white overflow-hidden">
 
       {/* COMPANY INFO */}
-      <CompanyInfo />
+      {/* <CompanyInfo /> */}
 
       {/* MARQUEE */}
       <Marquees />
@@ -221,7 +218,7 @@ export default function Home() {
       </section> */}
 
       {/* MIDDLE COMPONENT */}
-      <section className="relative py-20 overflow-hidden">
+      {/* <section className="relative py-20 overflow-hidden">
 
         <div className="absolute inset-0 bg-gradient-to-r from-orange-50 via-white to-orange-50"></div>
 
@@ -249,7 +246,7 @@ export default function Home() {
 
           <MiddleComponent />
         </div>
-      </section>
+      </section> */}
 
       {/* CALL TO ACTION */}
       {/* <section className="relative overflow-hidden bg-[#07111f] py-20">
