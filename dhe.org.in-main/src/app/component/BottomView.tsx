@@ -32,8 +32,10 @@ import { db } from "@/app/firebase";
 const BottomView: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
   const [dailyVisitors, setDailyVisitors] = useState<number | null>(null);
   const [totalVisitors, setTotalVisitors] = useState<number | null>(null);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -114,14 +116,14 @@ const BottomView: React.FC = () => {
     }
   };
 
-  const initiatives = [
+  const ecosystem = [
     {
       name: "DHE",
       image: "/logo.png",
       link: "https://www.dhe.org.in/",
     },
     {
-      name: "RASE",
+      name: "Shiksha Mahakumbh",
       image: "/logos/rase.png",
       link: "https://www.rase.co.in/",
     },
@@ -136,9 +138,9 @@ const BottomView: React.FC = () => {
       link: "https://www.sarvatr.co.in/",
     },
     {
-      name: "All Temples",
-      image: "/holistic.jpeg",
-      link: "https://www.alltemples.org.in/",
+      name: "Tredul",
+      image: "/tre-dul.png",
+      link: "https://tredul.in/",
     },
     {
       name: "Jobs 360°",
@@ -146,29 +148,14 @@ const BottomView: React.FC = () => {
       link: "https://jobs360degree.com/",
     },
     {
-      name: "Poojawala",
-      image: "/pooja.png",
-      link: "https://poojawala.in/",
-    },
-    {
       name: "Swadeshi Bazaar",
       image: "/sb.png",
       link: "https://www.swadeshibazaar.co.in/",
     },
     {
-      name: "Tredul",
-      image: "/tre-dul.png",
-      link: "https://tredul.in/",
-    },
-    {
-      name: "ITR Chandigarh",
-      image: "/logo 2.png",
-      link: "https://www.itrchandigarh.org/",
-    },
-    {
-      name: "Viksit India",
-      image: "/vi.png",
-      link: "https://vi.rase.co.in/",
+      name: "Poojawala",
+      image: "/pooja.png",
+      link: "https://poojawala.in/",
     },
     {
       name: "TuDu",
@@ -176,56 +163,77 @@ const BottomView: React.FC = () => {
       link: "https://tudu.co.in/",
     },
     {
+      name: "Viksit India",
+      image: "/vi.png",
+      link: "https://vi.rase.co.in/",
+    },
+    {
       name: "Punjab Super 100",
       image: "/pb100.png",
       link: "https://punjabsuper100.com/",
     },
+    {
+      name: "ITR Chandigarh",
+      image: "/logo 2.png",
+      link: "https://www.itrchandigarh.org/",
+    },
   ];
 
   return (
-    <footer className="bg-[#0b1220] text-white border-t border-orange-200 pt-14">
-      
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+    <footer className="bg-[#07111f] text-white border-t border-orange-200">
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-gray-700">
-          
-          {/* About */}
-          <div>
-            <div className="flex items-center gap-3 mb-5">
-              <Image
-                src="/logo.png"
-                alt="DHE Logo"
-                width={70}
-                height={70}
-                className="rounded-full bg-white p-1"
-              />
+      {/* TOP SECTION */}
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 pt-14">
+
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-14 border-b border-gray-700">
+
+          {/* LEFT SECTION */}
+          <div className="lg:col-span-4">
+
+            {/* LOGO */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="bg-white rounded-full p-2 shadow-xl">
+                <Image
+                  src="/logo.png"
+                  alt="DHE Logo"
+                  width={70}
+                  height={70}
+                  className="object-contain"
+                />
+              </div>
 
               <div>
-                <h2 className="text-xl font-bold">
-                  Department of Holistic Education
+                <h2 className="text-2xl font-bold leading-tight">
+                  Department of
+                  <span className="block text-orange-400">
+                    Holistic Education
+                  </span>
                 </h2>
 
-                <p className="text-sm text-orange-300">
+                <p className="text-sm text-gray-400 mt-1">
                   National Educational Transformation Platform
                 </p>
               </div>
             </div>
 
-            <p className="text-gray-300 leading-7 text-sm">
+            {/* DESCRIPTION */}
+            <p className="text-gray-300 leading-8 text-sm">
               Advancing Bharat’s educational ecosystem through
-              innovation, leadership, research, and holistic
-              learning aligned with NEP 2020.
+              innovation, leadership, skill development,
+              research, publications, technology-driven
+              platforms, and holistic learning aligned with
+              the vision of NEP 2020 and Viksit Bharat.
             </p>
 
-            {/* Social Media */}
-            <div className="flex items-center gap-4 mt-6">
-              
+            {/* SOCIAL */}
+            <div className="flex items-center gap-5 mt-8">
+
               <a
                 href="https://www.facebook.com/profile.php?id=100090170940886&mibextid=ZbWKwL"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-400 transition"
+                className="hover:text-blue-400 transition duration-300"
               >
                 <FontAwesomeIcon icon={faFacebook} size="lg" />
               </a>
@@ -234,7 +242,7 @@ const BottomView: React.FC = () => {
                 href="https://www.linkedin.com/company/department-of-holistic-education/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-400 transition"
+                className="hover:text-blue-300 transition duration-300"
               >
                 <FontAwesomeIcon icon={faLinkedin} size="lg" />
               </a>
@@ -243,7 +251,7 @@ const BottomView: React.FC = () => {
                 href="https://www.instagram.com/dhebharat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-pink-400 transition"
+                className="hover:text-pink-400 transition duration-300"
               >
                 <FontAwesomeIcon icon={faInstagram} size="lg" />
               </a>
@@ -252,7 +260,7 @@ const BottomView: React.FC = () => {
                 href="https://twitter.com/DHEBharat1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-sky-400 transition"
+                className="hover:text-sky-400 transition duration-300"
               >
                 <FontAwesomeIcon icon={faXTwitter} size="lg" />
               </a>
@@ -261,63 +269,75 @@ const BottomView: React.FC = () => {
                 href="https://www.youtube.com/@DepartmentofHolisticEducation"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-red-500 transition"
+                className="hover:text-red-500 transition duration-300"
               >
                 <FontAwesomeIcon icon={faYoutube} size="lg" />
               </a>
             </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-bold mb-5 text-orange-300">
-              Quick Links
-            </h3>
+            {/* VISITORS */}
+            <div className="grid grid-cols-2 gap-4 mt-10">
 
-            <div className="flex flex-col gap-3 text-gray-300 text-sm">
-              <Link href="/" className="hover:text-orange-400">
-                Home
-              </Link>
+              <div className="bg-[#111827] border border-gray-700 rounded-2xl p-5">
+                <p className="text-gray-400 text-xs uppercase tracking-wider mb-2">
+                  Daily Visitors
+                </p>
 
-              <Link href="/structure" className="hover:text-orange-400">
-                About DHE
-              </Link>
+                <h2 className="text-3xl font-bold text-orange-400">
+                  {loading ? <Spin /> : dailyVisitors}
+                </h2>
+              </div>
 
-              <Link href="/pastevent" className="hover:text-orange-400">
-                Events
-              </Link>
+              <div className="bg-[#111827] border border-gray-700 rounded-2xl p-5">
+                <p className="text-gray-400 text-xs uppercase tracking-wider mb-2">
+                  Total Visitors
+                </p>
 
-              <Link href="/contribute" className="hover:text-orange-400">
-                Join DHE
-              </Link>
-
-              <Link href="/contact" className="hover:text-orange-400">
-                Contact Us
-              </Link>
-
-              <Link
-                href="/Recruitment-Policy.pdf"
-                className="hover:text-orange-400"
-              >
-                Recruitment Policy
-              </Link>
+                <h2 className="text-3xl font-bold text-orange-400">
+                  {loading ? <Spin /> : totalVisitors}
+                </h2>
+              </div>
             </div>
           </div>
 
-          {/* Initiatives */}
-          <div>
-            <h3 className="text-lg font-bold mb-5 text-orange-300">
-              DHE Ecosystem
-            </h3>
+          {/* CENTER SECTION */}
+          <div className="lg:col-span-5">
 
-            <div className="grid grid-cols-3 gap-4">
-              {initiatives.map((item, index) => (
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h3 className="text-2xl font-bold text-orange-300">
+                  DHE Ecosystem
+                </h3>
+
+                <p className="text-sm text-gray-400 mt-1">
+                  Integrated Educational & Innovation Network
+                </p>
+              </div>
+            </div>
+
+            {/* ECOSYSTEM GRID */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+
+              {ecosystem.map((item, index) => (
                 <a
-                  href={item.link}
                   key={index}
+                  href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white rounded-2xl p-4 hover:scale-105 transition duration-300 shadow-lg border border-gray-200 hover:border-orange-300"
+                  className="
+                    group
+                    bg-gradient-to-br
+                    from-white
+                    to-orange-50
+                    rounded-2xl
+                    border
+                    border-orange-100
+                    p-4
+                    hover:-translate-y-1
+                    hover:shadow-2xl
+                    transition-all
+                    duration-300
+                  "
                 >
                   <div className="flex items-center justify-center h-16">
                     <Image
@@ -329,90 +349,114 @@ const BottomView: React.FC = () => {
                     />
                   </div>
 
-                  <p className="text-center text-xs font-semibold text-gray-700 mt-2">
+                  <p
+                    className="
+                      text-center
+                      text-[11px]
+                      sm:text-xs
+                      font-bold
+                      text-gray-700
+                      mt-3
+                      leading-5
+                      group-hover:text-orange-600
+                      transition
+                    "
+                  >
                     {item.name}
                   </p>
                 </a>
               ))}
             </div>
+
+            {/* ECOSYSTEM INFO */}
+            <div className="mt-8 bg-[#111827] border border-gray-700 rounded-3xl p-6">
+
+              <h4 className="text-orange-300 font-bold text-lg mb-3">
+                National Educational Ecosystem
+              </h4>
+
+              <p className="text-sm text-gray-300 leading-8">
+                DHE integrates educational leadership,
+                innovation, skill development, research,
+                entrepreneurship, publications, digital
+                transformation, and institutional collaboration
+                into one unified ecosystem empowering Bharat
+                towards becoming a global knowledge leader.
+              </p>
+            </div>
           </div>
 
-          {/* Contact Form */}
-          <div>
-            <h3 className="text-lg font-bold mb-5 text-orange-300">
+          {/* RIGHT SECTION */}
+          <div className="lg:col-span-3">
+
+            <h3 className="text-2xl font-bold text-orange-300 mb-6">
               Connect With Us
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              
+            {/* FORM */}
+            <form onSubmit={handleSubmit} className="space-y-5">
+
               <input
                 type="email"
-                placeholder="Your Email"
+                placeholder="Your Email Address"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#111827] border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500"
+                className="
+                  w-full
+                  bg-[#111827]
+                  border
+                  border-gray-700
+                  rounded-2xl
+                  px-4
+                  py-4
+                  text-sm
+                  focus:outline-none
+                  focus:border-orange-500
+                "
               />
 
               <textarea
-                rows={4}
-                placeholder="Your Message"
+                rows={5}
+                placeholder="Write Your Message"
                 required
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-[#111827] border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500"
+                className="
+                  w-full
+                  bg-[#111827]
+                  border
+                  border-gray-700
+                  rounded-2xl
+                  px-4
+                  py-4
+                  text-sm
+                  focus:outline-none
+                  focus:border-orange-500
+                "
               />
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-orange-600 to-orange-500 py-3 rounded-xl font-semibold hover:scale-[1.02] transition duration-300"
+                className="
+                  w-full
+                  bg-gradient-to-r
+                  from-orange-600
+                  to-orange-500
+                  py-4
+                  rounded-2xl
+                  font-semibold
+                  hover:scale-[1.02]
+                  transition
+                  duration-300
+                "
               >
                 Send Message
               </button>
             </form>
-          </div>
-        </div>
 
-        {/* Visitor + Map */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 py-10 border-b border-gray-700">
-          
-          {/* Visitors */}
-          <div>
-            <h3 className="text-xl font-bold text-orange-300 mb-5">
-              Visitor Insights
-            </h3>
-
-            <div className="flex flex-wrap gap-6">
-              
-              <div className="bg-[#111827] p-6 rounded-2xl border border-gray-700 min-w-[220px]">
-                <p className="text-gray-400 text-sm mb-2">
-                  Daily Visitors
-                </p>
-
-                <h2 className="text-3xl font-bold text-white">
-                  {loading ? <Spin /> : dailyVisitors}
-                </h2>
-              </div>
-
-              <div className="bg-[#111827] p-6 rounded-2xl border border-gray-700 min-w-[220px]">
-                <p className="text-gray-400 text-sm mb-2">
-                  Total Visitors
-                </p>
-
-                <h2 className="text-3xl font-bold text-white">
-                  {loading ? <Spin /> : totalVisitors}
-                </h2>
-              </div>
-            </div>
-          </div>
-
-          {/* Map */}
-          <div>
-            <h3 className="text-xl font-bold text-orange-300 mb-5">
-              Locate Us
-            </h3>
-
-            <div className="overflow-hidden rounded-2xl border border-gray-700 shadow-xl">
+            {/* MAP */}
+            <div className="mt-8 overflow-hidden rounded-3xl border border-gray-700 shadow-2xl">
               <iframe
                 className="w-full h-72"
                 loading="lazy"
@@ -422,23 +466,34 @@ const BottomView: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="py-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-          
-          <p>
-            © 2026 Department of Holistic Education. All Rights Reserved.
+        {/* BOTTOM BAR */}
+        <div className="py-6 flex flex-col lg:flex-row items-center justify-between gap-4">
+
+          <p className="text-sm text-gray-400 text-center lg:text-left">
+            © 2026 Department of Holistic Education.
+            All Rights Reserved.
           </p>
 
-          <div className="flex flex-wrap items-center gap-5">
-            <Link href="/privacy-policy" className="hover:text-orange-400">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400">
+
+            <Link
+              href="/privacy-policy"
+              className="hover:text-orange-400 transition"
+            >
               Privacy Policy
             </Link>
 
-            <Link href="/terms" className="hover:text-orange-400">
+            <Link
+              href="/terms"
+              className="hover:text-orange-400 transition"
+            >
               Terms & Conditions
             </Link>
 
-            <Link href="/contact" className="hover:text-orange-400">
+            <Link
+              href="/contact"
+              className="hover:text-orange-400 transition"
+            >
               Contact
             </Link>
           </div>
