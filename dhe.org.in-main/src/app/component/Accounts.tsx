@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Card } from "antd";
 import { EyeOutlined, DownloadOutlined } from "@ant-design/icons";
 import Image from "next/image";
-import vbitr from "../../../public/accounts/vbitr.png";
+// import vbitr from "../../../public/accounts/vbitr.png";
 import dhe from "../../../public/accounts/dhe.png";
-import sk from "../../../public/accounts/sk.png";
+// import sk from "../../../public/accounts/sk.png";
 import sm from "../../../public/accounts/sm.png";
 
 const { Meta } = Card;
@@ -26,18 +26,18 @@ const Accounts: React.FC = () => {
   }, []);
 
   const cardData = [
-    {
-      title: "VBITR Chandigarh",
-      accountname: "Institute of Training & Research",
-      accountnumber: "42536226777",
-      bank: "State Bank of India",
-      branch: "Chandigarh Main Branch",
-      ifsc: "SBIN0000628",
-      upiid: "7627888222@sbi",
-      image: vbitr,
-      previewLink: "/accounts/vbitr.pdf",
-      downloadLink: "/accounts/vbitr.pdf",
-    },
+    // {
+    //   title: "VBITR Chandigarh",
+    //   accountname: "Institute of Training & Research",
+    //   accountnumber: "42536226777",
+    //   bank: "State Bank of India",
+    //   branch: "Chandigarh Main Branch",
+    //   ifsc: "SBIN0000628",
+    //   upiid: "7627888222@sbi",
+    //   image: vbitr,
+    //   previewLink: "/accounts/vbitr.pdf",
+    //   downloadLink: "/accounts/vbitr.pdf",
+    // },
     {
       title: "Department of Holistic Education",
       accountname: "Department of Holistic Education",
@@ -50,18 +50,18 @@ const Accounts: React.FC = () => {
       previewLink: "/accounts/dhe.pdf",
       downloadLink: "/accounts/dhe.pdf",
     },
-    {
-      title: "Shiksha Kumbh",
-      accountname: "Shiksha Kumbh",
-      accountnumber: "42563561350",
-      bank: "State Bank of India",
-      branch: "Chandigarh Main Branch",
-      ifsc: "SBIN0000628",
-      upiid: "shikshakhumb@sbi",
-      image: sk,
-      previewLink: "/accounts/sk.pdf",
-      downloadLink: "/accounts/sk.pdf",
-    },
+    // {
+    //   title: "Shiksha Kumbh",
+    //   accountname: "Shiksha Kumbh",
+    //   accountnumber: "42563561350",
+    //   bank: "State Bank of India",
+    //   branch: "Chandigarh Main Branch",
+    //   ifsc: "SBIN0000628",
+    //   upiid: "shikshakhumb@sbi",
+    //   image: sk,
+    //   previewLink: "/accounts/sk.pdf",
+    //   downloadLink: "/accounts/sk.pdf",
+    // },
 
     {
       title: "Shiksha Mahakumbh",
