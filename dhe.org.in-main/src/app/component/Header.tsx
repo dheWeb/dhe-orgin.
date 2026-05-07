@@ -2,13 +2,14 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ChevronDown,
-  Menu,
-  X,
-  Globe,
-  GraduationCap,
-} from "lucide-react";
+  faBars,
+  faTimes,
+  faChevronDown,
+  faGlobe,
+  faGraduationCap,
+} from "@fortawesome/free-solid-svg-icons";
 
 type Menu = {
   path: string;
@@ -98,12 +99,12 @@ const Header: React.FC = () => {
           
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
-              <GraduationCap size={16} />
+              <FontAwesomeIcon icon={faGraduationCap} className="w-4 h-4" />
               <span>Holistic Educational Transformation</span>
             </div>
 
             <div className="flex items-center gap-2">
-              <Globe size={16} />
+              <FontAwesomeIcon icon={faGlobe} className="w-4 h-4" />
               <span>Global Educational Outreach</span>
             </div>
           </div>
@@ -141,9 +142,10 @@ const Header: React.FC = () => {
                   <>
                     <button className="flex items-center gap-1 px-4 py-3 text-[15px] font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50">
                       {item.title}
-                      <ChevronDown
-                        size={16}
-                        className={`transition-transform duration-300 ${
+
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className={`w-3 h-3 transition-transform duration-300 ${
                           activeDropdown === index ? "rotate-180" : ""
                         }`}
                       />
@@ -180,7 +182,10 @@ const Header: React.FC = () => {
             className="lg:hidden text-gray-700"
             onClick={() => setMobileMenu(!mobileMenu)}
           >
-            {mobileMenu ? <X size={30} /> : <Menu size={30} />}
+            <FontAwesomeIcon
+              icon={mobileMenu ? faTimes : faBars}
+              className="w-6 h-6"
+            />
           </button>
         </div>
       </div>
@@ -216,9 +221,9 @@ const Header: React.FC = () => {
                   >
                     {item.title}
 
-                    <ChevronDown
-                      size={18}
-                      className={`transition-transform duration-300 ${
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className={`w-3 h-3 transition-transform duration-300 ${
                         activeDropdown === index ? "rotate-180" : ""
                       }`}
                     />
