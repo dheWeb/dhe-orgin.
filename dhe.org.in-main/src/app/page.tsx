@@ -5,7 +5,6 @@ import MiddleComponent from "./component/MiddleComponent";
 import SlideShow from "./component/SlideShow";
 import NoticeBoard from "./component/NoticeBoard";
 import ResidentialCamps from "./component/ResidentialCamps";
-import DepartmentInfo from "./component/DepartmentInfo";
 
 export default function Home() {
 
