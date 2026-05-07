@@ -4,7 +4,7 @@ import Marquees from "./component/Marquees";
 import MiddleComponent from "./component/MiddleComponent";
 import SlideShow from "./component/SlideShow";
 import NoticeBoard from "./component/NoticeBoard";
-import ResidentialCamps from "./component/ResidentialCamps";
+
 
 export default function Home() {
 
@@ -80,7 +80,7 @@ export default function Home() {
             <div className="lg:col-span-8">
 
               {/* HERO TEXT */}
-              <div className="mb-10">
+              {/* <div className="mb-10">
 
                 <div className="inline-flex items-center px-5 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-semibold mb-6 border border-orange-500/20">
                   National Educational Transformation Platform
@@ -99,7 +99,7 @@ export default function Home() {
                   entrepreneurship, research, digital ecosystems,
                   and Bharatiya values aligned with NEP 2020.
                 </p>
-              </div>
+              </div> */}
 
               {/* SLIDESHOW */}
               <div className="overflow-hidden rounded-[35px] shadow-2xl border border-white/10">
@@ -216,9 +216,9 @@ export default function Home() {
       </section> */}
 
       {/* RESIDENTIAL CAMPS */}
-      <section className="bg-gradient-to-b from-orange-50 to-white">
+      {/* <section className="bg-gradient-to-b from-orange-50 to-white">
         <ResidentialCamps />
-      </section>
+      </section> */}
 
       {/* MIDDLE COMPONENT */}
       <section className="relative py-20 overflow-hidden">
@@ -252,14 +252,14 @@ export default function Home() {
       </section>
 
       {/* CALL TO ACTION */}
-      <section className="relative overflow-hidden bg-[#07111f] py-20">
+      {/* <section className="relative overflow-hidden bg-[#07111f] py-20">
 
         <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-10 blur-3xl rounded-full"></div>
 
-        <div className="relative max-w-6xl mx-auto px-4 lg:px-8 text-center">
+        <div className="relative max-w-6xl mx-auto px-4 lg:px-8 text-center"> */}
 
-          <div className="inline-flex items-center px-5 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-semibold mb-6 border border-orange-500/20">
+          {/* <div className="inline-flex items-center px-5 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-semibold mb-6 border border-orange-500/20">
             Join the Educational Transformation Movement
           </div>
 
@@ -325,10 +325,10 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FOOTER */}
-      <BottomView />
+      {/* <BottomView />
     </main>
   );
-}
+} */}
