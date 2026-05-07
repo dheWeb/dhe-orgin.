@@ -248,12 +248,12 @@ export default function Home() {
       </section> */}
 
       {/* CALL TO ACTION */}
-      {/* <section className="relative overflow-hidden bg-[#07111f] py-20">
+       // <section className="relative overflow-hidden bg-[#07111f] py-20">
 
-        <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-10 blur-3xl rounded-full"></div>
+       //  <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500 opacity-10 blur-3xl rounded-full"></div>
+       //  <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-10 blur-3xl rounded-full"></div>
 
-        <div className="relative max-w-6xl mx-auto px-4 lg:px-8 text-center"> */}
+       //  <div className="relative max-w-6xl mx-auto px-4 lg:px-8 text-center"> 
 
           {/* <div className="inline-flex items-center px-5 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-semibold mb-6 border border-orange-500/20">
             Join the Educational Transformation Movement
