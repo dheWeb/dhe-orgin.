@@ -211,9 +211,9 @@ export default function Home() {
       </section>
 
       {/* ABOUT SECTION */}
-      <section>
+      {/* <section>
         <DepartmentInfo />
-      </section>
+      </section> */}
 
       {/* RESIDENTIAL CAMPS */}
       <section className="bg-gradient-to-b from-orange-50 to-white">
