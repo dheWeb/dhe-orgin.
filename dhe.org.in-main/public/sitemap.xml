@@ -1,0 +1,31 @@
+ <xml version="1.0" encoding="UTF-8">
+   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+     <url>
+       <loc>http://dhe.org.in/</loc>
+     </url>
+      <url>
+       <loc>http://dhe.org.in/advisory</loc>
+     </url>
+      <url>
+       <loc>http://dhe.org.in/committee</loc>
+     </url>
+      <url>
+       <loc>http://dhe.org.in/contact</loc>
+     </url>
+      <url>
+       <loc>http://dhe.org.in/messages</loc>
+     </url>
+     <url>
+       <loc>http://dhe.org.in/people</loc>
+     </url>
+     <url>
+       <loc>http://dhe.org.in/Publication</loc>
+     </url>
+     <url>
+       <loc>http://dhe.org.in/Publications</loc>
+     </url>
+     <url>
+       <loc>http://dhe.org.in/structure</loc>
+     </url>
+   </urlset>
+   </xml>
