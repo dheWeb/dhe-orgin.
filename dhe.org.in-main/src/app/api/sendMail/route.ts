@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import qr from "qrcode";
-<<<<<<< HEAD
 import { getSmtpConfig } from "@/lib/env/server";
 
 export const runtime = "nodejs";
@@ -55,30 +54,6 @@ export async function POST(req: NextRequest) {
 
     const mailOptions = {
       from: smtp.from,
-=======
-
-export async function POST(req: NextRequest) {
-  try {
-    const reqBody = await req.json();
-    const { email, qrCodeData } = reqBody;
-
-    // Generate QR code
-    const qrDataURL = await qr.toDataURL(JSON.stringify(qrCodeData));
-
-    // Nodemailer configuration
-    const transporter = nodemailer.createTransport({
-      // Your email configuration
-      service: "Gmail",
-      auth: {
-        user: "holisticeducation052021@gmail.com",
-        pass: "girpyqusccjantow",
-      },
-    });
-
-    // Email options
-    const mailOptions = {
-      from: "holisticeducation052021@gmail.com",
->>>>>>> c069711d7aff406540900a15a5d3ba79b7910297
       to: email,
       subject: "Invitation for the Workshop held on 10 May, 2024",
       html: `
@@ -93,11 +68,7 @@ export async function POST(req: NextRequest) {
       <p style="font-family: Arial, sans-serif; text-align: right; font-size: 14px; font-weight: bold; color:#a52a2a; ">Regards</p>
       <p style="font-family: Arial, sans-serif; text-align: right; font-size: 14px; font-weight: bold; color:#a52a2a; ">Dr. Thakur SKR</p>
       <p style="font-family: Arial, sans-serif; text-align: right; font-size: 14px; font-weight: bold; color:#a52a2a; ">(Director DHE)</p>
-<<<<<<< HEAD
       `,
-=======
-      `, // You can customize the email body
->>>>>>> c069711d7aff406540900a15a5d3ba79b7910297
       attachments: [
         {
           filename: "ticket.png",
@@ -107,25 +78,13 @@ export async function POST(req: NextRequest) {
       ],
     };
 
-<<<<<<< HEAD
-=======
-    // Send mail
->>>>>>> c069711d7aff406540900a15a5d3ba79b7910297
     await transporter.sendMail(mailOptions);
     return NextResponse.json({ message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);
-<<<<<<< HEAD
     return NextResponse.json(
       { error: "Failed to send email. Please try again later." },
       { status: 500 }
     );
   }
 }
-=======
-    return NextResponse.json({ error: "Internal error" });
-  }
-}
-
-export const dynamic = "force-static";
->>>>>>> c069711d7aff406540900a15a5d3ba79b7910297

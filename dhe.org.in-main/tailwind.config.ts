@@ -8,7 +8,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-<<<<<<< HEAD
       keyframes: {
         modalFadeIn: {
           from: { opacity: '0' },
@@ -23,8 +22,6 @@ const config: Config = {
         'modal-fade-in': 'modalFadeIn 0.2s ease-out forwards',
         'modal-scale-in': 'modalScaleIn 0.25s ease-out forwards',
       },
-=======
->>>>>>> c069711d7aff406540900a15a5d3ba79b7910297
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -32,7 +29,6 @@ const config: Config = {
           'black-rgba': 'rgba(0, 0, 0, 0.557)',
       },
       colors: {
-<<<<<<< HEAD
         primary: '#A52A2A',
         'primary-color': '#002D62',
         'primary-light': '#5072A7',
@@ -48,12 +44,6 @@ const config: Config = {
         'dhe-md': '0 12px 32px rgba(7, 17, 31, 0.1)',
         'dhe-lg': '0 20px 50px rgba(7, 17, 31, 0.14)',
       },
-=======
-        'primary': '#A52A2A', 
-        'primary-color' :'#002D62',
-      'primary-light':'#5072A7'
-      }
->>>>>>> c069711d7aff406540900a15a5d3ba79b7910297
     },
   },
   plugins: [],
