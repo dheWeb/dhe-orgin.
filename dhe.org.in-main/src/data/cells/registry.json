@@ -1,0 +1,365 @@
+[
+  {
+    "slug": "art",
+    "displayTitle": "Art Cell",
+    "seoTitle": "Art Sale Cell",
+    "layoutVariant": "slideshow",
+    "blocks": [
+      {
+        "objective": "The Art Sale Cell is dedicated to exploring new avenues of skills and startups within schools, specifically in the field of arts. Its primary objective is to develop innovative initiatives and opportunities in the realm of arts.",
+        "footnote": "Cultivating artistic expression and cultural appreciation"
+      }
+    ],
+    "slides": [
+      { "src": "/cells/artcell/1.jpg", "alt": "Art Sale Cell — student artwork and creative skills showcase at DHE" },
+      { "src": "/cells/artcell/2.jpg", "alt": "Art Sale Cell — school arts exhibition and cultural expression program" },
+      { "src": "/cells/artcell/3.jpg", "alt": "Art Sale Cell — young artists presenting work at a Vidya Bharti initiative" },
+      { "src": "/cells/artcell/4.jpg", "alt": "Art Sale Cell — collaborative art activity promoting holistic education" }
+    ]
+  },
+  {
+    "slug": "astrology",
+    "displayTitle": " Astrology Cell",
+    "seoTitle": "Astrology Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": " Astrology Cell",
+        "objective": " Vidya Bharti embraces a unique approach to holistic growth with the Astrology Cell, unlocking cosmic insights to guide students on a journey of self-discovery.",
+        "footnote": "Nurturing minds through the cosmic lens."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "atl",
+    "displayTitle": " ATL Cell",
+    "seoTitle": "ATL Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": " ATL Cell",
+        "objective": "The Atal Tinkering Lab (ATL) Cell aims to make optimal use of and operate the laboratories established in schools through the Atal Innovation Mission of the Government of India. It is committed to fostering innovation and scientific spirit among students.",
+        "footnote": " Fostering a culture of scientific exploration."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "csr",
+    "displayTitle": "CSR Cell",
+    "seoTitle": "CSR Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "CSR Cell",
+        "objective": "The CSR Cell plays a pivotal role in securing essential funding for educational initiatives. Its primary objective is to accomplish necessary projects for schools through CSR and develop new activities for school education.",
+        "footnote": " Integrating compassion and social awareness."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "ecommerce",
+    "displayTitle": "E-Commerce Cell",
+    "seoTitle": "E-Commerce Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "E-Commerce Cell",
+        "objective": "The E-Commerce Sale cell aims to make the products and services generated from skill, startup, and entrepreneurship projects within schools accessible to the public. Additionally, the goal is to transform all schools in the country into laboratories and entrepreneurship centers.",
+        "footnote": "Empowering students with entrepreneurial skills."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "environment",
+    "displayTitle": "Environment Cell",
+    "seoTitle": "Environment Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Environment Cell",
+        "objective": "The Environment Cell stands as a bastion of environmental consciousness, committed to sensitizing, creating awareness, and educating students on the critical need for the preservation and conservation of our precious natural resources. At the heart of our mission is the cultivation of love and respect for nature among students. Through a myriad of activities, we aim to instill a deep understanding of the importance of protecting the environment.",
+        "footnote": " Nurturing environmental stewardship among students."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "event",
+    "displayTitle": "Event Management Cell",
+    "seoTitle": "Event Management Cell",
+    "layoutVariant": "slideshow",
+    "blocks": [
+      {
+        "title": "Event Management Cell",
+        "objective": "The Event Management Cell is dedicated to designing education-related events of national and international fame, aiming to establish Vidya Bharti's leadership in this dynamic field.",
+        "footnote": " Cultivating managerial skills and a sense of cultural pride along with opportunities to start starups."
+      }
+    ],
+    "slides": [
+      { "src": "/cells/eventmanagementcell/k6.jpg", "alt": "Event Management Cell — Shiksha Mahakumbh national educational gathering" },
+      { "src": "/cells/eventmanagementcell/banwari_lal_purohit.JPG", "alt": "Event Management Cell — dignitary at DHE national education event" },
+      { "src": "/cells/eventmanagementcell/bandaru_dattareya.jpg", "alt": "Event Management Cell — leadership address at Shiksha Mahakumbh program" },
+      { "src": "/cells/eventmanagementcell/anurag_singh_thakur.JPG", "alt": "Event Management Cell — ministerial participation in DHE educational summit" },
+      { "src": "/cells/eventmanagementcell/raghunandan.JPG", "alt": "Event Management Cell — guest speaker at holistic education conference" },
+      { "src": "/cells/eventmanagementcell/shankarananda.JPG", "alt": "Event Management Cell — spiritual leadership at national education event" },
+      { "src": "/cells/eventmanagementcell/kashmiri_lal.JPG", "alt": "Event Management Cell — keynote session at Vidya Bharti education program" },
+      { "src": "/cells/eventmanagementcell/satish_kumar.JPG", "alt": "Event Management Cell — institutional collaboration at DHE-managed event" }
+    ]
+  },
+  {
+    "slug": "foreign",
+    "displayTitle": " Foreign Language Cell",
+    "seoTitle": "Foreign Language Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": " Foreign Language Cell",
+        "objective": "The Foreign Language Cell is dedicated to developing foreign language skills in schools, providing students with the tools to excel in global environments and establishing coordination for those planning to study abroad.",
+        "footnote": "Broadening horizons through linguistic diversity."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "grievance",
+    "displayTitle": "Grievance Redressal Cell",
+    "seoTitle": "Grievance Redressal Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Grievance Redressal Cell",
+        "objective": "Vidya Bharti is committed to ensuring a supportive environment for all. The Grievance Redressal Cell stands as a pillar to carry out research in the field of grievance redressal to smoothly address concerns and fostering a secure atmosphere for all stakeholders.",
+        "footnote": "Building trust through effective grievance resolution."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "health",
+    "displayTitle": " Health Wisdom Cell",
+    "seoTitle": "Health Wisdom Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": " Health Wisdom Cell",
+        "objective": "The Health Wisdom Cell researches and integrates vital health education into curriculum, fostering well-being and a holistic approach to student life.",
+        "footnote": "Nurturing healthy minds for a prosperous future."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "hei",
+    "displayTitle": "HEI Coordination Cell",
+    "seoTitle": "HEI Coordination Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "HEI Coordination Cell",
+        "objective": "The HEI Coordination Cell is dedicated to enhancing mutual coordination between higher education institutions and schools, working towards the complementary development of both.",
+        "footnote": "Facilitating a smooth educational journey beyond schools."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "industry",
+    "displayTitle": "Industry Co-ordination Cell",
+    "seoTitle": "Industry Co-ordination Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Industry Co-ordination Cell",
+        "objective": "The Industry Coordination Cell envisions making school education skillful by forging partnerships with companies and startups across the country affiliated with Vidya Bharti.",
+        "footnote": " Nurturing global perspectives and cross-cultural understanding."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "ipr",
+    "displayTitle": "IPR Cell",
+    "seoTitle": "IPR Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "IPR Cell",
+        "objective": "The IPR Cell is committed to establishing India as a leader in Intellectual Property Rights by fostering a culture of IPR in 15 lakh schools across the nation.",
+        "footnote": "Building a culture of respect for intellectual property."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "it",
+    "displayTitle": "IT Cell",
+    "seoTitle": "IT Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "IT Cell",
+        "objective": "The IT Cell of the Department of Holistic Education strives to be a one-stop solution for all IT-related needs of Vidya Bharati and the Sangh Parivar.",
+        "footnote": "This initiative promotes digital literacy and connectivity."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "lms",
+    "displayTitle": "LMS Cell",
+    "seoTitle": "LMS Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "LMS Cell",
+        "objective": "The Learning Management System Cell envisions making LMS an integral part of school education, providing financially viable services to thousands of schools in Vidya Bharti. The goal is to develop services in segments like gamification, AI, ML, AR/VR, etc., making them accessible to the entire Vidya Bharti at an affordable rate.",
+        "footnote": " Enhancing accessibility and flexibility in education"
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "olympiad",
+    "displayTitle": "Olympiad Cell",
+    "seoTitle": "Olympiad Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Olympiad Cell",
+        "objective": "The Olympiad cell aims to create a comprehensive test and platform at the national and international levels, strengthening Vidya Bharti's presence and establishing dominance in the education segment.",
+        "footnote": "Excelling beyond boundaries in the pursuit of knowledge"
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "parenting",
+    "displayTitle": "Parenting Cell",
+    "seoTitle": "Parenting Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Parenting Cell",
+        "objective": "The Parenting Cell conducts programs that bridge the gap between school and home, fostering collaborative efforts between parents and educators for the holistic development of students.",
+        "footnote": "Parenting Cell"
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "premiumschool",
+    "displayTitle": "Premium School Cell",
+    "seoTitle": "Premium School Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Premium School Cell",
+        "objective": "The Premium School Cell aspires to set new benchmarks for excellence in education, establishing a framework for schools that define the epitome of educational standards.",
+        "footnote": "Shaping the future through excellence in education."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "publication",
+    "displayTitle": "Publications and Promotions Cell",
+    "seoTitle": "Publications and Promotions Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Publications and Promotions Cell",
+        "objective": "Inclusive education, the cornerstone of our vision, transcends traditional boundaries. It embodies the essence of equality and empowerment, ensuring a collective learning experience for all. ",
+        "footnote": "Showcasing and celebrating academic achievements."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "rd",
+    "displayTitle": "R & D Cell",
+    "seoTitle": "R & D Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "R & D Cell",
+        "objective": "The Research and Development (R & D) Cell is dedicated to promoting research in school education. It focuses on exploring and developing products like Edtech, AR/VR, AI, LMS, TMS, Paper Recycling, Plastic Recycling, Cloth Recycling, Herbal Garden, FMCG, Technology, etc., within schools.",
+        "footnote": "Driving educational excellence through continuous innovation."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "sports",
+    "displayTitle": "Sports Cell",
+    "seoTitle": "Sports Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Sports Cell",
+        "objective": " The Sports Cell at DHE champions a comprehensive sports program by integrating ancient games and researching new horizons in sports to nurture excellence in sports and holistic development among students.",
+        "footnote": "Building champions on and off the field."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "spritual",
+    "displayTitle": "Spiritual Cell",
+    "seoTitle": "Spiritual Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Spiritual Cell",
+        "objective": "The Spiritual Cell integrates profound spiritual education into the curriculum, fostering holistic growth and character development among students.",
+        "footnote": "Nurturing souls for a balanced and purposeful life."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "super100",
+    "displayTitle": " Super 100",
+    "seoTitle": "Super 100",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": " Super 100",
+        "objective": "Super 100 is driven by the primary objective of establishing Vidya Bharti's dominance in the education sector, providing a platform for the free preparation of competitive exams across the country. Additionally, it aims to position India as a global leader in education through Vidya Bharti, offering culture-based education to the world using science and technology in this era of globalization.",
+        "footnote": "Bridging local talent to national aspirations"
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "tms",
+    "displayTitle": "TMS Cell",
+    "seoTitle": "TMS Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "TMS Cell",
+        "objective": "The TMS (Teaching and Non-Teaching Staff Management) Cell is dedicated to bringing excellent teaching and non-teaching staff into schools, ensuring quality education and administration.",
+        "footnote": " Prioritizing progressive learning for every student."
+      }
+    ],
+    "slides": []
+  },
+  {
+    "slug": "udyam",
+    "displayTitle": "Udyam Cell",
+    "seoTitle": "Udyam Cell",
+    "layoutVariant": "simple",
+    "blocks": [
+      {
+        "title": "Udyam Cell",
+        "objective": "The Udyam Cell fosters a spirit of innovation and enterprise, encouraging students to develop and implement their business ideas.",
+        "footnote": "Cultivating a culture of self-reliance and creativity for making Bharat a developed nation."
+      }
+    ],
+    "slides": []
+  }
+]

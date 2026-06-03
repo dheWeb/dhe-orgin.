@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Awesome: keep icons sized even if utilities fail to load */
+.svg-inline--fa {
+  display: inline-block;
+  height: 1.25rem;
+  width: 1.25rem;
+  max-height: 2rem;
+  max-width: 2rem;
+  vertical-align: -0.125em;
+  overflow: visible;
+}
+
+footer .svg-inline--fa,
+header .svg-inline--fa,
+a .svg-inline--fa {
+  flex-shrink: 0;
+}
+
+/* DHE design tokens */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  --dhe-navy: #07111f;
+  --dhe-navy-mid: #0f172a;
+  --dhe-navy-light: #111827;
+  --dhe-orange: #f97316;
+  --dhe-orange-dark: #ea580c;
+  --dhe-orange-soft: #fff7ed;
+  --dhe-blue-accent: #5072a7;
+  --dhe-primary-brand: #002d62;
+
+  --dhe-radius-sm: 0.75rem;
+  --dhe-radius-md: 1.25rem;
+  --dhe-radius-lg: 1.75rem;
+  --dhe-radius-xl: 2.5rem;
+
+  --dhe-shadow-sm: 0 4px 14px rgba(7, 17, 31, 0.06);
+  --dhe-shadow-md: 0 12px 32px rgba(7, 17, 31, 0.1);
+  --dhe-shadow-lg: 0 20px 50px rgba(7, 17, 31, 0.14);
+
+  --dhe-font-display: var(--font-inter), system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer components {
+  .dhe-container {
+    @apply max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 min-w-0;
+  }
+
+  .dhe-btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center px-5 py-2.5 rounded-md font-medium text-white bg-orange-600 hover:bg-orange-700 motion-safe:transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2;
+  }
+
+  .dhe-btn-ghost-light {
+    @apply inline-flex min-h-11 items-center justify-center px-5 py-2.5 rounded-md font-medium border border-white/30 text-white hover:bg-white/10 motion-safe:transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07111f];
+  }
+
+  .dhe-section-py {
+    @apply py-4 sm:py-5;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe\:animate-modal-fade-in,
+  .motion-safe\:animate-modal-scale-in {
+    animation: none !important;
+  }
+}
