@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -74,29 +75,41 @@ const Workshop: React.FC = () => {
           <h2 className="text-2xl font-bold mb-4 text-red-950 text-center">
             Workshop Announcement
           </h2>
-          <Carousel>
-            <div className="h-[25vh] pl-1 pr-1 md:h-[60vh]">
-              <img
+          <Carousel showThumbs={false}>
+            <div className="relative h-[25vh] pl-1 pr-1 md:h-[60vh]">
+              <Image
                 src="/14.jpg"
                 alt="Innovation and Entrepreneurship workshop at CSIO Chandigarh"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
               />
             </div>
-            <div className="h-[25vh] pl-1 pr-1 md:h-[60vh]">
-              <img
+            <div className="relative h-[25vh] pl-1 pr-1 md:h-[60vh]">
+              <Image
                 src="/15.jpg"
                 alt="Workshop session with students and teachers"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
               />
             </div>
-            <div className="h-[25vh] pl-1 pr-1 md:h-[60vh]">
-              <img
+            <div className="relative h-[25vh] pl-1 pr-1 md:h-[60vh]">
+              <Image
                 src="/16.jpg"
                 alt="Hands-on learning at the DHE and CSIO workshop"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
               />
             </div>
-            <div className="h-[25vh] pl-1 pr-1 md:h-[60vh]">
-              <img
+            <div className="relative h-[25vh] pl-1 pr-1 md:h-[60vh]">
+              <Image
                 src="/17.jpg"
                 alt="Participants at the innovation and entrepreneurship workshop"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
               />
             </div>
           </Carousel>

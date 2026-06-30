@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { addDoc, collection, doc, updateDoc, deleteDoc, getDocs } from "firebase/firestore";
 import { toast } from "react-hot-toast";
@@ -270,7 +271,14 @@ const AddEventForm: React.FC = () => {
                   className="border rounded-lg p-2 w-full"
                 />
                 {imageUrl && (
-                  <img src={imageUrl} alt="Event" className="mt-4 max-w-full h-auto" />
+                  <Image
+                    src={imageUrl}
+                    alt={title ? `Preview for ${title}` : "Event preview"}
+                    width={640}
+                    height={360}
+                    unoptimized
+                    className="mt-4 max-w-full h-auto"
+                  />
                 )}
               </motion.div>
 
@@ -291,7 +299,16 @@ const AddEventForm: React.FC = () => {
               <div key={event.id} className="border p-4 rounded-lg bg-white shadow-sm">
                 <h3 className="text-lg font-semibold">{event.title}</h3>
                 <p>Date: {event.date}</p>
-                {event.imageUrl && <img src={event.imageUrl} alt="Event" className="mt-2 max-w-full h-auto" />}
+                {event.imageUrl && (
+                  <Image
+                    src={event.imageUrl}
+                    alt={event.title ? `Image for ${event.title}` : "Event image"}
+                    width={640}
+                    height={360}
+                    unoptimized
+                    className="mt-4 max-w-full h-auto"
+                  />
+                )}
                 <div className="mt-4 flex gap-2">
                   <button
                     onClick={() => {
@@ -372,7 +389,14 @@ const AddEventForm: React.FC = () => {
                   className="border rounded-lg p-2 w-full"
                 />
                 {editImageUrl && (
-                  <img src={editImageUrl} alt="Event" className="mt-4 max-w-full h-auto" />
+                  <Image
+                    src={editImageUrl}
+                    alt={editTitle ? `Preview for ${editTitle}` : "Event preview"}
+                    width={640}
+                    height={360}
+                    unoptimized
+                    className="mt-4 max-w-full h-auto"
+                  />
                 )}
               </div>
 

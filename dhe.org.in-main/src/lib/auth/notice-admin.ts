@@ -2,12 +2,12 @@
  * Client-visible admin allowlist for /noticeboarddata UI gating.
  * Real protection must be enforced with Firebase Security Rules (see docs/FIREBASE_SECURITY.md).
  */
-
-const DEFAULT_ADMIN_EMAIL = "kandarisonal21200@gmail.com";
-
 export function getNoticeAdminEmails(): string[] {
-  const raw =
-    process.env.NEXT_PUBLIC_NOTICE_ADMIN_EMAILS ?? DEFAULT_ADMIN_EMAIL;
+  const raw = process.env.NEXT_PUBLIC_NOTICE_ADMIN_EMAILS?.trim();
+
+  if (!raw) {
+    return [];
+  }
 
   return raw
     .split(",")

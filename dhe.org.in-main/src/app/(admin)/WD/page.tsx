@@ -131,8 +131,6 @@ const Page: React.FC = () => {
     index: number
   ) => {
     try {
-      const formData = new FormData();
-      formData.append("email", email);
       await axios.post("/api/sendMail", { email, qrCodeData });
       toast.success(`Email sent to ${email}`);
       const updatedEmailsSent = [...emailsSent];
@@ -145,11 +143,12 @@ const Page: React.FC = () => {
   };
 
   const sendAllEmails = async () => {
-    formDataList.forEach(async (formData, index) => {
+    for (let index = 0; index < formDataList.length; index++) {
       if (!emailsSent[index]) {
+        const formData = formDataList[index];
         await sendEmail(formData.email, JSON.stringify(formData), index);
       }
-    });
+    }
   };
 
   const exportToExcel = () => {

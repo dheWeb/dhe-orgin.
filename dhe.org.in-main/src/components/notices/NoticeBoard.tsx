@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   List,
   Typography,
@@ -45,6 +46,11 @@ function NoticeImage({
   onLoadEnd: (id: string) => void;
 }) {
   const resolvedSrc = resolveNoticeImageUrl(event.imageUrl);
+  const [imageSrc, setImageSrc] = useState(resolvedSrc);
+
+  useEffect(() => {
+    setImageSrc(resolvedSrc);
+  }, [resolvedSrc]);
 
   return (
     <div className="relative w-1/3 shrink-0">
@@ -53,14 +59,17 @@ function NoticeImage({
           <Spin size="small" />
         </div>
       )}
-      <img
-        src={resolvedSrc}
+      <Image
+        src={imageSrc}
         alt={event.title}
+        width={160}
+        height={120}
+        unoptimized
         className="h-auto w-full object-cover rounded-md cursor-pointer border border-gray-100"
-        onClick={() => onOpen(resolvedSrc)}
+        onClick={() => onOpen(imageSrc)}
         onLoad={() => onLoadEnd(event.id)}
-        onError={(e) => {
-          e.currentTarget.src = FALLBACK_NOTICE_IMAGE;
+        onError={() => {
+          setImageSrc(FALLBACK_NOTICE_IMAGE);
           onLoadEnd(event.id);
         }}
         onLoadStart={() => onLoadStart(event.id)}
@@ -76,7 +85,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ embedded = false }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [modalImage, setModalImage] = useState<string>("");
+  const [modalImageSrc, setModalImageSrc] = useState<string>(FALLBACK_NOTICE_IMAGE);
   const [imageLoading, setImageLoading] = useState<Record<string, boolean>>({});
 
   const router = useRouter();
@@ -111,13 +120,13 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ embedded = false }) => {
   }, [events]);
 
   const handleImageClick = (imageUrl: string) => {
-    setModalImage(imageUrl);
+    setModalImageSrc(imageUrl);
     setIsModalVisible(true);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
-    setModalImage("");
+    setModalImageSrc(FALLBACK_NOTICE_IMAGE);
   };
 
   const handleImageLoadStart = (id: string) => {
@@ -237,13 +246,14 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ embedded = false }) => {
       centered
       width={embedded ? "90%" : "80%"}
     >
-      <img
-        src={modalImage || FALLBACK_NOTICE_IMAGE}
+      <Image
+        src={modalImageSrc || FALLBACK_NOTICE_IMAGE}
         alt="Notice preview"
+        width={960}
+        height={720}
+        unoptimized
         className="w-full h-auto object-contain"
-        onError={(e) => {
-          e.currentTarget.src = FALLBACK_NOTICE_IMAGE;
-        }}
+        onError={() => setModalImageSrc(FALLBACK_NOTICE_IMAGE)}
       />
     </Modal>
   );

@@ -1,14 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import qr from "qrcode";
+import { isAdminAuthorized } from "@/lib/auth/admin-gate";
 import { getSmtpConfig } from "@/lib/env/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: NextRequest) {
+  if (!isAdminAuthorized(req.headers.get("authorization"))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const smtp = getSmtpConfig();
 
   if (!smtp) {

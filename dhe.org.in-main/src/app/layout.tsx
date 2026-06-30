@@ -49,16 +49,20 @@ export default function RootLayout({
           />
         )}
 
-        <Script
-          id="botpress-inject"
-          src="https://cdn.botpress.cloud/webchat/v1/inject.js"
-          strategy="lazyOnload"
-        />
-        <Script
-          id="botpress-config"
-          src="https://mediafiles.botpress.cloud/fa60123e-045a-48d8-862e-81258c3ccc9a/webchat/config.js"
-          strategy="lazyOnload"
-        />
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script
+              id="botpress-inject"
+              src="https://cdn.botpress.cloud/webchat/v1/inject.js"
+              strategy="lazyOnload"
+            />
+            <Script
+              id="botpress-config"
+              src="https://mediafiles.botpress.cloud/fa60123e-045a-48d8-862e-81258c3ccc9a/webchat/config.js"
+              strategy="lazyOnload"
+            />
+          </>
+        )}
       </body>
     </html>
   );

@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Reduces duplicate Ant Design ref warnings in dev overlay (React 18 + Strict Mode)
   reactStrictMode: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      { protocol: "https", hostname: "www.dhe.org.in" },
+      { protocol: "https", hostname: "dhe.org.in" },
+      { protocol: "https", hostname: "firebasestorage.googleapis.com" },
+      { protocol: "https", hostname: "i.pinimg.com" },
+    ],
   },
   async redirects() {
     return [
