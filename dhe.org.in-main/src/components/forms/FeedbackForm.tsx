@@ -28,7 +28,6 @@ const FeedbackForm: React.FC = () => {
         suggestions,
         Attachments: downloadURL || "", 
       });
-      console.log("Document added with ID:", docRef.id);
       setLoading(false);
 
       // Reset the form fields

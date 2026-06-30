@@ -9,6 +9,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_QR_PAYLOAD_BYTES = 8_192;
 
 export async function POST(req: NextRequest) {
   if (!isAdminAuthorized(req.headers.get("authorization"))) {
@@ -34,7 +36,7 @@ export async function POST(req: NextRequest) {
       qrCodeData?: unknown;
     };
 
-    if (!email || !EMAIL_REGEX.test(email)) {
+    if (!email || email.length > MAX_EMAIL_LENGTH || !EMAIL_REGEX.test(email)) {
       return NextResponse.json(
         { error: "A valid recipient email is required." },
         { status: 400 }
@@ -48,7 +50,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const qrDataURL = await qr.toDataURL(JSON.stringify(qrCodeData));
+    const qrPayload = JSON.stringify(qrCodeData);
+    if (Buffer.byteLength(qrPayload, "utf8") > MAX_QR_PAYLOAD_BYTES) {
+      return NextResponse.json(
+        { error: "QR code data exceeds the allowed size." },
+        { status: 400 }
+      );
+    }
+
+    const qrDataURL = await qr.toDataURL(qrPayload);
 
     const transporter = nodemailer.createTransport({
       service: smtp.service,

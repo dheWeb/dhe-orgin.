@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { db } from "@/app/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import * as XLSX from "xlsx";
+import { downloadRowsAsXlsx } from "@/lib/export/download-xlsx";
 import { useQRCode } from "next-qrcode";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -151,7 +151,7 @@ const Page: React.FC = () => {
     }
   };
 
-  const exportToExcel = () => {
+  const exportToExcel = async () => {
     const filteredData = formDataList.map(
       ({ serial, name, Address, email, PhoneNumber }) => ({
         "Sr. No.": serial,
@@ -162,12 +162,7 @@ const Page: React.FC = () => {
       })
     );
 
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.json_to_sheet(filteredData);
-
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Workshop Data");
-
-    XLSX.writeFile(workbook, "workshop_data.xlsx");
+    await downloadRowsAsXlsx(filteredData, "workshop_data.xlsx", "Workshop Data");
   };
 
   // Function to download data as PDF

@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import { GoogleAuthProvider, signInWithPopup, signOut, getAuth, User } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db, storage } from "@/app/firebase";
-import { isNoticeAdmin } from "@/lib/auth/notice-admin";
+import { isNoticeAdmin, getNoticeAdminEmails } from "@/lib/auth/notice-admin";
 
 const AddEventForm: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -97,7 +97,6 @@ const AddEventForm: React.FC = () => {
         date, // Send date as YYYY-MM-DD
         imageUrl,
       });
-      console.log("Document added with ID:", docRef.id);
       setLoading(false);
 
       // Reset the form fields
@@ -163,12 +162,21 @@ const AddEventForm: React.FC = () => {
   };
 
   if (!user) {
+    const adminEmailsConfigured = getNoticeAdminEmails().length > 0;
+
     return (
-      <div className="text-center h-[100vh]">
-       
+      <div className="text-center min-h-[50vh] px-4 py-10">
+        {!adminEmailsConfigured && (
+          <p className="mb-6 max-w-lg mx-auto text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm">
+            Notice admin emails are not configured. Set{" "}
+            <code className="font-mono">NEXT_PUBLIC_NOTICE_ADMIN_EMAILS</code> in
+            Vercel environment variables.
+          </p>
+        )}
         <button
           onClick={handleLogin}
-          className="bg-primary mt-10 mb-10 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition"
+          disabled={!adminEmailsConfigured}
+          className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-white hover:text-primary transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Sign In with Google
         </button>

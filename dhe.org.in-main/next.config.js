@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
+    // Hobby plan image optimization is limited (5K/mo); serve /public assets directly on Vercel.
+    unoptimized: process.env.VERCEL === "1",
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "www.dhe.org.in" },

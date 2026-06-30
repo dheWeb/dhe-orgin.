@@ -51,11 +51,10 @@ const Donation = () => {
 
   const handleAddDocument = async (downloadURL: string | null) => {
     try {
-      const docRef = await addDoc(collection(db, "Donation"), {
+      await addDoc(collection(db, "Donation"), {
         ...formData,
         Attachments: downloadURL || "",
       });
-      console.log("Document added with ID:", docRef.id);
       setLoading(false);
       setFormData(initialFormData);
       toast.success(

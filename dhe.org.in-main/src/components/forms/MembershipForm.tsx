@@ -51,7 +51,6 @@ const MemberShipForm = () => {
     const handleAddDocument = async (downloadURL: string | null) => {
         try {
             const docRef = await addDoc(collection(db, 'RegestrationVol'), { ...formData, feeReceipt: downloadURL });
-            console.log('Document added with ID:', docRef.id);
             setLoading(false);
             setFormData(initialFormData);
             toast.success('Congratulations on becoming a DHE member!');
@@ -95,8 +94,6 @@ const MemberShipForm = () => {
         } else {
             handleAddDocument(null);
         }
-
-        console.log(formData);
     };
 
     return (
