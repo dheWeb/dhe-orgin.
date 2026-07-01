@@ -23,10 +23,15 @@ const HomeGalleryPreview = dynamic(
  * Homepage flow:
  * Hero → Overview & stats → Achievements → Cells/ecosystem → Programs → News → Gallery → CTA
  */
-export default function HomePageContent() {
+export default function HomePageContent({ tagline }: { tagline?: string }) {
   return (
     <div className="bg-white overflow-x-hidden min-w-0">
       <HomeHero />
+      {tagline ? (
+        <p className="dhe-container text-center text-sm sm:text-base text-gray-600 -mt-2 mb-4 px-4">
+          {tagline}
+        </p>
+      ) : null}
 
       <div className="dhe-container">
         <MiddleComponent />

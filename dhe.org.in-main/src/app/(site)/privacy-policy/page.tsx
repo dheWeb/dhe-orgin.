@@ -40,20 +40,29 @@ export default function PrivacyPolicyPage() {
         and Botpress (chat, only after cookie consent).
       </p>
 
-      <h2>Your rights</h2>
+      <h2>Your rights (India DPDP Act &amp; general privacy)</h2>
       <p>
-        You may request access, correction, or deletion of your data by
-        contacting{" "}
+        You may request access, correction, erasure, or grievance redressal by
+        emailing{" "}
         <a href={`mailto:${dheOfficialContact.email}`}>
           {dheOfficialContact.email}
         </a>
         . We respond within 30 days where required by law.
       </p>
 
+      <h2>Third-party embeds</h2>
+      <p>
+        Google Maps on the contact page, Botpress chat (after cookie consent),
+        and Google AdSense (after consent) may collect usage data per their
+        policies. Disable non-essential cookies to limit this processing.
+      </p>
+
       <h2>Retention</h2>
       <p>
-        Financial records are retained as required for tax and 80G compliance.
-        Marketing data is deleted on request unless legally required.
+        Donation and 80G records: retained for 8 years per Income Tax rules.
+        Workshop and contact form data: up to 3 years unless you request
+        deletion sooner. Payment metadata is retained per Razorpay and statutory
+        requirements.
       </p>
 
       <h2>Contact</h2>

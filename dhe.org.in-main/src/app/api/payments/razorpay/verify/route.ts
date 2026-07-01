@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { isRazorpayConfigured } from "@/lib/env/razorpay";
 import { getSupabaseAdmin, isSupabaseAdminConfigured } from "@/lib/supabase/admin";
 import type { VerifyPaymentRequest } from "@/lib/payments/types";
+import { mapRazorpayPayment } from "@/lib/payments/map-razorpay-payment";
+import { upsertDonationFromPayment } from "@/lib/payments/process-webhook";
+import { getRazorpayClient } from "@/lib/razorpay/client";
 import { verifyPaymentSignature } from "@/lib/razorpay/verify";
 
 export const runtime = "nodejs";
@@ -49,16 +52,40 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { data: donation } = await supabase
+  let { data: donation } = await supabase
     .from("donations")
-    .select("receipt_number, status, amount_paise")
+    .select("id, receipt_number, status, amount_paise")
     .eq("razorpay_payment_id", razorpay_payment_id)
     .maybeSingle();
+
+  if (!donation) {
+    const razorpay = getRazorpayClient();
+    if (razorpay) {
+      try {
+        const raw = await razorpay.payments.fetch(razorpay_payment_id);
+        const payment = mapRazorpayPayment(
+          raw as unknown as Record<string, unknown>
+        );
+        if (payment.status === "captured") {
+          await upsertDonationFromPayment(payment, "captured");
+          const refetch = await supabase
+            .from("donations")
+            .select("id, receipt_number, status, amount_paise")
+            .eq("razorpay_payment_id", razorpay_payment_id)
+            .maybeSingle();
+          donation = refetch.data;
+        }
+      } catch (err) {
+        console.error("[verify] payment finalize", err);
+      }
+    }
+  }
 
   return NextResponse.json({
     verified: true,
     donation: donation ?? null,
-    message:
-      "Payment verified. Receipt will be finalized via webhook if not already recorded.",
+    message: donation
+      ? "Payment verified and receipt recorded."
+      : "Payment verified. Receipt will be finalized via webhook shortly.",
   });
 }

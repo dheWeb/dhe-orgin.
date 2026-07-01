@@ -26,6 +26,7 @@ type RazorpayDonateButtonProps = {
   email: string;
   phone: string;
   amount: number;
+  pan?: string;
   purpose?: "donation" | "membership" | "registration";
   disabled?: boolean;
   metadata?: Record<string, string>;
@@ -36,6 +37,7 @@ export default function RazorpayDonateButton({
   email,
   phone,
   amount,
+  pan,
   purpose = "donation",
   disabled,
   metadata,
@@ -76,6 +78,7 @@ export default function RazorpayDonateButton({
           name,
           email,
           phone,
+          pan: pan?.trim() || undefined,
           metadata,
         }),
       });
@@ -131,7 +134,7 @@ export default function RazorpayDonateButton({
     } finally {
       setLoading(false);
     }
-  }, [amount, email, keyId, metadata, name, phone, purpose]);
+  }, [amount, email, keyId, metadata, name, pan, phone, purpose]);
 
   return (
     <>

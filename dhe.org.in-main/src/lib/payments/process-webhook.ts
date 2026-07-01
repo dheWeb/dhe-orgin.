@@ -23,7 +23,7 @@ async function allocateReceiptNumber(): Promise<string> {
   return data as string;
 }
 
-async function upsertDonationFromPayment(
+export async function upsertDonationFromPayment(
   payment: RazorpayPaymentEntity,
   status: "captured" | "failed" | "authorized"
 ): Promise<void> {

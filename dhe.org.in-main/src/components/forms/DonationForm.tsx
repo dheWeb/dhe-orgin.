@@ -11,6 +11,7 @@ interface DonationData {
   email: string;
   PhoneNumber: string;
   Amount: string;
+  pan: string;
 }
 
 const contributionAreas = [
@@ -27,6 +28,7 @@ const Donation = () => {
     email: "",
     PhoneNumber: "",
     Amount: "",
+    pan: "",
   };
 
   const [formData, setFormData] = useState<DonationData>(initialFormData);
@@ -178,11 +180,31 @@ const Donation = () => {
               />
             </div>
 
+            <div className="mb-4">
+              <label
+                htmlFor="donation-pan"
+                className="block text-sm font-medium text-gray-600"
+              >
+                PAN (optional, for 80G receipt)
+              </label>
+              <input
+                id="donation-pan"
+                type="text"
+                name="pan"
+                maxLength={10}
+                value={formData.pan}
+                onChange={handleInputChange}
+                className="mt-2 p-2 block w-full rounded-md border border-gray-300 text-black min-h-11 uppercase"
+                placeholder="ABCDE1234F"
+              />
+            </div>
+
             <RazorpayDonateButton
               name={formData.name}
               email={formData.email}
               phone={formData.PhoneNumber}
               amount={amount}
+              pan={formData.pan}
               disabled={!formData.name || !formData.email || !amount}
             />
           </form>

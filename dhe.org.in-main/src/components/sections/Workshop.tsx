@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import WorkshopRegistrationForm from "@/components/forms/WorkshopRegistrationForm";
 
 const relatedActivityLinks = [
   { href: "/pastevent", label: "Past Events", description: "Archive of DHE programs and conferences" },
@@ -285,6 +286,26 @@ const Workshop: React.FC = () => {
             </span>
           </p>
         </div>
+
+        <section
+          aria-labelledby="next-workshop-heading"
+          className="max-w-3xl mx-auto mt-10 pt-8 border-t border-gray-200"
+        >
+          <h2
+            id="next-workshop-heading"
+            className="text-xl font-semibold text-primary-color"
+          >
+            Register for the next DHE workshop
+          </h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Submit your interest for upcoming innovation, entrepreneurship, and
+            holistic education workshops. The May 2024 program above is archived;
+            this form is for future programs.
+          </p>
+          <div className="mt-6">
+            <WorkshopRegistrationForm />
+          </div>
+        </section>
 
         <section
           aria-labelledby="related-activities-heading"

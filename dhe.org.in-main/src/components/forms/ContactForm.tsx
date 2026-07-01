@@ -16,8 +16,8 @@ const contactData: ContactInfo = {
   title: "Project Manager",
   organization: "Department of Holistic Education",
   address: "Vidya Bharti\nPlot No. 1, Sector 71, SAS Nagar (Mohali) – 160071",
-  emails: ["director@dhe.org.in", "dhe2021vb@gmail.com"],
-  phones: ["7903431900", "9417050631"],
+  emails: ["director@dhe.org.in"],
+  phones: ["7903431900"],
   website: "https://www.dhe.org.in",
 };
 

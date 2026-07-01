@@ -126,37 +126,37 @@ const BottomView: React.FC = () => {
     },
     {
       name: "Shiksha Mahakumbh",
-      image: "/logos/rase.png",
+      image: "/logos/rase.webp",
       link: "https://www.rase.co.in/",
     },
     {
       name: "Vidya Bharti",
-      image: "/vidyabharti.png",
+      image: "/logos/vidyabharti.webp",
       link: "https://vidyabharti.net/",
     },
     {
       name: "Sarvatra",
-      image: "/sarvatra.png",
+      image: "/logos/sarvatr.webp",
       link: "https://www.sarvatr.co.in/",
     },
     {
       name: "Tredul",
-      image: "/tre-dul.png",
+      image: "/logos/tre-dul.webp",
       link: "https://tredul.in/",
     },
     {
       name: "Jobs 360°",
-      image: "/job360.png",
+      image: "/logos/job360.webp",
       link: "https://jobs360degree.com/",
     },
     {
       name: "Swadeshi Bazaar",
-      image: "/sb.png",
+      image: "/logos/swadeshibazar.webp",
       link: "https://www.swadeshibazaar.co.in/",
     },
     {
       name: "Poojawala",
-      image: "/pooja.png",
+      image: "/logos/poojawala.webp",
       link: "https://poojawala.in/",
     },
     {
@@ -171,7 +171,7 @@ const BottomView: React.FC = () => {
     },
     {
       name: "Punjab Super 100",
-      image: "/pb100.png",
+      image: "/logos/pb100.webp",
       link: "https://punjabsuper100.com/",
     },
     {
