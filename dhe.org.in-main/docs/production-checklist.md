@@ -63,7 +63,7 @@
 | Razorpay live + webhook | **Live** |
 | Brevo SMTP | **DONE** — REST API + receipt emails verified |
 | reCAPTCHA keys | **Wired** — contact, feedback, membership forms |
-| Upstash (rate limit) | **Pending** — Vercel integration needs browser; Supabase fallback active |
+| Upstash (rate limit) | **Skipped** — no free plan on Vercel; **Supabase `rate_limit_buckets`** is production backend |
 | GA4 | **Live** — `G-VZ55ESSK6V` (cookie consent gated) |
 | Sentry | **Live** — `rase-monitoring-l1` |
 | Sentry | **SDK wired** + **Supabase `error_logs`** fallback when `SENTRY_DSN` unset |
@@ -140,7 +140,8 @@
 | 1 | Supabase full schema migration | **P0** | **DONE** |
 | 2 | LCP / Performance score below target | **P0** | **Partial** — image optimization + SSR hero; compress `public/` sources |
 | 3 | Legacy Firestore data | **CLOSED** | Firebase DB deleted; use `npm run seed:bootstrap` for starter content |
-| 4 | Upstash + Sentry env not set in Vercel | **P1** | SDK wired — add keys per `docs/optional-env.md` |
+| 4 | Upstash env | **Closed** | Skipped — Vercel Upstash has no free plan; Supabase rate limits in use |
+| 5 | Sentry env | **Done** | Live on Vercel |
 | 5 | npm audit moderate CVEs | **LOW** | 3 remain (Next/postcss); uuid override applied |
 | 6 | Accessibility 96 not 100 | **MEDIUM** | Ongoing |
 | 7 | CMS not built | **LOW** | **Partial** — key public snippets editable at `/admin/cms` |
@@ -186,7 +187,7 @@ The site is **live at https://www.dhe.org.in** with Supabase forms/notices, Razo
 
 ## Next reconstruction steps (ordered)
 
-1. **Set env in Vercel:** `SENTRY_DSN`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` (see `docs/optional-env.md`)
+1. **Optional env in Vercel:** Sentry done; Upstash skipped (Supabase rate limits). GA4: `NEXT_PUBLIC_GA_MEASUREMENT_ID`
 2. **Rotate secrets** shared in chat (Supabase, Razorpay, reCAPTCHA, Brevo, admin password)
 3. **Bootstrap Supabase content:** `npm run seed:bootstrap` (starter notices + CMS)
 4. **Compress hero images** in `public/2024K/` (multi-MB JPEGs)

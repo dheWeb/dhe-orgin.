@@ -60,30 +60,20 @@ npx vercel deploy --prod --yes
 
 Vercel log drains / OTLP are configured in the Sentry ↔ Vercel integration UI, not in app env.
 
-## Optional: Upstash Redis
+## Upstash Redis (not used on this project)
+
+**Decision:** Upstash is **not provisioned**. Vercel’s Upstash integration has no free tier (`--plan free` fails); pay-as-you-go starts at usage billing.
+
+**Production rate limiting** uses Supabase `rate_limit_buckets` (see `src/lib/security/rate-limit.ts`). No `UPSTASH_*` env vars are required.
+
+If you add Upstash later (paid plan only):
 
 ```
 UPSTASH_REDIS_REST_URL=https://....upstash.io
 UPSTASH_REDIS_REST_TOKEN=...
 ```
 
-When unset, rate limits use Supabase `rate_limit_buckets` (distributed across instances).
-
-**Provision via Vercel (recommended):**
-
-```powershell
-cd ..
-npx vercel integration add upstash/upstash-kv -m primaryRegion=iad1 -n dhe-orgin-ratelimit --plan paid
-```
-
-Complete the browser step if prompted, then sync credentials:
-
-```powershell
-cd dhe.org.in-main
-npx vercel env pull .env.vercel-backup --environment=production --yes
-# Copy UPSTASH_REDIS_REST_* from backup into sync script env, or:
-node scripts/sync-optional-env.mjs
-```
+The SDK will prefer Upstash when both vars are set; otherwise Supabase is used automatically.
 
 ## Optional: Google Analytics 4
 

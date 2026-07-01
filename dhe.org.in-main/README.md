@@ -35,7 +35,7 @@ Production project: **`dhe-orgin-ctai`** → `www.dhe.org.in`.
 | `RECAPTCHA_*` / `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Form spam protection |
 | `BREVO_API_KEY` + `SMTP_FROM` | Receipt emails (Brevo REST API) |
 
-Optional: `SENTRY_DSN`, `UPSTASH_*`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+Optional: `SENTRY_DSN`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`. Rate limits use Supabase (Upstash not used — no free Vercel plan).
 
 **Firebase is retired** — do not set `NEXT_PUBLIC_FIREBASE_*`.
 
