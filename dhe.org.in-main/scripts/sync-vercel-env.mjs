@@ -40,6 +40,11 @@ const keys = [
   "SMTP_KEY_NEW",
   "MCP_API_KEY_NEW",
   "NEXT_PUBLIC_SITE_URL",
+  "NEXT_PUBLIC_SENTRY_DSN",
+  "SENTRY_DSN",
+  "SENTRY_AUTH_TOKEN",
+  "SENTRY_ORG",
+  "SENTRY_PROJECT",
 ];
 
 const monorepoRoot = join(root, "..");

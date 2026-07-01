@@ -37,10 +37,28 @@ npx vercel env pull dhe.org.in-main/.env.vercel-backup --environment=production 
 ## Optional: Sentry
 
 ```
-SENTRY_DSN=https://...@....ingest.sentry.io/...
+NEXT_PUBLIC_SENTRY_DSN=https://...@....ingest.us.sentry.io/...
+SENTRY_DSN=https://...@....ingest.us.sentry.io/...   # same DSN (server)
+SENTRY_AUTH_TOKEN=...                                 # build-time source maps (Vercel only)
+SENTRY_ORG=rase-co-in
+SENTRY_PROJECT=rase-monitoring-l1
 ```
 
 When unset, errors are logged to Supabase `error_logs` and viewable at `GET /api/admin/errors`.
+
+Sync from local (after exporting vars in your shell):
+
+```powershell
+cd dhe.org.in-main
+$env:NEXT_PUBLIC_SENTRY_DSN="https://..."
+$env:SENTRY_AUTH_TOKEN="..."
+$env:SENTRY_ORG="rase-co-in"
+$env:SENTRY_PROJECT="rase-monitoring-l1"
+node scripts/sync-sentry-env.mjs
+npx vercel deploy --prod --yes
+```
+
+Vercel log drains / OTLP are configured in the Sentry ↔ Vercel integration UI, not in app env.
 
 ## Optional: Upstash Redis
 

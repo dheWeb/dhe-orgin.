@@ -1,3 +1,5 @@
+const { withSentryConfig } = require("@sentry/nextjs");
+
 /** @type {import('next').NextConfig} */
 const securityHeaders = [
   {
@@ -28,7 +30,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https: http:",
-      "connect-src 'self' https://*.supabase.co https://api.razorpay.com https://*.google.com https://www.google-analytics.com https://*.botpress.cloud wss://*.botpress.cloud https://*.ingest.sentry.io",
+      "connect-src 'self' https://*.supabase.co https://api.razorpay.com https://*.google.com https://www.google-analytics.com https://*.botpress.cloud wss://*.botpress.cloud https://*.ingest.sentry.io https://*.ingest.us.sentry.io",
       "frame-src 'self' https://api.razorpay.com https://www.google.com https://www.youtube.com https://www.google.com/maps",
       "object-src 'none'",
       "base-uri 'self'",
@@ -93,4 +95,15 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG || "rase-co-in",
+  project: process.env.SENTRY_PROJECT || "rase-monitoring-l1",
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  tunnelRoute: "/monitoring",
+  webpack: {
+    treeshake: { removeDebugLogging: true },
+    automaticVercelMonitors: true,
+  },
+});
