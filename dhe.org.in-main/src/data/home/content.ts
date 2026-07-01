@@ -60,31 +60,37 @@ export const digitalEcosystem = {
       title: "Tredul",
       desc: "Experiential learning & educational tourism platform",
       icon: "travel" as const,
+      href: "https://tredul.com",
     },
     {
       title: "Sarvatra",
       desc: "Unified school resource & data management ecosystem",
       icon: "data" as const,
+      href: "https://sarvatr.co.in",
     },
     {
       title: "Swadeshi Bazaar",
       desc: "Empowering local entrepreneurship & innovation",
       icon: "shop" as const,
+      href: "https://swadeshibazaar.in",
     },
     {
       title: "Jobs 360°",
       desc: "Career readiness & employment ecosystem",
       icon: "career" as const,
+      href: "https://jobs360.co.in",
     },
     {
       title: "TuDu",
       desc: "Integrated event & initiative management platform",
       icon: "events" as const,
+      href: "https://tudu.app",
     },
     {
       title: "Viksit Bharat & Viksit India",
       desc: "Quarterly educational research & policy journals",
       icon: "journal" as const,
+      href: "https://pub.rase.co.in",
     },
   ],
 };
@@ -164,13 +170,9 @@ export const relatedLinks = [
 ];
 
 export const homeHeroCtas = [
-  {
-    href: "https://www.rase.co.in/",
-    label: "Shiksha Mahakumbh",
-    external: true,
-    primary: true,
-  },
+  { href: "/programs", label: "Explore Programs", external: false, primary: true },
   { href: "/structure", label: "Cells & Structure", external: false, primary: false },
+  { href: "https://www.rase.co.in/", label: "Shiksha Mahakumbh", external: true, primary: false },
   { href: "/contribute", label: "Join DHE", external: false, primary: false },
 ] as const;
 

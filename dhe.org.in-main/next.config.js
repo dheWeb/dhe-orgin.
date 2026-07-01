@@ -61,6 +61,16 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/donate",
+        destination: "/donation",
+        permanent: true,
+      },
+      {
+        source: "/join",
+        destination: "/contribute",
+        permanent: true,
+      },
+      {
         source: "/dhe-banner.jpg",
         destination: "/logo.png",
         permanent: true,

@@ -31,7 +31,7 @@ function TreeNodeLink({
 const TreeComponent: React.FC = () => {
   return (
     <nav aria-label="DHE organizational structure chart">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div aria-busy="true">Loading organizational chart…</div>}>
         <Tree
         lineWidth="2px"
         lineColor="green"

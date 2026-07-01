@@ -24,9 +24,10 @@ const Header: React.FC = () => {
 
   const menus: Menu[] = [
     { path: "/", title: "Home" },
+    { path: "/programs", title: "Programs" },
 
     {
-      path: "/",
+      path: "/structure",
       title: "About DHE",
       subMenu: [
         { path: "/messages", title: "Director Message" },
@@ -38,21 +39,29 @@ const Header: React.FC = () => {
     },
 
     {
-      path: "https://pub.dhe.org.in",
+      path: "/books",
       title: "Publications",
-    },
-
-    {
-      path: "/",
-      title: "Events",
       subMenu: [
-        { path: "/pastevent", title: "Past Events" },
-        { path: "/upcomingevent", title: "Upcoming Events" },
+        { path: "/books", title: "Books" },
+        { path: "/journals", title: "Journals" },
+        { path: "https://pub.dhe.org.in", title: "pub.dhe.org.in" },
       ],
     },
 
     {
-      path: "/",
+      path: "/upcomingevent",
+      title: "Events",
+      subMenu: [
+        { path: "/noticeboard", title: "Notice Board" },
+        { path: "/upcomingevent", title: "Upcoming Events" },
+        { path: "/pastevent", title: "Past Events" },
+        { path: "/workshop", title: "Workshops" },
+        { path: "/residentialcamps", title: "Residential Camps" },
+      ],
+    },
+
+    {
+      path: "https://ep.sarvatr.co.in/public/careers/8d8a9c3384a936495a752596fe2a0b4d",
       title: "Careers",
       subMenu: [
         {
@@ -67,7 +76,7 @@ const Header: React.FC = () => {
     },
 
     {
-      path: "/",
+      path: "https://nitsri.dhe.org.in",
       title: "DHE Chapters",
       subMenu: [
         { path: "https://nitsri.dhe.org.in", title: "NIT Srinagar" },
@@ -78,7 +87,7 @@ const Header: React.FC = () => {
     },
 
     {
-      path: "/",
+      path: "/contribute",
       title: "Membership",
       subMenu: [{ path: "/contribute", title: "Join DHE" }],
     },
@@ -86,7 +95,6 @@ const Header: React.FC = () => {
     { path: "/donation", title: "Donation" },
     { path: "/logos", title: "Media & Logos" },
     { path: "/accountdetails", title: "Accounts" },
-    { path: "/residentialcamps", title: "Residential Camps" },
     { path: "/feedback", title: "Feedback" },
     { path: "/contact", title: "Contact" },
   ];

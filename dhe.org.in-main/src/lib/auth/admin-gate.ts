@@ -55,9 +55,7 @@ export function isAdminAuthorized(
   const creds = getAdminCredentials();
 
   if (!creds) {
-    return (
-      process.env.NODE_ENV === "development" && !process.env.VERCEL
-    );
+    return process.env.ADMIN_DEV_BYPASS === "1";
   }
 
   if (!authHeader) {

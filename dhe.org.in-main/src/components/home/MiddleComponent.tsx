@@ -208,7 +208,18 @@ const DepartmentInfo: React.FC<{
                 <HomeIcon name={item.icon} className="w-5 h-5" />
               </span>
               <div>
-                <p className="text-sm font-semibold text-gray-900">{item.title}</p>
+                {"href" in item && item.href ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-orange-700 hover:underline"
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <p className="text-sm font-semibold text-gray-900">{item.title}</p>
+                )}
                 <p className="mt-0.5 text-xs sm:text-sm text-gray-600 leading-snug">
                   {item.desc}
                 </p>

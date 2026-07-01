@@ -1,5 +1,6 @@
-'use client'
-import { useState, ChangeEvent, FormEvent } from 'react';
+"use client";
+
+import React, { useState, ChangeEvent, FormEvent, useId } from 'react';
 import toast from 'react-hot-toast';
 import RecaptchaField from '@/components/forms/RecaptchaField';
 import RazorpayDonateButton from '@/components/payments/RazorpayDonateButton';
@@ -15,6 +16,7 @@ interface NgoData {
 }
 
 const MemberShipForm = () => {
+    const fieldId = useId();
     const initialFormData: NgoData = {
         name: '',
         Address: '',
@@ -86,41 +88,41 @@ const MemberShipForm = () => {
                 <h1 className='text-primary text-center text-xl'>Membership Form</h1>
                 <form onSubmit={handleSubmit} className='bg-white p-4'>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Name</label>
-                        <input type="text" name="name" value={formData.name} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
+                        <label htmlFor={`${fieldId}-name`} className="block text-sm font-medium text-gray-600">Name</label>
+                        <input id={`${fieldId}-name`} type="text" name="name" value={formData.name} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Email</label>
-                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
+                        <label htmlFor={`${fieldId}-email`} className="block text-sm font-medium text-gray-600">Email</label>
+                        <input id={`${fieldId}-email`} type="email" name="email" value={formData.email} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Phone Number</label>
-                        <input type="tel" name="PhoneNumber" value={formData.PhoneNumber} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
+                        <label htmlFor={`${fieldId}-phone`} className="block text-sm font-medium text-gray-600">Phone Number</label>
+                        <input id={`${fieldId}-phone`} type="tel" name="PhoneNumber" value={formData.PhoneNumber} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Address</label>
-                        <input name="Address" type='text' value={formData.Address} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
+                        <label htmlFor={`${fieldId}-address`} className="block text-sm font-medium text-gray-600">Address</label>
+                        <input id={`${fieldId}-address`} name="Address" type='text' value={formData.Address} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />
                     </div>
                     <div className='mb-4'>
-                        <label className='block text-sm font-medium text-gray-600'>
+                        <label htmlFor={`${fieldId}-category`} className='block text-sm font-medium text-gray-600'>
                             Membership Category
-                            <select name='membershipCategory' value={formData.membershipCategory} onChange={handleInputChange} required className='mt-4 p-2 block w-full rounded-md border border-gray-300 text-black'>
+                        </label>
+                            <select id={`${fieldId}-category`} name='membershipCategory' value={formData.membershipCategory} onChange={handleInputChange} required className='mt-4 p-2 block w-full rounded-md border border-gray-300 text-black'>
                                 <option value=''>Select Category</option>
                                 <option value='student'>Student</option>
                                 <option value='other'>Other</option>
                             </select>
-                        </label>
                     </div>
                     {formData.membershipCategory && (
                         <div className='mb-4'>
-                            <label className='block text-sm font-medium text-gray-600'>
+                            <label htmlFor={`${fieldId}-type`} className='block text-sm font-medium text-gray-600'>
                                 Membership Type
-                                <select name='membershipType' value={formData.membershipType} onChange={handleInputChange} required className='mt-4 p-2 block w-full rounded-md border border-gray-300 text-black'>
+                            </label>
+                                <select id={`${fieldId}-type`} name='membershipType' value={formData.membershipType} onChange={handleInputChange} required className='mt-4 p-2 block w-full rounded-md border border-gray-300 text-black'>
                                     <option value=''>Select Type</option>
                                     <option value='lifetime'>Lifetime Member</option>
                                     <option value='annual'>Annual Member</option>
                                 </select>
-                            </label>
                         </div>
                     )}
                     {feeInr && (

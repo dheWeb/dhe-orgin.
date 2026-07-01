@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import {
@@ -33,6 +34,7 @@ const DEFAULT_FOOTER_MISSION =
 const BottomView: React.FC<{ footerMission?: string }> = ({
   footerMission = DEFAULT_FOOTER_MISSION,
 }) => {
+  const router = useRouter();
   const footerRef = React.useRef<HTMLElement>(null);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -117,6 +119,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
       setEmail("");
       setMessage("");
       setRecaptchaToken("");
+      router.push("/contact/thank-you");
     } catch (error) {
       console.error(error);
       toast.error("Failed to send message");
@@ -243,6 +246,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                 href="https://www.facebook.com/profile.php?id=100090170940886&mibextid=ZbWKwL"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="DHE on Facebook"
                 className="hover:text-blue-400 transition duration-300"
               >
                 <FontAwesomeIcon icon={faFacebook} className="h-5 w-5" />
@@ -252,6 +256,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                 href="https://www.linkedin.com/company/department-of-holistic-education/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="DHE on LinkedIn"
                 className="hover:text-blue-300 transition duration-300"
               >
                 <FontAwesomeIcon icon={faLinkedin} className="h-5 w-5" />
@@ -261,6 +266,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                 href="https://www.instagram.com/dhebharat"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="DHE on Instagram"
                 className="hover:text-pink-400 transition duration-300"
               >
                 <FontAwesomeIcon icon={faInstagram} className="h-5 w-5" />
@@ -270,6 +276,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                 href="https://twitter.com/DHEBharat1"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="DHE on X (Twitter)"
                 className="hover:text-sky-400 transition duration-300"
               >
                 <FontAwesomeIcon icon={faXTwitter} className="h-5 w-5" />
@@ -279,6 +286,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                 href="https://www.youtube.com/@DepartmentofHolisticEducation"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="DHE on YouTube"
                 className="hover:text-red-500 transition duration-300"
               >
                 <FontAwesomeIcon icon={faYoutube} className="h-5 w-5" />
@@ -476,6 +484,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
             {/* MAP */}
             <div className="mt-8 overflow-hidden rounded-3xl border border-gray-700 shadow-2xl">
               <iframe
+                title="Department of Holistic Education office location on Google Maps"
                 className="w-full h-72"
                 loading="lazy"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.6604613704103!2d76.70609037438652!3d30.699827987224253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fef39a32ed3c1%3A0x9ff15a51ad5117e9!2sDepartment%20of%20Holistic%20Education!5e0!3m2!1sen!2sin!4v1708812880069!5m2!1sen!2sin"
@@ -506,6 +515,13 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
               className="hover:text-orange-400 transition"
             >
               Terms & Conditions
+            </Link>
+
+            <Link
+              href="/accessibility"
+              className="hover:text-orange-400 transition"
+            >
+              Accessibility
             </Link>
 
             <Link

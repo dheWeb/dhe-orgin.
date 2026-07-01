@@ -8,12 +8,14 @@
 
 ## Key pages
 
-- Programs & cells: https://www.dhe.org.in/structure
+- Programs: https://www.dhe.org.in/programs
+- Cells & structure: https://www.dhe.org.in/structure
 - Donate (80G eligible): https://www.dhe.org.in/donation
 - Membership: https://www.dhe.org.in/contribute
 - Notices: https://www.dhe.org.in/noticeboard
-- Leadership (LMC): https://www.dhe.org.in/committee
+- Leadership (LMC): https://www.dhe.org.in/leadership
 - Contact: https://www.dhe.org.in/contact
+- Accessibility: https://www.dhe.org.in/accessibility
 
 ## Institution
 

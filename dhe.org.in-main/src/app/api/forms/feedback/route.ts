@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyRecaptchaToken } from "@/lib/recaptcha/verify";
 import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
+import { notifyAdminFormSubmission } from "@/lib/email/send-admin-notification";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -57,6 +58,11 @@ export async function POST(req: NextRequest) {
     console.error("[feedback]", error);
     return NextResponse.json({ error: "Failed to submit feedback." }, { status: 500 });
   }
+
+  await notifyAdminFormSubmission({
+    formName: "Feedback",
+    fields: { name, email, mobile, affiliation, event, experience, suggestions },
+  });
 
   return NextResponse.json({ success: true });
 }

@@ -25,7 +25,7 @@ const Journals: React.FC = () => {
     setIsText2Expanded(!isText2Expanded);
   };
   const handleGoToHome = () => {
-     window.location.href = "http://pub.rase.co.in";
+     window.location.href = "https://pub.rase.co.in";
   };
   const openPDF = () => {
       window.open("Proceeding.pdf", "_blank");
@@ -74,7 +74,7 @@ const Journals: React.FC = () => {
         className={`whitespace-pre-line  ${textClass} cursor-pointer text-blue-400 underline`}
         onClick={handleGoToHome}
       >
-        click here for more inforamtion.....
+        click here for more information.....
       </div>
       </div>
   );

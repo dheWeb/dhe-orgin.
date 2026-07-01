@@ -1,13 +1,15 @@
-import dynamic from "next/dynamic";
 import ParticipationPathways from "@/components/sections/ParticipationPathways";
+import NoticeBoard from "@/components/notices/NoticeBoard";
+import { fetchPublishedNotices } from "@/services/notices/fetch-notices";
+import { createPageMetadata } from "@/lib/seo/build-metadata";
 
-const NoticeBoard = dynamic(() => import("@/components/notices/NoticeBoard"), {
-  loading: () => (
-    <div className="min-h-[200px] animate-pulse bg-gray-50 rounded-lg" aria-busy="true" />
-  ),
-});
+export const metadata = createPageMetadata("noticeboard");
 
-export default function NoticeboardPage() {
+export const revalidate = 300;
+
+export default async function NoticeboardPage() {
+  const initialNotices = await fetchPublishedNotices();
+
   return (
     <div className="dhe-container py-6 sm:py-10 space-y-10 max-w-2xl mx-auto">
       <header>
@@ -19,7 +21,23 @@ export default function NoticeboardPage() {
           and past listings are published here when available.
         </p>
       </header>
-      <NoticeBoard />
+
+      <noscript>
+        <section aria-label="Notices list">
+          <ul className="divide-y divide-gray-200">
+            {initialNotices.map((notice) => (
+              <li key={notice.id} className="py-3">
+                <p className="font-medium text-gray-900">{notice.title}</p>
+                <time dateTime={notice.date} className="text-sm text-gray-600">
+                  {new Date(notice.date).toLocaleDateString("en-IN")}
+                </time>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </noscript>
+
+      <NoticeBoard initialNotices={initialNotices} />
       <ParticipationPathways
         variant="compact"
         className="border-t border-gray-200 pt-8"

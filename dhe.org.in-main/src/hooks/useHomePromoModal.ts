@@ -3,9 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-const SESSION_DISMISS_KEY = "dhe-home-promo-dismissed";
-/** Delay before showing — avoids AdSense/CWV impact from immediate interstitial */
-const OPEN_DELAY_MS = 3000;
+const DISMISS_KEY = "dhe-home-promo-dismissed";
+const DISMISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+const OPEN_DELAY_MS = 8000;
 
 export function useHomePromoModal() {
   const pathname = usePathname();
@@ -24,8 +24,16 @@ export function useHomePromoModal() {
       return;
     }
 
-    if (sessionStorage.getItem(SESSION_DISMISS_KEY) === "1") {
-      return;
+    try {
+      const raw = localStorage.getItem(DISMISS_KEY);
+      if (raw) {
+        const dismissedAt = Number(raw);
+        if (!Number.isNaN(dismissedAt) && Date.now() - dismissedAt < DISMISS_TTL_MS) {
+          return;
+        }
+      }
+    } catch {
+      /* private browsing */
     }
 
     const timer = window.setTimeout(() => {
@@ -38,7 +46,7 @@ export function useHomePromoModal() {
   const close = useCallback(() => {
     setIsOpen(false);
     try {
-      sessionStorage.setItem(SESSION_DISMISS_KEY, "1");
+      localStorage.setItem(DISMISS_KEY, String(Date.now()));
     } catch {
       /* private browsing */
     }

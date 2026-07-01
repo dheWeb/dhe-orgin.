@@ -1,7 +1,20 @@
 import type { CellDefinition } from "./types";
 import registry from "./registry.json";
 
-export const CELLS = registry as CellDefinition[];
+function normalizeCell(cell: CellDefinition): CellDefinition {
+  return {
+    ...cell,
+    displayTitle: cell.displayTitle.trim().replace(/\s+/g, " "),
+    blocks: cell.blocks.map((block) => ({
+      ...block,
+      title: block.title?.trim(),
+      objective: block.objective.trim(),
+      footnote: block.footnote.trim(),
+    })),
+  };
+}
+
+export const CELLS = (registry as CellDefinition[]).map(normalizeCell);
 
 export const CELL_SLUGS = CELLS.map((cell) => cell.slug);
 

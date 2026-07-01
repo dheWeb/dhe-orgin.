@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { AssetCard } from "@/components/ui/AssetCard";
 
+import { vbitrTrust } from "@/data/institution/receipt-and-lmc";
+
 const cardData = [
   {
     title: "Department of Holistic Education",
@@ -23,10 +25,22 @@ const cardData = [
     bank: "State Bank of India",
     branch: "Chandigarh Main Branch",
     ifsc: "SBIN0000628",
-    upiid: "shikshamahakumbhkhumb@sbi",
+    upiid: "shikshamahakumbh@sbi",
     image: "/accounts/sm.png",
     previewLink: "/accounts/sm.pdf",
     downloadLink: "/accounts/sm.pdf",
+  },
+  {
+    title: `${vbitrTrust.shortName} (80G donations)`,
+    accountname: vbitrTrust.legalName,
+    accountnumber: "Use Razorpay on donation page",
+    bank: "Settled via Razorpay",
+    branch: "—",
+    ifsc: "—",
+    upiid: "—",
+    image: "/logos/dhe.webp",
+    previewLink: vbitrTrust.approval80G.documentPath,
+    downloadLink: vbitrTrust.approval80G.documentPath,
   },
 ];
 

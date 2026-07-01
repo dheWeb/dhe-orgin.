@@ -14,6 +14,7 @@ type Event = {
 
 type NoticeBoardProps = {
   embedded?: boolean;
+  initialNotices?: Event[];
 };
 
 const FALLBACK_NOTICE_IMAGE = "/logo.webp";
@@ -119,9 +120,12 @@ function NoticeList({
   );
 }
 
-const NoticeBoard: React.FC<NoticeBoardProps> = ({ embedded = false }) => {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(false);
+const NoticeBoard: React.FC<NoticeBoardProps> = ({
+  embedded = false,
+  initialNotices = [],
+}) => {
+  const [events, setEvents] = useState<Event[]>(initialNotices);
+  const [loading, setLoading] = useState(initialNotices.length === 0);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"current" | "past">("current");
   const [modalSrc, setModalSrc] = useState<string | null>(null);
@@ -149,8 +153,9 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ embedded = false }) => {
   }, []);
 
   useEffect(() => {
+    if (initialNotices.length > 0) return;
     fetchEvents();
-  }, [fetchEvents]);
+  }, [fetchEvents, initialNotices.length]);
 
   const sorted = [...events].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()

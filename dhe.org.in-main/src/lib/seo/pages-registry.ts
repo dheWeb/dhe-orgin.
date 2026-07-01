@@ -187,6 +187,24 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       "Register for DHE programs, events, and initiatives.",
     noIndex: true,
   },
+  accessibility: {
+    path: "/accessibility",
+    title: "Accessibility Statement",
+    description:
+      "Accessibility commitment and contact for the Department of Holistic Education (DHE) website.",
+  },
+  contactThankYou: {
+    path: "/contact/thank-you",
+    title: "Message Received",
+    description: "Thank you for contacting DHE.",
+    noIndex: true,
+  },
+  feedbackThankYou: {
+    path: "/feedback/thank-you",
+    title: "Feedback Received",
+    description: "Thank you for your feedback to DHE.",
+    noIndex: true,
+  },
 };
 
 import { CELLS, getCellSeoTitle, getCellBySlug } from "@/data/cells";

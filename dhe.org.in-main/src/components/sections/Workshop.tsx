@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import WorkshopRegistrationForm from "@/components/forms/WorkshopRegistrationForm";
 
 const relatedActivityLinks = [
   { href: "/pastevent", label: "Past Events", description: "Archive of DHE programs and conferences" },
@@ -259,53 +258,18 @@ const Workshop: React.FC = () => {
             </table>
           </div>
           <p className="font-semibold text-black">
-            For registration and further information, please contact the above
-            mentioned numbers. Registration for this 2024 workshop is closed;
-            historical registration information is available on the{" "}
-            <Link
-              href="/registrationForm"
-              className="font-bold text-red-800 hover:text-blue-900 underline"
-            >
-              registration page
+            Registration for this May 2024 workshop is closed. For upcoming
+            programs, see{" "}
+            <Link href="/upcomingevent" className="font-bold text-orange-700 underline">
+              upcoming events
+            </Link>{" "}
+            or{" "}
+            <Link href="/contact" className="font-bold text-orange-700 underline">
+              contact DHE
             </Link>
             .
           </p>
-          <p className="text-xl mt-2 text-black">
-            <span className="inline-block rounded-full bg-gray-200 text-gray-800 text-xs font-semibold px-2 py-0.5 mr-2 align-middle">
-              Registration Closed
-            </span>
-            For registration,{" "}
-            <Link
-              className="font-bold text-red-800 hover:text-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
-              href="/registrationForm"
-            >
-              open workshop registration form (archived)
-            </Link>
-            <span className="block text-sm text-gray-600 mt-1">
-              (historical reference only)
-            </span>
-          </p>
         </div>
-
-        <section
-          aria-labelledby="next-workshop-heading"
-          className="max-w-3xl mx-auto mt-10 pt-8 border-t border-gray-200"
-        >
-          <h2
-            id="next-workshop-heading"
-            className="text-xl font-semibold text-primary-color"
-          >
-            Register for the next DHE workshop
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Submit your interest for upcoming innovation, entrepreneurship, and
-            holistic education workshops. The May 2024 program above is archived;
-            this form is for future programs.
-          </p>
-          <div className="mt-6">
-            <WorkshopRegistrationForm />
-          </div>
-        </section>
 
         <section
           aria-labelledby="related-activities-heading"

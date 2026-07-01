@@ -12,6 +12,10 @@ interface AdvisoryCouncilProps2 {
   members: AdvisoryMember2[];
 }
 
+function formatTel(contact: string): string {
+  return contact.replace(/\D/g, "");
+}
+
 const AdvisoryCouncil2: React.FC<AdvisoryCouncilProps2> = ({ title, members }) => {
   return (
     <div className="flex flex-col items-center bg-white p-5">
@@ -30,14 +34,26 @@ const AdvisoryCouncil2: React.FC<AdvisoryCouncilProps2> = ({ title, members }) =
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
-              <tr key={`${member.name}-${member.contact}`}>
-                <td className="px-1 py-2 border text-left text-black">{member.name}</td>
-                <td className="px-1 py-2 border text-left text-black">{member.des2}</td>
-                <td className="px-1 py-2 border text-left text-black">{member.designation}</td>
-                <td className="px-1 py-2 border text-left text-black">{member.contact}</td>
-              </tr>
-            ))}
+            {members.map((member) => {
+              const phone = member.contact.trim();
+              const tel = formatTel(phone);
+              return (
+                <tr key={`${member.name}-${member.des2}`}>
+                  <td className="px-1 py-2 border text-left text-black">{member.name}</td>
+                  <td className="px-1 py-2 border text-left text-black">{member.des2}</td>
+                  <td className="px-1 py-2 border text-left text-black">{member.designation}</td>
+                  <td className="px-1 py-2 border text-left text-black">
+                    {tel.length >= 10 ? (
+                      <a href={`tel:${tel}`} className="text-orange-700 hover:underline">
+                        {phone}
+                      </a>
+                    ) : (
+                      <span className="text-gray-600">Via DHE office</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

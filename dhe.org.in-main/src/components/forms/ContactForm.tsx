@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { dheOfficeAddress, dheOfficialContact } from "@/data/institution/receipt-and-lmc";
 
 interface ContactInfo {
   name: string;
@@ -12,13 +15,13 @@ interface ContactInfo {
 }
 
 const contactData: ContactInfo = {
-  name: "Thakur Ramendra Pratap Singh Rana",
-  title: "Project Manager",
+  name: "Department of Holistic Education",
+  title: "Official Contact Office",
   organization: "Department of Holistic Education",
-  address: "Vidya Bharti\nPlot No. 1, Sector 71, SAS Nagar (Mohali) – 160071",
-  emails: ["director@dhe.org.in"],
-  phones: ["7903431900"],
-  website: "https://www.dhe.org.in",
+  address: `Vidya Bharti\n${dheOfficeAddress.line1}\n${dheOfficeAddress.city}, ${dheOfficeAddress.state} – ${dheOfficeAddress.pincode}`,
+  emails: [dheOfficialContact.email],
+  phones: [dheOfficialContact.phone],
+  website: dheOfficialContact.website,
 };
 
 const whyContactCards = [

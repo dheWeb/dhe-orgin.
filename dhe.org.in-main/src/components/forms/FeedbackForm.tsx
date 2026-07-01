@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
 
 const FeedbackForm: React.FC = () => {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
@@ -51,18 +53,7 @@ const FeedbackForm: React.FC = () => {
         throw new Error(data.error || "Submission failed");
       }
 
-      setName("");
-      setEmail("");
-      setMobile("");
-      setAffiliation("");
-      setEvent("");
-      setExperience("");
-      setSuggestions("");
-      setRecaptchaToken("");
-
-      toast.success(
-        "Thank you for your feedback! Your feedback means a lot to us."
-      );
+      router.push("/feedback/thank-you");
     } catch (error) {
       console.error("Error submitting feedback:", error);
       toast.error("Something broke while submitting the feedback");

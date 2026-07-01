@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "tailwindcss/tailwind.css";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import ParticipationPathways from "@/components/sections/ParticipationPathways";
@@ -9,6 +8,9 @@ import { topicClusterLinks } from "@/data/home/content";
 
 const TreeComponent = dynamic(() => import("./TreeComponent"), {
   ssr: false,
+  loading: () => (
+    <div className="h-48 w-full max-w-3xl animate-pulse bg-gray-100 rounded-lg" aria-busy="true" />
+  ),
 });
 
 const StructurePage: React.FC = () => {
@@ -62,13 +64,13 @@ const StructurePage: React.FC = () => {
           ))}
         </nav>
 
-        {isClient && (
+        {isClient ? (
           <div className="flex justify-center p-4 overflow-x-auto">
             <div className="text-white font-semibold text-sm">
               <TreeComponent />
             </div>
           </div>
-        )}
+        ) : null}
 
         <ParticipationPathways
           variant="compact"
