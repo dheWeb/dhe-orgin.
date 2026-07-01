@@ -1,0 +1,62 @@
+{
+  "name": "dhe-org-in",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "verify-secrets": "node scripts/verify-secrets.mjs",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@sentry/nextjs": "^10.62.0",
+    "@supabase/supabase-js": "^2.109.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
+    "axios": "^1.6.8",
+    "exceljs": "^4.4.0",
+    "framer-motion": "^11.3.18",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.7",
+    "next": "15.5.19",
+    "next-qrcode": "^2.5.1",
+    "nextjs-toploader": "^1.5.3",
+    "nodemailer": "^9.0.2",
+    "qrcode": "^1.5.4",
+    "razorpay": "^2.9.6",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-fast-marquee": "^1.6.3",
+    "react-hot-toast": "^2.4.1",
+    "react-organizational-chart": "^2.2.1",
+    "react-responsive-carousel": "^3.2.23"
+  },
+  "devDependencies": {
+    "@types/jspdf": "^2.0.0",
+    "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "15.5.19",
+    "pg": "^8.22.0",
+    "postcss": "^8",
+    "tailwindcss": "^3",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
+}
