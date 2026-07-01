@@ -8,7 +8,7 @@ export default function TermsPage() {
   return (
     <div className="dhe-container py-10 max-w-3xl mx-auto prose prose-slate">
       <h1>Terms of Use</h1>
-      <p className="text-sm text-gray-500">Last updated: 30 June 2026</p>
+      <p className="text-sm text-gray-600">Last updated: 30 June 2026</p>
 
       <p>
         By using <strong>www.dhe.org.in</strong>, you agree to these terms. The

@@ -31,7 +31,7 @@ export default function AdSlot({
     >
       <div className="flex h-full min-h-[inherit] flex-col items-center justify-center px-4 py-6 text-center">
         {children ?? (
-          <span className="text-xs font-medium uppercase tracking-wider text-gray-400">
+          <span className="text-xs font-medium uppercase tracking-wider text-gray-600">
             {label}
           </span>
         )}

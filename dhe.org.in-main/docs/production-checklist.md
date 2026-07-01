@@ -65,9 +65,8 @@
 | reCAPTCHA keys | **Wired** — contact, feedback, membership forms |
 | Upstash (rate limit) | **Skipped** — no free plan on Vercel; **Supabase `rate_limit_buckets`** is production backend |
 | GA4 | **Live** — `G-VZ55ESSK6V` (cookie consent gated) |
-| Sentry | **Live** — `rase-monitoring-l1` |
-| Sentry | **SDK wired** + **Supabase `error_logs`** fallback when `SENTRY_DSN` unset |
-| CI/CD (GitHub Actions) | **Workflow added** — push to main to activate |
+| Sentry | **Live** — `rase-monitoring-l1` + source maps |
+| CI/CD (GitHub Actions) | **Workflow added** — runs on push to `main` |
 | Database backups | **Supabase default** — not verified |
 | Health endpoint | **YES** `/api/health` |
 | Error boundaries | **YES** `error.tsx`, `not-found.tsx`, `global-error.tsx` |
@@ -82,7 +81,7 @@
 | P0 security & privacy | **~70%** | eval, Members, legal, cookies, headers, admin gate |
 | P0 payments | **~75%** | Razorpay donate + webhook + receipt email; membership linked |
 | Firebase → Supabase | **DONE** | SDK removed; Firestore retired; bootstrap seed script |
-| CMS | **~55%** | `/admin/cms` — hero, marquee, events, footer, donation/programs intros, director body |
+| CMS | **~65%** | + home vision, closing CTA; cell/leadership pages still hardcoded |
 | SEO | **~65%** | sitemap/robots, llms.txt, unique cell meta |
 | Performance | **~75%** | Hero images compressed 1.9MB→126KB WebP; SSR LCP; Next image optimization on |
 | Accessibility | **~80%** | skip link added; Lighthouse 96 |
@@ -143,9 +142,9 @@
 | 4 | Upstash env | **Closed** | Skipped — Vercel Upstash has no free plan; Supabase rate limits in use |
 | 5 | Sentry env | **Done** | Live on Vercel |
 | 5 | npm audit moderate CVEs | **LOW** | 3 remain (Next/postcss); uuid override applied |
-| 6 | Accessibility 96 not 100 | **MEDIUM** | Ongoing |
-| 7 | CMS not built | **LOW** | **Partial** — key public snippets editable at `/admin/cms` |
-| 8 | Secrets exposed in chat | **HIGH** | **Manual** — rotate all keys |
+| 6 | Accessibility below 100 | **MEDIUM** | Contrast fixes applied; retest Lighthouse |
+| 7 | CMS partial | **LOW** | Key snippets at `/admin/cms`; cell pages hardcoded |
+| 8 | Secrets exposed in chat | **HIGH** | **Manual** — run `npm run check-rotation` |
 | 9 | Full audit 280 items — ~55% remain | **HIGH** | Ongoing |
 
 ---

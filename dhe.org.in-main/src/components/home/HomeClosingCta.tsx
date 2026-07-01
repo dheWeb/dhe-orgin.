@@ -2,7 +2,21 @@ import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { closingCta, relatedLinks } from "@/data/home/content";
 
-export default function HomeClosingCta() {
+export default function HomeClosingCta({
+  titleLine1,
+  titleLine2,
+  body,
+}: {
+  titleLine1?: string;
+  titleLine2?: string;
+  body?: string;
+}) {
+  const cta = {
+    titleLine1: titleLine1 || closingCta.titleLine1,
+    titleLine2: titleLine2 || closingCta.titleLine2,
+    body: body || closingCta.body,
+  };
+
   return (
     <section
       aria-labelledby="closing-cta-heading"
@@ -13,9 +27,9 @@ export default function HomeClosingCta() {
           id="closing-cta-heading"
           title={
             <>
-              {closingCta.titleLine1}
+              {cta.titleLine1}
               <span className="block text-orange-400 font-semibold mt-0.5">
-                {closingCta.titleLine2}
+                {cta.titleLine2}
               </span>
             </>
           }
@@ -24,7 +38,7 @@ export default function HomeClosingCta() {
           className="mx-auto"
         />
         <p className="max-w-2xl mx-auto text-center text-sm text-gray-300 leading-relaxed -mt-1">
-          {closingCta.body}
+          {cta.body}
         </p>
         <div className="mt-4 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3">
           <a

@@ -49,7 +49,7 @@ function HomePromoDialogContent({ locale = "en" }: HomePromoDialogProps) {
           <span className="font-bold text-orange-400">{t.location}</span>
           <br className="hidden sm:inline" />
           <span className="sm:hidden"> </span>
-          <span className="text-gray-400">{t.from}</span>{" "}
+          <span className="text-gray-300">{t.from}</span>{" "}
           <span className="font-bold text-white">{t.dateRange}</span>
         </p>
 

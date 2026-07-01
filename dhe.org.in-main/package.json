@@ -18,6 +18,7 @@
     "strip-firebase-env": "node scripts/strip-firebase-env.mjs",
     "sync-sentry-env": "node scripts/sync-sentry-env.mjs",
     "sync-optional-env": "node scripts/sync-optional-env.mjs",
+    "check-rotation": "node scripts/check-rotation-needed.mjs",
     "test:watch": "vitest"
   },
   "overrides": {

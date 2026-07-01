@@ -134,7 +134,7 @@ const ResidentialCamps: React.FC = () => {
                   </div>
 
                   <div className="bg-[#07111f] rounded-2xl p-5">
-                    <p className="text-sm text-gray-400 mb-2">
+                    <p className="text-sm text-gray-300 mb-2">
                       आयोजन स्थल
                     </p>
 

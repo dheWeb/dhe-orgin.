@@ -1,5 +1,9 @@
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
-import { homeIntro as defaultHomeIntro } from "@/data/home/content";
+import {
+  homeIntro as defaultHomeIntro,
+  visionFoundation,
+  closingCta as defaultClosingCta,
+} from "@/data/home/content";
 
 export type SiteContentMap = Record<string, Record<string, string>>;
 
@@ -20,6 +24,14 @@ const DEFAULTS: SiteContentMap = {
   },
   programs_intro: {
     text: "Flagship programs and cells advancing holistic education across Bharat.",
+  },
+  home_vision: {
+    body: visionFoundation.body,
+  },
+  home_closing_cta: {
+    title_line1: defaultClosingCta.titleLine1,
+    title_line2: defaultClosingCta.titleLine2,
+    body: defaultClosingCta.body,
   },
   director_message: {
     excerpt:

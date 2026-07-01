@@ -65,6 +65,20 @@ export const CMS_REGISTRY: CmsKeyDef[] = [
     fields: [{ name: "text", label: "Intro text", type: "textarea", rows: 3 }],
   },
   {
+    key: "home_vision",
+    label: "Home vision section",
+    fields: [{ name: "body", label: "Vision & Foundation body", type: "textarea", rows: 5 }],
+  },
+  {
+    key: "home_closing_cta",
+    label: "Home closing CTA",
+    fields: [
+      { name: "title_line1", label: "Title line 1", type: "text" },
+      { name: "title_line2", label: "Title line 2 (accent)", type: "text" },
+      { name: "body", label: "Body", type: "textarea", rows: 4 },
+    ],
+  },
+  {
     key: "marquee_items",
     label: "News marquee (JSON array)",
     fields: [

@@ -35,10 +35,14 @@ export default function HomePageContent({
   tagline,
   homeIntro,
   marqueeItems,
+  visionBody,
+  closingCta,
 }: {
   tagline?: string;
   homeIntro?: HomeIntroProps;
   marqueeItems?: MarqueeItem[];
+  visionBody?: string;
+  closingCta?: { titleLine1?: string; titleLine2?: string; body?: string };
 }) {
   return (
     <div className="bg-white overflow-x-hidden min-w-0">
@@ -50,7 +54,7 @@ export default function HomePageContent({
       ) : null}
 
       <div className="dhe-container">
-        <MiddleComponent />
+        <MiddleComponent visionBody={visionBody} />
       </div>
 
       <div className="dhe-container dhe-section-py">
@@ -63,7 +67,11 @@ export default function HomePageContent({
 
       <HomeFaqSection />
 
-      <HomeClosingCta />
+      <HomeClosingCta
+        titleLine1={closingCta?.titleLine1}
+        titleLine2={closingCta?.titleLine2}
+        body={closingCta?.body}
+      />
     </div>
   );
 }

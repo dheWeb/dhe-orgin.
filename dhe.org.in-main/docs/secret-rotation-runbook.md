@@ -147,3 +147,4 @@ When you have the **new** keys ready, paste them in chat (or update `.env.local`
 | reCAPTCHA | | | ☐ |
 | Brevo SMTP | | | ☐ |
 | Admin password | | | ☐ |
+| Sentry auth token | | | ☐ |

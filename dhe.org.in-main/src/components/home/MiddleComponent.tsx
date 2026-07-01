@@ -14,7 +14,7 @@ import {
 } from "@/data/home/content";
 import ParticipationPathways from "@/components/sections/ParticipationPathways";
 
-const DepartmentInfo: React.FC = () => {
+const DepartmentInfo: React.FC<{ visionBody?: string }> = ({ visionBody }) => {
   return (
     <div className="min-w-0 text-gray-800 space-y-0">
       {/* Institutional overview + statistics */}
@@ -48,7 +48,7 @@ const DepartmentInfo: React.FC = () => {
           title={visionFoundation.title}
         />
         <p className="text-sm leading-relaxed text-gray-600 max-w-4xl -mt-1">
-          {visionFoundation.body}
+          {visionBody || visionFoundation.body}
         </p>
       </section>
 
