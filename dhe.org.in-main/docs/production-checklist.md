@@ -14,10 +14,22 @@
 | Type check | `npm run type-check` | **PASS** |
 | Unit tests | `npm run test` | **PASS** (11 tests) |
 | Production build | `npm run build` | **PASS** (60 routes) |
-| npm audit | `npm audit` | **FAIL** — 5 moderate (postcss/next, uuid/exceljs) |
+| npm audit | `npm audit` | **3 moderate** (postcss/next chain — upstream; `uuid` mitigated via override) |
 | CI workflow | `.github/workflows/ci.yml` | **ADDED** (not yet run on GitHub) |
 
 ---
+
+## Lighthouse (production — https://www.dhe.org.in, 1 Jul 2026)
+
+| Metric | Target | Actual | Pass |
+|--------|--------|--------|------|
+| Performance | ≥ 95 | **81** | **NO** |
+| Accessibility | 100 | **76** | **NO** (retest after deploy; contrast fixes in progress) |
+| Best Practices | 100 | **89** | **NO** |
+| SEO | 100 | **82** | **NO** |
+
+> Production scores vary with cookie banner / third-party scripts. Re-run after deploy:  
+> `npx lighthouse https://www.dhe.org.in --only-categories=performance,accessibility`
 
 ## Lighthouse (localhost:3000, production build)
 
@@ -68,7 +80,7 @@
 | P0 security & privacy | **~70%** | eval, Members, legal, cookies, headers, admin gate |
 | P0 payments | **~75%** | Razorpay donate + webhook + receipt email; membership linked |
 | Firebase → Supabase | **DONE** | SDK removed; Firestore retired; bootstrap seed script |
-| CMS | **~25%** | `/admin/cms` + `site_content` table + `/api/content` |
+| CMS | **~55%** | `/admin/cms` — hero, marquee, events, footer, donation/programs intros, director body |
 | SEO | **~65%** | sitemap/robots, llms.txt, unique cell meta |
 | Performance | **~75%** | Hero images compressed 1.9MB→126KB WebP; SSR LCP; Next image optimization on |
 | Accessibility | **~80%** | skip link added; Lighthouse 96 |
@@ -127,9 +139,9 @@
 | 2 | LCP / Performance score below target | **P0** | **Partial** — image optimization + SSR hero; compress `public/` sources |
 | 3 | Legacy Firestore data | **CLOSED** | Firebase DB deleted; use `npm run seed:bootstrap` for starter content |
 | 4 | Upstash + Sentry env not set in Vercel | **P1** | SDK wired — add keys per `docs/optional-env.md` |
-| 5 | npm audit moderate CVEs | **MEDIUM** | Track upstream |
+| 5 | npm audit moderate CVEs | **LOW** | 3 remain (Next/postcss); uuid override applied |
 | 6 | Accessibility 96 not 100 | **MEDIUM** | Ongoing |
-| 7 | CMS not built | **MEDIUM** | **Partial** — `/admin/cms` for key snippets |
+| 7 | CMS not built | **LOW** | **Partial** — key public snippets editable at `/admin/cms` |
 | 8 | Secrets exposed in chat | **HIGH** | **Manual** — rotate all keys |
 | 9 | Full audit 280 items — ~55% remain | **HIGH** | Ongoing |
 

@@ -16,7 +16,9 @@ const initiativeLinks = [
   { href: "/contact", label: "Contact DHE" },
 ] as const;
 
-const DirectorMessage: React.FC = () => {
+const DirectorMessage: React.FC<{ aboutParagraphs?: string[] }> = ({
+  aboutParagraphs,
+}) => {
   return (
     <div className="bg-white min-w-0">
       <div className="dhe-container py-6 sm:py-10 space-y-8 sm:space-y-10">
@@ -40,29 +42,37 @@ const DirectorMessage: React.FC = () => {
             About the Department of Holistic Education
           </h2>
           <div className="mt-3 space-y-3 text-sm sm:text-base text-gray-700 leading-relaxed">
-            <p>
-              The Department of Holistic Education (DHE) is a national educational
-              transformation platform dedicated to building Bharat as a global
-              knowledge leader through value-based education, innovation,
-              research, entrepreneurship, and holistic human development aligned
-              with NEP 2020.
-            </p>
-            <p>
-              Inspired by the transformative educational philosophy of Vidya
-              Bharati, DHE was established as a catalyst for educational reform,
-              innovation, and thought leadership in India—advancing holistic
-              education, skill development, leadership, and Bharatiya values
-              through programs, cells, and national initiatives such as Shiksha
-              Mahakumbh Abhiyan.
-            </p>
-            <p>
-              DHE&apos;s educational philosophy emphasizes comprehensive
-              development: character, competence, creativity, and social
-              responsibility alongside academic and vocational growth. The
-              national vision aligns with empowering learners and institutions
-              to contribute to Viksit Bharat through ethical, skilled, and
-              globally aware citizenship rooted in Bharatiya civilization ethos.
-            </p>
+            {aboutParagraphs?.length ? (
+              aboutParagraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))
+            ) : (
+              <>
+                <p>
+                  The Department of Holistic Education (DHE) is a national educational
+                  transformation platform dedicated to building Bharat as a global
+                  knowledge leader through value-based education, innovation,
+                  research, entrepreneurship, and holistic human development aligned
+                  with NEP 2020.
+                </p>
+                <p>
+                  Inspired by the transformative educational philosophy of Vidya
+                  Bharati, DHE was established as a catalyst for educational reform,
+                  innovation, and thought leadership in India—advancing holistic
+                  education, skill development, leadership, and Bharatiya values
+                  through programs, cells, and national initiatives such as Shiksha
+                  Mahakumbh Abhiyan.
+                </p>
+                <p>
+                  DHE&apos;s educational philosophy emphasizes comprehensive
+                  development: character, competence, creativity, and social
+                  responsibility alongside academic and vocational growth. The
+                  national vision aligns with empowering learners and institutions
+                  to contribute to Viksit Bharat through ethical, skilled, and
+                  globally aware citizenship rooted in Bharatiya civilization ethos.
+                </p>
+              </>
+            )}
           </div>
         </section>
 

@@ -24,6 +24,13 @@ const required = [
 
 const recommended = ["BREVO_API_KEY", "SMTP_USER", "SMTP_PASS"];
 
+const optional = [
+  "SENTRY_DSN",
+  "UPSTASH_REDIS_REST_URL",
+  "UPSTASH_REDIS_REST_TOKEN",
+  "NEXT_PUBLIC_GA_MEASUREMENT_ID",
+];
+
 let ok = true;
 
 console.log("=== Required env ===");
@@ -35,6 +42,12 @@ for (const key of required) {
 
 console.log("\n=== Recommended env ===");
 for (const key of recommended) {
+  const set = Boolean(env[key]?.trim());
+  console.log(set ? "✓" : "○", key);
+}
+
+console.log("\n=== Optional (dashboard) ===");
+for (const key of optional) {
   const set = Boolean(env[key]?.trim());
   console.log(set ? "✓" : "○", key);
 }

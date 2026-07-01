@@ -32,7 +32,7 @@ export default function SectionHeading({
       {description ? (
         <p
           className={`mt-1.5 text-xs sm:text-sm leading-relaxed break-words ${
-            light ? "text-gray-400" : "text-gray-600"
+            light ? "text-gray-300" : "text-gray-600"
           }`}
         >
           {description}

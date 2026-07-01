@@ -1,9 +1,20 @@
 import Link from "next/link";
-import { homeIntro, homeHeroCtas } from "@/data/home/content";
+import { homeIntro as defaultHomeIntro, homeHeroCtas } from "@/data/home/content";
 import HeroFirstSlide from "@/components/home/HeroFirstSlide";
 import HomeHeroCarouselClient from "@/components/home/HomeHeroCarouselClient";
 
-export default function HomeHero() {
+type HomeIntroProps = {
+  badge: string;
+  titleLine1: string;
+  titleLine2: string;
+  description: string;
+};
+
+export default function HomeHero({
+  homeIntro = defaultHomeIntro,
+}: {
+  homeIntro?: HomeIntroProps;
+}) {
   return (
     <section
       aria-labelledby="home-hero-heading"

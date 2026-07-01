@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo/build-metadata";
+import { getSiteContent } from "@/lib/cms/site-content";
 
 export const metadata = createPageMetadata("programs");
 
@@ -36,14 +37,19 @@ const programs = [
   },
 ] as const;
 
-export default function ProgramsPage() {
+export default async function ProgramsPage() {
+  const content = await getSiteContent(["programs_intro"]);
+  const intro =
+    content.programs_intro?.text?.trim() ||
+    "Flagship programs and cells advancing holistic education across Bharat.";
+
   return (
     <div className="dhe-container py-10 max-w-4xl mx-auto">
       <h1 className="text-2xl sm:text-3xl font-bold text-primary-color">
         DHE Programs
       </h1>
       <p className="mt-3 text-gray-600 text-sm sm:text-base leading-relaxed">
-        Flagship programs and cells advancing holistic education across Bharat.
+        {intro}
       </p>
       <ul className="mt-8 grid gap-4 sm:grid-cols-2" role="list">
         {programs.map((item) => (

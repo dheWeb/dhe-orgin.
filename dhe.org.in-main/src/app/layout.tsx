@@ -30,15 +30,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const content = await getSiteContent(["site_contact"]);
+  const content = await getSiteContent(["site_contact", "footer_mission"]);
   const sitePhone = content.site_contact?.phone?.trim() || "7903431900";
+  const footerMission = content.footer_mission?.text?.trim();
 
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <body
         className={`${inter.className} bg-white text-black overflow-x-hidden antialiased`}
       >
-        <RootLayoutClient sitePhone={sitePhone}>
+        <RootLayoutClient sitePhone={sitePhone} footerMission={footerMission}>
           <main
             id="main-content"
             className="min-h-screen bg-white min-w-0"

@@ -27,7 +27,12 @@ function VisitorCountSpinner() {
   );
 }
 
-const BottomView: React.FC = () => {
+const DEFAULT_FOOTER_MISSION =
+  "DHE integrates educational leadership, innovation, skill development, research, entrepreneurship, publications, digital transformation, and institutional collaboration into one unified ecosystem empowering Bharat towards becoming a global knowledge leader.";
+
+const BottomView: React.FC<{ footerMission?: string }> = ({
+  footerMission = DEFAULT_FOOTER_MISSION,
+}) => {
   const footerRef = React.useRef<HTMLElement>(null);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -381,12 +386,7 @@ const BottomView: React.FC = () => {
               </h4>
 
               <p className="text-sm text-gray-300 leading-8">
-                DHE integrates educational leadership,
-                innovation, skill development, research,
-                entrepreneurship, publications, digital
-                transformation, and institutional collaboration
-                into one unified ecosystem empowering Bharat
-                towards becoming a global knowledge leader.
+                {footerMission}
               </p>
             </div>
           </div>

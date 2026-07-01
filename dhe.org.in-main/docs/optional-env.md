@@ -51,6 +51,14 @@ UPSTASH_REDIS_REST_TOKEN=...
 
 When unset, rate limits use Supabase `rate_limit_buckets` (distributed across instances).
 
+## Optional: Google Analytics 4
+
+```
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+Loaded only after cookie consent (`CookieConsent.tsx`). Omit in development unless testing analytics.
+
 ## Required for admin routes (production)
 
 ```

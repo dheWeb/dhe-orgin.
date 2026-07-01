@@ -23,7 +23,7 @@ export default function HomeClosingCta() {
           light
           className="mx-auto"
         />
-        <p className="max-w-2xl mx-auto text-center text-sm text-gray-400 leading-relaxed -mt-1">
+        <p className="max-w-2xl mx-auto text-center text-sm text-gray-300 leading-relaxed -mt-1">
           {closingCta.body}
         </p>
         <div className="mt-4 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3">
@@ -46,7 +46,7 @@ export default function HomeClosingCta() {
           </Link>
         </div>
         <nav
-          className="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs sm:text-sm text-gray-500"
+          className="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs sm:text-sm text-gray-300"
           aria-label="Related institutional pages"
         >
           {relatedLinks.map((link) => (

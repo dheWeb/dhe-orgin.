@@ -1,6 +1,8 @@
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 import UpcomingEvent from "@/components/sections/UpcomingEvent";
 import { siteConfig } from "@/lib/seo/site-metadata";
+import { getSiteContent } from "@/lib/cms/site-content";
+import { parseUpcomingEvents } from "@/lib/cms/cms-parsers";
 
 export const metadata = createPageMetadata("upcomingevent");
 
@@ -31,14 +33,17 @@ const eventsJsonLd = {
   ],
 };
 
-export default function UpcomingEventPage() {
+export default async function UpcomingEventPage() {
+  const content = await getSiteContent(["upcoming_events"]);
+  const rows = parseUpcomingEvents(content.upcoming_events);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventsJsonLd) }}
       />
-      <UpcomingEvent />
+      <UpcomingEvent rows={rows} />
     </>
   );
 }

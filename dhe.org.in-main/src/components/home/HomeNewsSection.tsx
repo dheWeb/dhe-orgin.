@@ -3,19 +3,24 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import HomeNoticeLazy from "@/components/home/HomeNoticeLazy";
+import type { MarqueeItem } from "@/lib/cms/cms-parsers";
 
 const Marquees = dynamic(() => import("@/components/home/Marquees"), {
   ssr: false,
   loading: () => <div className="h-9 bg-gray-900 animate-pulse" aria-hidden />,
 });
 
-export default function HomeNewsSection() {
+export default function HomeNewsSection({
+  marqueeItems,
+}: {
+  marqueeItems?: MarqueeItem[];
+}) {
   return (
     <section
       aria-labelledby="news-updates-heading"
       className="bg-[#07111f] text-white border-y border-gray-800"
     >
-      <Marquees />
+      <Marquees items={marqueeItems} />
 
       <div className="dhe-container dhe-section-py">
         <header className="mb-4 max-w-3xl">
@@ -25,7 +30,7 @@ export default function HomeNewsSection() {
           >
             News, Notices & Updates
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-gray-400">
+          <p className="mt-1 text-xs sm:text-sm text-gray-300">
             Official announcements and the latest notices from the Department of
             Holistic Education.
           </p>

@@ -22,7 +22,7 @@ const contributionAreas = [
   "Capacity-building aligned with holistic education and NEP 2020",
 ] as const;
 
-const Donation = () => {
+const Donation = ({ introText }: { introText?: string }) => {
   const initialFormData: DonationData = {
     name: "",
     email: "",
@@ -65,9 +65,8 @@ const Donation = () => {
             Support the Department of Holistic Education
           </h1>
           <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
-            Your contribution helps advance holistic education, national
-            programs, and institutional initiatives led by DHE in service of
-            educational transformation and Viksit Bharat.
+            {introText ||
+              "Your contribution helps advance holistic education, national programs, and institutional initiatives led by DHE in service of educational transformation and Viksit Bharat."}
           </p>
         </header>
 

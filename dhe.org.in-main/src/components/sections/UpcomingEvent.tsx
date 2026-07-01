@@ -1,58 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import {
+  DEFAULT_UPCOMING_EVENTS,
+  type UpcomingEventRow,
+} from "@/lib/cms/cms-parsers";
 
 type EventStatus = "completed" | "planned" | "external";
 
-type UpcomingRow = {
-  title: string;
-  date: string;
-  venue: string;
-  href: string;
-  external?: boolean;
-  status: EventStatus;
-  statusLabel: string;
-  statusNote?: string;
-};
-
-/**
- * Freshness review (Wave 2):
- * - Row 1 (Dec 2024): dated program — labeled Archived Event; external Shiksha site retained.
- * - Row 2 (Shiksha Kumbh 2025): TBA dates — labeled Planned; link fixed from /sk25.rase.co.in to https://sk25.rase.co.in.
- * - Row 3 (Shiksha Mahakumbh 2025): TBA — labeled Planned; link fixed from / to https://www.rase.co.in/.
- */
-const upcomingRows: UpcomingRow[] = [
-  {
-    title: "Shiksha Mahakumbh 6.0",
-    date: "9–11 October 2026",
-    venue: "NIT Hamirpur, Himachal Pradesh",
-    href: "https://www.rase.co.in/registration/Single_Registration",
-    external: true,
-    status: "planned",
-    statusLabel: "Registration Open",
-    statusNote:
-      "6th edition of Shiksha Mahakumbh — register on the official RASE portal.",
-  },
-  {
-    title: "Shiksha Mahakumbh 5.0",
-    date: "31 October – 2 November 2025",
-    venue: "NIPER Mohali",
-    href: "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
-    external: true,
-    status: "completed",
-    statusLabel: "Concluded",
-    statusNote: "Official photos and materials available via Google Drive.",
-  },
-  {
-    title: "Indian Education System for Global Development",
-    date: "December 16–17, 2024",
-    venue: "Kurukshetra University",
-    href: "https://www.shikshamahakumbh.com/",
-    external: true,
-    status: "completed",
-    statusLabel: "Archived",
-    statusNote: "Historical reference — see past events for more archives.",
-  },
-];
+type UpcomingRow = UpcomingEventRow & { status: EventStatus };
 
 const stayConnectedLinks = [
   { href: "/noticeboard", label: "DHE Notice Board", description: "Latest official notices" },
@@ -61,7 +16,10 @@ const stayConnectedLinks = [
   { href: "/contact", label: "Contact DHE", description: "Institutional inquiries" },
 ] as const;
 
-const UpcomingEvent: React.FC = () => {
+const UpcomingEvent: React.FC<{ rows?: UpcomingEventRow[] }> = ({
+  rows = DEFAULT_UPCOMING_EVENTS,
+}) => {
+  const upcomingRows: UpcomingRow[] = (rows.length ? rows : DEFAULT_UPCOMING_EVENTS) as UpcomingRow[];
   return (
     <div className="bg-white min-w-0 min-h-[70vh]">
       <div className="dhe-container py-6 sm:py-10 space-y-8">

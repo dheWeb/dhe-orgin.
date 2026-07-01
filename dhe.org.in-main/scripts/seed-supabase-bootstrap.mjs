@@ -106,16 +106,104 @@ const CMS_DEFAULTS = [
     value: { text: "Empowering holistic education for Viksit Bharat" },
   },
   {
+    key: "home_intro",
+    label: "Home hero intro",
+    value: {
+      badge: "Transforming Education for Viksit Bharat",
+      title_line1: "Department of",
+      title_line2: "Holistic Education",
+      description:
+        "The Department of Holistic Education (DHE) is a national educational transformation platform dedicated to building Bharat as a global knowledge leader through value-based education, innovation, research, entrepreneurship, and holistic human development aligned with NEP 2020.",
+    },
+  },
+  {
     key: "site_contact",
     label: "Site contact",
     value: { phone: "7903431900", email: "director@dhe.org.in" },
   },
   {
+    key: "footer_mission",
+    label: "Footer mission blurb",
+    value: {
+      text: "DHE integrates educational leadership, innovation, skill development, research, entrepreneurship, publications, digital transformation, and institutional collaboration into one unified ecosystem empowering Bharat towards becoming a global knowledge leader.",
+    },
+  },
+  {
     key: "director_message",
-    label: "Director message excerpt",
+    label: "Director message",
     value: {
       excerpt:
         "Holistic education integrates mind, body, and spirit for nation-building.",
+      body: "The Department of Holistic Education (DHE) is a national educational transformation platform dedicated to building Bharat as a global knowledge leader through value-based education, innovation, research, entrepreneurship, and holistic human development aligned with NEP 2020.\n\nInspired by the transformative educational philosophy of Vidya Bharati, DHE advances holistic education, skill development, leadership, and Bharatiya values through programs, cells, and national initiatives such as Shiksha Mahakumbh.",
+    },
+  },
+  {
+    key: "donation_intro",
+    label: "Donation page intro",
+    value: {
+      text: "Your contribution helps advance holistic education, national programs, and institutional initiatives led by DHE in service of educational transformation and Viksit Bharat.",
+    },
+  },
+  {
+    key: "programs_intro",
+    label: "Programs page intro",
+    value: {
+      text: "Flagship programs and cells advancing holistic education across Bharat.",
+    },
+  },
+  {
+    key: "marquee_items",
+    label: "News marquee",
+    value: {
+      json: JSON.stringify([
+        {
+          text: "Shiksha Mahakumbh 6.0 — NIT Hamirpur, 9–11 Oct 2026. Registration open.",
+          link: "https://www.rase.co.in/registration/Single_Registration",
+        },
+        {
+          text: "Shiksha Mahakumbh 5.0 concluded at NIPER Mohali. View photos.",
+          link: "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
+        },
+        {
+          text: "Join the holistic education movement — explore DHE programs.",
+          link: "/programs",
+        },
+      ]),
+    },
+  },
+  {
+    key: "upcoming_events",
+    label: "Upcoming events",
+    value: {
+      json: JSON.stringify([
+        {
+          title: "Shiksha Mahakumbh 6.0",
+          date: "9–11 October 2026",
+          venue: "NIT Hamirpur, Himachal Pradesh",
+          href: "https://www.rase.co.in/registration/Single_Registration",
+          external: true,
+          status: "planned",
+          statusLabel: "Registration Open",
+        },
+        {
+          title: "Shiksha Mahakumbh 5.0",
+          date: "31 October – 2 November 2025",
+          venue: "NIPER Mohali",
+          href: "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
+          external: true,
+          status: "completed",
+          statusLabel: "Concluded",
+        },
+        {
+          title: "Indian Education System for Global Development",
+          date: "December 16–17, 2024",
+          venue: "Kurukshetra University",
+          href: "https://www.shikshamahakumbh.com/",
+          external: true,
+          status: "completed",
+          statusLabel: "Archived",
+        },
+      ]),
     },
   },
 ];

@@ -1,0 +1,87 @@
+export type MarqueeItem = { text: string; link: string };
+
+export type UpcomingEventRow = {
+  title: string;
+  date: string;
+  venue: string;
+  href: string;
+  external?: boolean;
+  status: "completed" | "planned" | "external";
+  statusLabel: string;
+  statusNote?: string;
+};
+
+export const DEFAULT_MARQUEE_ITEMS: MarqueeItem[] = [
+  {
+    text:
+      "शिक्षा महाकुंभ 6.0 — NIT Hamirpur, 9–11 October 2026. Registration open.",
+    link: "https://www.rase.co.in/registration/Single_Registration",
+  },
+  {
+    text:
+      "Shiksha Mahakumbh 5.0 concluded at NIPER Mohali (Oct–Nov 2025). View official photos.",
+    link:
+      "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
+  },
+  {
+    text:
+      "Join the holistic education movement — explore DHE programs and membership.",
+    link: "/programs",
+  },
+];
+
+export const DEFAULT_UPCOMING_EVENTS: UpcomingEventRow[] = [
+  {
+    title: "Shiksha Mahakumbh 6.0",
+    date: "9–11 October 2026",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    href: "https://www.rase.co.in/registration/Single_Registration",
+    external: true,
+    status: "planned",
+    statusLabel: "Registration Open",
+    statusNote:
+      "6th edition of Shiksha Mahakumbh — register on the official RASE portal.",
+  },
+  {
+    title: "Shiksha Mahakumbh 5.0",
+    date: "31 October – 2 November 2025",
+    venue: "NIPER Mohali",
+    href: "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
+    external: true,
+    status: "completed",
+    statusLabel: "Concluded",
+    statusNote: "Official photos and materials available via Google Drive.",
+  },
+  {
+    title: "Indian Education System for Global Development",
+    date: "December 16–17, 2024",
+    venue: "Kurukshetra University",
+    href: "https://www.shikshamahakumbh.com/",
+    external: true,
+    status: "completed",
+    statusLabel: "Archived",
+    statusNote: "Historical reference — see past events for more archives.",
+  },
+];
+
+function parseJsonArray<T>(raw: string | undefined, fallback: T[]): T[] {
+  if (!raw?.trim()) return fallback;
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    return Array.isArray(parsed) && parsed.length ? (parsed as T[]) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+export function parseMarqueeItems(
+  value?: Record<string, string>
+): MarqueeItem[] {
+  return parseJsonArray(value?.json, DEFAULT_MARQUEE_ITEMS);
+}
+
+export function parseUpcomingEvents(
+  value?: Record<string, string>
+): UpcomingEventRow[] {
+  return parseJsonArray(value?.json, DEFAULT_UPCOMING_EVENTS);
+}

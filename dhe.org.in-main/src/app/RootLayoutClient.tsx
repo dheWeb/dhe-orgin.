@@ -16,9 +16,11 @@ const HomePromoDialog = dynamic(
 export default function RootLayoutClient({
   children,
   sitePhone = "7903431900",
+  footerMission,
 }: {
   children: React.ReactNode;
   sitePhone?: string;
+  footerMission?: string;
 }) {
   return (
     <>
@@ -53,7 +55,7 @@ export default function RootLayoutClient({
       {children}
 
       <footer>
-        <BottomView />
+        <BottomView footerMission={footerMission} />
       </footer>
 
       <Toaster

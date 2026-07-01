@@ -15,7 +15,11 @@
     "test": "vitest run",
     "verify-secrets": "node scripts/verify-secrets.mjs",
     "seed:bootstrap": "node scripts/seed-supabase-bootstrap.mjs",
+    "strip-firebase-env": "node scripts/strip-firebase-env.mjs",
     "test:watch": "vitest"
+  },
+  "overrides": {
+    "uuid": "^11.1.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

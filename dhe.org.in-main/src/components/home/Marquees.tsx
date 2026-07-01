@@ -3,27 +3,17 @@
 import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
+import {
+  DEFAULT_MARQUEE_ITEMS,
+  type MarqueeItem,
+} from "@/lib/cms/cms-parsers";
 
-const marquees = [
-  {
-    text:
-      "शिक्षा महाकुंभ 6.0 — NIT Hamirpur, 9–11 October 2026. Registration open.",
-    link: "https://www.rase.co.in/registration/Single_Registration",
-  },
-  {
-    text:
-      "Shiksha Mahakumbh 5.0 concluded at NIPER Mohali (Oct–Nov 2025). View official photos.",
-    link:
-      "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
-  },
-  {
-    text:
-      "Join the holistic education movement — explore DHE programs and membership.",
-    link: "/programs",
-  },
-] as const;
+type MarqueesProps = {
+  items?: MarqueeItem[];
+};
 
-const Marquees: React.FC = () => {
+const Marquees: React.FC<MarqueesProps> = ({ items = DEFAULT_MARQUEE_ITEMS }) => {
+  const marquees = items.length ? items : DEFAULT_MARQUEE_ITEMS;
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
