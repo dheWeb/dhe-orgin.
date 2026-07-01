@@ -6,12 +6,19 @@ import {
   lmcDocuments,
 } from "@/data/institution";
 import Link from "next/link";
+import { getSiteContent } from "@/lib/cms/site-content";
 
 export const metadata = createPageMetadata("leadership");
 
 const currentDoc = lmcDocuments.find((d) => d.isCurrent && d.id === "letter-12");
 
-export default function LeadershipPage() {
+const DEFAULT_INTRO =
+  "Patrons and members of the Local Management Committee (LMC) governing the Department of Holistic Education.";
+
+export default async function LeadershipPage() {
+  const content = await getSiteContent(["leadership_intro"]);
+  const intro = content.leadership_intro?.text?.trim() || DEFAULT_INTRO;
+
   const patrons = lmcCurrentPatrons.map((m) => ({
     name: m.name,
     designation: m.designation,
@@ -31,8 +38,7 @@ export default function LeadershipPage() {
           Leadership &amp; Local Management Committee
         </h1>
         <p className="mt-3 text-sm text-gray-600 text-center max-w-2xl mx-auto">
-          Patrons and members of the Local Management Committee (LMC) governing
-          the Department of Holistic Education.
+          {intro}
         </p>
       </div>
       {currentDoc && (

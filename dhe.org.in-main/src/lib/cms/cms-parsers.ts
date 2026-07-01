@@ -85,3 +85,10 @@ export function parseUpcomingEvents(
 ): UpcomingEventRow[] {
   return parseJsonArray(value?.json, DEFAULT_UPCOMING_EVENTS);
 }
+
+export function parseStringListJson(
+  raw: string | undefined,
+  fallback: string[]
+): string[] {
+  return parseJsonArray(raw, fallback);
+}

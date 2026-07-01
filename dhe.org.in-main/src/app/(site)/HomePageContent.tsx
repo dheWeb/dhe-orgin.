@@ -37,12 +37,28 @@ export default function HomePageContent({
   marqueeItems,
   visionBody,
   closingCta,
+  nationalImpactBody,
+  nationalImpactHighlights,
+  leadership,
+  shiksha,
+  digitalDescription,
 }: {
   tagline?: string;
   homeIntro?: HomeIntroProps;
   marqueeItems?: MarqueeItem[];
   visionBody?: string;
   closingCta?: { titleLine1?: string; titleLine2?: string; body?: string };
+  nationalImpactBody?: string;
+  nationalImpactHighlights?: string[];
+  leadership?: {
+    bodyPrefix?: string;
+    leaderName?: string;
+    leaderUrl?: string;
+    bodySuffix?: string;
+    visionQuote?: string;
+  };
+  shiksha?: { paragraph1?: string; paragraph2?: string };
+  digitalDescription?: string;
 }) {
   return (
     <div className="bg-white overflow-x-hidden min-w-0">
@@ -54,7 +70,14 @@ export default function HomePageContent({
       ) : null}
 
       <div className="dhe-container">
-        <MiddleComponent visionBody={visionBody} />
+        <MiddleComponent
+          visionBody={visionBody}
+          nationalImpactBody={nationalImpactBody}
+          nationalImpactHighlights={nationalImpactHighlights}
+          leadership={leadership}
+          shiksha={shiksha}
+          digitalDescription={digitalDescription}
+        />
       </div>
 
       <div className="dhe-container dhe-section-py">

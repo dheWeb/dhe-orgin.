@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Script from "next/script";
 
 const CONSENT_KEY = "dhe-cookie-consent";
 
@@ -50,7 +49,7 @@ export function CookieConsentBanner() {
         <p className="text-sm leading-relaxed">
           We use cookies and third-party scripts (analytics, chat) to improve
           your experience. See our{" "}
-          <a href="/privacy-policy" className="underline text-orange-300">
+          <a href="/privacy-policy" className="underline text-orange-200 hover:text-white">
             Privacy Policy
           </a>
           .
@@ -76,62 +75,3 @@ export function CookieConsentBanner() {
   );
 }
 
-export function ThirdPartyScripts() {
-  const [consent, setConsent] = useState<ConsentState>("pending");
-
-  useEffect(() => {
-    const read = () => {
-      const stored = localStorage.getItem(CONSENT_KEY);
-      if (stored === "accepted" || stored === "rejected") {
-        setConsent(stored);
-      }
-    };
-    read();
-    window.addEventListener("dhe-cookie-consent", read);
-    return () => window.removeEventListener("dhe-cookie-consent", read);
-  }, []);
-
-  if (process.env.NODE_ENV !== "production" || consent !== "accepted") {
-    return null;
-  }
-
-  return (
-    <>
-      <Script
-        id="adsense"
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4330032354977759"
-        crossOrigin="anonymous"
-        strategy="lazyOnload"
-      />
-      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-        <>
-          <Script
-            id="ga4-loader"
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-            strategy="lazyOnload"
-          />
-          <Script id="ga4-init" strategy="lazyOnload">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', { anonymize_ip: true });
-            `}
-          </Script>
-        </>
-      )}
-      <Script
-        id="botpress-inject"
-        src="https://cdn.botpress.cloud/webchat/v1/inject.js"
-        strategy="lazyOnload"
-      />
-      <Script
-        id="botpress-config"
-        src="https://mediafiles.botpress.cloud/fa60123e-045a-48d8-862e-81258c3ccc9a/webchat/config.js"
-        strategy="lazyOnload"
-      />
-    </>
-  );
-}

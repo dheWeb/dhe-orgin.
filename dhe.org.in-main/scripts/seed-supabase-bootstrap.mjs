@@ -222,6 +222,69 @@ const CMS_DEFAULTS = [
       ]),
     },
   },
+  {
+    key: "home_national_impact",
+    label: "Home national impact",
+    value: {
+      body: "DHE functions as the intellectual and operational nerve center for advancing educational discourse and implementation across Bharat. Through policy dialogue, institutional collaboration, leadership development, research initiatives, conferences, and digital platforms, DHE empowers educators, institutions, students, policymakers, and communities.",
+      highlights_json: JSON.stringify([
+        "National Educational Conferences & Summits",
+        "Innovation & Entrepreneurship Ecosystem",
+        "Digital Educational Platforms & Solutions",
+        "Leadership & Skill Development Initiatives",
+      ]),
+    },
+  },
+  {
+    key: "home_leadership",
+    label: "Home leadership section",
+    value: {
+      body_prefix: "At the helm of DHE is",
+      leader_name: "Dr. Thakur S. K. R.",
+      leader_url: "http://www.drthakurskr.com",
+      body_suffix:
+        ", senior scientist at ISRO and pioneer in educational experimentation. His vision promotes character, competence, creativity, leadership, innovation, and globally relevant education rooted in Bharatiya civilization ethos.",
+      vision_quote:
+        "“Education must empower every learner to become innovative, ethical, skilled, socially responsible, and globally competent while remaining deeply rooted in Bharat’s cultural and spiritual wisdom.”",
+    },
+  },
+  {
+    key: "home_shiksha",
+    label: "Home Shiksha Mahakumbh",
+    value: {
+      paragraph1:
+        "Through the Shiksha Mahakumbh Abhiyan, DHE has created a transformative national movement that brings together educators, policymakers, scientists, industry leaders, social reformers, institutions, startups, researchers, and youth from across Bharat and beyond.",
+      paragraph2:
+        "More than a conference, it is a dynamic platform for collaborative educational reform, policy innovation, research dissemination, entrepreneurship development, leadership building, and societal transformation.",
+    },
+  },
+  {
+    key: "home_digital_ecosystem",
+    label: "Home digital ecosystem intro",
+    value: {
+      description:
+        "DHE actively develops impact-driven digital platforms that transform educational vision into practical, scalable, and sustainable systems.",
+    },
+  },
+  {
+    key: "leadership_intro",
+    label: "Leadership page intro",
+    value: {
+      text: "Patrons and members of the Local Management Committee (LMC) governing the Department of Holistic Education.",
+    },
+  },
+  {
+    key: "cells_shared_intro",
+    label: "Cell pages shared intro",
+    value: {
+      text: "Each DHE cell advances a focused mission within the national holistic education ecosystem — collaborating across institutions, research, innovation, and community outreach.",
+    },
+  },
+  {
+    key: "cell_overrides",
+    label: "Cell page overrides",
+    value: { json: "{}" },
+  },
 ];
 
 async function seedNotices() {

@@ -25,7 +25,7 @@ export default function HomeGalleryPreview({ slides }: Props) {
             >
               Events & Gallery
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm text-gray-600 mt-1 max-w-xl">
               Highlights from Shiksha Mahakumbh, institutional partnerships, and national educational initiatives.
             </p>
           </div>
@@ -63,7 +63,7 @@ export default function HomeGalleryPreview({ slides }: Props) {
                 sizes="(max-width: 1024px) 50vw, 25vw"
                 className="w-full aspect-[4/3] object-cover rounded-md border border-gray-200"
               />
-              <figcaption className="mt-1.5 text-[10px] sm:text-xs text-gray-500 line-clamp-2 leading-tight">
+              <figcaption className="mt-1.5 text-[10px] sm:text-xs text-gray-600 line-clamp-2 leading-tight">
                 {slide.legend || slide.alt}
               </figcaption>
             </figure>

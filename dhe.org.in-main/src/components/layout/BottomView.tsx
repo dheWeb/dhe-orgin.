@@ -315,7 +315,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
 
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-2xl font-bold text-orange-300">
+                <h3 className="text-2xl font-bold text-orange-200">
                   DHE Ecosystem
                 </h3>
 
@@ -381,7 +381,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
             {/* ECOSYSTEM INFO */}
             <div className="mt-8 bg-[#111827] border border-gray-700 rounded-3xl p-6">
 
-              <h4 className="text-orange-300 font-bold text-lg mb-3">
+              <h4 className="text-orange-200 font-bold text-lg mb-3">
                 National Educational Ecosystem
               </h4>
 
@@ -394,7 +394,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
           {/* RIGHT SECTION */}
           <div className="lg:col-span-3">
 
-            <h3 className="text-2xl font-bold text-orange-300 mb-6">
+            <h3 className="text-2xl font-bold text-orange-200 mb-6">
               Connect With Us
             </h3>
 

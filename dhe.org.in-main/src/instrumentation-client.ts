@@ -5,7 +5,14 @@ const dsn = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
 Sentry.init({
   dsn,
   enabled: Boolean(dsn),
-  tracesSampleRate: process.env.NODE_ENV === "production" ? 0.1 : 1.0,
+  tracesSampleRate: 0,
+  integrations: (integrations) =>
+    integrations.filter(
+      (integration) =>
+        integration.name !== "BrowserTracing" &&
+        integration.name !== "Replay" &&
+        integration.name !== "Feedback"
+    ),
   environment: process.env.VERCEL_ENV || process.env.NODE_ENV,
 });
 

@@ -3,6 +3,10 @@ import {
   homeIntro as defaultHomeIntro,
   visionFoundation,
   closingCta as defaultClosingCta,
+  nationalImpact,
+  leadership,
+  shikshaMahakumbh,
+  digitalEcosystem,
 } from "@/data/home/content";
 
 export type SiteContentMap = Record<string, Record<string, string>>;
@@ -33,6 +37,31 @@ const DEFAULTS: SiteContentMap = {
     title_line2: defaultClosingCta.titleLine2,
     body: defaultClosingCta.body,
   },
+  home_national_impact: {
+    body: nationalImpact.body,
+    highlights_json: JSON.stringify(nationalImpact.highlights),
+  },
+  home_leadership: {
+    body_prefix: leadership.bodyPrefix,
+    leader_name: leadership.leaderName,
+    leader_url: leadership.leaderUrl,
+    body_suffix: leadership.bodySuffix,
+    vision_quote: leadership.visionQuote,
+  },
+  home_shiksha: {
+    paragraph1: shikshaMahakumbh.paragraph1,
+    paragraph2: shikshaMahakumbh.paragraph2,
+  },
+  home_digital_ecosystem: {
+    description: digitalEcosystem.description,
+  },
+  leadership_intro: {
+    text: "Patrons and members of the Local Management Committee (LMC) governing the Department of Holistic Education.",
+  },
+  cells_shared_intro: {
+    text: "Each DHE cell advances a focused mission within the national holistic education ecosystem — collaborating across institutions, research, innovation, and community outreach.",
+  },
+  cell_overrides: { json: "{}" },
   director_message: {
     excerpt:
       "Holistic education integrates mind, body, and spirit for nation-building.",

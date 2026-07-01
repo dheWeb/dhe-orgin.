@@ -14,7 +14,43 @@ import {
 } from "@/data/home/content";
 import ParticipationPathways from "@/components/sections/ParticipationPathways";
 
-const DepartmentInfo: React.FC<{ visionBody?: string }> = ({ visionBody }) => {
+const DepartmentInfo: React.FC<{
+  visionBody?: string;
+  nationalImpactBody?: string;
+  nationalImpactHighlights?: string[];
+  leadership?: {
+    bodyPrefix?: string;
+    leaderName?: string;
+    leaderUrl?: string;
+    bodySuffix?: string;
+    visionQuote?: string;
+  };
+  shiksha?: { paragraph1?: string; paragraph2?: string };
+  digitalDescription?: string;
+}> = ({
+  visionBody,
+  nationalImpactBody,
+  nationalImpactHighlights,
+  leadership: leadershipCms,
+  shiksha: shikshaCms,
+  digitalDescription,
+}) => {
+  const impactBody = nationalImpactBody || nationalImpact.body;
+  const impactHighlights =
+    nationalImpactHighlights?.length ? nationalImpactHighlights : nationalImpact.highlights;
+  const leader = {
+    bodyPrefix: leadershipCms?.bodyPrefix || leadership.bodyPrefix,
+    leaderName: leadershipCms?.leaderName || leadership.leaderName,
+    leaderUrl: leadershipCms?.leaderUrl || leadership.leaderUrl,
+    bodySuffix: leadershipCms?.bodySuffix || leadership.bodySuffix,
+    visionQuote: leadershipCms?.visionQuote || leadership.visionQuote,
+  };
+  const shikshaCopy = {
+    paragraph1: shikshaCms?.paragraph1 || shikshaMahakumbh.paragraph1,
+    paragraph2: shikshaCms?.paragraph2 || shikshaMahakumbh.paragraph2,
+  };
+  const ecosystemDescription = digitalDescription || digitalEcosystem.description;
+
   return (
     <div className="min-w-0 text-gray-800 space-y-0">
       {/* Institutional overview + statistics */}
@@ -67,10 +103,10 @@ const DepartmentInfo: React.FC<{ visionBody?: string }> = ({ visionBody }) => {
               title={nationalImpact.title}
             />
             <p className="text-sm leading-relaxed text-gray-600 -mt-2">
-              {nationalImpact.body}
+              {impactBody}
             </p>
             <ul className="mt-3 space-y-1.5" role="list">
-              {nationalImpact.highlights.map((item) => (
+              {impactHighlights.map((item) => (
                 <li
                   key={item}
                   className="flex gap-2 text-sm text-gray-700 leading-snug"
@@ -91,23 +127,23 @@ const DepartmentInfo: React.FC<{ visionBody?: string }> = ({ visionBody }) => {
               title={leadership.title}
             />
             <p className="text-sm leading-relaxed text-gray-600 -mt-2">
-              {leadership.bodyPrefix}{" "}
+              {leader.bodyPrefix}{" "}
               <a
-                href={leadership.leaderUrl}
+                href={leader.leaderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-orange-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
+                className="font-semibold text-orange-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
               >
-                {leadership.leaderName}
+                {leader.leaderName}
               </a>
-              {leadership.bodySuffix}
+              {leader.bodySuffix}
             </p>
             <blockquote className="mt-3 border-l-2 border-orange-500 pl-3">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-orange-600">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-orange-700">
                 {leadership.visionTitle}
               </p>
               <p className="mt-1.5 text-sm text-gray-600 leading-relaxed italic">
-                {leadership.visionQuote}
+                {leader.visionQuote}
               </p>
             </blockquote>
           </div>
@@ -122,7 +158,7 @@ const DepartmentInfo: React.FC<{ visionBody?: string }> = ({ visionBody }) => {
         <SectionHeading
           id="cells-ecosystem-heading"
           title="Cells, Departments & Digital Ecosystem"
-          description={digitalEcosystem.description}
+          description={ecosystemDescription}
         />
         <nav
           className="flex flex-wrap gap-2 mb-5"
@@ -195,10 +231,10 @@ const DepartmentInfo: React.FC<{ visionBody?: string }> = ({ visionBody }) => {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 max-w-5xl">
           <p className="text-sm leading-relaxed text-gray-700">
-            {shikshaMahakumbh.paragraph1}
+            {shikshaCopy.paragraph1}
           </p>
           <p className="text-sm leading-relaxed text-gray-700">
-            {shikshaMahakumbh.paragraph2}
+            {shikshaCopy.paragraph2}
           </p>
         </div>
         <p className="mt-4">

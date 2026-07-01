@@ -9,6 +9,11 @@ import {
 } from "@/lib/seo/cell-schema";
 import { createCellMetadata } from "@/lib/seo/build-metadata";
 import { getAllCellSlugs, getCellBySlug } from "@/data/cells";
+import { getSiteContent } from "@/lib/cms/site-content";
+import {
+  mergeCellWithCms,
+  parseCellOverrides,
+} from "@/lib/cms/cell-overrides";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -36,11 +41,16 @@ export async function generateMetadata({
 
 export default async function CellPage({ params }: PageProps) {
   const { slug } = await params;
-  const cell = getCellBySlug(slug);
+  const baseCell = getCellBySlug(slug);
 
-  if (!cell) {
+  if (!baseCell) {
     notFound();
   }
+
+  const content = await getSiteContent(["cells_shared_intro", "cell_overrides"]);
+  const overrides = parseCellOverrides(content.cell_overrides);
+  const cell = mergeCellWithCms(baseCell, overrides[slug]);
+  const sharedIntro = content.cells_shared_intro?.text?.trim();
 
   return (
     <>
@@ -50,7 +60,7 @@ export default async function CellPage({ params }: PageProps) {
           ...getCellStructuredDataGraph(cell, slug),
         ]}
       />
-      <CellPageView cell={cell} />
+      <CellPageView cell={cell} sharedIntro={sharedIntro} />
     </>
   );
 }

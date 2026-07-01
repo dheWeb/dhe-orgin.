@@ -4,10 +4,11 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import RootLayoutClient from "./RootLayoutClient";
 import { defaultMetadata } from "@/lib/seo/site-metadata";
+import { CookieConsentBanner } from "@/components/layout/CookieConsent";
 import {
-  CookieConsentBanner,
-  ThirdPartyScripts,
-} from "@/components/layout/CookieConsent";
+  BotpressChatLauncher,
+  DeferredAnalyticsScripts,
+} from "@/components/layout/DeferredThirdParty";
 
 import { getSiteContent } from "@/lib/cms/site-content";
 
@@ -49,7 +50,8 @@ export default async function RootLayout({
         </RootLayoutClient>
 
         <CookieConsentBanner />
-        <ThirdPartyScripts />
+        <DeferredAnalyticsScripts />
+        <BotpressChatLauncher />
       </body>
     </html>
   );

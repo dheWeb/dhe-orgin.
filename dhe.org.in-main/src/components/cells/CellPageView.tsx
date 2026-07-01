@@ -14,6 +14,7 @@ const SlideShow = dynamic(() => import("@/components/gallery/SlideShow"), {
 
 type Props = {
   cell: CellDefinition;
+  sharedIntro?: string;
 };
 
 function CellPageHeader({ title }: { title: string }) {
@@ -29,15 +30,22 @@ function CellPageHeader({ title }: { title: string }) {
   );
 }
 
-export default function CellPageView({ cell }: Props) {
+export default function CellPageView({ cell, sharedIntro }: Props) {
   const title = cell.displayTitle.trim();
   const isSlideshow =
     cell.layoutVariant === "slideshow" && cell.slides.length > 0;
+
+  const introBlock = sharedIntro ? (
+    <p className="text-sm text-gray-600 px-2 sm:px-4 mb-4 max-w-3xl mx-auto text-center sm:text-left">
+      {sharedIntro}
+    </p>
+  ) : null;
 
   if (isSlideshow) {
     return (
       <div className="bg-white sm:w-3/5 m-auto px-2 min-w-0 pb-4">
         <CellPageHeader title={title} />
+        {introBlock}
         <div className="flex justify-center">
           <div className="sm:-mt-8 sm:-mb-8 min-w-0 w-full">
             <SlideShow slides={cell.slides} />
@@ -59,6 +67,7 @@ export default function CellPageView({ cell }: Props) {
   return (
     <div className="bg-white min-w-0 pb-4">
       <CellPageHeader title={title} />
+      {introBlock}
       {cell.blocks.map((block, index) => (
         <CellInfo
           key={index}
