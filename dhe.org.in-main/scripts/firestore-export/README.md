@@ -1,14 +1,11 @@
-# Firestore legacy export files (optional)
+# Supabase bootstrap (replaces retired Firebase)
 
-Place JSON exports here, then run:
+Firestore data was not recoverable after project/database deletion.
+Use the bootstrap script to seed starter notices and CMS keys:
 
-```bash
-node scripts/import-firestore-export.mjs
+```powershell
+cd dhe.org.in-main
+npm run seed:bootstrap
 ```
 
-Expected files:
-- `events.json` — notice board events
-- `Donation.json` — donation form submissions
-- `Workshop.json` — workshop registrations
-
-Export from Firebase Console → Firestore → Import/Export, or use `gcloud firestore export`.
+Safe to re-run — only fills empty tables / missing CMS keys.

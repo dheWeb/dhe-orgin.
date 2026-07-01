@@ -211,5 +211,5 @@ export function getAllPublicPaths(): string[] {
 
   const cells = CELLS.map((cell) => `/cells/${cell.slug}`);
 
-  return [...new Set([...base, ...cells])];
+  return Array.from(new Set([...base, ...cells]));
 }

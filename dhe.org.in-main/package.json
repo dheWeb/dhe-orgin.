@@ -14,6 +14,7 @@
     "type-check": "tsc --noEmit",
     "test": "vitest run",
     "verify-secrets": "node scripts/verify-secrets.mjs",
+    "seed:bootstrap": "node scripts/seed-supabase-bootstrap.mjs",
     "test:watch": "vitest"
   },
   "dependencies": {

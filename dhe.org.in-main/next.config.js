@@ -46,7 +46,6 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "www.dhe.org.in" },
       { protocol: "https", hostname: "dhe.org.in" },
-      { protocol: "https", hostname: "firebasestorage.googleapis.com" },
     ],
   },
   async headers() {

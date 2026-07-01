@@ -67,7 +67,7 @@
 |-------|--------|-------|
 | P0 security & privacy | **~70%** | eval, Members, legal, cookies, headers, admin gate |
 | P0 payments | **~75%** | Razorpay donate + webhook + receipt email; membership linked |
-| Firebase → Supabase | **~95%** | SDK removed; APIs live; legacy import script ready |
+| Firebase → Supabase | **DONE** | SDK removed; Firestore retired; bootstrap seed script |
 | CMS | **~25%** | `/admin/cms` + `site_content` table + `/api/content` |
 | SEO | **~65%** | sitemap/robots, llms.txt, unique cell meta |
 | Performance | **~75%** | Hero images compressed 1.9MB→126KB WebP; SSR LCP; Next image optimization on |
@@ -125,7 +125,7 @@
 |---|-------|----------|--------|
 | 1 | Supabase full schema migration | **P0** | **DONE** |
 | 2 | LCP / Performance score below target | **P0** | **Partial** — image optimization + SSR hero; compress `public/` sources |
-| 3 | Legacy Firestore data not imported | **P1** | Script ready — add JSON to `scripts/firestore-export/` |
+| 3 | Legacy Firestore data | **CLOSED** | Firebase DB deleted; use `npm run seed:bootstrap` for starter content |
 | 4 | Upstash + Sentry env not set in Vercel | **P1** | SDK wired — add keys per `docs/optional-env.md` |
 | 5 | npm audit moderate CVEs | **MEDIUM** | Track upstream |
 | 6 | Accessibility 96 not 100 | **MEDIUM** | Ongoing |
@@ -174,7 +174,7 @@ The site is **live at https://www.dhe.org.in** with Supabase forms/notices, Razo
 
 1. **Set env in Vercel:** `SENTRY_DSN`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` (see `docs/optional-env.md`)
 2. **Rotate secrets** shared in chat (Supabase, Razorpay, reCAPTCHA, Brevo, admin password)
-3. **Import legacy Firestore data:** export JSON → `scripts/firestore-export/` → `node scripts/import-firestore-export.mjs`
+3. **Bootstrap Supabase content:** `npm run seed:bootstrap` (starter notices + CMS)
 4. **Compress hero images** in `public/2024K/` (multi-MB JPEGs)
 5. **CMS** `/admin` per exhaustive plan
 6. **Lighthouse on production URL** after image compression

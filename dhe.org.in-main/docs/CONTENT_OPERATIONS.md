@@ -23,8 +23,8 @@ This document defines **who updates what**, **how often**, and **which file or s
 | Upcoming events | `/upcomingevent` | `src/components/sections/UpcomingEvent.tsx` (`upcomingRows`) | Event Management Cell / secretariat | Monthly or per program |
 | Past events | `/pastevent` | `src/components/sections/PastEvent.tsx` (`events` array) | Event Management Cell | After each completed program |
 | Workshop archive | `/workshop` | `src/components/sections/Workshop.tsx` | Event / R&D cells (May 2024 archive) | When new workshop archive warranted |
-| Notice board (public) | `/noticeboard` | Firebase `events` collection (read via `NoticeBoard.tsx`) | DHE secretariat / authorized admin | As published |
-| Notice admin | `/noticeboarddata` | Same Firebase collection (admin UI) | Authorized notice administrators only | Ongoing |
+| Notice board (public) | `/noticeboard` | Supabase `notices` table via `/api/notices` | DHE secretariat / admin | As published |
+| Notice admin | `/noticeboarddata` | Supabase `notices` via `/api/admin/notices` | Admin Basic Auth | Ongoing |
 | Cell co-ordinators | `/people` | `src/app/(site)/people/page.tsx` (`advisoryMembers`) | DHE administration | Quarterly |
 | Advisory council | `/advisory` | `src/components/sections/AdvisoryCouncil.tsx` (if used on route) | DHE administration | Annual |
 | Contact | `/contact` | `src/components/forms/ContactForm.tsx` (`contactData`) | DHE secretariat | Quarterly |
@@ -107,7 +107,7 @@ Workshop-specific: `/workshop` uses an on-page **Registration Closed** badge for
 
 - Notices sort by date; older items move to **Past Notices** automatically in UI.
 - **Policy:** Remove or avoid duplicating the same notice as a new post; edit in admin if correction only.
-- **No automatic expiry deletion** in codebase—periodically review Firebase collection for obsolete entries.
+- **No automatic expiry deletion** in codebase—periodically review notices in admin for obsolete entries.
 
 ### Duplicate avoidance
 
@@ -246,7 +246,7 @@ Applies to cells: **publication**, **rd**, **ipr**, **publication** (promotions)
 
 ### Publications & notices
 
-- [ ] Firebase notice backlog reviewed for removal candidates
+- [ ] Supabase notices backlog reviewed for removal candidates
 - [ ] Journals/books pages (`/journals`, `/books`) reviewed if used
 
 ### Findings log
@@ -269,12 +269,12 @@ Applies to cells: **publication**, **rd**, **ipr**, **publication** (promotions)
 |------|----------|------------|
 | Stale upcoming events | High | Quarterly review; archived label policy |
 | Past events not updated | Medium | Event cell adds row after each program |
-| Notice duplication | Medium | Pre-publish search; single source in Firebase |
+| Notice duplication | Medium | Pre-publish search; single source in Supabase |
 | Registry vs people mismatch | Medium | Annual audit; update both in one change request |
 | FAQ/schema drift (homepage) | Medium | Edit only `homeFaq` in `content.ts`; one reviewer |
 | Invented claims in registry | High | Coordinator + communications sign-off |
 | Contact info outdated | High | Quarterly trust checklist |
-| Firebase unauthorized publish | High | Maintain `notice-admin.ts` allowlist; see `FIREBASE_SECURITY.md` |
+| Unauthorized admin publish | High | Basic Auth + `/api/admin/*` server routes |
 | Enrichment over-generic | Low | Acceptable; change registry for specificity |
 | Technical edit breaks SEO registry | Medium | Do not edit `pages-registry` without communications approval |
 
@@ -287,14 +287,14 @@ Applies to cells: **publication**, **rd**, **ipr**, **publication** (promotions)
 | Routes unchanged | Yes — documentation only |
 | Metadata / sitemap / SEO registry architecture | Unchanged |
 | Dynamic cell architecture | Unchanged |
-| Firebase / APIs | Unchanged |
+| Data store | Supabase Postgres + Storage |
 | No new SEO waves | Yes — editorial operations only |
 
 ---
 
 ## Related internal docs
 
-- `docs/FIREBASE_SECURITY.md` — notice admin access
+- `docs/security-review.md` — admin access and security posture
 - `docs/ANTD_SCOPE_AUDIT.md` — notice board UI scope
 - `docs/IMAGE_OPTIMIZATION_AUDIT.md` — media performance
 

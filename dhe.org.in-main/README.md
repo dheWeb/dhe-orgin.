@@ -1,13 +1,13 @@
 # DHE Website (Next.js)
 
-Official website for the Department of Holistic Education — [dhe.org.in](https://www.dhe.org.in).
+Official website for the Department of Holistic Education — [www.dhe.org.in](https://www.dhe.org.in).
 
 ## Local development
 
 ```bash
 cd dhe.org.in-main
 cp .env.example .env.local
-# Fill in ADMIN_*, SMTP_*, and Firebase values in .env.local
+# Fill in ADMIN_*, Supabase, Razorpay, reCAPTCHA, Brevo (see .env.example)
 npm install
 npm run dev
 ```
@@ -16,30 +16,28 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Deploy on Vercel
 
-This repo is a monorepo. The Next.js app lives in **`dhe.org.in-main/`**.
+Monorepo root contains `vercel.json` that builds `dhe.org.in-main/`.
+Production project: **`dhe-orgin-ctai`** → `www.dhe.org.in`.
 
-### Use one Vercel project only
-
-Keep **`dhe-orgin-ctai`** (domain `www.dhe.org.in`) as production. Delete the duplicate **`dhe-orgin`** project if it still exists — both deploy on every push and double your build + image optimization usage.
-
-1. Import the GitHub repo in Vercel (or use existing `dhe-orgin-ctai`).
-2. Set **Root Directory** to `dhe.org.in-main` (or use the root `vercel.json` which builds that folder).
-3. Set **Node.js** to **20.x** (20.19+ recommended).
-4. Add environment variables from `.env.example` (Production + Preview as needed).
-5. Attach custom domains `www.dhe.org.in` and `dhe.org.in`.
+1. Link repo to Vercel (root directory = monorepo root).
+2. Node.js **20.x**.
+3. Copy env vars from `.env.example` into Vercel (Production + Preview).
+4. Domains: `www.dhe.org.in`, `dhe.org.in`.
 
 ### Required env vars
 
 | Variable | Purpose |
 |----------|---------|
-| `ADMIN_USERNAME` / `ADMIN_PASSWORD` | HTTP Basic Auth for `/WD`, `/donationdatadekh`, `/noticeboarddata`, `/api/sendMail` |
-| `SMTP_USER` / `SMTP_PASS` | Workshop invitation emails |
-| `NEXT_PUBLIC_NOTICE_ADMIN_EMAILS` | Google sign-in allowlist for `/noticeboarddata` |
-| `NEXT_PUBLIC_FIREBASE_*` | Recommended for production (overrides baked-in dev defaults) |
+| `ADMIN_USERNAME` / `ADMIN_PASSWORD` | HTTP Basic Auth for `/admin`, `/WD`, `/donationdatadekh`, etc. |
+| `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public Supabase client |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server APIs, admin, webhooks |
+| `RAZORPAY_*` / `NEXT_PUBLIC_RAZORPAY_KEY_ID` | Donations & membership payments |
+| `RECAPTCHA_*` / `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Form spam protection |
+| `BREVO_API_KEY` + `SMTP_FROM` | Receipt emails (Brevo REST API) |
 
-Admin routes return **503** in production if `ADMIN_*` is missing.
+Optional: `SENTRY_DSN`, `UPSTASH_*`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
 
-Image optimization is disabled on Vercel (`images.unoptimized`) to stay within Hobby plan limits; assets are served from `/public` via the CDN.
+**Firebase is retired** — do not set `NEXT_PUBLIC_FIREBASE_*`.
 
 ## Scripts
 
@@ -47,9 +45,10 @@ Image optimization is disabled on Vercel (`images.unoptimized`) to stay within H
 |---------|-------------|
 | `npm run dev` | Development server |
 | `npm run build` | Production build |
-| `npm run start` | Start production server |
-| `npm run lint` | ESLint |
+| `npm run test` | Unit tests (Vitest) |
+| `npm run seed:bootstrap` | Seed starter notices + CMS in Supabase |
+| `node scripts/sync-vercel-env.mjs production` | Push `.env.local` secrets to Vercel |
 
 ## Stack
 
-Next.js 15 (App Router), TypeScript, Tailwind CSS, Ant Design, Firebase client SDK.
+Next.js 15 (App Router), TypeScript, Tailwind CSS, Supabase (Postgres + Storage), Razorpay, Brevo email.
