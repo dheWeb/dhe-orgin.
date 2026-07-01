@@ -13,9 +13,26 @@ SMTP_USER=...               # optional legacy SMTP
 SMTP_PASS=xsmtpsib-...        # SMTP key — NOT the same as BREVO_API_KEY
 ```
 
-If receipts fail: create a **v3 API key** (`xkeysib-`) and set `BREVO_API_KEY` in `.env.local`, then sync to Vercel.
+If receipts fail with `401` or `unrecognised IP`:
 
-Optional SMTP-only path: Brevo → Transactional → Settings → disable **Authorized IPs** for SMTP relay.
+1. **Brevo → Security → Authorized IPs** → deactivate API IP blocking (needed for Vercel), or authorize the blocked IP from Brevo’s email alert.
+2. Ensure **`BREVO_API_KEY`** (`xkeysib-…`) is set on Vercel **Production** — not the SMTP key (`xsmtpsib-…`).
+
+Create a **v3 API key** in Brevo → SMTP & API → API Keys, set `BREVO_API_KEY` in `dhe.org.in-main/.env.local`, then:
+
+```powershell
+cd dhe.org.in-main
+node scripts/sync-vercel-env.mjs production
+cd ..
+npx vercel deploy --prod --yes
+node scripts/test-receipt-resend.mjs
+```
+
+**Do not** run bare `vercel env pull` — it defaults to **development** and overwrites local secrets. Use:
+
+```powershell
+npx vercel env pull dhe.org.in-main/.env.vercel-backup --environment=production --yes
+```
 
 ## Optional: Sentry
 

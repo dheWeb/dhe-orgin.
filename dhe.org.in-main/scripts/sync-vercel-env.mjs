@@ -5,6 +5,7 @@
 import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { execSync } from "child_process";
+import { parseEnvFile } from "./lib/parse-env.mjs";
 
 const root = process.cwd();
 const envPath = join(root, ".env.local");
@@ -13,14 +14,7 @@ if (!existsSync(envPath)) {
   process.exit(1);
 }
 
-const env = {};
-for (const line of readFileSync(envPath, "utf8").split("\n")) {
-  const trimmed = line.trim();
-  if (!trimmed || trimmed.startsWith("#")) continue;
-  const eq = trimmed.indexOf("=");
-  if (eq === -1) continue;
-  env[trimmed.slice(0, eq)] = trimmed.slice(eq + 1);
-}
+const env = parseEnvFile(envPath);
 
 const keys = [
   "ADMIN_USERNAME",
@@ -42,6 +36,9 @@ const keys = [
   "SMTP_PASS",
   "SMTP_FROM",
   "BREVO_API_KEY",
+  "SMTP_API_KEY_NEW",
+  "SMTP_KEY_NEW",
+  "MCP_API_KEY_NEW",
   "NEXT_PUBLIC_SITE_URL",
 ];
 

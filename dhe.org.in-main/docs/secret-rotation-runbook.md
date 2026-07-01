@@ -77,18 +77,27 @@ After rotation, send a test payment (₹1) and confirm webhook delivery in Razor
 
 ---
 
-## 4. Brevo (SMTP)
+## 4. Brevo (email / receipts)
 
-**Dashboard:** https://app.brevo.com/settings/keys/smtp
+**Dashboard:** https://app.brevo.com/settings/keys/smtp  
+**API keys:** https://app.brevo.com/settings/keys/api  
+**IP security:** https://app.brevo.com/security/authorised_ips
 
 | Secret | Action | Env vars |
 |--------|--------|----------|
-| SMTP key | SMTP & API → **Regenerate** SMTP key | `SMTP_PASS` |
+| **v3 API key** (required on Vercel) | SMTP & API → **API Keys** → Create v3 key | `BREVO_API_KEY` (`xkeysib-…`) |
+| SMTP key (local / legacy) | Regenerate SMTP key | `SMTP_PASS` (`xsmtpsib-…`) |
 | SMTP login | Usually unchanged | `SMTP_USER` |
-| Relay | Unchanged | `SMTP_HOST=smtp-relay.brevo.com`, `SMTP_PORT=587` |
 | From address | Unchanged | `SMTP_FROM=director@dhe.org.in` |
 
-Verify SPF/DKIM for `dhe.org.in` in Brevo → Senders & Domains so receipt emails don’t bounce.
+**Vercel / serverless:** Receipts use the **REST API**, not SMTP. After deploy, open **Brevo → Security → Authorized IPs** and either:
+
+1. **Deactivate** “Blocking unauthorized IP addresses” for **API** (recommended for Vercel — IPs change per request), or  
+2. Authorize each blocked IP from the email Brevo sends (not practical long-term on Vercel).
+
+Without this step, production returns `401 unrecognised IP address` even with a valid `BREVO_API_KEY`.
+
+Verify SPF/DKIM for `dhe.org.in` in Brevo → Senders & Domains.
 
 ---
 

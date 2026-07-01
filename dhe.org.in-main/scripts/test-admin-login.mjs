@@ -1,8 +1,9 @@
 /**
  * Test admin Basic auth against production using .env.local credentials.
  */
-import { readFileSync, existsSync } from "fs";
 import { join } from "path";
+import { existsSync } from "fs";
+import { parseEnvFile } from "./lib/parse-env.mjs";
 
 const envPath = join(process.cwd(), ".env.local");
 if (!existsSync(envPath)) {
@@ -10,15 +11,7 @@ if (!existsSync(envPath)) {
   process.exit(1);
 }
 
-const env = {};
-for (const line of readFileSync(envPath, "utf8").split("\n")) {
-  const trimmed = line.trim();
-  if (!trimmed || trimmed.startsWith("#")) continue;
-  const eq = trimmed.indexOf("=");
-  if (eq === -1) continue;
-  env[trimmed.slice(0, eq)] = trimmed.slice(eq + 1);
-}
-
+const env = parseEnvFile(envPath);
 const user = env.ADMIN_USERNAME?.trim();
 const pass = env.ADMIN_PASSWORD?.trim();
 if (!user || !pass) {

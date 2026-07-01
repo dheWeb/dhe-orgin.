@@ -25,29 +25,39 @@ export async function sendDonationReceiptEmail(
   data: DonationReceiptData,
   options?: { downloadUrl?: string }
 ): Promise<void> {
-  const smtp = getSmtpConfig();
-  if (!smtp) {
-    throw new Error("SMTP is not configured");
-  }
-
   const pdf = generateDonationPdf(data);
   const subject = `Donation Receipt ${data.receiptNumber} — DHE / दान रसीद`;
   const html = buildReceiptHtml(data, options?.downloadUrl);
 
   if (isBrevoApiConfigured()) {
-    await sendBrevoEmail(smtp, {
-      to: data.donorEmail,
-      toName: data.donorName,
-      subject,
-      html,
-      attachments: [
-        {
-          filename: `${data.receiptNumber}.pdf`,
-          content: pdf,
-        },
-      ],
-    });
+    const from =
+      process.env.SMTP_FROM?.trim() ||
+      process.env.SMTP_USER?.trim() ||
+      getSmtpConfig()?.from;
+    if (!from) {
+      throw new Error("SMTP_FROM is not configured");
+    }
+    await sendBrevoEmail(
+      { service: "brevo", user: "", pass: "", from },
+      {
+        to: data.donorEmail,
+        toName: data.donorName,
+        subject,
+        html,
+        attachments: [
+          {
+            filename: `${data.receiptNumber}.pdf`,
+            content: pdf,
+          },
+        ],
+      }
+    );
     return;
+  }
+
+  const smtp = getSmtpConfig();
+  if (!smtp) {
+    throw new Error("SMTP is not configured");
   }
 
   const transporter = createSmtpTransporter(smtp);

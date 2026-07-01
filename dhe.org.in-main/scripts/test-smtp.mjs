@@ -1,18 +1,10 @@
 /**
- * Send a test email via Brevo SMTP from .env.local
+ * Send a test email via Brevo REST API from .env.local
  */
-import { readFileSync, existsSync } from "fs";
 import { join } from "path";
+import { parseEnvFile } from "./lib/parse-env.mjs";
 
-const envPath = join(process.cwd(), ".env.local");
-const env = {};
-for (const line of readFileSync(envPath, "utf8").split("\n")) {
-  const trimmed = line.trim();
-  if (!trimmed || trimmed.startsWith("#")) continue;
-  const eq = trimmed.indexOf("=");
-  if (eq === -1) continue;
-  env[trimmed.slice(0, eq)] = trimmed.slice(eq + 1);
-}
+const env = parseEnvFile(join(process.cwd(), ".env.local")) ?? {};
 
 const to = process.argv[2] ?? env.ADMIN_USERNAME;
 if (!to) {
@@ -20,9 +12,22 @@ if (!to) {
   process.exit(1);
 }
 
-const apiKey = env.BREVO_API_KEY?.trim() || env.SMTP_PASS?.trim();
+const apiKey =
+  env.BREVO_API_KEY?.trim() ||
+  env.SMTP_API_KEY_NEW?.trim() ||
+  env.SMTP_KEY_NEW?.trim() ||
+  env.MCP_API_KEY_NEW?.trim() ||
+  (env.SMTP_PASS?.trim()?.startsWith("xkeysib-") ? env.SMTP_PASS.trim() : "");
 if (!apiKey) {
-  console.error("Set BREVO_API_KEY or SMTP_PASS in .env.local");
+  console.error(
+    "Set BREVO_API_KEY (xkeysib-...) in dhe.org.in-main/.env.local — SMTP xsmtpsib keys do not work with the API."
+  );
+  process.exit(1);
+}
+
+const from = env.SMTP_FROM?.trim() || env.SMTP_USER?.trim();
+if (!from) {
+  console.error("Set SMTP_FROM in .env.local");
   process.exit(1);
 }
 
@@ -33,7 +38,7 @@ const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    sender: { email: env.SMTP_FROM, name: "DHE" },
+    sender: { email: from, name: "DHE" },
     to: [{ email: to }],
     subject: "DHE SMTP test — receipt pipeline",
     htmlContent: "<p>If you receive this, Brevo email API is working for dhe.org.in.</p>",

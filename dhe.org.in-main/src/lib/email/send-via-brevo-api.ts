@@ -14,10 +14,18 @@ type BrevoEmailPayload = {
 };
 
 function getBrevoApiKey(): string | null {
-  const apiKey = process.env.BREVO_API_KEY?.trim();
-  if (apiKey) return apiKey;
-  const smtpPass = process.env.SMTP_PASS?.trim();
-  if (smtpPass?.startsWith("xkeysib-")) return smtpPass;
+  const candidates = [
+    process.env.BREVO_API_KEY,
+    process.env.SMTP_API_KEY_NEW,
+    process.env.SMTP_KEY_NEW,
+    process.env.MCP_API_KEY_NEW,
+    process.env.SMTP_PASS,
+  ];
+  for (const raw of candidates) {
+    const key = raw?.trim();
+    if (!key) continue;
+    if (key.startsWith("xkeysib-")) return key;
+  }
   return null;
 }
 
@@ -70,6 +78,11 @@ export async function sendBrevoEmail(
 
   if (!res.ok) {
     const body = await res.text();
+    if (res.status === 401 && body.includes("unrecognised IP")) {
+      throw new Error(
+        "Brevo blocked Vercel IP. In Brevo → Security → Authorized IPs, authorize 13.x.x.x or deactivate API IP blocking (required for serverless)."
+      );
+    }
     throw new Error(`Brevo API ${res.status}: ${body.slice(0, 200)}`);
   }
 }
