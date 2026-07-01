@@ -132,6 +132,7 @@ const MemberShipForm = () => {
                                 phone={formData.PhoneNumber}
                                 amount={feeInr}
                                 purpose="membership"
+                                thankYouPath="/contribute/thank-you"
                                 disabled={!formData.name || !formData.email || !applicationId}
                                 metadata={applicationId ? { application_id: applicationId } : undefined}
                             />

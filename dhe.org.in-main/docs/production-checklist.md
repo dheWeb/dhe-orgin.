@@ -49,7 +49,7 @@
 | Vercel deployment | **Live** |
 | Supabase Postgres | **Live** — payments + forms/notices/visitors schema applied |
 | Razorpay live + webhook | **Live** |
-| Brevo SMTP | **Configured** — donation receipt email on webhook (best-effort) |
+| Brevo SMTP | **DONE** — REST API + receipt emails verified |
 | reCAPTCHA keys | **Wired** — contact, feedback, membership forms |
 | Upstash (rate limit / visitors) | **Supabase-backed** — `rate_limit_buckets` table (Upstash optional) |
 | Sentry | **SDK wired** + **Supabase `error_logs`** fallback when `SENTRY_DSN` unset |
@@ -139,7 +139,7 @@
 
 # **BETA: YES** | **ENTERPRISE: NO**
 
-The site is **live at https://www.dhe.org.in** with optimized images, Supabase forms/notices, distributed rate limits, error logging, Razorpay, and reCAPTCHA. **Beta-ready: YES.** Full enterprise gates (Lighthouse ≥95, a11y 100, CMS, full audit) still in progress.
+The site is **live at https://www.dhe.org.in** with Supabase forms/notices, Razorpay, Brevo receipt emails, reCAPTCHA, and admin tools. Receipt resend verified (200). Full enterprise gates (Lighthouse ≥95, a11y 100, full CMS, complete audit) still in progress.
 
 ---
 

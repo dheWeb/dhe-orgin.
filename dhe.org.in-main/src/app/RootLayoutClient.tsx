@@ -15,8 +15,10 @@ const HomePromoDialog = dynamic(
 
 export default function RootLayoutClient({
   children,
+  sitePhone = "7903431900",
 }: {
   children: React.ReactNode;
+  sitePhone?: string;
 }) {
   return (
     <>
@@ -39,7 +41,7 @@ export default function RootLayoutClient({
         Skip to main content
       </a>
 
-      <Floating />
+      <Floating sitePhone={sitePhone} />
 
       <header className="sticky top-0 z-50 bg-white shadow-sm" role="banner">
         <div className="border-b border-orange-100">

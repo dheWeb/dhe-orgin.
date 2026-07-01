@@ -77,7 +77,5 @@ export const ADMIN_PROTECTED_PATHS = [
   "/WD",
   "/donationdatadekh",
   "/noticeboarddata",
-  "/Members",
-  "/api/sendMail",
   "/api/admin",
 ] as const;

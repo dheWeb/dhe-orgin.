@@ -6,11 +6,26 @@ import { mapRazorpayPayment } from "@/lib/payments/map-razorpay-payment";
 import { upsertDonationFromPayment } from "@/lib/payments/process-webhook";
 import { getRazorpayClient } from "@/lib/razorpay/client";
 import { verifyPaymentSignature } from "@/lib/razorpay/verify";
+import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req.headers);
+  const limit = await checkRateLimit(`payments:verify:${ip}`);
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: "Too many verification attempts. Please try again later." },
+      {
+        status: 429,
+        headers: limit.retryAfter
+          ? { "Retry-After": String(limit.retryAfter) }
+          : undefined,
+      }
+    );
+  }
+
   if (!isRazorpayConfigured() || !isSupabaseAdminConfigured()) {
     return NextResponse.json(
       { error: "Payments are not configured." },

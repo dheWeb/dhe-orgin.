@@ -89,6 +89,24 @@ const Donation = () => {
             An official receipt will be emailed after successful payment. For
             queries: {dheOfficialContact.email} / {dheOfficialContact.phone}.
           </p>
+          <p className="mt-3 flex flex-wrap gap-4">
+            <a
+              href={vbitrTrust.approval80G.documentPath}
+              className="text-green-800 font-semibold underline hover:text-green-950"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download 80G certificate (PDF)
+            </a>
+            <a
+              href={vbitrTrust.registration12A.documentPath}
+              className="text-green-800 font-semibold underline hover:text-green-950"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download 12A registration (PDF)
+            </a>
+          </p>
         </section>
 
         <section className="max-w-3xl mx-auto mb-10">
@@ -205,6 +223,7 @@ const Donation = () => {
               phone={formData.PhoneNumber}
               amount={amount}
               pan={formData.pan}
+              thankYouPath="/donation/thank-you"
               disabled={!formData.name || !formData.email || !amount}
             />
           </form>

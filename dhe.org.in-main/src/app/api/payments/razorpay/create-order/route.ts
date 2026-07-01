@@ -4,11 +4,26 @@ import { isRazorpayConfigured } from "@/lib/env/razorpay";
 import { isSupabaseAdminConfigured, getSupabaseAdmin } from "@/lib/supabase/admin";
 import { getRazorpayClient } from "@/lib/razorpay/client";
 import { validateCreateOrderInput } from "@/lib/payments/process-webhook";
+import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req.headers);
+  const limit = await checkRateLimit(`payments:create:${ip}`);
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: "Too many payment requests. Please try again later." },
+      {
+        status: 429,
+        headers: limit.retryAfter
+          ? { "Retry-After": String(limit.retryAfter) }
+          : undefined,
+      }
+    );
+  }
+
   if (!isRazorpayConfigured() || !isSupabaseAdminConfigured()) {
     return NextResponse.json(
       { error: "Payments are not configured." },

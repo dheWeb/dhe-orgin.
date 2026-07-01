@@ -56,8 +56,6 @@ export const config = {
     "/admin",
     "/donationdatadekh",
     "/noticeboarddata",
-    "/Members",
-    "/api/sendMail",
     "/api/admin/:path*",
   ],
 };

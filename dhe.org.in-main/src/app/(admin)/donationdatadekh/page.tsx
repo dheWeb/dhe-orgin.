@@ -13,16 +13,23 @@ interface DonationData {
   receiptNumber: string;
 }
 
+const PAGE_SIZE = 50;
+
 const Page: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [formDataList, setFormDataList] = useState<DonationData[]>([]);
   const [resendingId, setResendingId] = useState<string | null>(null);
+  const [page, setPage] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/admin/donations");
+        const offset = page * PAGE_SIZE;
+        const res = await fetch(
+          `/api/admin/donations?limit=${PAGE_SIZE}&offset=${offset}`
+        );
         const json = await res.json();
         const dataList: DonationData[] = (json.donations ?? []).map(
           (d: {
@@ -32,22 +39,19 @@ const Page: React.FC = () => {
             donor_phone: string;
             amount_paise: number;
             receipt_number: string;
-          }) => ({
+          }, index: number) => ({
             id: d.id,
             name: d.donor_name ?? "",
             email: d.donor_email ?? "",
             PhoneNumber: d.donor_phone ?? "",
             Amount: String((d.amount_paise ?? 0) / 100),
             receiptNumber: d.receipt_number ?? "",
+            serial: offset + index + 1,
           })
         );
 
-        const dataListWithSerial = dataList.map((data, index) => ({
-          ...data,
-          serial: index + 1,
-        }));
-
-        setFormDataList(dataListWithSerial);
+        setFormDataList(dataList);
+        setTotal(json.total ?? dataList.length);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -56,7 +60,7 @@ const Page: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
   const resendReceipt = async (row: DonationData) => {
     setResendingId(row.id);
@@ -165,6 +169,28 @@ const Page: React.FC = () => {
               ))}
             </tbody>
           </table>
+          <div className="flex items-center gap-4 mt-2 text-sm text-gray-700">
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.max(0, p - 1))}
+              disabled={page === 0}
+              className="px-3 py-1 border rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <span>
+              Page {page + 1} of {Math.max(1, Math.ceil(total / PAGE_SIZE))} ({total}{" "}
+              total)
+            </span>
+            <button
+              type="button"
+              onClick={() => setPage((p) => p + 1)}
+              disabled={(page + 1) * PAGE_SIZE >= total}
+              className="px-3 py-1 border rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
           <button
             onClick={exportToExcel}
             className="bg-primary text-white font-bold py-2 px-4 rounded mt-4 cursor-pointer"

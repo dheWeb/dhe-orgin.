@@ -35,10 +35,22 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       "Meet the Advisory Council guiding the Department of Holistic Education (DHE).",
   },
   committee: {
-    path: "/committee",
-    title: "LMC Members",
+    path: "/leadership",
+    title: "Leadership & LMC",
     description:
-      "Local Management Committee members of the Department of Holistic Education (DHE).",
+      "Local Management Committee and leadership of the Department of Holistic Education (DHE).",
+  },
+  leadership: {
+    path: "/leadership",
+    title: "Leadership & LMC",
+    description:
+      "Local Management Committee and leadership of the Department of Holistic Education (DHE).",
+  },
+  programs: {
+    path: "/programs",
+    title: "DHE Programs",
+    description:
+      "Flagship programs, workshops, camps, and cells of the Department of Holistic Education (DHE).",
   },
   people: {
     path: "/people",
@@ -199,5 +211,5 @@ export function getAllPublicPaths(): string[] {
 
   const cells = CELLS.map((cell) => `/cells/${cell.slug}`);
 
-  return [...base, ...cells];
+  return [...new Set([...base, ...cells])];
 }

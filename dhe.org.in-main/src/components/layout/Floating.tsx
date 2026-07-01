@@ -4,12 +4,17 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
-const WHATSAPP_URL = "https://wa.me/917903431900";
+type FloatingProps = {
+  sitePhone?: string;
+};
 
-const Floating: React.FC = () => {
+const Floating: React.FC<FloatingProps> = ({ sitePhone = "7903431900" }) => {
+  const digits = sitePhone.replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/91${digits}`;
+
   return (
     <a
-      href={WHATSAPP_URL}
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contact DHE on WhatsApp"

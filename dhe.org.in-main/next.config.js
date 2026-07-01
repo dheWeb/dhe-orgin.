@@ -24,11 +24,11 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://pagead2.googlesyndication.com https://cdn.botpress.cloud https://mediafiles.botpress.cloud https://www.google.com https://www.gstatic.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://pagead2.googlesyndication.com https://www.googletagmanager.com https://cdn.botpress.cloud https://mediafiles.botpress.cloud https://www.google.com https://www.gstatic.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https: http:",
-      "connect-src 'self' https://*.supabase.co https://api.razorpay.com https://*.google.com https://*.botpress.cloud wss://*.botpress.cloud https://*.ingest.sentry.io",
+      "connect-src 'self' https://*.supabase.co https://api.razorpay.com https://*.google.com https://www.google-analytics.com https://*.botpress.cloud wss://*.botpress.cloud https://*.ingest.sentry.io",
       "frame-src 'self' https://api.razorpay.com https://www.google.com https://www.youtube.com https://www.google.com/maps",
       "object-src 'none'",
       "base-uri 'self'",
@@ -72,6 +72,16 @@ const nextConfig = {
       {
         source: "/cells/spiritual",
         destination: "/cells/spritual",
+        permanent: true,
+      },
+      {
+        source: "/Members",
+        destination: "/contribute",
+        permanent: true,
+      },
+      {
+        source: "/committee",
+        destination: "/leadership",
         permanent: true,
       },
       {

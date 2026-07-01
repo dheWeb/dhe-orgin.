@@ -32,7 +32,7 @@ const Header: React.FC = () => {
         { path: "/messages", title: "Director Message" },
         { path: "/structure", title: "Cells & Structure" },
         { path: "/advisory", title: "Advisory Council" },
-        { path: "/committee", title: "LMC Members" },
+        { path: "/leadership", title: "LMC Members" },
         { path: "/people", title: "Cell Co-ordinators" },
       ],
     },
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
   const getSubmenuId = (index: number) => `${mobilePanelId}-submenu-${index}`;
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-lg border-b border-orange-100 shadow-sm">
+    <div className="w-full bg-white/95 backdrop-blur-lg border-b border-orange-100 shadow-sm">
       {/* Top Information Bar */}
       <div className="hidden lg:block bg-gradient-to-r from-orange-600 to-orange-500 text-white">
         <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between text-sm">

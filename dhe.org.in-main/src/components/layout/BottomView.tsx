@@ -401,9 +401,15 @@ const BottomView: React.FC = () => {
             {/* FORM */}
             <form onSubmit={handleSubmit} className="space-y-5">
 
+              <label htmlFor="footer-contact-email" className="sr-only">
+                Your email address
+              </label>
               <input
+                id="footer-contact-email"
                 type="email"
+                name="email"
                 placeholder="Your Email Address"
+                autoComplete="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -421,7 +427,12 @@ const BottomView: React.FC = () => {
                 "
               />
 
+              <label htmlFor="footer-contact-message" className="sr-only">
+                Your message
+              </label>
               <textarea
+                id="footer-contact-message"
+                name="message"
                 rows={5}
                 placeholder="Write Your Message"
                 required

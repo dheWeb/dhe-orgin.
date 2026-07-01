@@ -104,6 +104,24 @@ export function ThirdPartyScripts() {
         crossOrigin="anonymous"
         strategy="lazyOnload"
       />
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <>
+          <Script
+            id="ga4-loader"
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+            strategy="lazyOnload"
+          />
+          <Script id="ga4-init" strategy="lazyOnload">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', { anonymize_ip: true });
+            `}
+          </Script>
+        </>
+      )}
       <Script
         id="botpress-inject"
         src="https://cdn.botpress.cloud/webchat/v1/inject.js"

@@ -5,7 +5,7 @@ const links = [
   { href: "/donationdatadekh", label: "Donation records", desc: "View donations, export, email receipts" },
   { href: "/admin/cms", label: "Site content (CMS)", desc: "Edit taglines, contact snippets" },
   { href: "/WD", label: "Workshop registrations", desc: "View workshop sign-ups" },
-  { href: "/Members", label: "Members area", desc: "Protected membership section" },
+  { href: "/contribute", label: "Membership", desc: "Public membership page" },
 ] as const;
 
 export default function AdminHubPage() {

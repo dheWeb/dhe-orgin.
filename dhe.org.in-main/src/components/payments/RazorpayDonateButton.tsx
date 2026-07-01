@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import Script from "next/script";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 type RazorpayHandlerResponse = {
@@ -30,6 +31,7 @@ type RazorpayDonateButtonProps = {
   purpose?: "donation" | "membership" | "registration";
   disabled?: boolean;
   metadata?: Record<string, string>;
+  thankYouPath?: string;
 };
 
 export default function RazorpayDonateButton({
@@ -41,7 +43,9 @@ export default function RazorpayDonateButton({
   purpose = "donation",
   disabled,
   metadata,
+  thankYouPath,
 }: RazorpayDonateButtonProps) {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [scriptReady, setScriptReady] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState<{
@@ -110,12 +114,17 @@ export default function RazorpayDonateButton({
           const verifyData = await verifyRes.json();
           if (verifyRes.ok) {
             const receipt = verifyData.donation?.receipt_number as string | undefined;
+            toast.success("Payment successful!");
+            if (thankYouPath) {
+              const params = receipt ? `?receipt=${encodeURIComponent(receipt)}` : "";
+              router.push(`${thankYouPath}${params}`);
+              return;
+            }
             setPaymentSuccess({
               receiptNumber: receipt,
               message:
                 "Thank you! Payment received. Your official receipt will be emailed within a few minutes.",
             });
-            toast.success("Payment successful!");
           } else {
             toast.error(verifyData.error || "Payment verification failed.");
           }
@@ -134,7 +143,7 @@ export default function RazorpayDonateButton({
     } finally {
       setLoading(false);
     }
-  }, [amount, email, keyId, metadata, name, pan, phone, purpose]);
+  }, [amount, email, keyId, metadata, name, pan, phone, purpose, router, thankYouPath]);
 
   return (
     <>

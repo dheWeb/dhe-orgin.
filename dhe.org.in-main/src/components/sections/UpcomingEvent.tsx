@@ -22,37 +22,35 @@ type UpcomingRow = {
  */
 const upcomingRows: UpcomingRow[] = [
   {
-    title: "Indian Education System for Global Developement",
+    title: "Shiksha Mahakumbh 6.0",
+    date: "9–11 October 2026",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    href: "https://www.rase.co.in/registration/Single_Registration",
+    external: true,
+    status: "planned",
+    statusLabel: "Registration Open",
+    statusNote:
+      "6th edition of Shiksha Mahakumbh — register on the official RASE portal.",
+  },
+  {
+    title: "Shiksha Mahakumbh 5.0",
+    date: "31 October – 2 November 2025",
+    venue: "NIPER Mohali",
+    href: "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
+    external: true,
+    status: "completed",
+    statusLabel: "Concluded",
+    statusNote: "Official photos and materials available via Google Drive.",
+  },
+  {
+    title: "Indian Education System for Global Development",
     date: "December 16–17, 2024",
     venue: "Kurukshetra University",
     href: "https://www.shikshamahakumbh.com/",
     external: true,
     status: "completed",
-    statusLabel: "Archived Event",
-    statusNote:
-      "Historical reference — program date has passed. Details are retained. See past events or official Shiksha Mahakumbh channels for current programs.",
-  },
-  {
-    title: "Shiksha Kumbh 2025",
-    date: "To be announced soon",
-    venue: "Indian Institute of Technology Jammu",
-    href: "https://sk25.rase.co.in",
-    external: true,
-    status: "planned",
-    statusLabel: "Planned",
-    statusNote:
-      "Dates and registration will be announced on the official event site when confirmed.",
-  },
-  {
-    title: "Shiksha Mahakumbh 2025",
-    date: "To be announced soon",
-    venue: "Jawaharlal Nehru University",
-    href: "https://www.rase.co.in/",
-    external: true,
-    status: "planned",
-    statusLabel: "Planned",
-    statusNote:
-      "Follow the official Shiksha Mahakumbh initiative for confirmed schedules and venues.",
+    statusLabel: "Archived",
+    statusNote: "Historical reference — see past events for more archives.",
   },
 ];
 
@@ -121,19 +119,19 @@ const UpcomingEvent: React.FC = () => {
             <table className="w-full min-w-[720px] table-auto">
               <thead>
                 <tr className="bg-primary-color">
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     Status
                   </th>
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     Title
                   </th>
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     Date
                   </th>
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     Venue
                   </th>
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     More Information
                   </th>
                 </tr>

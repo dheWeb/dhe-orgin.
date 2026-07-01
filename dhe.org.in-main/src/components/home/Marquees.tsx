@@ -1,33 +1,52 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
 
 const marquees = [
   {
-    imageUrl: "/new.gif",
     text:
-      "शिक्षा महाकुंभ अभियान – 6th Edition at NIT Hamirpur from 9th Oct to 11th Oct 2026.",
-    link: "https://www.rase.co.in",
+      "शिक्षा महाकुंभ 6.0 — NIT Hamirpur, 9–11 October 2026. Registration open.",
+    link: "https://www.rase.co.in/registration/Single_Registration",
   },
   {
-    imageUrl: "/new.gif",
     text:
-      "शिक्षा महाकुंभ 5.0 concluded at NIPER Mohali, 31 Oct to 2nd Nov 2025. Download official photos here.",
+      "Shiksha Mahakumbh 5.0 concluded at NIPER Mohali (Oct–Nov 2025). View official photos.",
     link:
       "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
   },
   {
-    imageUrl: "/new.gif",
     text:
-      "Join the educational revolution through Shiksha Mahakumbh at NIT Hamirpur. Registration Open Now.",
-    link:
-      "https://www.rase.co.in/registration/Single_Registration",
+      "Join the holistic education movement — explore DHE programs and membership.",
+    link: "/programs",
   },
 ] as const;
 
 const Marquees: React.FC = () => {
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const links = marquees.map((item, index) => (
+    <Link
+      key={index}
+      href={item.link}
+      {...(item.link.startsWith("http")
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+      className="mx-4 sm:mx-6 text-gray-200 hover:text-orange-300 min-h-11 inline-flex items-center text-xs sm:text-sm"
+    >
+      {item.text}
+    </Link>
+  ));
+
   return (
     <section
       aria-label="Announcements"
@@ -37,19 +56,17 @@ const Marquees: React.FC = () => {
         News
       </span>
       <div className="flex-1 min-w-0 py-1">
-        <Marquee speed={50} gradient={false} pauseOnHover pauseOnClick>
-          {marquees.map((item, index) => (
-            <Link
-              key={index}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mx-4 sm:mx-6 text-gray-200 hover:text-orange-300 min-h-11 inline-flex items-center text-xs sm:text-sm"
-            >
-              {item.text}
-            </Link>
-          ))}
-        </Marquee>
+        {reduceMotion ? (
+          <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-1 px-2 py-1" role="list">
+            {marquees.map((item, index) => (
+              <li key={index}>{links[index]}</li>
+            ))}
+          </ul>
+        ) : (
+          <Marquee speed={50} gradient={false} pauseOnHover pauseOnClick>
+            {links}
+          </Marquee>
+        )}
       </div>
     </section>
   );

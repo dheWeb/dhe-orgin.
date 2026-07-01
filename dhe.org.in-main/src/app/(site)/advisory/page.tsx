@@ -18,7 +18,12 @@ const advisoryMembers2 = [
 export default function Advisory() {
   return (
     <>
-    <AdvisoryCouncil2 title="Advisory Council" members={advisoryMembers2} />
-  </>
-  )
+      <div className="dhe-container pt-8 pb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-primary-color text-center">
+          Advisory Council
+        </h1>
+      </div>
+      <AdvisoryCouncil2 title="Advisory Council Members" members={advisoryMembers2} />
+    </>
+  );
 }

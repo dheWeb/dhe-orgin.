@@ -9,6 +9,8 @@ import {
   ThirdPartyScripts,
 } from "@/components/layout/CookieConsent";
 
+import { getSiteContent } from "@/lib/cms/site-content";
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -23,17 +25,20 @@ export const viewport: Viewport = {
   themeColor: "#f97316",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const content = await getSiteContent(["site_contact"]);
+  const sitePhone = content.site_contact?.phone?.trim() || "7903431900";
+
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <body
         className={`${inter.className} bg-white text-black overflow-x-hidden antialiased`}
       >
-        <RootLayoutClient>
+        <RootLayoutClient sitePhone={sitePhone}>
           <main
             id="main-content"
             className="min-h-screen bg-white min-w-0"
