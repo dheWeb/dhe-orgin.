@@ -45,6 +45,9 @@ const keys = [
   "SENTRY_AUTH_TOKEN",
   "SENTRY_ORG",
   "SENTRY_PROJECT",
+  "UPSTASH_REDIS_REST_URL",
+  "UPSTASH_REDIS_REST_TOKEN",
+  "NEXT_PUBLIC_GA_MEASUREMENT_ID",
 ];
 
 const monorepoRoot = join(root, "..");

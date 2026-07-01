@@ -63,7 +63,9 @@
 | Razorpay live + webhook | **Live** |
 | Brevo SMTP | **DONE** — REST API + receipt emails verified |
 | reCAPTCHA keys | **Wired** — contact, feedback, membership forms |
-| Upstash (rate limit / visitors) | **Supabase-backed** — `rate_limit_buckets` table (Upstash optional) |
+| Upstash (rate limit) | **Pending** — Vercel integration needs browser; Supabase fallback active |
+| GA4 | **Live** — `G-VZ55ESSK6V` (cookie consent gated) |
+| Sentry | **Live** — `rase-monitoring-l1` |
 | Sentry | **SDK wired** + **Supabase `error_logs`** fallback when `SENTRY_DSN` unset |
 | CI/CD (GitHub Actions) | **Workflow added** — push to main to activate |
 | Database backups | **Supabase default** — not verified |

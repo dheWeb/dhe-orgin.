@@ -69,13 +69,36 @@ UPSTASH_REDIS_REST_TOKEN=...
 
 When unset, rate limits use Supabase `rate_limit_buckets` (distributed across instances).
 
+**Provision via Vercel (recommended):**
+
+```powershell
+cd ..
+npx vercel integration add upstash/upstash-kv -m primaryRegion=iad1 -n dhe-orgin-ratelimit --plan paid
+```
+
+Complete the browser step if prompted, then sync credentials:
+
+```powershell
+cd dhe.org.in-main
+npx vercel env pull .env.vercel-backup --environment=production --yes
+# Copy UPSTASH_REDIS_REST_* from backup into sync script env, or:
+node scripts/sync-optional-env.mjs
+```
+
 ## Optional: Google Analytics 4
 
 ```
-NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-VZ55ESSK6V
 ```
 
 Loaded only after cookie consent (`CookieConsent.tsx`). Omit in development unless testing analytics.
+
+Sync:
+
+```powershell
+$env:NEXT_PUBLIC_GA_MEASUREMENT_ID="G-VZ55ESSK6V"
+node scripts/sync-optional-env.mjs
+```
 
 ## Required for admin routes (production)
 
