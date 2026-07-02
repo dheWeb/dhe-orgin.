@@ -212,6 +212,55 @@ export const CMS_REGISTRY: CmsKeyDef[] = [
       },
     ],
   },
+  {
+    key: "programs_json",
+    label: "Programs registry (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label:
+          'JSON: [{"slug","title","summary","body","href?","cellSlug?","external?"}]',
+        type: "textarea",
+        rows: 14,
+      },
+    ],
+  },
+  {
+    key: "past_events_json",
+    label: "Past events archive (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"title","date","venue","link"}]',
+        type: "textarea",
+        rows: 12,
+      },
+    ],
+  },
+  {
+    key: "home_faq_json",
+    label: "Homepage FAQ (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"question","answer"}]',
+        type: "textarea",
+        rows: 10,
+      },
+    ],
+  },
+  {
+    key: "feedback_events_json",
+    label: "Feedback form event options (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"value","label"}]',
+        type: "textarea",
+        rows: 8,
+      },
+    ],
+  },
 ];
 
 export const CMS_KEY_SET = new Set(CMS_REGISTRY.map((d) => d.key));

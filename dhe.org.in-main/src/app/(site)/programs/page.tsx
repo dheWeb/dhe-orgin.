@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 import { getSiteContent } from "@/lib/cms/site-content";
-import { PROGRAMS } from "@/data/programs/registry";
+import { getPrograms } from "@/lib/cms/programs-content";
 
 export const metadata = createPageMetadata("programs");
 
 export default async function ProgramsPage() {
   const content = await getSiteContent(["programs_intro"]);
+  const programs = await getPrograms();
   const intro =
     content.programs_intro?.text?.trim() ||
     "Flagship programs and cells advancing holistic education across Bharat.";
@@ -20,7 +21,7 @@ export default async function ProgramsPage() {
         {intro}
       </p>
       <ul className="mt-8 grid gap-4 sm:grid-cols-2" role="list">
-        {PROGRAMS.map((item) => {
+        {programs.map((item) => {
           const detailHref = `/programs/${item.slug}`;
           const external = item.href?.startsWith("http");
           return (

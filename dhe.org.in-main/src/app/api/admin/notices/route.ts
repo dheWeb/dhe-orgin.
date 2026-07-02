@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
     body: body.body ?? null,
     image_path: body.image_path ?? body.imageUrl ?? null,
     published_at: body.published_at ?? new Date().toISOString(),
+    expires_at: body.expires_at ?? null,
     status: body.status ?? "published",
     is_pinned: body.is_pinned ?? false,
   });
@@ -96,6 +97,9 @@ export async function PATCH(req: NextRequest) {
   if (body.imageUrl !== undefined) updates.image_path = body.imageUrl;
   if (body.status !== undefined) updates.status = body.status;
   if (body.is_pinned !== undefined) updates.is_pinned = body.is_pinned;
+  if (body.expires_at !== undefined) {
+    updates.expires_at = body.expires_at;
+  }
   if (body.published_at !== undefined) {
     updates.published_at = body.published_at;
   } else if (body.date !== undefined) {

@@ -2,11 +2,16 @@
 
 import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
+import type { FeedbackEventOption } from "@/lib/cms/home-faq-content";
 
-const FeedbackForm: React.FC = () => {
+const fieldClass =
+  "border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400";
+
+const FeedbackForm: React.FC<{ eventOptions?: FeedbackEventOption[] }> = ({
+  eventOptions = [],
+}) => {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -63,20 +68,10 @@ const FeedbackForm: React.FC = () => {
   };
 
   return (
-    <motion.div
-      className="text-primary border rounded-lg px-8 py-6 mx-auto my-8 max-w-2xl border-gray-100 bg-slate-50"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
+    <div className="text-primary border rounded-lg px-8 py-6 mx-auto my-8 max-w-2xl border-gray-100 bg-slate-50">
       <h2 className="text-center text-2xl font-medium mb-4">Feedback Form</h2>
       <form onSubmit={handleSubmit}>
-        <motion.div
-          className="mb-4 moving-border"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
+        <div className="mb-4 moving-border">
           <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
             Name<span className="text-red-500">*</span>
           </label>
@@ -86,17 +81,12 @@ const FeedbackForm: React.FC = () => {
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className={fieldClass}
             required
           />
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="mb-4 moving-border"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
+        <div className="mb-4 moving-border">
           <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
             Email<span className="text-red-500">*</span>
           </label>
@@ -106,17 +96,12 @@ const FeedbackForm: React.FC = () => {
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className={fieldClass}
             required
           />
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="mb-4 moving-border"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.3 }}
-        >
+        <div className="mb-4 moving-border">
           <label htmlFor="mobile" className="block text-gray-700 font-medium mb-2">
             Mobile<span className="text-red-500">*</span>
           </label>
@@ -126,17 +111,12 @@ const FeedbackForm: React.FC = () => {
             name="mobile"
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className={fieldClass}
             required
           />
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="mb-4 moving-border"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.4 }}
-        >
+        <div className="mb-4 moving-border">
           <label
             htmlFor="affiliation"
             className="block text-gray-700 font-medium mb-2"
@@ -149,17 +129,12 @@ const FeedbackForm: React.FC = () => {
             name="affiliation"
             value={affiliation}
             onChange={(e) => setAffiliation(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className={fieldClass}
             required
           />
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="mb-4 moving-border"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-        >
+        <div className="mb-4 moving-border">
           <label htmlFor="event" className="block text-gray-700 font-medium mb-2">
             Select the event you participated in
             <span className="text-red-500">*</span>
@@ -169,23 +144,19 @@ const FeedbackForm: React.FC = () => {
             name="event"
             value={event}
             onChange={(e) => setEvent(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className={fieldClass}
             required
           >
             <option value="">Select event</option>
-            <option value="shiksha-kumbh-2023">शिक्षा कुंभ 2023</option>
-            <option value="shiksha-kumbh-2024">शिक्षा कुंभ 2024</option>
-            <option value="shiksha-mahakumbh-2023">शिक्षा महाकुंभ 2023</option>
-            <option value="shiksha-mahakumbh-2024">शिक्षा महाकुंभ 2024</option>
+            {eventOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="mb-4 moving-border"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.6 }}
-        >
+        <div className="mb-4 moving-border">
           <label
             htmlFor="experience"
             className="block text-gray-700 font-medium mb-2"
@@ -197,18 +168,13 @@ const FeedbackForm: React.FC = () => {
             name="experience"
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className={fieldClass}
             rows={5}
             required
           />
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="mb-4 moving-border"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.7 }}
-        >
+        <div className="mb-4 moving-border">
           <label
             htmlFor="suggestions"
             className="block text-gray-700 font-medium mb-2"
@@ -220,10 +186,10 @@ const FeedbackForm: React.FC = () => {
             name="suggestions"
             value={suggestions}
             onChange={(e) => setSuggestions(e.target.value)}
-            className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+            className={fieldClass}
             rows={5}
           />
-        </motion.div>
+        </div>
 
         <RecaptchaField onToken={setRecaptchaToken} />
 
@@ -237,7 +203,7 @@ const FeedbackForm: React.FC = () => {
           </button>
         </div>
       </form>
-    </motion.div>
+    </div>
   );
 };
 

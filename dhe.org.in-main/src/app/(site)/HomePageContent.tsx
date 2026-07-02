@@ -42,6 +42,7 @@ export default function HomePageContent({
   leadership,
   shiksha,
   digitalDescription,
+  faqItems,
 }: {
   tagline?: string;
   homeIntro?: HomeIntroProps;
@@ -59,6 +60,7 @@ export default function HomePageContent({
   };
   shiksha?: { paragraph1?: string; paragraph2?: string };
   digitalDescription?: string;
+  faqItems?: { question: string; answer: string }[];
 }) {
   return (
     <div className="bg-white overflow-x-hidden min-w-0">
@@ -88,7 +90,7 @@ export default function HomePageContent({
 
       <HomeGalleryPreview slides={homeSlides} />
 
-      <HomeFaqSection />
+      <HomeFaqSection items={faqItems} />
 
       <HomeClosingCta
         titleLine1={closingCta?.titleLine1}

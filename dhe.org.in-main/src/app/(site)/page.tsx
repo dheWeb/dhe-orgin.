@@ -5,6 +5,7 @@ import { getSiteContent } from "@/lib/cms/site-content";
 import { parseMarqueeItems, parseStringListJson } from "@/lib/cms/cms-parsers";
 import { mergeMarqueeWithNotices } from "@/lib/cms/merge-marquee-notices";
 import { fetchPublishedNotices } from "@/services/notices/fetch-notices";
+import { getHomeFaq } from "@/lib/cms/home-faq-content";
 import {
   homeIntro as defaultHomeIntro,
   closingCta as defaultClosingCta,
@@ -17,7 +18,7 @@ export const metadata = createPageMetadata("home");
 export const revalidate = 300;
 
 export default async function Home() {
-  const [content, notices] = await Promise.all([
+  const [content, notices, faqItems] = await Promise.all([
     getSiteContent([
       "home_tagline",
       "home_intro",
@@ -30,6 +31,7 @@ export default async function Home() {
       "home_digital_ecosystem",
     ]),
     fetchPublishedNotices(8),
+    getHomeFaq(),
   ]);
 
   const tagline = content.home_tagline?.text;
@@ -77,6 +79,7 @@ export default async function Home() {
           paragraph2: content.home_shiksha?.paragraph2,
         }}
         digitalDescription={content.home_digital_ecosystem?.description?.trim()}
+        faqItems={faqItems}
       />
     </>
   );

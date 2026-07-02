@@ -86,23 +86,53 @@ const Page: React.FC = () => {
   };
 
   const exportToExcel = async () => {
-    const filteredData = formDataList.map(
-      ({ serial, name, email, PhoneNumber, address, Amount, receiptNumber }) => ({
-        "Sr. No.": serial,
-        Name: name,
-        Email: email,
-        "Contact Number": PhoneNumber,
-        Address: address,
-        Amount: Amount,
-        "Receipt No.": receiptNumber,
-      })
-    );
-
-    await downloadRowsAsXlsx(filteredData, "donation_data.xlsx", "Donation Data");
+    await exportRows(formDataList, "donation_data.xlsx", true);
   };
 
   const exportToCsv = () => {
-    const filteredData = formDataList.map(
+    exportRows(formDataList, "donation_data.csv", false);
+  };
+
+  const exportAllCsv = async () => {
+    try {
+      const res = await fetch("/api/admin/donations?export=all", {
+        credentials: "same-origin",
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Export failed");
+      const rows: DonationData[] = (json.donations ?? []).map(
+        (d: {
+          id: string;
+          donor_name: string;
+          donor_email: string;
+          donor_phone: string;
+          donor_address?: string;
+          amount_paise: number;
+          receipt_number: string;
+        }, index: number) => ({
+          id: d.id,
+          name: d.donor_name ?? "",
+          email: d.donor_email ?? "",
+          PhoneNumber: d.donor_phone ?? "",
+          address: d.donor_address ?? "",
+          Amount: String((d.amount_paise ?? 0) / 100),
+          receiptNumber: d.receipt_number ?? "",
+          serial: index + 1,
+        })
+      );
+      exportRows(rows, "donation_data_all.csv", false);
+      toast.success(`Exported ${rows.length} donations`);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Export failed");
+    }
+  };
+
+  const exportRows = async (
+    list: DonationData[],
+    filename: string,
+    xlsx: boolean
+  ) => {
+    const filteredData = list.map(
       ({ serial, name, email, PhoneNumber, address, Amount, receiptNumber }) => ({
         "Sr. No.": serial,
         Name: name,
@@ -113,7 +143,11 @@ const Page: React.FC = () => {
         "Receipt No.": receiptNumber,
       })
     );
-    downloadRowsAsCsv(filteredData, "donation_data.csv");
+    if (xlsx) {
+      await downloadRowsAsXlsx(filteredData, filename, "Donation Data");
+    } else {
+      downloadRowsAsCsv(filteredData, filename);
+    }
   };
 
   return (
@@ -128,6 +162,9 @@ const Page: React.FC = () => {
         <div className="bg-white min-h-screen flex flex-col justify-center items-center mt-4">
           <h2 className="text-primary text-xl font-bold">Donation Data</h2>
           <table className="border-collapse border m-6">
+            <caption className="sr-only">
+              Donation records with receipt numbers and contact details
+            </caption>
             <thead>
               <tr>
                 <th className="border bg-primary text-white font-bold text-base p-3">
@@ -229,7 +266,14 @@ const Page: React.FC = () => {
             onClick={exportToCsv}
             className="border border-primary text-primary font-bold py-2 px-4 rounded cursor-pointer"
           >
-            Export to CSV
+            Export page CSV
+          </button>
+          <button
+            type="button"
+            onClick={exportAllCsv}
+            className="border border-gray-700 text-gray-800 font-bold py-2 px-4 rounded cursor-pointer"
+          >
+            Export all CSV
           </button>
           </div>
         </div>

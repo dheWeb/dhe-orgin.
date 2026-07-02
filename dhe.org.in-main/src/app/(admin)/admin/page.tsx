@@ -6,7 +6,8 @@ const links = [
   { href: "/admin/inbox", label: "Form inbox", desc: "Feedback and contact messages" },
   { href: "/admin/cms", label: "Site content (CMS)", desc: "Edit taglines, contact snippets" },
   { href: "/WD", label: "Workshop registrations", desc: "View workshop sign-ups" },
-  { href: "/contribute", label: "Membership", desc: "Public membership page" },
+  { href: "/admin/memberships", label: "Membership applications", desc: "View and export membership sign-ups" },
+  { href: "/contribute", label: "Public membership page", desc: "Public membership registration" },
 ] as const;
 
 export default function AdminHubPage() {

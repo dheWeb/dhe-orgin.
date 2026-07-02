@@ -184,7 +184,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
     },
     {
       name: "ITR Chandigarh",
-      image: "/logo 2.webp",
+      image: "/logo.webp",
       link: "https://www.itrchandigarh.org/",
     },
   ];

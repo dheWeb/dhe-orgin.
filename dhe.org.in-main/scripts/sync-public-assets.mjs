@@ -22,7 +22,14 @@ const ASSET_PATHS = [
   "/14.webp",
   "/15.webp",
   "/16.webp",
-  "/17.webp",
+  "/accounts/dhe.pdf",
+  "/accounts/sm.pdf",
+  "/accounts/sm.png",
+  "/Proceeding.pdf",
+  "/sm1.webp",
+  "/sm2.webp",
+  "/k1.webp",
+  "/R1.webp",
 ];
 
 async function download(path) {

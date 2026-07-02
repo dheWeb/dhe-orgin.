@@ -5,9 +5,6 @@ import { getSupabaseAdmin } from "@/lib/supabase/admin";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const DEFAULT_LIMIT = 50;
-const MAX_LIMIT = 200;
-
 export async function GET(req: NextRequest) {
   if (!isAdminAuthorized(req.headers.get("authorization"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -15,37 +12,30 @@ export async function GET(req: NextRequest) {
 
   const supabase = getSupabaseAdmin();
   if (!supabase) {
-    return NextResponse.json({ donations: [], total: 0 });
+    return NextResponse.json({ applications: [], total: 0 });
   }
 
-  const { searchParams } = req.nextUrl;
-  const exportAll = searchParams.get("export") === "all";
-  const limit = exportAll
-    ? 10000
-    : Math.min(
-        Math.max(1, Number(searchParams.get("limit")) || DEFAULT_LIMIT),
-        MAX_LIMIT
-      );
-  const offset = exportAll ? 0 : Math.max(0, Number(searchParams.get("offset")) || 0);
+  const limit = Math.min(
+    Math.max(1, Number(req.nextUrl.searchParams.get("limit")) || 100),
+    500
+  );
 
   const { count } = await supabase
-    .from("donations")
+    .from("membership_applications")
     .select("*", { count: "exact", head: true });
 
   const { data, error } = await supabase
-    .from("donations")
+    .from("membership_applications")
     .select("*")
     .order("created_at", { ascending: false })
-    .range(offset, exportAll ? offset + limit - 1 : offset + limit - 1);
+    .limit(limit);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
   return NextResponse.json({
-    donations: data ?? [],
+    applications: data ?? [],
     total: count ?? 0,
-    limit,
-    offset,
   });
 }

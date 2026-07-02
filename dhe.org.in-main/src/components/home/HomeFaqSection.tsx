@@ -1,7 +1,12 @@
 import { homeFaq } from "@/data/home/content";
 
-/** Visible FAQ — text matches homepage FAQPage JSON-LD (homeFaq in content.ts). */
-export default function HomeFaqSection() {
+/** Visible FAQ — text matches homepage FAQPage JSON-LD when CMS not overridden. */
+export default function HomeFaqSection({
+  items,
+}: {
+  items?: { question: string; answer: string }[];
+}) {
+  const faq = items?.length ? items : homeFaq;
   return (
     <section
       aria-labelledby="home-faq-heading"
@@ -19,7 +24,7 @@ export default function HomeFaqSection() {
           with the institutional overview above.
         </p>
         <dl className="mt-5 space-y-4">
-          {homeFaq.map((item) => (
+          {faq.map((item) => (
             <div
               key={item.question}
               className="rounded-lg border border-gray-100 bg-gray-50/80 p-4"

@@ -4,18 +4,19 @@ import type { Metadata } from "next";
 import {
   getAllProgramSlugs,
   getProgramBySlug,
-} from "@/data/programs/registry";
+} from "@/lib/cms/programs-content";
 import { siteConfig } from "@/lib/seo/site-metadata";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return getAllProgramSlugs().map((slug) => ({ slug }));
+  const slugs = await getAllProgramSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const program = getProgramBySlug(slug);
+  const program = await getProgramBySlug(slug);
   if (!program) return { title: "Program not found" };
 
   return {
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProgramDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const program = getProgramBySlug(slug);
+  const program = await getProgramBySlug(slug);
   if (!program) notFound();
 
   const ctaHref = program.href ?? (program.cellSlug ? `/cells/${program.cellSlug}` : "/programs");

@@ -25,7 +25,7 @@ export async function GET() {
   const events = parseUpcomingEvents(content.upcoming_events);
 
   const noticeItems = notices.map((notice) => {
-    const link = `${siteConfig.url}/noticeboard`;
+    const link = `${siteConfig.url}/noticeboard?highlight=${encodeURIComponent(notice.id)}`;
     return `
     <item>
       <title>${escapeXml(notice.title)}</title>
