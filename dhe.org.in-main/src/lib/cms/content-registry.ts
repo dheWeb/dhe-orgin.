@@ -188,6 +188,30 @@ export const CMS_REGISTRY: CmsKeyDef[] = [
       },
     ],
   },
+  {
+    key: "lmc_patrons_json",
+    label: "LMC patrons (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"name","designation","contact"}]',
+        type: "textarea",
+        rows: 8,
+      },
+    ],
+  },
+  {
+    key: "lmc_members_json",
+    label: "LMC members (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"name","designation","contact"}]',
+        type: "textarea",
+        rows: 12,
+      },
+    ],
+  },
 ];
 
 export const CMS_KEY_SET = new Set(CMS_REGISTRY.map((d) => d.key));

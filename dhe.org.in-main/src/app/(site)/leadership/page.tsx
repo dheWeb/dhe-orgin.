@@ -1,12 +1,9 @@
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 import AdvisoryCouncil from "@/components/sections/AdvisoryCouncil";
-import {
-  lmcCurrentMembers,
-  lmcCurrentPatrons,
-  lmcDocuments,
-} from "@/data/institution";
 import Link from "next/link";
 import { getSiteContent } from "@/lib/cms/site-content";
+import { getLmcMembers, getLmcPatrons } from "@/lib/cms/lmc-content";
+import { lmcDocuments } from "@/data/institution";
 
 export const metadata = createPageMetadata("leadership");
 
@@ -16,20 +13,12 @@ const DEFAULT_INTRO =
   "Patrons and members of the Local Management Committee (LMC) governing the Department of Holistic Education.";
 
 export default async function LeadershipPage() {
-  const content = await getSiteContent(["leadership_intro"]);
+  const [content, patrons, members] = await Promise.all([
+    getSiteContent(["leadership_intro"]),
+    getLmcPatrons(),
+    getLmcMembers(),
+  ]);
   const intro = content.leadership_intro?.text?.trim() || DEFAULT_INTRO;
-
-  const patrons = lmcCurrentPatrons.map((m) => ({
-    name: m.name,
-    designation: m.designation,
-    contact: m.contact,
-  }));
-
-  const members = lmcCurrentMembers.map((m) => ({
-    name: m.name,
-    designation: m.designation,
-    contact: m.contact,
-  }));
 
   return (
     <>

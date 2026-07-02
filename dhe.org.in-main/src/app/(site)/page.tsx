@@ -3,6 +3,8 @@ import HomeStructuredData from "@/components/seo/HomeStructuredData";
 import HomePageContent from "./HomePageContent";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { parseMarqueeItems, parseStringListJson } from "@/lib/cms/cms-parsers";
+import { mergeMarqueeWithNotices } from "@/lib/cms/merge-marquee-notices";
+import { fetchPublishedNotices } from "@/services/notices/fetch-notices";
 import {
   homeIntro as defaultHomeIntro,
   closingCta as defaultClosingCta,
@@ -11,18 +13,25 @@ import {
 
 export const metadata = createPageMetadata("home");
 
+/** ISR — notices + marquee refresh within 5 minutes (K-13) */
+export const revalidate = 300;
+
 export default async function Home() {
-  const content = await getSiteContent([
-    "home_tagline",
-    "home_intro",
-    "marquee_items",
-    "home_vision",
-    "home_closing_cta",
-    "home_national_impact",
-    "home_leadership",
-    "home_shiksha",
-    "home_digital_ecosystem",
+  const [content, notices] = await Promise.all([
+    getSiteContent([
+      "home_tagline",
+      "home_intro",
+      "marquee_items",
+      "home_vision",
+      "home_closing_cta",
+      "home_national_impact",
+      "home_leadership",
+      "home_shiksha",
+      "home_digital_ecosystem",
+    ]),
+    fetchPublishedNotices(8),
   ]);
+
   const tagline = content.home_tagline?.text;
   const intro = content.home_intro;
   const homeIntro = {
@@ -31,7 +40,8 @@ export default async function Home() {
     titleLine2: intro?.title_line2 || defaultHomeIntro.titleLine2,
     description: intro?.description || defaultHomeIntro.description,
   };
-  const marqueeItems = parseMarqueeItems(content.marquee_items);
+  const cmsMarquee = parseMarqueeItems(content.marquee_items);
+  const marqueeItems = mergeMarqueeWithNotices(cmsMarquee, notices);
   const visionBody = content.home_vision?.body?.trim();
   const closing = content.home_closing_cta;
   const closingCta = {

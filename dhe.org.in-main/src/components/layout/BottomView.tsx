@@ -219,7 +219,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
               <div>
                 <h2 className="text-2xl font-bold leading-tight">
                   Department of
-                  <span className="block text-orange-400">
+                  <span className="block text-orange-300">
                     Holistic Education
                   </span>
                 </h2>
@@ -301,7 +301,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                   Daily Visitors
                 </p>
 
-                <h2 className="text-3xl font-bold text-orange-400">
+                <h2 className="text-3xl font-bold text-orange-300">
                   {loading ? <VisitorCountSpinner /> : dailyVisitors}
                 </h2>
               </div>
@@ -311,7 +311,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                   Total Visitors
                 </p>
 
-                <h2 className="text-3xl font-bold text-orange-400">
+                <h2 className="text-3xl font-bold text-orange-300">
                   {loading ? <VisitorCountSpinner /> : totalVisitors}
                 </h2>
               </div>

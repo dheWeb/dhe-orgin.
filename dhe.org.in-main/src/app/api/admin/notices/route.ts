@@ -1,12 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthorized } from "@/lib/auth/admin-gate";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
+import { syncMarqueeFromNotices } from "@/lib/cms/merge-marquee-notices";
+import { fetchPublishedNotices } from "@/services/notices/fetch-notices";
+import { revalidatePath } from "next/cache";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 function unauthorized() {
   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+}
+
+async function afterNoticeMutation() {
+  try {
+    const notices = await fetchPublishedNotices(8);
+    await syncMarqueeFromNotices(notices);
+    revalidatePath("/");
+    revalidatePath("/noticeboard");
+  } catch (err) {
+    console.error("[notices] marquee sync", err);
+  }
 }
 
 export async function GET(req: NextRequest) {
@@ -55,6 +69,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  await afterNoticeMutation();
   return NextResponse.json({ success: true });
 }
 
@@ -92,6 +107,7 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  await afterNoticeMutation();
   return NextResponse.json({ success: true });
 }
 
@@ -115,5 +131,6 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  await afterNoticeMutation();
   return NextResponse.json({ success: true });
 }

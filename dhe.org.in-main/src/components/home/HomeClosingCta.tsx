@@ -28,7 +28,7 @@ export default function HomeClosingCta({
           title={
             <>
               {cta.titleLine1}
-              <span className="block text-orange-400 font-semibold mt-0.5">
+              <span className="block text-orange-300 font-semibold mt-0.5">
                 {cta.titleLine2}
               </span>
             </>
@@ -67,7 +67,7 @@ export default function HomeClosingCta({
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-orange-400 min-h-10 inline-flex items-center underline-offset-2 hover:underline"
+              className="hover:text-orange-300 min-h-10 inline-flex items-center underline-offset-2 hover:underline"
             >
               {link.label}
             </Link>

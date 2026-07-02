@@ -81,7 +81,7 @@
 | P0 security & privacy | **~70%** | eval, Members, legal, cookies, headers, admin gate |
 | P0 payments | **~75%** | Razorpay donate + webhook + receipt email; membership linked |
 | Firebase → Supabase | **DONE** | SDK removed; Firestore retired; bootstrap seed script |
-| CMS | **~65%** | + home vision, closing CTA; cell/leadership pages still hardcoded |
+| CMS | **~75%** | LMC JSON in CMS; cells still hardcoded |
 | SEO | **~65%** | sitemap/robots, llms.txt, unique cell meta |
 | Performance | **~75%** | Hero images compressed 1.9MB→126KB WebP; SSR LCP; Next image optimization on |
 | Accessibility | **~80%** | skip link added; Lighthouse 96 |
@@ -132,7 +132,9 @@
 | **Programs** `/programs/[slug]` + CMS people/advisory JSON |
 | **Donor address** on donation form + admin export |
 | **Home promo banner** (replaces modal) + single sticky nav |
-| **Dynamic Event JSON-LD** from CMS upcoming events |
+| **K-13 notice→marquee sync** | Home ISR 300 + merge notices into marquee; admin sync on publish |
+| **LMC CMS** | `lmc_patrons_json` / `lmc_members_json` editable at `/admin/cms` |
+| **Admin CSV export** | Donation admin Excel + CSV (K-20) |
 
 ---
 
@@ -151,7 +153,7 @@
 | 6 | Accessibility below 100 | **MEDIUM** | Contrast fixes applied; retest Lighthouse |
 | 7 | CMS partial | **LOW** | Key snippets at `/admin/cms`; cell pages hardcoded |
 | 8 | Secrets exposed in chat | **HIGH** | **Manual** — run `npm run check-rotation` |
-| 9 | Full audit 280 items — ~35% remain | **LOW** | Lighthouse + full Hindi UI + admin Supabase Auth |
+| 9 | Full audit 280 items — ~25% remain | **LOW** | Lighthouse + full Hindi + Supabase Auth admin |
 | 10 | `donor_address` DB column | **DONE** | Applied in Supabase SQL Editor |
 | 11 | 80G / 12A PDFs on `/accounts/*` | **DONE** | `12a-vbitr-trust.pdf`, `80g-vbitr-trust.pdf` in `public/accounts/` |
 

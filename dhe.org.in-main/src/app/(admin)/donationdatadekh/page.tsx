@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { downloadRowsAsXlsx } from "@/lib/export/download-xlsx";
+import { downloadRowsAsCsv } from "@/lib/export/download-csv";
 import toast, { Toaster } from "react-hot-toast";
 
 interface DonationData {
@@ -98,6 +99,21 @@ const Page: React.FC = () => {
     );
 
     await downloadRowsAsXlsx(filteredData, "donation_data.xlsx", "Donation Data");
+  };
+
+  const exportToCsv = () => {
+    const filteredData = formDataList.map(
+      ({ serial, name, email, PhoneNumber, address, Amount, receiptNumber }) => ({
+        "Sr. No.": serial,
+        Name: name,
+        Email: email,
+        "Contact Number": PhoneNumber,
+        Address: address,
+        Amount: Amount,
+        "Receipt No.": receiptNumber,
+      })
+    );
+    downloadRowsAsCsv(filteredData, "donation_data.csv");
   };
 
   return (
@@ -201,12 +217,21 @@ const Page: React.FC = () => {
               Next
             </button>
           </div>
+          <div className="flex flex-wrap gap-3 mt-4 justify-center">
           <button
             onClick={exportToExcel}
-            className="bg-primary text-white font-bold py-2 px-4 rounded mt-4 cursor-pointer"
+            className="bg-primary text-white font-bold py-2 px-4 rounded cursor-pointer"
           >
             Export to Excel
           </button>
+          <button
+            type="button"
+            onClick={exportToCsv}
+            className="border border-primary text-primary font-bold py-2 px-4 rounded cursor-pointer"
+          >
+            Export to CSV
+          </button>
+          </div>
         </div>
       )}
     </>
