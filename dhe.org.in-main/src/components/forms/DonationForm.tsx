@@ -12,6 +12,7 @@ interface DonationData {
   PhoneNumber: string;
   Amount: string;
   pan: string;
+  address: string;
 }
 
 const contributionAreas = [
@@ -29,6 +30,7 @@ const Donation = ({ introText }: { introText?: string }) => {
     PhoneNumber: "",
     Amount: "",
     pan: "",
+    address: "",
   };
 
   const [formData, setFormData] = useState<DonationData>(initialFormData);
@@ -222,12 +224,31 @@ const Donation = ({ introText }: { introText?: string }) => {
               />
             </div>
 
+            <div className="mb-4">
+              <label
+                htmlFor="donation-address"
+                className="block text-sm font-medium text-gray-600"
+              >
+                Postal address (optional, for 80G receipt)
+              </label>
+              <input
+                id="donation-address"
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                className="mt-2 p-2 block w-full rounded-md border border-gray-300 text-black min-h-11"
+                autoComplete="street-address"
+              />
+            </div>
+
             <RazorpayDonateButton
               name={formData.name}
               email={formData.email}
               phone={formData.PhoneNumber}
               amount={amount}
               pan={formData.pan}
+              address={formData.address}
               thankYouPath="/donation/thank-you"
               disabled={!formData.name || !formData.email || !amount}
             />

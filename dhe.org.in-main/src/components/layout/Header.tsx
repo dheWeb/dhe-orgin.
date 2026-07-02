@@ -7,8 +7,6 @@ import {
   faBars,
   faTimes,
   faChevronDown,
-  faGlobe,
-  faGraduationCap,
 } from "@fortawesome/free-solid-svg-icons";
 
 type Menu = {
@@ -39,9 +37,10 @@ const Header: React.FC = () => {
     },
 
     {
-      path: "/books",
+      path: "/publications",
       title: "Publications",
       subMenu: [
+        { path: "/publications", title: "Publications Hub" },
         { path: "/books", title: "Books" },
         { path: "/journals", title: "Journals" },
         { path: "https://pub.dhe.org.in", title: "pub.dhe.org.in" },
@@ -121,30 +120,6 @@ const Header: React.FC = () => {
 
   return (
     <div className="w-full bg-white/95 backdrop-blur-lg border-b border-orange-100 shadow-sm">
-      {/* Top Information Bar */}
-      <div className="hidden lg:block bg-gradient-to-r from-orange-600 to-orange-500 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between text-sm">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faGraduationCap} className="w-4 h-4" aria-hidden />
-              <span>Holistic Educational Transformation</span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faGlobe} className="w-4 h-4" aria-hidden />
-              <span>Global Educational Outreach</span>
-            </div>
-          </div>
-
-          <div>
-            <span>
-              Building a Knowledge-Driven Bharat through Innovation &
-              Leadership
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         <div className="flex items-center justify-between h-20">

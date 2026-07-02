@@ -518,6 +518,13 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
             </Link>
 
             <Link
+              href="/refund-policy"
+              className="hover:text-orange-400 transition"
+            >
+              Refund Policy
+            </Link>
+
+            <Link
               href="/accessibility"
               className="hover:text-orange-400 transition"
             >

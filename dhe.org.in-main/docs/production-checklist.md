@@ -128,6 +128,12 @@
 | Workshop slides 14/15/17 → WebP |
 | Donation admin: receipt PDF download + email resend (legacy QR removed) |
 
+| **Visible breadcrumbs** + publications hub + refund policy |
+| **Programs** `/programs/[slug]` + CMS people/advisory JSON |
+| **Donor address** on donation form + admin export |
+| **Home promo banner** (replaces modal) + single sticky nav |
+| **Dynamic Event JSON-LD** from CMS upcoming events |
+
 ---
 
 ## Blocking issues for production

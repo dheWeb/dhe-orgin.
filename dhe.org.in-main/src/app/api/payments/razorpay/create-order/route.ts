@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: parsed.error }, { status: 400 });
   }
 
-  const { purpose, amountPaise, name, email, phone, pan, metadata } = parsed.data;
+  const { purpose, amountPaise, name, email, phone, pan, address, metadata } = parsed.data;
   const receipt = `dhe_${purpose}_${randomUUID().replace(/-/g, "").slice(0, 12)}`;
 
   try {
@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
         email,
         phone,
         ...(pan ? { pan } : {}),
+        ...(address ? { address } : {}),
         ...(metadata ?? {}),
       },
     });
@@ -79,7 +80,11 @@ export async function POST(req: NextRequest) {
       payer_name: name,
       payer_email: email,
       payer_phone: phone,
-      metadata: { pan, ...(metadata ?? {}) },
+      metadata: {
+        pan,
+        ...(address ? { address } : {}),
+        ...(metadata ?? {}),
+      },
     });
 
     if (dbError) {

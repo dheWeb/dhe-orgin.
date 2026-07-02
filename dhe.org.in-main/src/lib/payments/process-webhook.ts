@@ -45,6 +45,8 @@ export async function upsertDonationFromPayment(
     orderRow?.payer_email || payment.email || notes.email || null;
   const donorPhone =
     orderRow?.payer_phone || payment.contact || notes.phone || null;
+  const orderMeta = (orderRow?.metadata ?? {}) as { pan?: string; address?: string };
+  const donorAddress = orderMeta.address ?? notes.address ?? null;
 
   if (status === "captured") {
     const { data: existing } = await supabase
@@ -67,9 +69,10 @@ export async function upsertDonationFromPayment(
       donor_name: donorName,
       donor_email: donorEmail,
       donor_phone: donorPhone,
+      donor_address: donorAddress,
       receipt_number: receiptNumber,
       status: "captured",
-      pan: (orderRow?.metadata as { pan?: string } | null)?.pan ?? notes.pan ?? null,
+      pan: orderMeta.pan ?? notes.pan ?? null,
       metadata: {
         currency: payment.currency,
         notes,
@@ -250,6 +253,7 @@ export function validateCreateOrderInput(body: unknown): {
     email: string;
     phone: string;
     pan?: string;
+    address?: string;
     metadata?: Record<string, string>;
   };
 } | { ok: false; error: string } {
@@ -266,6 +270,10 @@ export function validateCreateOrderInput(body: unknown): {
   const pan =
     input.pan !== undefined && input.pan !== null
       ? String(input.pan).trim()
+      : undefined;
+  const address =
+    input.address !== undefined && input.address !== null
+      ? String(input.address).trim()
       : undefined;
 
   if (
@@ -306,7 +314,12 @@ export function validateCreateOrderInput(body: unknown): {
       email,
       phone,
       pan,
-      metadata,
+      address,
+      metadata: {
+        ...(metadata ?? {}),
+        ...(address ? { address } : {}),
+        ...(pan ? { pan } : {}),
+      },
     },
   };
 }

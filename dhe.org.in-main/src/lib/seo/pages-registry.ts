@@ -211,9 +211,22 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       "Verify an official DHE donation receipt and download the PDF for 80G records.",
   },
+  publications: {
+    path: "/publications",
+    title: "Publications Hub",
+    description:
+      "Books, journals, proceedings, and knowledge outputs from DHE programs.",
+  },
+  refundPolicy: {
+    path: "/refund-policy",
+    title: "Refund & Cancellation Policy",
+    description:
+      "Refund and cancellation terms for DHE donations, membership, and registrations.",
+  },
 };
 
 import { CELLS, getCellSeoTitle, getCellBySlug } from "@/data/cells";
+import { getAllProgramSlugs } from "@/data/programs/registry";
 
 export function getCellSeoEntry(slug: string): PageSeoEntry {
   const title = getCellSeoTitle(slug);
@@ -234,6 +247,7 @@ export function getAllPublicPaths(): string[] {
     .map((p) => p.path);
 
   const cells = CELLS.map((cell) => `/cells/${cell.slug}`);
+  const programs = getAllProgramSlugs().map((slug) => `/programs/${slug}`);
 
-  return Array.from(new Set([...base, ...cells]));
+  return Array.from(new Set([...base, ...cells, ...programs]));
 }

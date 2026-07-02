@@ -9,6 +9,7 @@ interface DonationData {
   name: string;
   email: string;
   PhoneNumber: string;
+  address: string;
   Amount: string;
   receiptNumber: string;
 }
@@ -37,6 +38,7 @@ const Page: React.FC = () => {
             donor_name: string;
             donor_email: string;
             donor_phone: string;
+            donor_address?: string;
             amount_paise: number;
             receipt_number: string;
           }, index: number) => ({
@@ -44,6 +46,7 @@ const Page: React.FC = () => {
             name: d.donor_name ?? "",
             email: d.donor_email ?? "",
             PhoneNumber: d.donor_phone ?? "",
+            address: d.donor_address ?? "",
             Amount: String((d.amount_paise ?? 0) / 100),
             receiptNumber: d.receipt_number ?? "",
             serial: offset + index + 1,
@@ -83,11 +86,12 @@ const Page: React.FC = () => {
 
   const exportToExcel = async () => {
     const filteredData = formDataList.map(
-      ({ serial, name, email, PhoneNumber, Amount, receiptNumber }) => ({
+      ({ serial, name, email, PhoneNumber, address, Amount, receiptNumber }) => ({
         "Sr. No.": serial,
         Name: name,
         Email: email,
         "Contact Number": PhoneNumber,
+        Address: address,
         Amount: Amount,
         "Receipt No.": receiptNumber,
       })
@@ -123,6 +127,9 @@ const Page: React.FC = () => {
                   Contact Number
                 </th>
                 <th className="border bg-primary text-white font-bold text-base p-3">
+                  Address
+                </th>
+                <th className="border bg-primary text-white font-bold text-base p-3">
                   Amount
                 </th>
                 <th className="border bg-primary text-white font-bold text-base p-3">
@@ -140,6 +147,9 @@ const Page: React.FC = () => {
                   <td className="border text-black p-3">{formData.name}</td>
                   <td className="border text-black p-3">{formData.email}</td>
                   <td className="border text-black p-3">{formData.PhoneNumber}</td>
+                  <td className="border text-black p-3 max-w-[12rem] truncate" title={formData.address}>
+                    {formData.address || "—"}
+                  </td>
                   <td className="border text-black p-3">{formData.Amount}</td>
                   <td className="border text-black p-3">{formData.receiptNumber || "—"}</td>
                   <td className="border text-black p-3 space-x-2">

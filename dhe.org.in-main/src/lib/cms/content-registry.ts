@@ -39,6 +39,7 @@ export const CMS_REGISTRY: CmsKeyDef[] = [
     fields: [
       { name: "phone", label: "Phone", type: "text" },
       { name: "email", label: "Email", type: "email" },
+      { name: "office_address", label: "Office address (single line)", type: "text" },
     ],
   },
   {
@@ -160,6 +161,30 @@ export const CMS_REGISTRY: CmsKeyDef[] = [
           'JSON: [{"title","date","venue","href","status":"planned|completed","statusLabel","external":true}]',
         type: "textarea",
         rows: 12,
+      },
+    ],
+  },
+  {
+    key: "people_json",
+    label: "Cell coordinators (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"name","designation","contact"}]',
+        type: "textarea",
+        rows: 14,
+      },
+    ],
+  },
+  {
+    key: "advisory_json",
+    label: "Advisory council (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"name","des2","designation","contact"}]',
+        type: "textarea",
+        rows: 10,
       },
     ],
   },

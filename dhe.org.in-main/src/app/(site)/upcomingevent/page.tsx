@@ -6,36 +6,46 @@ import { parseUpcomingEvents } from "@/lib/cms/cms-parsers";
 
 export const metadata = createPageMetadata("upcomingevent");
 
-const eventsJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "DHE Upcoming Events",
-  itemListElement: [
-    {
-      "@type": "Event",
-      name: "Shiksha Mahakumbh 6.0",
-      startDate: "2026-10-09",
-      endDate: "2026-10-11",
-      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-      eventStatus: "https://schema.org/EventScheduled",
-      location: {
-        "@type": "Place",
-        name: "NIT Hamirpur",
-        address: "Hamirpur, Himachal Pradesh, India",
+function buildEventsJsonLd(
+  rows: ReturnType<typeof parseUpcomingEvents>
+): Record<string, unknown> {
+  const planned = rows.filter((r) => r.status === "planned" || r.status === "external");
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "DHE Upcoming Events",
+    itemListElement: planned.map((event, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Event",
+        name: event.title,
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        eventStatus:
+          event.status === "planned"
+            ? "https://schema.org/EventScheduled"
+            : "https://schema.org/EventMovedOnline",
+        location: {
+          "@type": "Place",
+          name: event.venue,
+        },
+        organizer: {
+          "@type": "Organization",
+          name: siteConfig.name,
+          url: siteConfig.url,
+        },
+        url: event.href.startsWith("http")
+          ? event.href
+          : `${siteConfig.url}${event.href}`,
       },
-      organizer: {
-        "@type": "Organization",
-        name: siteConfig.name,
-        url: siteConfig.url,
-      },
-      url: "https://www.rase.co.in/registration/Single_Registration",
-    },
-  ],
-};
+    })),
+  };
+}
 
 export default async function UpcomingEventPage() {
   const content = await getSiteContent(["upcoming_events"]);
   const rows = parseUpcomingEvents(content.upcoming_events);
+  const eventsJsonLd = buildEventsJsonLd(rows);
 
   return (
     <>

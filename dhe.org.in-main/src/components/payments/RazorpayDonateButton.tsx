@@ -22,12 +22,15 @@ declare global {
   }
 }
 
+import { trackGaEvent } from "@/lib/analytics/ga-events";
+
 type RazorpayDonateButtonProps = {
   name: string;
   email: string;
   phone: string;
   amount: number;
   pan?: string;
+  address?: string;
   purpose?: "donation" | "membership" | "registration";
   disabled?: boolean;
   metadata?: Record<string, string>;
@@ -40,6 +43,7 @@ export default function RazorpayDonateButton({
   phone,
   amount,
   pan,
+  address,
   purpose = "donation",
   disabled,
   metadata,
@@ -83,6 +87,7 @@ export default function RazorpayDonateButton({
           email,
           phone,
           pan: pan?.trim() || undefined,
+          address: address?.trim() || undefined,
           metadata,
         }),
       });
@@ -114,6 +119,12 @@ export default function RazorpayDonateButton({
           const verifyData = await verifyRes.json();
           if (verifyRes.ok) {
             const receipt = verifyData.donation?.receipt_number as string | undefined;
+            trackGaEvent("purchase", {
+              transaction_id: response.razorpay_payment_id,
+              value: amount,
+              currency: "INR",
+              item_category: purpose,
+            });
             toast.success("Payment successful!");
             if (thankYouPath) {
               const params = receipt ? `?receipt=${encodeURIComponent(receipt)}` : "";
@@ -143,7 +154,7 @@ export default function RazorpayDonateButton({
     } finally {
       setLoading(false);
     }
-  }, [amount, email, keyId, metadata, name, pan, phone, purpose, router, thankYouPath]);
+  }, [address, amount, email, keyId, metadata, name, pan, phone, purpose, router, thankYouPath]);
 
   return (
     <>

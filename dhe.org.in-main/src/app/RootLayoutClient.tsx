@@ -5,13 +5,9 @@ import CompanyInfo from "@/components/layout/CompanyInfo";
 import Header from "@/components/layout/Header";
 import BottomView from "@/components/layout/BottomView";
 import Floating from "@/components/layout/Floating";
-import dynamic from "next/dynamic";
+import VisibleBreadcrumbs from "@/components/layout/VisibleBreadcrumbs";
+import HomePromoBanner from "@/components/home/HomePromoBanner";
 import { Toaster } from "react-hot-toast";
-
-const HomePromoDialog = dynamic(
-  () => import("@/components/home/HomePromoDialog"),
-  { ssr: false, loading: () => null }
-);
 
 export default function RootLayoutClient({
   children,
@@ -45,12 +41,14 @@ export default function RootLayoutClient({
 
       <Floating sitePhone={sitePhone} />
 
+      <CompanyInfo />
+
       <header className="sticky top-0 z-50 bg-white shadow-sm" role="banner">
-        <div className="border-b border-orange-100">
-          <CompanyInfo />
-        </div>
         <Header />
       </header>
+
+      <HomePromoBanner />
+      <VisibleBreadcrumbs />
 
       {children}
 
@@ -71,8 +69,6 @@ export default function RootLayoutClient({
           },
         }}
       />
-
-      <HomePromoDialog />
     </>
   );
 }
