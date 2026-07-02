@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminRequestAuthorized } from "@/lib/auth/authorize-admin-request";
 import { getPaymentsHealth } from "@/lib/payments/payments-health";
+import { getPublicRazorpayKeyId, getRazorpayConfig } from "@/lib/env/razorpay";
 import { getRazorpayKeyMismatch } from "@/lib/razorpay/errors";
 
 export const runtime = "nodejs";
@@ -12,16 +13,14 @@ export async function GET(req: NextRequest) {
   }
 
   const health = await getPaymentsHealth();
+  const config = getRazorpayConfig();
+  const publicKey = getPublicRazorpayKeyId();
 
   return NextResponse.json({
     ...health,
     keyIds: {
-      server: process.env.RAZORPAY_KEY_ID?.trim()
-        ? `${process.env.RAZORPAY_KEY_ID.trim().slice(0, 12)}…`
-        : null,
-      public: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID?.trim()
-        ? `${process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID.trim().slice(0, 12)}…`
-        : null,
+      server: config?.keyId ? `${config.keyId.slice(0, 12)}…` : null,
+      public: publicKey ? `${publicKey.slice(0, 12)}…` : null,
       mismatch: getRazorpayKeyMismatch(),
     },
     fix:

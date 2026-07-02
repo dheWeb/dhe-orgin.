@@ -27,8 +27,12 @@ describe("getRazorpayKeyMismatch", () => {
   it("detects public/server key mismatch", () => {
     process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID = "rzp_live_a";
     process.env.RAZORPAY_KEY_ID = "rzp_live_b";
+    process.env.RAZORPAY_KEY_SECRET = "secret";
+    process.env.RAZORPAY_WEBHOOK_SECRET = "whsec";
     expect(getRazorpayKeyMismatch()).toMatch(/does not match/);
     delete process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
     delete process.env.RAZORPAY_KEY_ID;
+    delete process.env.RAZORPAY_KEY_SECRET;
+    delete process.env.RAZORPAY_WEBHOOK_SECRET;
   });
 });

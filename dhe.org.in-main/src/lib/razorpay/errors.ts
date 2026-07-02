@@ -1,3 +1,5 @@
+import { getRazorpayConfig } from "@/lib/env/razorpay";
+
 type RazorpayApiError = {
   statusCode?: number;
   error?: {
@@ -40,11 +42,12 @@ export function getRazorpayErrorCode(error: unknown): string | undefined {
 
 /** Ensure checkout key matches server key (common misconfiguration after rotation). */
 export function getRazorpayKeyMismatch(): string | null {
+  const serverKey = getRazorpayConfig()?.keyId;
   const publicKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID?.trim();
-  const serverKey = process.env.RAZORPAY_KEY_ID?.trim();
+
   if (!publicKey || !serverKey) return null;
   if (publicKey !== serverKey) {
-    return "NEXT_PUBLIC_RAZORPAY_KEY_ID does not match RAZORPAY_KEY_ID";
+    return "NEXT_PUBLIC_RAZORPAY_KEY_ID does not match server Razorpay key";
   }
   if (publicKey.startsWith("rzp_test_") && process.env.NODE_ENV === "production") {
     return "Test Razorpay key is set on production";

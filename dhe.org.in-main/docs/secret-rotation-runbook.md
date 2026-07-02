@@ -138,14 +138,18 @@ When you have the **new** keys ready, paste them in chat (or update `.env.local`
 
 ### “Failed to create Razorpay order” on `/donation`
 
-1. In **Razorpay Dashboard → API Keys**, regenerate or copy a **matched** Key ID + Key Secret pair (Live mode for production).
-2. In **Vercel → Environment Variables**, set all three to the **same** live key:
-   - `RAZORPAY_KEY_ID`
-   - `RAZORPAY_KEY_SECRET`
-   - `NEXT_PUBLIC_RAZORPAY_KEY_ID` (= same value as `RAZORPAY_KEY_ID`)
-3. Regenerate **Webhook secret** if needed: `RAZORPAY_WEBHOOK_SECRET`
-4. Redeploy, then open `GET /api/health` — check `payments.razorpayAuthOk` is `true`.
-5. If `payments.ordersTableReady` is `false`, run `npm run db:migrate` with `20260630120000_payments.sql` in Supabase SQL Editor.
+The app prefers rotated env names (`RAZORPAY_*_NEW`) when present on Vercel.
+
+1. In **Razorpay Dashboard → API Keys**, confirm Live Key ID + Secret are active.
+2. In **Vercel**, ensure these are set for **Production** (either canonical or `_NEW` names):
+   - `RAZORPAY_KEY_ID` or `RAZORPAY_KEY_ID_NEW`
+   - `RAZORPAY_KEY_SECRET` or `RAZORPAY_KEY_SECRET_NEW`
+   - `RAZORPAY_WEBHOOK_SECRET` or `RAZORPAY_WEBHOOK_SECRET_NEW`
+   - `NEXT_PUBLIC_RAZORPAY_KEY_ID` (optional — checkout uses server `keyId` from create-order)
+3. To copy `_NEW` → canonical names:  
+   `npx vercel env run -e production -- node dhe.org.in-main/scripts/promote-razorpay-vercel-env.mjs production`
+4. Redeploy, then check `GET /api/health` → `payments.razorpayAuthOk: true`.
+5. If `ordersTableReady` is false, run `20260630120000_payments.sql` in Supabase SQL Editor.
 
 ---
 

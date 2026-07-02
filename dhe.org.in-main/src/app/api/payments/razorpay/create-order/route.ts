@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { isRazorpayConfigured } from "@/lib/env/razorpay";
+import { getPublicRazorpayKeyId, getRazorpayConfig, isRazorpayConfigured } from "@/lib/env/razorpay";
 import { isSupabaseAdminConfigured, getSupabaseAdmin } from "@/lib/supabase/admin";
 import { getRazorpayClient } from "@/lib/razorpay/client";
 import { validateCreateOrderInput } from "@/lib/payments/process-webhook";
@@ -31,15 +31,7 @@ export async function POST(req: NextRequest) {
 
   const keyMismatch = getRazorpayKeyMismatch();
   if (keyMismatch) {
-    console.error("[create-order]", keyMismatch);
-    return NextResponse.json(
-      {
-        error:
-          "Payment gateway is misconfigured (key mismatch). Please contact DHE.",
-        code: "key_mismatch",
-      },
-      { status: 503 }
-    );
+    console.warn("[create-order]", keyMismatch, "(checkout uses server keyId)");
   }
 
   if (!isRazorpayConfigured() || !isSupabaseAdminConfigured()) {
@@ -139,9 +131,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const keyId =
-    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID?.trim() ||
-    process.env.RAZORPAY_KEY_ID?.trim();
+  const keyId = getPublicRazorpayKeyId() || getRazorpayConfig()?.keyId;
 
   return NextResponse.json({
     orderId,

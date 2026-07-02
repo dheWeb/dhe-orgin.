@@ -57,14 +57,8 @@ export default function RazorpayDonateButton({
     message: string;
   } | null>(null);
   const [paymentFailed, setPaymentFailed] = useState(false);
-  const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 
   const handlePay = useCallback(async () => {
-    if (!keyId) {
-      toast.error("Payment gateway is not configured.");
-      return;
-    }
-
     if (!name || !email || !phone || !amount || amount < 1) {
       toast.error("Please fill name, email, phone, and amount (min ₹1).");
       return;
@@ -99,8 +93,15 @@ export default function RazorpayDonateButton({
         throw new Error(orderData.error || "Could not create order.");
       }
 
+      const checkoutKey =
+        (orderData.keyId as string | undefined) ||
+        process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+      if (!checkoutKey) {
+        throw new Error("Payment gateway is not configured.");
+      }
+
       const rzp = new window.Razorpay({
-        key: keyId,
+        key: checkoutKey,
         amount: orderData.amount,
         currency: orderData.currency,
         name: "Department of Holistic Education",
@@ -165,7 +166,7 @@ export default function RazorpayDonateButton({
     } finally {
       setLoading(false);
     }
-  }, [address, amount, email, keyId, metadata, name, pan, phone, purpose, router, thankYouPath]);
+  }, [address, amount, email, metadata, name, pan, phone, purpose, router, thankYouPath]);
 
   return (
     <>
