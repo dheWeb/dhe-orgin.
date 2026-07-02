@@ -52,5 +52,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Failed to submit registration." }, { status: 500 });
   }
 
+  try {
+    const { notifyAdminFormSubmission } = await import(
+      "@/lib/email/send-admin-notification"
+    );
+    const { sendRegistrationConfirmEmail } = await import(
+      "@/lib/email/send-registration-confirm"
+    );
+    await notifyAdminFormSubmission({
+      formName: "Workshop registration",
+      fields: { name, email, phone, address: address || "—" },
+    });
+    await sendRegistrationConfirmEmail({
+      toEmail: email,
+      toName: name,
+      programLabel: "DHE Workshop",
+    });
+  } catch (emailErr) {
+    console.error("[workshop] email", emailErr);
+  }
+
   return NextResponse.json({ success: true });
 }

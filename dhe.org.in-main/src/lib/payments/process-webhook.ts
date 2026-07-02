@@ -23,143 +23,225 @@ async function allocateReceiptNumber(): Promise<string> {
   return data as string;
 }
 
-export async function upsertDonationFromPayment(
-  payment: RazorpayPaymentEntity,
-  status: "captured" | "failed" | "authorized"
-): Promise<void> {
-  const supabase = getSupabaseAdmin();
-  if (!supabase) {
-    throw new Error("Supabase is not configured");
-  }
+type OrderRow = {
+  id: string;
+  purpose: string;
+  payer_name: string | null;
+  payer_email: string | null;
+  payer_phone: string | null;
+  metadata: Record<string, unknown> | null;
+};
 
-    const { data: orderRow } = await supabase
+async function loadOrderRow(orderId: string): Promise<OrderRow | null> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return null;
+  const { data } = await supabase
     .from("payment_orders")
     .select("id, purpose, payer_name, payer_email, payer_phone, metadata")
-    .eq("razorpay_order_id", payment.order_id)
+    .eq("razorpay_order_id", orderId)
+    .maybeSingle();
+  return data as OrderRow | null;
+}
+
+function payerFromPayment(payment: RazorpayPaymentEntity, orderRow: OrderRow | null) {
+  const notes = payment.notes ?? {};
+  return {
+    name: orderRow?.payer_name || notes.name || notes.donor_name || "Member",
+    email: orderRow?.payer_email || payment.email || notes.email || null,
+    phone: orderRow?.payer_phone || payment.contact || notes.phone || null,
+    meta: (orderRow?.metadata ?? {}) as Record<string, string>,
+    pan: (orderRow?.metadata as { pan?: string })?.pan ?? notes.pan ?? null,
+    address:
+      (orderRow?.metadata as { address?: string })?.address ?? notes.address ?? null,
+  };
+}
+
+async function processDonationCaptured(
+  payment: RazorpayPaymentEntity,
+  orderRow: OrderRow | null
+): Promise<void> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) throw new Error("Supabase is not configured");
+
+  const { data: existing } = await supabase
+    .from("donations")
+    .select("id, receipt_number")
+    .eq("razorpay_payment_id", payment.id)
     .maybeSingle();
 
-  const notes = payment.notes ?? {};
-  const donorName =
-    orderRow?.payer_name || notes.name || notes.donor_name || null;
-  const donorEmail =
-    orderRow?.payer_email || payment.email || notes.email || null;
-  const donorPhone =
-    orderRow?.payer_phone || payment.contact || notes.phone || null;
-  const orderMeta = (orderRow?.metadata ?? {}) as { pan?: string; address?: string };
-  const donorAddress = orderMeta.address ?? notes.address ?? null;
+  if (existing) return;
 
-  if (status === "captured") {
-    const { data: existing } = await supabase
-      .from("donations")
-      .select("id, receipt_number")
-      .eq("razorpay_payment_id", payment.id)
-      .maybeSingle();
+  const payer = payerFromPayment(payment, orderRow);
+  const receiptNumber = await allocateReceiptNumber();
 
-    if (existing) {
-      return;
-    }
-
-    const receiptNumber = await allocateReceiptNumber();
-
-    const { data: inserted, error: donationError } = await supabase.from("donations").insert({
+  const { data: inserted, error: donationError } = await supabase
+    .from("donations")
+    .insert({
       payment_order_id: orderRow?.id ?? null,
       razorpay_payment_id: payment.id,
       razorpay_order_id: payment.order_id,
       amount_paise: payment.amount,
-      donor_name: donorName,
-      donor_email: donorEmail,
-      donor_phone: donorPhone,
-      donor_address: donorAddress,
+      donor_name: payer.name,
+      donor_email: payer.email,
+      donor_phone: payer.phone,
+      donor_address: payer.address,
       receipt_number: receiptNumber,
       status: "captured",
-      pan: orderMeta.pan ?? notes.pan ?? null,
-      metadata: {
-        currency: payment.currency,
-        notes,
-      },
-    }).select("id").single();
+      pan: payer.pan,
+      metadata: { currency: payment.currency, notes: payment.notes ?? {} },
+    })
+    .select("id")
+    .single();
 
-    if (donationError) {
-      throw new Error(donationError.message);
+  if (donationError) throw new Error(donationError.message);
+
+  if (payer.email) {
+    try {
+      const { sendDonationReceiptEmail } = await import(
+        "@/lib/email/send-donation-receipt"
+      );
+      const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dhe.org.in";
+      const downloadUrl = inserted?.id
+        ? `${site}/api/receipts/${inserted.id}/pdf?email=${encodeURIComponent(payer.email)}`
+        : undefined;
+      await sendDonationReceiptEmail(
+        {
+          receiptNumber,
+          donorName: payer.name,
+          donorEmail: payer.email,
+          amountInr: payment.amount / 100,
+          paymentId: payment.id,
+          date: new Date().toLocaleDateString("en-IN"),
+        },
+        { downloadUrl }
+      );
+    } catch (emailError) {
+      console.error("[webhook] donation receipt email failed", emailError);
     }
+  }
+}
 
-    if (donorEmail) {
-      try {
-        const { sendDonationReceiptEmail } = await import(
-          "@/lib/email/send-donation-receipt"
-        );
-        const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dhe.org.in";
-        const downloadUrl = inserted?.id
-          ? `${site}/api/receipts/${inserted.id}/pdf?email=${encodeURIComponent(donorEmail)}`
-          : undefined;
-        await sendDonationReceiptEmail(
-          {
-            receiptNumber,
-            donorName: donorName ?? "Donor",
-            donorEmail,
-            amountInr: payment.amount / 100,
-            paymentId: payment.id,
-            date: new Date().toLocaleDateString("en-IN"),
-          },
-          { downloadUrl }
-        );
-      } catch (emailError) {
-        console.error("[webhook] receipt email failed", emailError);
-      }
+async function processMembershipCaptured(
+  payment: RazorpayPaymentEntity,
+  orderRow: OrderRow | null
+): Promise<void> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) throw new Error("Supabase is not configured");
+
+  const payer = payerFromPayment(payment, orderRow);
+  const meta = payer.meta;
+  const applicationId = meta.application_id ?? meta.applicationId;
+
+  let membershipRow: {
+    membership_category?: string;
+    membership_type?: string;
+  } | null = null;
+
+  if (applicationId) {
+    const { data } = await supabase
+      .from("membership_applications")
+      .update({
+        payment_status: "paid",
+        razorpay_payment_id: payment.id,
+      })
+      .eq("id", applicationId)
+      .select("membership_category, membership_type")
+      .maybeSingle();
+    membershipRow = data;
+  } else if (payer.email) {
+    const { data } = await supabase
+      .from("membership_applications")
+      .update({
+        payment_status: "paid",
+        razorpay_payment_id: payment.id,
+      })
+      .eq("email", payer.email)
+      .eq("payment_status", "pending")
+      .select("membership_category, membership_type")
+      .maybeSingle();
+    membershipRow = data;
+  }
+
+  if (payer.email) {
+    try {
+      const receiptNumber = await allocateReceiptNumber();
+      const { sendMembershipReceiptEmail } = await import(
+        "@/lib/email/send-membership-receipt"
+      );
+      await sendMembershipReceiptEmail({
+        receiptNumber,
+        memberName: payer.name,
+        memberEmail: payer.email,
+        amountInr: payment.amount / 100,
+        paymentId: payment.id,
+        date: new Date().toLocaleDateString("en-IN"),
+        membershipCategory: membershipRow?.membership_category,
+        membershipType: membershipRow?.membership_type,
+      });
+    } catch (emailError) {
+      console.error("[webhook] membership receipt email failed", emailError);
     }
+  }
+}
 
-    await supabase
-      .from("payment_orders")
-      .update({ status: "paid" })
-      .eq("razorpay_order_id", payment.order_id);
+async function markOrderPaid(orderId: string, status: "paid" | "failed"): Promise<void> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return;
+  await supabase
+    .from("payment_orders")
+    .update({ status })
+    .eq("razorpay_order_id", orderId);
+}
 
-    if (orderRow?.purpose === "membership") {
-      const meta = (orderRow.metadata ?? {}) as Record<string, string>;
-      const applicationId = meta.application_id ?? meta.applicationId;
-      if (applicationId) {
-        await supabase
-          .from("membership_applications")
-          .update({
-            payment_status: "paid",
-            razorpay_payment_id: payment.id,
-          })
-          .eq("id", applicationId);
-      } else if (donorEmail) {
-        await supabase
-          .from("membership_applications")
-          .update({
-            payment_status: "paid",
-            razorpay_payment_id: payment.id,
-          })
-          .eq("email", donorEmail)
-          .eq("payment_status", "pending");
-      }
+export async function upsertDonationFromPayment(
+  payment: RazorpayPaymentEntity,
+  status: "captured" | "failed" | "authorized"
+): Promise<void> {
+  const orderRow = await loadOrderRow(payment.order_id);
+  const purpose = orderRow?.purpose ?? "donation";
+
+  if (status === "captured") {
+    if (purpose === "membership") {
+      await processMembershipCaptured(payment, orderRow);
+    } else if (purpose !== "registration") {
+      await processDonationCaptured(payment, orderRow);
     }
+    await markOrderPaid(payment.order_id, "paid");
     return;
   }
 
   if (status === "failed") {
-    await supabase.from("donations").upsert(
-      {
-        razorpay_payment_id: payment.id,
-        razorpay_order_id: payment.order_id,
-        amount_paise: payment.amount,
-        donor_name: donorName,
-        donor_email: donorEmail,
-        donor_phone: donorPhone,
-        status: "failed",
-        metadata: {
-          error_code: payment.error_code,
-          error_description: payment.error_description,
-        },
-      },
-      { onConflict: "razorpay_payment_id" }
-    );
+    const supabase = getSupabaseAdmin();
+    if (!supabase) throw new Error("Supabase is not configured");
 
-    await supabase
-      .from("payment_orders")
-      .update({ status: "failed" })
-      .eq("razorpay_order_id", payment.order_id);
+    const payer = payerFromPayment(payment, orderRow);
+
+    if (purpose === "membership" && payer.email) {
+      await supabase
+        .from("membership_applications")
+        .update({ payment_status: "failed", razorpay_payment_id: payment.id })
+        .eq("email", payer.email)
+        .eq("payment_status", "pending");
+    } else if (purpose === "donation") {
+      await supabase.from("donations").upsert(
+        {
+          razorpay_payment_id: payment.id,
+          razorpay_order_id: payment.order_id,
+          amount_paise: payment.amount,
+          donor_name: payer.name,
+          donor_email: payer.email,
+          donor_phone: payer.phone,
+          status: "failed",
+          metadata: {
+            error_code: payment.error_code,
+            error_description: payment.error_description,
+          },
+        },
+        { onConflict: "razorpay_payment_id" }
+      );
+    }
+
+    await markOrderPaid(payment.order_id, "failed");
   }
 }
 
@@ -206,7 +288,6 @@ export async function processRazorpayWebhookEvent(
         }
         break;
       case "payment.authorized":
-        // Auto-capture flows finalize on payment.captured; no donation row yet.
         break;
       case "payment.failed":
         if (payment) {
@@ -216,10 +297,7 @@ export async function processRazorpayWebhookEvent(
       case "order.paid": {
         const orderId = event.payload.order?.entity.id;
         if (orderId) {
-          await supabase
-            .from("payment_orders")
-            .update({ status: "paid" })
-            .eq("razorpay_order_id", orderId);
+          await markOrderPaid(orderId, "paid");
         }
         break;
       }

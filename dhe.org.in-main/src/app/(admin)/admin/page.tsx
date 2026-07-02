@@ -1,13 +1,50 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/noticeboarddata", label: "Manage notices", desc: "Add, edit, delete notice board items" },
-  { href: "/donationdatadekh", label: "Donation records", desc: "View donations, export, email receipts" },
-  { href: "/admin/inbox", label: "Form inbox", desc: "Feedback and contact messages" },
-  { href: "/admin/cms", label: "Site content (CMS)", desc: "Edit taglines, contact snippets" },
-  { href: "/WD", label: "Workshop registrations", desc: "View workshop sign-ups" },
-  { href: "/admin/memberships", label: "Membership applications", desc: "View and export membership sign-ups" },
-  { href: "/contribute", label: "Public membership page", desc: "Public membership registration" },
+  {
+    href: "/noticeboarddata",
+    label: "Manage notices",
+    desc: "Add, edit, delete notice board items",
+    alias: "/admin/notices",
+  },
+  {
+    href: "/donationdatadekh",
+    label: "Donation records",
+    desc: "View donations, export, email receipts",
+    alias: "/admin/finance/donations",
+  },
+  {
+    href: "/admin/inbox",
+    label: "Form inbox",
+    desc: "Feedback and contact messages",
+    alias: "/admin/feedback",
+  },
+  {
+    href: "/admin/cms",
+    label: "Site content (CMS)",
+    desc: "Edit all site snippets and JSON registries",
+  },
+  {
+    href: "/WD",
+    label: "Workshop registrations",
+    desc: "View workshop sign-ups",
+    alias: "/admin/finance/workshops",
+  },
+  {
+    href: "/admin/memberships",
+    label: "Membership applications",
+    desc: "View and export membership sign-ups",
+  },
+  {
+    href: "/admin/finance",
+    label: "Finance hub",
+    desc: "Donations, memberships, workshops",
+  },
+  {
+    href: "/contribute",
+    label: "Public membership page",
+    desc: "Public membership registration",
+  },
 ] as const;
 
 export default function AdminHubPage() {
@@ -34,6 +71,9 @@ export default function AdminHubPage() {
             >
               <span className="font-medium text-gray-900">{item.label}</span>
               <span className="block text-sm text-gray-600 mt-1">{item.desc}</span>
+              {"alias" in item && item.alias ? (
+                <span className="block text-xs text-gray-400 mt-1">Also: {item.alias}</span>
+              ) : null}
             </Link>
           </li>
         ))}

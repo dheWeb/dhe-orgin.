@@ -58,6 +58,16 @@ export default function RefundPolicyPage() {
         <Link href="/receipt/verify">receipt verification</Link> page.
       </p>
 
+      <h2>Form 10BE (donations)</h2>
+      <p>
+        For donations eligible under Section 80G, DHE / VBITR Trust issues donation
+        receipts as per Income Tax rules. Form 10BE (annual statement of donations
+        to eligible trusts) is filed by the trust as required; donors should retain
+        their receipt numbers for ITR filing. Contact{" "}
+        <a href={`mailto:${dheOfficialContact.email}`}>{dheOfficialContact.email}</a>{" "}
+        for certificate queries.
+      </p>
+
       <p>
         See also our <Link href="/terms">Terms of Use</Link> and{" "}
         <Link href="/privacy-policy">Privacy Policy</Link>.

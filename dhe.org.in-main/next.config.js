@@ -96,6 +96,26 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/admin/notices",
+        destination: "/noticeboarddata",
+        permanent: false,
+      },
+      {
+        source: "/admin/finance/donations",
+        destination: "/donationdatadekh",
+        permanent: false,
+      },
+      {
+        source: "/admin/finance/workshops",
+        destination: "/WD",
+        permanent: false,
+      },
+      {
+        source: "/admin/feedback",
+        destination: "/admin/inbox",
+        permanent: false,
+      },
+      {
         source: "/:path*",
         has: [{ type: "host", value: "dhe.org.in" }],
         destination: "https://www.dhe.org.in/:path*",

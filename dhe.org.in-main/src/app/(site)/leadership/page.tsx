@@ -49,6 +49,34 @@ export default async function LeadershipPage() {
       )}
       <AdvisoryCouncil title="LMC Patrons" members={patrons} />
       <AdvisoryCouncil title="LMC Members" members={members} />
+
+      <section className="dhe-container py-10 max-w-3xl mx-auto">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          LMC nomination letters (archive)
+        </h2>
+        <ul className="space-y-3 text-sm">
+          {lmcDocuments.map((doc) => (
+            <li key={doc.id} className="border border-gray-100 rounded-lg p-4">
+              <p className="font-medium text-gray-900">{doc.title}</p>
+              <p className="text-gray-600 mt-1">
+                Ref. {doc.refNo}
+                {"term" in doc && doc.term
+                  ? ` · ${doc.term.from} – ${doc.term.to}`
+                  : ""}
+                {doc.isCurrent ? " · Current" : ""}
+              </p>
+              <Link
+                href={doc.path}
+                className="inline-block mt-2 text-orange-700 hover:underline min-h-10"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download PDF
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </>
   );
 }

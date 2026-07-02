@@ -46,6 +46,17 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       "Local Management Committee and leadership of the Department of Holistic Education (DHE).",
   },
+  events: {
+    path: "/events",
+    title: "Events",
+    description:
+      "Upcoming and past events of the Department of Holistic Education (DHE).",
+  },
+  search: {
+    path: "/search",
+    title: "Search",
+    description: "Search pages on the DHE website.",
+  },
   programs: {
     path: "/programs",
     title: "DHE Programs",

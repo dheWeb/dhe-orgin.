@@ -51,6 +51,7 @@ const Header: React.FC = () => {
       path: "/upcomingevent",
       title: "Events",
       subMenu: [
+        { path: "/events", title: "All Events" },
         { path: "/noticeboard", title: "Notice Board" },
         { path: "/upcomingevent", title: "Upcoming Events" },
         { path: "/pastevent", title: "Past Events" },

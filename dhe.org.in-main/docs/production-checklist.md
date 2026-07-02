@@ -81,7 +81,11 @@
 | P0 security & privacy | **~70%** | eval, Members, legal, cookies, headers, admin gate |
 | P0 payments | **~75%** | Razorpay donate + webhook + receipt email; membership linked |
 | Firebase → Supabase | **DONE** | SDK removed; Firestore retired; bootstrap seed script |
-| CMS | **~95%** | All 25 registry keys in admin; JSON programs/events/FAQ/LMC/people |
+| CMS | **~95%** | All 25 registry keys in admin |
+| **Membership receipt** | Separate PDF/email; no donation row for membership payments |
+| **/events** hub + **/search** | Unified events + site search |
+| **Admin aliases** | `/admin/notices`, `/admin/finance/*`, `/admin/feedback` |
+| **LMC archive** | All nomination PDFs on `/leadership` |
 | **Supabase admin login** | `/admin/login` + `ADMIN_EMAIL_ALLOWLIST` (Basic Auth still works) |
 | **Registration thank-you** | `/registrationForm/thank-you` |
 | **Hindi hub** | Expanded `/hi` with quick links |
