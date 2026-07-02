@@ -78,6 +78,8 @@ export default function AdminHubPage() {
       </ul>
       <p className="mt-8 text-xs text-gray-500">
         API monitoring: <code className="text-xs">GET /api/admin/errors</code> (same login)
+        {" · "}
+        <code className="text-xs">GET /api/admin/payments/diagnostics</code>
       </p>
     </div>
   );

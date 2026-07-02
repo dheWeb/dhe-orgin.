@@ -5,6 +5,11 @@ import { isSupabaseAdminConfigured, getSupabaseAdmin } from "@/lib/supabase/admi
 import { getRazorpayClient } from "@/lib/razorpay/client";
 import { validateCreateOrderInput } from "@/lib/payments/process-webhook";
 import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
+import {
+  getRazorpayErrorCode,
+  getRazorpayErrorMessage,
+  getRazorpayKeyMismatch,
+} from "@/lib/razorpay/errors";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -24,9 +29,22 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const keyMismatch = getRazorpayKeyMismatch();
+  if (keyMismatch) {
+    console.error("[create-order]", keyMismatch);
+    return NextResponse.json(
+      {
+        error:
+          "Payment gateway is misconfigured (key mismatch). Please contact DHE.",
+        code: "key_mismatch",
+      },
+      { status: 503 }
+    );
+  }
+
   if (!isRazorpayConfigured() || !isSupabaseAdminConfigured()) {
     return NextResponse.json(
-      { error: "Payments are not configured." },
+      { error: "Payments are not configured.", code: "not_configured" },
       { status: 503 }
     );
   }
@@ -35,7 +53,7 @@ export async function POST(req: NextRequest) {
   const supabase = getSupabaseAdmin();
   if (!razorpay || !supabase) {
     return NextResponse.json(
-      { error: "Payments are not configured." },
+      { error: "Payments are not configured.", code: "not_configured" },
       { status: 503 }
     );
   }
@@ -52,60 +70,83 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: parsed.error }, { status: 400 });
   }
 
-  const { purpose, amountPaise, name, email, phone, pan, address, metadata } = parsed.data;
+  const { purpose, amountPaise, name, email, phone, pan, address, metadata } =
+    parsed.data;
   const receipt = `dhe_${purpose}_${randomUUID().replace(/-/g, "").slice(0, 12)}`;
 
+  const notes: Record<string, string> = {
+    purpose,
+    name: name.slice(0, 256),
+    email: email.slice(0, 256),
+    phone: phone.slice(0, 256),
+  };
+  if (pan) notes.pan = pan.slice(0, 256);
+  if (address) notes.address = address.slice(0, 256);
+
+  let orderId: string;
+  let orderAmount: number;
+  let orderCurrency: string;
   try {
     const order = await razorpay.orders.create({
       amount: amountPaise,
       currency: "INR",
       receipt,
-      notes: {
-        purpose,
-        name,
-        email,
-        phone,
-        ...(pan ? { pan } : {}),
-        ...(address ? { address } : {}),
-        ...(metadata ?? {}),
-      },
+      notes,
     });
-
-    const { error: dbError } = await supabase.from("payment_orders").insert({
-      razorpay_order_id: order.id,
-      purpose,
-      amount_paise: amountPaise,
-      currency: "INR",
-      status: "created",
-      payer_name: name,
-      payer_email: email,
-      payer_phone: phone,
-      metadata: {
-        pan,
-        ...(address ? { address } : {}),
-        ...(metadata ?? {}),
-      },
-    });
-
-    if (dbError) {
-      console.error("[create-order] db insert", dbError);
-      return NextResponse.json(
-        { error: "Failed to record order." },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({
-      orderId: order.id,
-      amount: order.amount,
-      currency: order.currency,
-      keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID,
-    });
+    orderId = order.id;
+    orderAmount = Number(order.amount);
+    orderCurrency = String(order.currency);
   } catch (error) {
-    console.error("[create-order]", error);
+    console.error("[create-order] razorpay", error);
+    const code = getRazorpayErrorCode(error);
     return NextResponse.json(
-      { error: "Failed to create Razorpay order." },
+      {
+        error: getRazorpayErrorMessage(error),
+        code: code ?? "razorpay_error",
+      },
+      { status: 502 }
+    );
+  }
+
+  const { error: dbError } = await supabase.from("payment_orders").insert({
+    razorpay_order_id: orderId,
+    purpose,
+    amount_paise: amountPaise,
+    currency: "INR",
+    status: "created",
+    payer_name: name,
+    payer_email: email,
+    payer_phone: phone,
+    metadata: {
+      pan,
+      ...(address ? { address } : {}),
+      ...(metadata ?? {}),
+    },
+  });
+
+  if (dbError) {
+    console.error("[create-order] db insert", dbError);
+    const missingTable = dbError.code === "42P01";
+    return NextResponse.json(
+      {
+        error: missingTable
+          ? "Payment database is not ready. Please contact DHE."
+          : "Failed to record order. Please try again.",
+        code: missingTable ? "db_schema" : "db_error",
+        orderId: orderId,
+      },
       { status: 500 }
     );
   }
+
+  const keyId =
+    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID?.trim() ||
+    process.env.RAZORPAY_KEY_ID?.trim();
+
+  return NextResponse.json({
+    orderId,
+    amount: orderAmount,
+    currency: orderCurrency,
+    keyId,
+  });
 }

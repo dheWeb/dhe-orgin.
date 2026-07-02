@@ -120,6 +120,8 @@ Run after deploy:
 | `GET https://www.dhe.org.in/api/notices` | JSON with notices |
 | Footer contact form | Submits without reCAPTCHA error |
 | `/donation` → Razorpay ₹1 test | Order created; webhook in Razorpay logs |
+| `GET /api/health` → `payments.razorpayAuthOk` | `true` (after deploy with payment fixes) |
+| `GET /api/admin/payments/diagnostics` (admin login) | No errors; keys aligned |
 | Donation receipt email | Received at test inbox |
 | `/noticeboarddata` (Basic Auth) | Login works with new admin password |
 | `GET /api/admin/notices` with Basic Auth | 200 + notices JSON |
@@ -133,6 +135,17 @@ Run after deploy:
 3. **Never commit** `.env.local`.
 
 When you have the **new** keys ready, paste them in chat (or update `.env.local` yourself) and ask to **sync to Vercel** — we can run `sync-vercel-env.mjs` and redeploy for you.
+
+### “Failed to create Razorpay order” on `/donation`
+
+1. In **Razorpay Dashboard → API Keys**, regenerate or copy a **matched** Key ID + Key Secret pair (Live mode for production).
+2. In **Vercel → Environment Variables**, set all three to the **same** live key:
+   - `RAZORPAY_KEY_ID`
+   - `RAZORPAY_KEY_SECRET`
+   - `NEXT_PUBLIC_RAZORPAY_KEY_ID` (= same value as `RAZORPAY_KEY_ID`)
+3. Regenerate **Webhook secret** if needed: `RAZORPAY_WEBHOOK_SECRET`
+4. Redeploy, then open `GET /api/health` — check `payments.razorpayAuthOk` is `true`.
+5. If `payments.ordersTableReady` is `false`, run `npm run db:migrate` with `20260630120000_payments.sql` in Supabase SQL Editor.
 
 ---
 
