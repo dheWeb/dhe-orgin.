@@ -205,6 +205,12 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description: "Thank you for your feedback to DHE.",
     noIndex: true,
   },
+  receiptVerify: {
+    path: "/receipt/verify",
+    title: "Verify Donation Receipt",
+    description:
+      "Verify an official DHE donation receipt and download the PDF for 80G records.",
+  },
 };
 
 import { CELLS, getCellSeoTitle, getCellBySlug } from "@/data/cells";

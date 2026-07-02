@@ -24,6 +24,11 @@ export default async function DonationThankYouPage({ searchParams }: PageProps) 
           Receipt No.: <strong>{receipt}</strong>
         </p>
       )}
+      <p className="mt-4 text-sm">
+        <Link href="/receipt/verify" className="text-orange-700 font-semibold hover:underline">
+          Verify or download your receipt
+        </Link>
+      </p>
       <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm">
         <Link
           href="/donation"

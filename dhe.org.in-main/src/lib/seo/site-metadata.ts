@@ -45,6 +45,11 @@ export const defaultMetadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  alternates: {
+    types: {
+      "application/rss+xml": `${siteConfig.url}/feed.xml`,
+    },
+  },
   // Per-page canonical URLs are set via createPageMetadata()
   openGraph: {
     type: "website",

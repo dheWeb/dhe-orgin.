@@ -105,6 +105,12 @@ const Donation = ({ introText }: { introText?: string }) => {
             >
               Download 12A registration (PDF)
             </a>
+            <Link
+              href="/receipt/verify"
+              className="text-green-800 font-semibold underline hover:text-green-950"
+            >
+              Verify receipt online
+            </Link>
           </p>
         </section>
 

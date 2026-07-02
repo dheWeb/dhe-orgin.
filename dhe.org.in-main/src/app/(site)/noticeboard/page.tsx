@@ -18,7 +18,10 @@ export default async function NoticeboardPage() {
         </h1>
         <p className="mt-3 text-sm sm:text-base text-gray-600 text-center leading-relaxed max-w-xl mx-auto">
           Official notices from the Department of Holistic Education (DHE). Current
-          and past listings are published here when available.
+          and past listings are published here when available.{" "}
+          <a href="/feed.xml" className="text-orange-700 hover:underline">
+            RSS feed
+          </a>
         </p>
       </header>
 

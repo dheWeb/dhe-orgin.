@@ -3,6 +3,7 @@ import Link from "next/link";
 const links = [
   { href: "/noticeboarddata", label: "Manage notices", desc: "Add, edit, delete notice board items" },
   { href: "/donationdatadekh", label: "Donation records", desc: "View donations, export, email receipts" },
+  { href: "/admin/inbox", label: "Form inbox", desc: "Feedback and contact messages" },
   { href: "/admin/cms", label: "Site content (CMS)", desc: "Edit taglines, contact snippets" },
   { href: "/WD", label: "Workshop registrations", desc: "View workshop sign-ups" },
   { href: "/contribute", label: "Membership", desc: "Public membership page" },

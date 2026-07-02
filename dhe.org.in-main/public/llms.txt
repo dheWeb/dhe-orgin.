@@ -11,6 +11,8 @@
 - Programs: https://www.dhe.org.in/programs
 - Cells & structure: https://www.dhe.org.in/structure
 - Donate (80G eligible): https://www.dhe.org.in/donation
+- Verify receipt: https://www.dhe.org.in/receipt/verify
+- RSS feed: https://www.dhe.org.in/feed.xml
 - Membership: https://www.dhe.org.in/contribute
 - Notices: https://www.dhe.org.in/noticeboard
 - Leadership (LMC): https://www.dhe.org.in/leadership
