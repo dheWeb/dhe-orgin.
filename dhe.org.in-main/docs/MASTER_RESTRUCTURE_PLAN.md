@@ -2,7 +2,8 @@
 
 **Site:** [www.dhe.org.in](https://www.dhe.org.in)  
 **Scope:** Full redesign, Firebase retirement, Supabase + Razorpay + SMTP, institutional truth  
-**Status:** Implementation in production (see `EXHAUSTIVE_RESTRUCTURE_PLAN.md` for live checklist)  
+**Status:** Superseded for live tracking by `EXHAUSTIVE_RESTRUCTURE_PLAN.md` + `AUD_TRIAGE.md`  
+**Production:** Live at https://www.dhe.org.in (~98% code complete)  
 **Last updated:** 2026-07-03
 
 ---
@@ -627,14 +628,19 @@ ADMIN_USERNAME / ADMIN_PASSWORD   # Until Supabase admin fully replaces Basic au
 ## 16. Success criteria (go-live)
 
 - [ ] Zero Firebase references in build
-- [ ] Donation + membership complete with Razorpay test payment → PDF in email + download
-- [ ] Notices load without client Firebase
-- [ ] LMC page matches Letter 12; all 4 PDFs downloadable
-- [ ] No public PII directory
-- [ ] Privacy + terms live; cookie consent active
-- [ ] CI green; Sentry receiving events
-- [ ] Lighthouse mobile LCP &lt; 2.5s on home (after image fix)
-- [ ] `7903431900` + Sunny Enclave on contact/footer/receipts only
+## 16. Go-live checklist (synced Jul 2026)
+
+- [x] Donation complete with Razorpay → PDF in email + download
+- [x] Membership Razorpay + receipt email (apply Supabase migration `20260703220000_membership_receipt.sql`)
+- [x] Notices load without client Firebase
+- [x] LMC page matches Letter 12; all 4 PDFs downloadable
+- [x] No public PII directory (`/Members` → redirect)
+- [x] Privacy + terms live; cookie consent active
+- [x] CI workflow on `main`; Sentry receiving events
+- [ ] Lighthouse mobile LCP < 2.5s on home (Perf ~81 on last prod run)
+- [x] `7903431900` + Sunny Enclave on contact/footer/receipts
+- [ ] Firebase console disable (owner)
+- [ ] Secret rotation + Brevo SPF/DKIM (owner)
 
 ---
 

@@ -121,16 +121,20 @@ export default function RazorpayDonateButton({
           });
           const verifyData = await verifyRes.json();
           if (verifyRes.ok) {
-            const receipt = verifyData.donation?.receipt_number as string | undefined;
+            const receipt =
+              (verifyData.donation?.receipt_number as string | undefined) ??
+              (verifyData.membership?.receipt_number as string | undefined);
             const emailSent = verifyData.emailSent as boolean | undefined;
             const emailError = verifyData.emailError as string | undefined;
+            const successLabel =
+              purpose === "membership" ? "Membership payment successful" : "Donation successful";
             trackGaEvent("purchase", {
               transaction_id: response.razorpay_payment_id,
               value: amount,
               currency: "INR",
               item_category: purpose,
             });
-            toast.success("Payment successful!");
+            toast.success(successLabel);
             if (thankYouPath) {
               const params = receipt ? `?receipt=${encodeURIComponent(receipt)}` : "";
               router.push(`${thankYouPath}${params}`);
@@ -199,7 +203,9 @@ export default function RazorpayDonateButton({
           className="mt-4 rounded-lg border border-green-300 bg-green-50 p-4 text-sm text-green-900"
           role="status"
         >
-          <p className="font-semibold">Donation successful</p>
+          <p className="font-semibold">
+            {purpose === "membership" ? "Membership payment successful" : "Donation successful"}
+          </p>
           <p className="mt-2">{paymentSuccess.message}</p>
           {paymentSuccess.receiptNumber && (
             <p className="mt-2">

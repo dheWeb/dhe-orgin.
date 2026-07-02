@@ -12,7 +12,7 @@
 |-------|---------|-------------------------------|
 | Lint | `npm run lint` | **PASS** |
 | Type check | `npm run type-check` | **PASS** |
-| Unit tests | `npm run test` | **PASS** (22 tests) |
+| Unit tests | `npm run test` | **PASS** (24 tests) |
 | Production build | `npm run build` | **PASS** (~92 routes) |
 | npm audit | `npm audit` | **3 moderate** (postcss/next chain — upstream; `uuid` mitigated via override) |
 | CI workflow | `.github/workflows/ci.yml` | **ADDED** (not yet run on GitHub) |
@@ -82,7 +82,7 @@
 | P0 payments | **~75%** | Razorpay donate + webhook + receipt email; membership linked |
 | Firebase → Supabase | **DONE** | SDK removed; Firestore retired; bootstrap seed script |
 | CMS | **~95%** | All 25 registry keys in admin |
-| **Membership receipt** | Separate PDF/email; no donation row for membership payments |
+| **Membership receipt** | Idempotent email + admin resend; migration `20260703220000_membership_receipt.sql` |
 | **/events** hub + **/search** | Unified events + site search |
 | **Admin canonical URLs** | `/admin/notices`, `/admin/finance/*` (legacy redirect) |
 | **Form ack emails + GA4** | contact, feedback, membership; `generate_lead` / `begin_checkout` |

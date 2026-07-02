@@ -55,6 +55,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Events",
     description:
       "Upcoming and past events of the Department of Holistic Education (DHE).",
+    ogImage: "/vi.webp",
   },
   search: {
     path: "/search",
@@ -98,6 +99,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Join DHE — Membership",
     description:
       "Become a member of the Department of Holistic Education (DHE) and join the holistic education movement.",
+    ogImage: "/logo.webp",
   },
   Members: {
     path: "/Members",
@@ -275,6 +277,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Transparency & Accountability",
     description:
       "Trust documents, 80G/12A certificates, policies, and accountability information for DHE.",
+    ogImage: "/logo.webp",
   },
 };
 

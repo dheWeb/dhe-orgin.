@@ -116,6 +116,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/tentative_schedule.xlsx",
+        destination: "/tentative_schdule.xlsx",
+        permanent: true,
+      },
+      {
         source: "/admin/feedback",
         destination: "/admin/inbox",
         permanent: false,

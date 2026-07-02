@@ -15,29 +15,51 @@ type MembershipRow = {
   membership_type: string;
   fee_amount_paise: number | null;
   payment_status: string;
+  receipt_number: string | null;
   created_at: string;
 };
 
 export default function MembershipAdminPage() {
   const [rows, setRows] = useState<MembershipRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [resendingId, setResendingId] = useState<string | null>(null);
+
+  const load = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/memberships?limit=500", {
+        credentials: "same-origin",
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Failed to load");
+      setRows(json.applications ?? []);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Load failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch("/api/admin/memberships?limit=500", {
-          credentials: "same-origin",
-        });
-        const json = await res.json();
-        if (!res.ok) throw new Error(json.error || "Failed to load");
-        setRows(json.applications ?? []);
-      } catch (e) {
-        toast.error(e instanceof Error ? e.message : "Load failed");
-      } finally {
-        setLoading(false);
-      }
-    })();
+    load();
   }, []);
+
+  const resendReceipt = async (id: string) => {
+    setResendingId(id);
+    try {
+      const res = await fetch(`/api/admin/memberships/${id}/receipt`, {
+        method: "POST",
+        credentials: "same-origin",
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Resend failed");
+      toast.success("Membership receipt emailed.");
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Resend failed");
+    } finally {
+      setResendingId(null);
+    }
+  };
 
   const exportCsv = () => {
     downloadRowsAsCsv(
@@ -51,6 +73,7 @@ export default function MembershipAdminPage() {
         Type: r.membership_type,
         "Fee (INR)": r.fee_amount_paise ? r.fee_amount_paise / 100 : "",
         "Payment status": r.payment_status,
+        "Receipt No.": r.receipt_number ?? "",
         "Applied at": r.created_at,
       })),
       "membership_applications.csv"
@@ -80,10 +103,10 @@ export default function MembershipAdminPage() {
                 <tr className="bg-primary text-white">
                   <th scope="col" className="border p-2 text-left">Name</th>
                   <th scope="col" className="border p-2 text-left">Email</th>
-                  <th scope="col" className="border p-2 text-left">Phone</th>
                   <th scope="col" className="border p-2 text-left">Category</th>
-                  <th scope="col" className="border p-2 text-left">Type</th>
                   <th scope="col" className="border p-2 text-left">Payment</th>
+                  <th scope="col" className="border p-2 text-left">Receipt</th>
+                  <th scope="col" className="border p-2 text-left">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,10 +114,25 @@ export default function MembershipAdminPage() {
                   <tr key={r.id}>
                     <td className="border p-2">{r.name}</td>
                     <td className="border p-2">{r.email}</td>
-                    <td className="border p-2">{r.phone}</td>
-                    <td className="border p-2">{r.membership_category}</td>
-                    <td className="border p-2">{r.membership_type}</td>
+                    <td className="border p-2">
+                      {r.membership_category} / {r.membership_type}
+                    </td>
                     <td className="border p-2">{r.payment_status}</td>
+                    <td className="border p-2">{r.receipt_number ?? "—"}</td>
+                    <td className="border p-2">
+                      {r.payment_status === "paid" ? (
+                        <button
+                          type="button"
+                          onClick={() => resendReceipt(r.id)}
+                          disabled={resendingId === r.id}
+                          className="text-orange-700 underline disabled:opacity-50"
+                        >
+                          {resendingId === r.id ? "Sending…" : "Resend receipt"}
+                        </button>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>

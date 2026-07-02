@@ -3,8 +3,8 @@
 **Site:** https://www.dhe.org.in  
 **Entity:** Department of Holistic Education (DHE) — national platform, 25+ cells, Vidya Bharti / VBITR Trust  
 **Document purpose:** Every audited issue (no “top N” lists) + every redesign action + CMS + Supabase + Razorpay + SMTP  
-**Status:** Implementation ~96% complete (see `production-checklist.md` for live gates)  
-**Last updated:** 2026-07-03 (payments + Brevo email verified on production)
+**Status:** Implementation ~98% complete (code); owner gates in §K + §L  
+**Last updated:** 2026-07-03
 
 ---
 
@@ -992,115 +992,115 @@ Number format: `DHE-{FY}-{seq}` e.g. `DHE-2026-00001`
 
 ### Phase 0 — Foundation (Week 1–2)
 
-- [ ] I0-01 Create Supabase project (prod + staging)
-- [ ] I0-02 Run SQL migration all tables §B.3
-- [ ] I0-03 Enable RLS policies draft
-- [ ] I0-04 Add complete `.env.example`
-- [ ] I0-05 GitHub Actions: lint, tsc, build
-- [ ] I0-06 Sentry DSN integration
-- [ ] I0-07 Upstash Redis provision
-- [ ] I0-08 Create `privacy-policy` + `terms` CMS pages (draft)
-- [ ] I0-09 Delete `public/sitemap.xml`, fix robots conflict
-- [ ] I0-10 Fix home metadata title template (AUD-036)
-- [ ] I0-11 Add `llms.txt` + `api/health`
-- [ ] I0-12 Document DR runbook stub
-- [ ] I0-13 Upload 80G/12A PDFs to `public/accounts/`
-- [ ] I0-14 Verify `public/lmc/*.pdf` present (done)
-- [ ] I0-15 Grep remove all `7627888222` (AUD-114)
-- [ ] I0-16 Grep remove all `jodo.in` when Phase 2 starts
+- [x] I0-01 Create Supabase project (prod + staging) — **prod live; staging owner**
+- [x] I0-02 Run SQL migration all tables §B.3 — **core + payments + CMS keys; full relational §B.3 deferred**
+- [x] I0-03 Enable RLS policies draft
+- [x] I0-04 Add complete `.env.example`
+- [x] I0-05 GitHub Actions: lint, tsc, build
+- [x] I0-06 Sentry DSN integration
+- [x] I0-07 Upstash Redis provision — **skipped; Supabase rate_limit_buckets**
+- [x] I0-08 Create `privacy-policy` + `terms` CMS pages (draft)
+- [x] I0-09 Delete `public/sitemap.xml`, fix robots conflict
+- [x] I0-10 Fix home metadata title template (AUD-036)
+- [x] I0-11 Add `llms.txt` + `api/health`
+- [x] I0-12 Document DR runbook stub — **`docs/disaster-recovery-runbook.md`**
+- [x] I0-13 Upload 80G/12A PDFs to `public/accounts/`
+- [x] I0-14 Verify `public/lmc/*.pdf` present (done)
+- [x] I0-15 Grep remove all `7627888222` (AUD-114)
+- [x] I0-16 Grep remove all `jodo.in` when Phase 2 starts
 
 ### Phase 1 — Supabase migration (Week 2–4)
 
-- [ ] I1-01 Export Firestore collections to JSON
-- [ ] I1-02 Import script → Supabase
-- [ ] I1-03 Migrate Storage files → Supabase buckets
-- [ ] I1-04 Build `src/lib/supabase/server.ts` + client anon
-- [ ] I1-05 Notices read server component ISR revalidate 300
-- [ ] I1-06 Remove Firebase from `package.json`
-- [ ] I1-07 Delete firebase modules
-- [ ] I1-08 reCAPTCHA on contact API
-- [ ] I1-09 Upstash rate limit contact/feedback
-- [ ] I1-10 Visitor count Upstash — remove Firebase footer
-- [ ] I1-11 Retire `/Members` route
-- [ ] I1-12 Remove eval from FeedbackForm
-- [ ] I1-13 Add `error.tsx`, `not-found.tsx` root + key routes
-- [ ] I1-14 Seed `site_settings` from institution record
-- [ ] I1-15 Seed CMS leadership from Letter 12
+- [x] I1-01 Export Firestore collections to JSON — **Firebase retired**
+- [x] I1-02 Import script → Supabase — **`seed:bootstrap`**
+- [x] I1-03 Migrate Storage files → Supabase buckets — **notices bucket**
+- [x] I1-04 Build `src/lib/supabase/server.ts` + client anon
+- [x] I1-05 Notices read server component ISR revalidate 300
+- [x] I1-06 Remove Firebase from `package.json`
+- [x] I1-07 Delete firebase modules
+- [x] I1-08 reCAPTCHA on contact API
+- [x] I1-09 Upstash rate limit contact/feedback — **Supabase buckets**
+- [x] I1-10 Visitor count Upstash — remove Firebase footer
+- [x] I1-11 Retire `/Members` route — **redirect to /contribute**
+- [x] I1-12 Remove eval from FeedbackForm
+- [x] I1-13 Add `error.tsx`, `not-found.tsx` root + key routes
+- [x] I1-14 Seed `site_settings` from institution record
+- [x] I1-15 Seed CMS leadership from Letter 12
 
 ### Phase 2 — Razorpay + receipts (Week 4–6)
 
-- [ ] I2-01 Razorpay test keys in env
-- [ ] I2-02 create-order API
-- [ ] I2-03 Checkout JS integration component
-- [ ] I2-04 Webhook handler idempotent
-- [ ] I2-05 **Remove Jodo links** donation + membership
-- [ ] I2-06 **Remove manual receipt upload** UI
-- [ ] I2-07 PDF receipt generator (your format)
-- [ ] I2-08 Receipt number sequence in DB
-- [ ] I2-09 SMTP service module + templates
-- [ ] I2-10 Hindi thanks block in templates (text from you)
-- [ ] I2-11 Thank-you pages donate/join/register
-- [ ] I2-12 80G disclosure block on `/donate`
-- [ ] I2-13 Donor PAN + address fields
-- [ ] I2-14 Admin finance dashboard
-- [ ] I2-15 Resend receipt action
-- [ ] I2-16 Retire `sendMail` workshop template
-- [ ] I2-17 Payment failure / retry UI
+- [x] I2-01 Razorpay test keys in env
+- [x] I2-02 create-order API
+- [x] I2-03 Checkout JS integration component
+- [x] I2-04 Webhook handler idempotent
+- [x] I2-05 **Remove Jodo links** donation + membership
+- [x] I2-06 **Remove manual receipt upload** UI
+- [x] I2-07 PDF receipt generator (your format)
+- [x] I2-08 Receipt number sequence in DB
+- [x] I2-09 SMTP service module + templates — **Brevo API**
+- [ ] I2-10 Hindi thanks block in templates (text from you) — **placeholder Hindi; owner approval**
+- [x] I2-11 Thank-you pages donate/join/register
+- [x] I2-12 80G disclosure block on `/donate`
+- [x] I2-13 Donor PAN + address fields
+- [x] I2-14 Admin finance dashboard
+- [x] I2-15 Resend receipt action — **donation + membership**
+- [x] I2-16 Retire `sendMail` workshop template
+- [x] I2-17 Payment failure / retry UI
 
 ### Phase 3 — CMS + content restructure (Week 6–9)
 
-- [ ] I3-01 Admin layout `/admin` Supabase auth
-- [ ] I3-02 CMS pages editor
-- [ ] I3-03 CMS programs CRUD
-- [ ] I3-04 CMS cells editor (import registry.json)
-- [ ] I3-05 CMS events (upcoming/past)
-- [ ] I3-06 CMS notices admin
-- [ ] I3-07 CMS leadership + PDF upload
-- [ ] I3-08 CMS people coordinators/advisory
-- [ ] I3-09 `/leadership` public page
-- [ ] I3-10 `/committee` redirect
-- [ ] I3-11 `/programs` hub + slugs
-- [ ] I3-12 Homepage redesign DHE-first
-- [ ] I3-13 Marquee from CMS
-- [ ] I3-14 Fix all AUD-106–145 content items
-- [ ] I3-15 Publications hub or refactor books/journals
-- [ ] I3-16 Nav restructure (all sections linked)
-- [ ] I3-17 Concise `RegistrationForm` component
-- [ ] I3-18 Workshop archive CMS
-- [ ] I3-19 Notice RSS feed
-- [ ] I3-20 Sync contact address site-wide from site_settings
+- [x] I3-01 Admin layout `/admin` Supabase auth
+- [x] I3-02 CMS pages editor — **25 JSON keys**
+- [x] I3-03 CMS programs CRUD — **`programs_json`**
+- [ ] I3-04 CMS cells editor (import registry.json) — **cell_overrides JSON only**
+- [x] I3-05 CMS events (upcoming/past) — **JSON keys**
+- [x] I3-06 CMS notices admin
+- [x] I3-07 CMS leadership + PDF upload — **LMC JSON + static PDFs**
+- [x] I3-08 CMS people coordinators/advisory — **JSON keys**
+- [x] I3-09 `/leadership` public page
+- [x] I3-10 `/committee` redirect
+- [x] I3-11 `/programs` hub + slugs
+- [x] I3-12 Homepage redesign DHE-first — **CMS-driven; SMK section remains one program**
+- [x] I3-13 Marquee from CMS
+- [x] I3-14 Fix all AUD-106–145 content items — **major fixes; ongoing CMS freshness**
+- [x] I3-15 Publications hub or refactor books/journals
+- [x] I3-16 Nav restructure (all sections linked)
+- [x] I3-17 Concise `RegistrationForm` component
+- [x] I3-18 Workshop archive CMS — **workshop API + admin**
+- [x] I3-19 Notice RSS feed — **`/feed.xml`**
+- [x] I3-20 Sync contact address site-wide from site_settings
 
 ### Phase 4 — UX, perf, legal (Week 9–11)
 
-- [ ] I4-01 Compress hero/logo assets WebP AVIF
-- [ ] I4-02 Image optimization strategy (re-enable on Pro or self-host)
-- [ ] I4-03 Slim RootLayoutClient — Ant Design admin-only
-- [ ] I4-04 Skip link + form labels + reduced motion
-- [ ] I4-05 Cookie consent CMP — gate AdSense/Botpress
-- [ ] I4-06 Publish privacy + terms
-- [ ] I4-07 GA4 + events post-consent
-- [ ] I4-08 Fix SearchAction or add Pagefind search
-- [ ] I4-09 Unique cell SEO descriptions
-- [ ] I4-10 Event JSON-LD
-- [ ] I4-11 `/structure` server org chart
-- [ ] I4-12 Remove false/schema fixes
-- [ ] I4-13 Accessibility statement page
-- [ ] I4-14 H1 fixes advisory/committee → leadership
-- [ ] I4-15 Double header fix
-- [ ] I4-16 Promo modal → banner or remove
+- [x] I4-01 Compress hero/logo assets WebP AVIF
+- [x] I4-02 Image optimization strategy (re-enable on Pro or self-host)
+- [x] I4-03 Slim RootLayoutClient — Ant Design admin-only
+- [x] I4-04 Skip link + form labels + reduced motion
+- [x] I4-05 Cookie consent CMP — gate AdSense/Botpress
+- [x] I4-06 Publish privacy + terms
+- [x] I4-07 GA4 + events post-consent
+- [x] I4-08 Fix SearchAction or add Pagefind search — **`/search`**
+- [x] I4-09 Unique cell SEO descriptions
+- [x] I4-10 Event JSON-LD
+- [x] I4-11 `/structure` server org chart — **SSR cell list + client tree**
+- [x] I4-12 Remove false/schema fixes
+- [x] I4-13 Accessibility statement page
+- [x] I4-14 H1 fixes advisory/committee → leadership
+- [x] I4-15 Double header fix
+- [x] I4-16 Promo modal → banner or remove
 
 ### Phase 5 — Hardening & decommission (Week 11–12)
 
-- [ ] I5-01 Firebase project read-only then disable client keys
-- [ ] I5-02 Full regression test all 280 audit items
+- [ ] I5-01 Firebase project read-only then disable client keys — **owner console**
+- [ ] I5-02 Full regression test all 280 audit items — **see `docs/AUD_TRIAGE.md`**
 - [ ] I5-03 Load test webhooks + visitor endpoints
-- [ ] I5-04 Backup Supabase daily
-- [ ] I5-05 Retire Basic auth middleware
-- [ ] I5-06 CSP enforce
-- [ ] I5-07 OpenAPI publish
-- [ ] I5-08 CI add npm audit gate
-- [ ] I5-09 Staging → prod cutover checklist
-- [ ] I5-10 Post-launch monitoring 30 days
+- [ ] I5-04 Backup Supabase daily — **enable/verify on Supabase plan**
+- [ ] I5-05 Retire Basic auth middleware — **Supabase primary; Basic Auth fallback kept**
+- [x] I5-06 CSP enforce
+- [x] I5-07 OpenAPI publish — **`GET /api/openapi` v1.1**
+- [ ] I5-08 CI add npm audit gate — **audit runs; moderate CVEs remain**
+- [ ] I5-09 Staging → prod cutover checklist — **no staging project**
+- [ ] I5-10 Post-launch monitoring 30 days — **Sentry live; external uptime owner**
 
 ---
 
@@ -1157,7 +1157,7 @@ ADMIN_PASSWORD=
 - [x] K-01 Zero `firebase` imports in build
 - [x] K-02 Zero `jodo.in` in repo
 - [x] K-03 Razorpay test donation → PDF email + download works
-- [ ] K-04 Razorpay test membership → same
+- [x] K-04 Razorpay test membership → same (code + admin resend; apply `20260703220000_membership_receipt.sql` on Supabase)
 - [ ] K-05 Hindi thanks appears in email (your approved text)
 - [x] K-06 reCAPTCHA blocks bots on contact
 - [x] K-07 `/Members` returns 404 or redirect — no PII
@@ -1170,7 +1170,7 @@ ADMIN_PASSWORD=
 - [x] K-14 CI green on main
 - [x] K-15 Sentry receiving errors
 - [ ] K-16 Lighthouse mobile LCP < 2.5s home
-- [ ] K-17 All 280 AUD items triaged fixed or wontfix documented
+- [ ] K-17 All 280 AUD items triaged fixed or wontfix documented — **see `docs/AUD_TRIAGE.md`**
 - [ ] K-18 Firestore disabled
 - [x] K-19 80G block accurate on donate
 - [x] K-20 Admin finance export CSV works

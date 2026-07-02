@@ -97,6 +97,7 @@ const Header: React.FC = () => {
     { path: "/accountdetails", title: "Accounts" },
     { path: "/feedback", title: "Feedback" },
     { path: "/contact", title: "Contact" },
+    { path: "/hi", title: "हिंदी" },
   ];
 
   const closeMobileMenu = useCallback(() => {

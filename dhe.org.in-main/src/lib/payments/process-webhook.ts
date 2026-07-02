@@ -123,54 +123,86 @@ async function processMembershipCaptured(
   const meta = payer.meta;
   const applicationId = meta.application_id ?? meta.applicationId;
 
-  let membershipRow: {
-    membership_category?: string;
-    membership_type?: string;
-  } | null = null;
-
   if (applicationId) {
+    const receiptNumber = await allocateReceiptNumber();
     const { data } = await supabase
       .from("membership_applications")
       .update({
         payment_status: "paid",
         razorpay_payment_id: payment.id,
+        fee_amount_paise: payment.amount,
+        receipt_number: receiptNumber,
       })
       .eq("id", applicationId)
-      .select("membership_category, membership_type")
+      .select("id")
       .maybeSingle();
-    membershipRow = data;
+
+    const { sendMembershipReceiptIfNeeded } = await import(
+      "@/lib/email/send-membership-receipt-if-needed"
+    );
+    const emailResult = await sendMembershipReceiptIfNeeded(applicationId, {
+      receiptNumber,
+      amountInr: payment.amount / 100,
+      paymentId: payment.id,
+    });
+    if (emailResult.error && !emailResult.skipped) {
+      const { logStructured } = await import("@/lib/logging/structured-log");
+      logStructured("error", "webhook.membership_receipt_email", {
+        applicationId,
+        error: emailResult.error,
+      });
+    }
+    return;
   } else if (payer.email) {
+    const receiptNumber = await allocateReceiptNumber();
     const { data } = await supabase
       .from("membership_applications")
       .update({
         payment_status: "paid",
         razorpay_payment_id: payment.id,
+        fee_amount_paise: payment.amount,
+        receipt_number: receiptNumber,
       })
       .eq("email", payer.email)
       .eq("payment_status", "pending")
-      .select("membership_category, membership_type")
+      .select("id")
       .maybeSingle();
-    membershipRow = data;
+
+    if (data?.id) {
+      const { sendMembershipReceiptIfNeeded } = await import(
+        "@/lib/email/send-membership-receipt-if-needed"
+      );
+      const emailResult = await sendMembershipReceiptIfNeeded(data.id, {
+        receiptNumber,
+        amountInr: payment.amount / 100,
+        paymentId: payment.id,
+      });
+      if (emailResult.error && !emailResult.skipped) {
+        const { logStructured } = await import("@/lib/logging/structured-log");
+        logStructured("error", "webhook.membership_receipt_email", {
+          applicationId: data.id,
+          error: emailResult.error,
+        });
+      }
+    }
+    return;
   }
 
   if (payer.email) {
-    try {
-      const receiptNumber = await allocateReceiptNumber();
-      const { sendMembershipReceiptEmail } = await import(
-        "@/lib/email/send-membership-receipt"
+    const { data: paidApp } = await supabase
+      .from("membership_applications")
+      .select("id")
+      .eq("razorpay_payment_id", payment.id)
+      .maybeSingle();
+
+    if (paidApp?.id) {
+      const { sendMembershipReceiptIfNeeded } = await import(
+        "@/lib/email/send-membership-receipt-if-needed"
       );
-      await sendMembershipReceiptEmail({
-        receiptNumber,
-        memberName: payer.name,
-        memberEmail: payer.email,
+      await sendMembershipReceiptIfNeeded(paidApp.id, {
         amountInr: payment.amount / 100,
         paymentId: payment.id,
-        date: new Date().toLocaleDateString("en-IN"),
-        membershipCategory: membershipRow?.membership_category,
-        membershipType: membershipRow?.membership_type,
       });
-    } catch (emailError) {
-      console.error("[webhook] membership receipt email failed", emailError);
     }
   }
 }

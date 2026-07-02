@@ -28,7 +28,7 @@ const Journals: React.FC = () => {
      window.location.href = "https://pub.rase.co.in";
   };
   const openPDF = () => {
-      window.open("Proceeding.pdf", "_blank");
+      window.open("/Proceeding.pdf", "_blank");
   };
 
   useEffect(() => {
