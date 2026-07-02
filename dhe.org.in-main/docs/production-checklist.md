@@ -12,7 +12,7 @@
 |-------|---------|-------------------------------|
 | Lint | `npm run lint` | **PASS** |
 | Type check | `npm run type-check` | **PASS** |
-| Unit tests | `npm run test` | **PASS** (18 tests) |
+| Unit tests | `npm run test` | **PASS** (22 tests) |
 | Production build | `npm run build` | **PASS** (~92 routes) |
 | npm audit | `npm audit` | **3 moderate** (postcss/next chain — upstream; `uuid` mitigated via override) |
 | CI workflow | `.github/workflows/ci.yml` | **ADDED** (not yet run on GitHub) |
@@ -61,7 +61,7 @@
 | Vercel deployment | **Live** |
 | Supabase Postgres | **Live** — payments + forms/notices/visitors schema applied |
 | Razorpay live + webhook | **Live** |
-| Brevo SMTP | **DONE** — REST API + receipt emails verified |
+| Brevo SMTP | **DONE** — REST API verified; deactivate API IP blocking on Brevo |
 | reCAPTCHA keys | **Wired** — contact, feedback, membership forms |
 | Upstash (rate limit) | **Skipped** — no free plan on Vercel; **Supabase `rate_limit_buckets`** is production backend |
 | GA4 | **Live** — `G-VZ55ESSK6V` (cookie consent gated) |
@@ -167,7 +167,8 @@
 | 6 | Accessibility below 100 | **MEDIUM** | Contrast fixes applied; retest Lighthouse |
 | 7 | CMS partial | **LOW** | Key snippets at `/admin/cms`; cell pages hardcoded |
 | 8 | Secrets exposed in chat | **HIGH** | **Manual** — run `npm run check-rotation` |
-| 9 | Full audit 280 items — ~10% remain | **LOW** | Lighthouse sign-off + owner secret rotation + live donation test |
+| 9 | Full audit 280 items — ~8% remain | **LOW** | Lighthouse sign-off + Hindi legal + full CMS |
+| 10 | Live donation + receipt email | **DONE** | Verified Jul 2026 |
 | 10 | `donor_address` DB column | **DONE** | Applied in Supabase SQL Editor |
 | 11 | 80G / 12A PDFs on `/accounts/*` | **DONE** | `12a-vbitr-trust.pdf`, `80g-vbitr-trust.pdf` in `public/accounts/` |
 
@@ -177,7 +178,7 @@
 
 # **BETA: YES** | **ENTERPRISE: NO**
 
-The site is **live at https://www.dhe.org.in** with Supabase forms/notices, Razorpay, Brevo receipt emails, reCAPTCHA, and admin tools. Receipt resend verified (200). Full enterprise gates (Lighthouse ≥95, a11y 100, full CMS, complete audit) still in progress.
+The site is **live at https://www.dhe.org.in** with Supabase forms/notices, Razorpay (live keys), Brevo receipt emails (API IP blocking off), reCAPTCHA, and admin tools. `/api/health` returns `ok` for payments + email. Full enterprise gates (Lighthouse ≥95, a11y 100, full relational CMS) still in progress.
 
 ---
 

@@ -122,6 +122,8 @@ export default function RazorpayDonateButton({
           const verifyData = await verifyRes.json();
           if (verifyRes.ok) {
             const receipt = verifyData.donation?.receipt_number as string | undefined;
+            const emailSent = verifyData.emailSent as boolean | undefined;
+            const emailError = verifyData.emailError as string | undefined;
             trackGaEvent("purchase", {
               transaction_id: response.razorpay_payment_id,
               value: amount,
@@ -136,8 +138,11 @@ export default function RazorpayDonateButton({
             }
             setPaymentSuccess({
               receiptNumber: receipt,
-              message:
-                "Thank you! Payment received. Your official receipt will be emailed within a few minutes.",
+              message: emailSent
+                ? "Thank you! Payment received. Your official receipt has been emailed."
+                : emailError
+                  ? `Thank you! Payment received (Receipt ${receipt ?? "pending"}). Email delivery is delayed — check spam or verify at /receipt/verify.`
+                  : "Thank you! Payment received. Your official receipt will be emailed within a few minutes.",
             });
           } else {
             setPaymentFailed(true);
@@ -185,7 +190,9 @@ export default function RazorpayDonateButton({
           ? "Payment complete"
           : loading
             ? "Processing…"
-            : "Pay securely with Razorpay"}
+            : paymentFailed
+              ? "Retry payment with Razorpay"
+              : "Pay securely with Razorpay"}
       </button>
       {paymentSuccess && (
         <div

@@ -69,7 +69,13 @@ async function processDonationCaptured(
     .eq("razorpay_payment_id", payment.id)
     .maybeSingle();
 
-  if (existing) return;
+  if (existing?.id) {
+    const { sendDonationReceiptIfNeeded } = await import(
+      "@/lib/email/send-donation-receipt-if-needed"
+    );
+    await sendDonationReceiptIfNeeded(existing.id);
+    return;
+  }
 
   const payer = payerFromPayment(payment, orderRow);
   const receiptNumber = await allocateReceiptNumber();
@@ -95,28 +101,13 @@ async function processDonationCaptured(
 
   if (donationError) throw new Error(donationError.message);
 
-  if (payer.email) {
-    try {
-      const { sendDonationReceiptEmail } = await import(
-        "@/lib/email/send-donation-receipt"
-      );
-      const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dhe.org.in";
-      const downloadUrl = inserted?.id
-        ? `${site}/api/receipts/${inserted.id}/pdf?email=${encodeURIComponent(payer.email)}`
-        : undefined;
-      await sendDonationReceiptEmail(
-        {
-          receiptNumber,
-          donorName: payer.name,
-          donorEmail: payer.email,
-          amountInr: payment.amount / 100,
-          paymentId: payment.id,
-          date: new Date().toLocaleDateString("en-IN"),
-        },
-        { downloadUrl }
-      );
-    } catch (emailError) {
-      console.error("[webhook] donation receipt email failed", emailError);
+  if (inserted?.id) {
+    const { sendDonationReceiptIfNeeded } = await import(
+      "@/lib/email/send-donation-receipt-if-needed"
+    );
+    const result = await sendDonationReceiptIfNeeded(inserted.id);
+    if (result.error && !result.skipped) {
+      console.error("[webhook] donation receipt email failed", result.error);
     }
   }
 }

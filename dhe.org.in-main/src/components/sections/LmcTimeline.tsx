@@ -28,11 +28,11 @@ export default function LmcTimeline() {
           <li key={doc.id} className="ms-6">
             <span
               className={`absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white ${
-                doc.isCurrent ? "bg-orange-600" : "bg-gray-400"
+                doc.isCurrent ? "bg-orange-600" : "bg-gray-600"
               }`}
               aria-hidden
             />
-            <time className="text-xs font-medium text-gray-500">{doc.date}</time>
+            <time className="text-xs font-medium text-gray-600">{doc.date}</time>
             <h3 className="text-base font-semibold text-gray-900 mt-1">{doc.title}</h3>
             <p className="text-sm text-gray-600 mt-1">
               Ref. {doc.refNo}

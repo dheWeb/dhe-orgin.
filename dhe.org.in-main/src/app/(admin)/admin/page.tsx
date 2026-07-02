@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdminSystemStatus from "./AdminSystemStatus";
 
 const links = [
   {
@@ -55,7 +56,7 @@ export default function AdminHubPage() {
       <p className="text-sm text-gray-600 mb-4">
         Signed in via Basic Auth or Supabase (allowlisted email). Choose a module below.
       </p>
-      <p className="text-sm mb-8">
+      <p className="text-sm mb-4">
         <a
           href="/api/admin/auth/logout?redirect=/admin/login"
           className="text-orange-700 hover:underline"
@@ -63,6 +64,7 @@ export default function AdminHubPage() {
           Sign out (Supabase session)
         </a>
       </p>
+      <AdminSystemStatus />
       <ul className="space-y-3">
         {links.map((item) => (
           <li key={item.href}>
@@ -76,10 +78,12 @@ export default function AdminHubPage() {
           </li>
         ))}
       </ul>
-      <p className="mt-8 text-xs text-gray-500">
-        API monitoring: <code className="text-xs">GET /api/admin/errors</code> (same login)
+      <p className="mt-8 text-xs text-gray-600">
+        API monitoring: <code className="text-xs">GET /api/health</code>
         {" · "}
         <code className="text-xs">GET /api/admin/payments/diagnostics</code>
+        {" · "}
+        <code className="text-xs">GET /api/admin/email/diagnostics</code>
       </p>
     </div>
   );

@@ -49,7 +49,7 @@ export function CookieConsentBanner() {
         <p className="text-sm leading-relaxed">
           We use cookies and third-party scripts (analytics, chat) to improve
           your experience. See our{" "}
-          <a href="/privacy-policy" className="underline text-orange-200 hover:text-white">
+          <a href="/privacy-policy" className="underline text-orange-100 hover:text-white">
             Privacy Policy
           </a>
           .
@@ -58,7 +58,7 @@ export function CookieConsentBanner() {
           <button
             type="button"
             onClick={() => save("rejected")}
-            className="px-4 py-2 text-sm border border-white/40 rounded-md hover:bg-white/10"
+            className="px-4 py-2 text-sm border border-white/70 rounded-md hover:bg-white/10 text-white"
           >
             Essential only
           </button>

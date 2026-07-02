@@ -97,6 +97,8 @@ After rotation, send a test payment (₹1) and confirm webhook delivery in Razor
 
 Without this step, production returns `401 unrecognised IP address` even with a valid `BREVO_API_KEY`.
 
+**If receipts stopped after Brevo security change:** open **Brevo → Settings → Security → Authorized IPs** and **deactivate blocking for API keys** (Vercel uses dynamic IPs). SMTP blocking can stay deactivated.
+
 Verify SPF/DKIM for `dhe.org.in` in Brevo → Senders & Domains.
 
 ---

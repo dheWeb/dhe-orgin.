@@ -96,11 +96,33 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  let emailSent: boolean | null = null;
+  let emailError: string | null = null;
+
+  if (donation?.id) {
+    const { sendDonationReceiptIfNeeded } = await import(
+      "@/lib/email/send-donation-receipt-if-needed"
+    );
+    const emailResult = await sendDonationReceiptIfNeeded(donation.id);
+    emailSent = emailResult.sent;
+    if (emailResult.error && !emailResult.skipped) {
+      emailError = emailResult.error;
+    } else if (emailResult.skipped && emailResult.error) {
+      emailError = emailResult.error;
+    }
+  }
+
   return NextResponse.json({
     verified: true,
     donation: donation ?? null,
+    emailSent,
+    emailError,
     message: donation
-      ? "Payment verified and receipt recorded."
+      ? emailSent
+        ? "Payment verified and receipt emailed."
+        : emailError
+          ? "Payment verified. Receipt recorded — email delivery failed; try again from admin or contact DHE."
+          : "Payment verified and receipt recorded."
       : "Payment verified. Receipt will be finalized via webhook shortly.",
   });
 }

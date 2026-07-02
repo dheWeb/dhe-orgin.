@@ -23,7 +23,7 @@ export async function POST(req: NextRequest, context: RouteContext) {
   const { data: row, error } = await supabase
     .from("donations")
     .select(
-      "id, receipt_number, donor_name, donor_email, amount_paise, razorpay_payment_id, created_at"
+      "id, receipt_number, donor_name, donor_email, amount_paise, razorpay_payment_id, created_at, metadata"
     )
     .eq("id", id)
     .maybeSingle();
@@ -43,6 +43,14 @@ export async function POST(req: NextRequest, context: RouteContext) {
 
   try {
     await sendDonationReceiptEmail(receiptData);
+    const supabase = getSupabaseAdmin();
+    if (supabase) {
+      const meta = {
+        ...((row.metadata as Record<string, unknown>) ?? {}),
+        receipt_email_sent: true,
+      };
+      await supabase.from("donations").update({ metadata: meta }).eq("id", id);
+    }
     return NextResponse.json({ success: true });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Email failed";
