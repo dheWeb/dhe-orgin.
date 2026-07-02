@@ -2,8 +2,8 @@
 
 **Site:** [www.dhe.org.in](https://www.dhe.org.in)  
 **Scope:** Full redesign, Firebase retirement, Supabase + Razorpay + SMTP, institutional truth  
-**Status:** Planning document (implementation not started)  
-**Last updated:** 2026-06-30
+**Status:** Implementation in production (see `EXHAUSTIVE_RESTRUCTURE_PLAN.md` for live checklist)  
+**Last updated:** 2026-07-03
 
 ---
 

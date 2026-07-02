@@ -5,6 +5,8 @@ export type PageSeoEntry = {
   path: string;
   title: string;
   description: string;
+  /** Custom Open Graph image path (under public/ or absolute URL) */
+  ogImage?: string;
   /** Exclude from sitemap (admin/internal) */
   noIndex?: boolean;
 };
@@ -15,6 +17,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Holistic Educational Transformation of Bharat",
     description:
       "Department of Holistic Education (DHE) — national platform for holistic learning, Shiksha Mahakumbh, NEP 2020, innovation, leadership, and Viksit Bharat.",
+    ogImage: "/2024K/1.webp",
   },
   messages: {
     path: "/messages",
@@ -45,6 +48,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Leadership & LMC",
     description:
       "Local Management Committee and leadership of the Department of Holistic Education (DHE).",
+    ogImage: "/logo.webp",
   },
   events: {
     path: "/events",
@@ -62,6 +66,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "DHE Programs",
     description:
       "Flagship programs, workshops, camps, and cells of the Department of Holistic Education (DHE).",
+    ogImage: "/vi.webp",
   },
   people: {
     path: "/people",
@@ -86,6 +91,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Donation",
     description:
       "Support the Department of Holistic Education (DHE) through donations for holistic education initiatives.",
+    ogImage: "/logo.webp",
   },
   contribute: {
     path: "/contribute",

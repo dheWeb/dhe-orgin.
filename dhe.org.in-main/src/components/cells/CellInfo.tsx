@@ -1,3 +1,4 @@
+import { slugifyAnchor } from "@/lib/seo/slugify-anchor";
 import React, { FC } from "react";
 
 interface ITCellInfoProps {
@@ -14,10 +15,17 @@ const CellInfo: FC<ITCellInfoProps> = ({
   footnote,
   hideTitle = false,
 }) => {
+  const sectionId = title ? slugifyAnchor(title) : undefined;
+
   return (
     <div className="max-w-4xl mx-auto px-4 pb-2 bg-white rounded-md">
       {title && !hideTitle ? (
-        <h2 className="text-xl font-bold mb-4 text-primary-color">{title}</h2>
+        <h2
+          id={sectionId}
+          className="text-xl font-bold mb-4 text-primary-color scroll-mt-24"
+        >
+          {title}
+        </h2>
       ) : null}
 
       <p className="mb-2 text-black justify-between">{objective}</p>

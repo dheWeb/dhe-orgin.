@@ -56,7 +56,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
     return NextResponse.json({ error: "Receipt not available" }, { status: 404 });
   }
 
-  const pdf = generateDonationPdf(receiptData);
+  const pdf = await generateDonationPdf(receiptData);
   const filename = `${receiptData.receiptNumber}.pdf`;
 
   return new NextResponse(new Uint8Array(pdf), {

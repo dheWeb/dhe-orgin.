@@ -45,6 +45,18 @@ export default function TransparencyPage() {
         </li>
       </ul>
 
+      <h2 className="text-lg font-semibold text-gray-900 not-prose mt-8">Form 10BE (Section 80G)</h2>
+      <p className="text-sm text-gray-700 leading-relaxed not-prose">
+        For donations eligible under Section 80G, {vbitrTrust.shortName} issues official receipts with
+        unique receipt numbers (emailed after successful Razorpay payment). The trust files Form 10BE
+        annually as required under Income Tax rules. Donors should retain receipt numbers and PDFs for
+        ITR filing. For certificate or 10BE queries contact{" "}
+        <a href="mailto:director@dhe.org.in" className="text-orange-700 hover:underline">
+          director@dhe.org.in
+        </a>
+        .
+      </p>
+
       <h2 className="text-lg font-semibold text-gray-900 not-prose mt-8">Policies</h2>
       <ul className="not-prose space-y-2 text-sm">
         <li>

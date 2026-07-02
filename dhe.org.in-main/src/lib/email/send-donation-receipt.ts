@@ -25,7 +25,7 @@ export async function sendDonationReceiptEmail(
   data: DonationReceiptData,
   options?: { downloadUrl?: string }
 ): Promise<void> {
-  const pdf = generateDonationPdf(data);
+  const pdf = await generateDonationPdf(data);
   const subject = `Donation Receipt ${data.receiptNumber} — DHE / दान रसीद`;
   const html = buildReceiptHtml(data, options?.downloadUrl);
 

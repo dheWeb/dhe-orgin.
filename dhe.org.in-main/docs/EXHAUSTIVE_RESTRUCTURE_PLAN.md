@@ -500,7 +500,7 @@ Transactional — created by Razorpay webhooks, not hand-edited in CMS.
 | AUD-167 | P2 | Membership categories hardcoded fees only in form |
 | AUD-168 | P1 | Duplicate donation write paths in submit |
 | AUD-169 | P2 | `axios` only for broken admin email |
-| AUD-170 | P1 | No Form 10BE process documented |
+| AUD-170 | P1 | ~~No Form 10BE process documented~~ → transparency + refund-policy + DR runbook |
 | AUD-171 | P2 | No refund/cancellation policy |
 | AUD-172 | P1 | No payment failure UI |
 | AUD-173 | P1 | No admin finance resend receipt |
@@ -1154,26 +1154,26 @@ ADMIN_PASSWORD=
 
 ## §K — Success criteria (every gate before go-live)
 
-- [ ] K-01 Zero `firebase` imports in build
-- [ ] K-02 Zero `jodo.in` in repo
-- [ ] K-03 Razorpay test donation → PDF email + download works
+- [x] K-01 Zero `firebase` imports in build
+- [x] K-02 Zero `jodo.in` in repo
+- [x] K-03 Razorpay test donation → PDF email + download works
 - [ ] K-04 Razorpay test membership → same
 - [ ] K-05 Hindi thanks appears in email (your approved text)
-- [ ] K-06 reCAPTCHA blocks bots on contact
-- [ ] K-07 `/Members` returns 404 or redirect — no PII
-- [ ] K-08 Leadership matches Letter 12 + 4 PDFs downloadable
-- [ ] K-09 Address Sunny Enclave + phone 7903431900 everywhere
-- [ ] K-10 Privacy + terms live
-- [ ] K-11 Cookie consent before third-party scripts
-- [ ] K-12 Notices visible without JavaScript
-- [ ] K-13 CMS publish notice → home within 5 min
-- [ ] K-14 CI green on main
-- [ ] K-15 Sentry receiving errors
+- [x] K-06 reCAPTCHA blocks bots on contact
+- [x] K-07 `/Members` returns 404 or redirect — no PII
+- [x] K-08 Leadership matches Letter 12 + 4 PDFs downloadable
+- [x] K-09 Address Sunny Enclave + phone 7903431900 everywhere
+- [x] K-10 Privacy + terms live
+- [x] K-11 Cookie consent before third-party scripts
+- [x] K-12 Notices visible without JavaScript
+- [x] K-13 CMS publish notice → home within 5 min
+- [x] K-14 CI green on main
+- [x] K-15 Sentry receiving errors
 - [ ] K-16 Lighthouse mobile LCP < 2.5s home
 - [ ] K-17 All 280 AUD items triaged fixed or wontfix documented
 - [ ] K-18 Firestore disabled
-- [ ] K-19 80G block accurate on donate
-- [ ] K-20 Admin finance export CSV works
+- [x] K-19 80G block accurate on donate
+- [x] K-20 Admin finance export CSV works
 
 ---
 
@@ -1200,4 +1200,4 @@ ADMIN_PASSWORD=
 
 ---
 
-**This is the complete inventory — 280 audit items, every route, CMS spec, no Jodo, Supabase, Razorpay, SMTP, leadership, receipts. Implementation starts at Phase 0 task I0-01 when you approve.**
+**This is the complete inventory — 280 audit items, every route, CMS spec, no Jodo, Supabase, Razorpay, SMTP, leadership, receipts. Production deployment active on www.dhe.org.in (2026-07); remaining gates in §K and owner items in §L.**

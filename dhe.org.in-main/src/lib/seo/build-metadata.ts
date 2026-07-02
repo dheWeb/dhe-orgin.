@@ -7,6 +7,10 @@ type PageKey = keyof typeof PAGE_SEO;
 function buildFromEntry(entry: PageSeoEntry): Metadata {
   const canonicalPath = entry.path === "/" ? "/" : entry.path;
   const url = `${siteConfig.url}${canonicalPath === "/" ? "" : canonicalPath}`;
+  const ogImagePath = entry.ogImage ?? siteConfig.ogImage;
+  const ogImageUrl = ogImagePath.startsWith("http")
+    ? ogImagePath
+    : `${siteConfig.url}${ogImagePath.startsWith("/") ? ogImagePath : `/${ogImagePath}`}`;
 
   return {
     title: entry.title,
@@ -26,10 +30,10 @@ function buildFromEntry(entry: PageSeoEntry): Metadata {
       description: entry.description,
       images: [
         {
-          url: siteConfig.ogImage,
+          url: ogImageUrl,
           width: 512,
           height: 512,
-          alt: siteConfig.name,
+          alt: entry.title,
         },
       ],
     },
@@ -37,7 +41,7 @@ function buildFromEntry(entry: PageSeoEntry): Metadata {
       card: "summary_large_image",
       title: entry.title,
       description: entry.description,
-      images: [siteConfig.ogImage],
+      images: [ogImageUrl],
       site: siteConfig.twitterHandle,
     },
   };

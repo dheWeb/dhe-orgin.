@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { getPrograms } from "@/lib/cms/programs-content";
+import { siteConfig } from "@/lib/seo/site-metadata";
 
 export const metadata = createPageMetadata("programs");
 
@@ -12,8 +13,29 @@ export default async function ProgramsPage() {
     content.programs_intro?.text?.trim() ||
     "Flagship programs and cells advancing holistic education across Bharat.";
 
+  const programsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "DHE Programs",
+    itemListElement: programs.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "WebPage",
+        name: item.title,
+        description: item.summary,
+        url: `${siteConfig.url}/programs/${item.slug}`,
+      },
+    })),
+  };
+
   return (
-    <div className="dhe-container py-10 max-w-4xl mx-auto">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(programsJsonLd) }}
+      />
+      <div className="dhe-container py-10 max-w-4xl mx-auto">
       <h1 className="text-2xl sm:text-3xl font-bold text-primary-color">
         DHE Programs
       </h1>
@@ -44,6 +66,7 @@ export default async function ProgramsPage() {
           );
         })}
       </ul>
-    </div>
+      </div>
+    </>
   );
 }

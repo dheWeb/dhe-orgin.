@@ -1,5 +1,7 @@
 import { jsPDF } from "jspdf";
+import QRCode from "qrcode";
 import { formatReceiptHeaderLines, receiptTitles } from "@/data/institution";
+import { buildReceiptVerifyUrl } from "@/lib/receipts/receipt-verify-url";
 
 export type DonationReceiptData = {
   receiptNumber: string;
@@ -10,7 +12,7 @@ export type DonationReceiptData = {
   date: string;
 };
 
-export function generateDonationPdf(data: DonationReceiptData): Buffer {
+export async function generateDonationPdf(data: DonationReceiptData): Promise<Buffer> {
   const doc = new jsPDF();
   const header = formatReceiptHeaderLines();
 
@@ -48,13 +50,23 @@ export function generateDonationPdf(data: DonationReceiptData): Buffer {
     "Donation eligible for deduction u/s 80G subject to Income Tax provisions.",
     14,
     y,
-    { maxWidth: 180 }
+    { maxWidth: 120 }
   );
 
   y += 12;
   doc.text("धन्यवाद — आपके उदार दान के लिए हार्दिक आभार।", 14, y);
   y += 7;
   doc.text("Thank you for supporting holistic education and Viksit Bharat.", 14, y);
+
+  try {
+    const verifyUrl = buildReceiptVerifyUrl(data.receiptNumber, data.donorEmail);
+    const qr = await QRCode.toDataURL(verifyUrl, { margin: 1, width: 128 });
+    doc.addImage(qr, "PNG", 150, 42, 42, 42);
+    doc.setFontSize(7);
+    doc.text("Scan to verify receipt", 150, 88);
+  } catch {
+    // QR optional — PDF still valid without it
+  }
 
   return Buffer.from(doc.output("arraybuffer"));
 }
