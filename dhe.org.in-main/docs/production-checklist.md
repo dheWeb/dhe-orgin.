@@ -151,8 +151,9 @@
 | 6 | Accessibility below 100 | **MEDIUM** | Contrast fixes applied; retest Lighthouse |
 | 7 | CMS partial | **LOW** | Key snippets at `/admin/cms`; cell pages hardcoded |
 | 8 | Secrets exposed in chat | **HIGH** | **Manual** — run `npm run check-rotation` |
-| 9 | Full audit 280 items — ~40% remain | **MEDIUM** | Ongoing — see latest session |
-| 10 | `donor_address` DB column | **LOW** | Run `npm run db:migrate` or SQL in Supabase dashboard |
+| 9 | Full audit 280 items — ~35% remain | **LOW** | Lighthouse + full Hindi UI + admin Supabase Auth |
+| 10 | `donor_address` DB column | **DONE** | Applied in Supabase SQL Editor |
+| 11 | 80G / 12A PDFs on `/accounts/*` | **DONE** | `12a-vbitr-trust.pdf`, `80g-vbitr-trust.pdf` in `public/accounts/` |
 
 ---
 

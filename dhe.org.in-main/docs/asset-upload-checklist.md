@@ -8,8 +8,8 @@ The git `public/` folder in this repo is intentionally minimal. Production at ht
 
 | Path | Used by | Notes |
 |------|---------|--------|
-| `public/accounts/80g-vbitr-trust.pdf` | Donation page, Accounts | 80G certificate |
-| `public/accounts/12a-vbitr-trust.pdf` | Donation page, Accounts | 12A registration |
+| `public/accounts/80g-vbitr-trust.pdf` | Donation page, Accounts | 80G certificate — **DONE** |
+| `public/accounts/12a-vbitr-trust.pdf` | Donation page, Accounts | 12A registration — **DONE** |
 | `public/accounts/dhe.pdf` | Accounts page QR card | DHE bank QR |
 | `public/accounts/sm.pdf` | Accounts page | Shiksha Mahakumbh account QR |
 | `public/accounts/sm.png` | Accounts page thumbnail | |
