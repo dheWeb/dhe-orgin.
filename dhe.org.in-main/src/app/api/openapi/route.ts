@@ -121,7 +121,7 @@ export async function GET() {
       },
       "/api/cron/health": {
         get: {
-          summary: "Cron health ping (Vercel cron every 15 min)",
+          summary: "Cron health ping (daily 02:00 UTC on Hobby; use external monitor for 5m)",
           tags: ["Ops"],
           description: "Requires Authorization: Bearer CRON_SECRET when set.",
           responses: { "200": jsonResponse },
