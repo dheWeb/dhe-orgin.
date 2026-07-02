@@ -3,8 +3,8 @@
 **Site:** https://www.dhe.org.in  
 **Entity:** Department of Holistic Education (DHE) — national platform, 25+ cells, Vidya Bharti / VBITR Trust  
 **Document purpose:** Every audited issue (no “top N” lists) + every redesign action + CMS + Supabase + Razorpay + SMTP  
-**Status:** Implementation ~92% complete (see `production-checklist.md` for live gates)  
-**Last updated:** 2026-06-30
+**Status:** Implementation ~94% complete (see `production-checklist.md` for live gates)  
+**Last updated:** 2026-06-30 (post owner-free batch c53b3d3+)
 
 ---
 
@@ -17,9 +17,12 @@
 | Donation + membership receipts | Yes | Hindi copy approval |
 | CMS 25 keys | Yes | Full relational §B.3 schema |
 | Admin Supabase login | Yes | RBAC roles, retire Basic Auth |
-| Legal, privacy, refund, a11y page | Yes | Lighthouse 95/100 sign-off |
-| `/programs`, `/events`, `/search`, `/leadership` | Yes | Full Hindi site |
+| Admin canonical URLs + settings | Yes | — |
+| Form ack emails + GA4 events | Yes | — |
+| Legal, privacy, refund, transparency, a11y page | Yes | Lighthouse 95/100 sign-off |
+| `/programs`, `/events`, `/search`, `/leadership` + LMC timeline | Yes | Full Hindi site |
 | Cells (25) | JSON overrides | Full cell CMS editor |
+| OpenAPI stub | Yes (`/api/openapi`) | Full spec |
 
 **Live tracker:** `docs/production-checklist.md`
 

@@ -503,39 +503,46 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
             All Rights Reserved.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-200">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-100">
 
             <Link
               href="/privacy-policy"
-              className="hover:text-orange-300 transition"
+              className="hover:text-white underline-offset-2 hover:underline transition"
             >
               Privacy Policy
             </Link>
 
             <Link
               href="/terms"
-              className="hover:text-orange-300 transition"
+              className="hover:text-white underline-offset-2 hover:underline transition"
             >
               Terms & Conditions
             </Link>
 
             <Link
               href="/refund-policy"
-              className="hover:text-orange-300 transition"
+              className="hover:text-white underline-offset-2 hover:underline transition"
             >
               Refund Policy
             </Link>
 
             <Link
+              href="/transparency"
+              className="hover:text-white underline-offset-2 hover:underline transition"
+            >
+              Transparency
+            </Link>
+
+            <Link
               href="/hi"
-              className="hover:text-orange-300 transition"
+              className="hover:text-white underline-offset-2 hover:underline transition"
             >
               हिंदी
             </Link>
 
             <Link
               href="/accessibility"
-              className="hover:text-orange-300 transition"
+              className="hover:text-white underline-offset-2 hover:underline transition"
             >
               Accessibility
             </Link>

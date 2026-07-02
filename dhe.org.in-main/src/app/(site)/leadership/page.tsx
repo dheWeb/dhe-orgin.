@@ -1,5 +1,6 @@
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 import AdvisoryCouncil from "@/components/sections/AdvisoryCouncil";
+import LmcTimeline from "@/components/sections/LmcTimeline";
 import Link from "next/link";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { getLmcMembers, getLmcPatrons } from "@/lib/cms/lmc-content";
@@ -49,6 +50,7 @@ export default async function LeadershipPage() {
       )}
       <AdvisoryCouncil title="LMC Patrons" members={patrons} />
       <AdvisoryCouncil title="LMC Members" members={members} />
+      <LmcTimeline />
 
       <section className="dhe-container py-10 max-w-3xl mx-auto">
         <h2 className="text-xl font-semibold text-gray-900 mb-4">

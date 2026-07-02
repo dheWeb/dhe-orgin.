@@ -22,6 +22,11 @@ const links = [
     desc: "Edit all site snippets and JSON registries",
   },
   {
+    href: "/admin/settings",
+    label: "Site settings",
+    desc: "Contact, footer, and global snippets (CMS shortcuts)",
+  },
+  {
     href: "/admin/finance/workshops",
     label: "Workshop registrations",
     desc: "View workshop sign-ups",

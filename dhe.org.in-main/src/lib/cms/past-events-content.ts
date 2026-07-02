@@ -9,6 +9,18 @@ export type PastEventRow = {
 
 export const DEFAULT_PAST_EVENTS: PastEventRow[] = [
   {
+    title: "Shiksha Mahakumbh 5.0",
+    date: "31 October – 2 November 2025",
+    venue: "NIPER Mohali",
+    link: "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
+  },
+  {
+    title: "Indian Education System for Global Development",
+    date: "16–17 December 2024",
+    venue: "Kurukshetra University",
+    link: "https://www.shikshamahakumbh.com/",
+  },
+  {
     title: "Role of Academic-driven Startups in Developing Economy of J&K",
     date: "June 29-30, 2024",
     venue: "National Institute of Technology Srinagar",

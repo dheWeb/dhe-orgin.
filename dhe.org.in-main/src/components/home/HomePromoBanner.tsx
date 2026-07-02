@@ -63,7 +63,7 @@ export default function HomePromoBanner() {
     >
       <div className="dhe-container py-2.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 justify-between">
         <p className="text-xs sm:text-sm leading-snug">
-          <strong className="text-orange-300">Shiksha Mahakumbh 6.0</strong> — NIT Hamirpur,
+          <strong className="text-orange-200">Shiksha Mahakumbh 6.0</strong> — NIT Hamirpur,
           9–11 Oct 2026. Registration open on the official RASE portal.
         </p>
         <div className="flex items-center gap-2 shrink-0">

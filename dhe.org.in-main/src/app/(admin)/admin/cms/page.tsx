@@ -144,7 +144,8 @@ export default function CmsAdminPage() {
             return (
               <li
                 key={item.key}
-                className="rounded-lg border border-gray-200 bg-white p-4 space-y-3"
+                id={item.key}
+                className="rounded-lg border border-gray-200 bg-white p-4 space-y-3 scroll-mt-24"
               >
                 <h2 className="font-medium text-gray-900">{def?.label ?? item.label}</h2>
                 <p className="text-xs text-gray-500">Key: {item.key}</p>

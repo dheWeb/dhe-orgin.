@@ -31,7 +31,7 @@ const Marquees: React.FC<MarqueesProps> = ({ items = DEFAULT_MARQUEE_ITEMS }) =>
       {...(item.link.startsWith("http")
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className="mx-4 sm:mx-6 text-gray-200 hover:text-orange-300 min-h-11 inline-flex items-center text-xs sm:text-sm"
+      className="mx-4 sm:mx-6 text-white hover:text-orange-200 min-h-11 inline-flex items-center text-xs sm:text-sm"
     >
       {item.text}
     </Link>

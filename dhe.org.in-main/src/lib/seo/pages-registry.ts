@@ -264,6 +264,12 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       "होलिस्टिक शिक्षा के लिए विभाग ऑफ़ होलिस्टिक एजुकेशन (DHE) — प्रारंभिक हिंदी पृष्ठ।",
   },
+  transparency: {
+    path: "/transparency",
+    title: "Transparency & Accountability",
+    description:
+      "Trust documents, 80G/12A certificates, policies, and accountability information for DHE.",
+  },
 };
 
 import { CELLS, getCellSeoTitle, getCellBySlug } from "@/data/cells";

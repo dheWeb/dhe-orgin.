@@ -12,8 +12,8 @@
 |-------|---------|-------------------------------|
 | Lint | `npm run lint` | **PASS** |
 | Type check | `npm run type-check` | **PASS** |
-| Unit tests | `npm run test` | **PASS** (11 tests) |
-| Production build | `npm run build` | **PASS** (60 routes) |
+| Unit tests | `npm run test` | **PASS** (18 tests) |
+| Production build | `npm run build` | **PASS** (~92 routes) |
 | npm audit | `npm audit` | **3 moderate** (postcss/next chain — upstream; `uuid` mitigated via override) |
 | CI workflow | `.github/workflows/ci.yml` | **ADDED** (not yet run on GitHub) |
 
@@ -84,7 +84,12 @@
 | CMS | **~95%** | All 25 registry keys in admin |
 | **Membership receipt** | Separate PDF/email; no donation row for membership payments |
 | **/events** hub + **/search** | Unified events + site search |
-| **Admin aliases** | `/admin/notices`, `/admin/finance/*`, `/admin/feedback` |
+| **Admin canonical URLs** | `/admin/notices`, `/admin/finance/*` (legacy redirect) |
+| **Form ack emails + GA4** | contact, feedback, membership; `generate_lead` / `begin_checkout` |
+| **LMC timeline + transparency** | `/leadership` timeline; `/transparency` hub |
+| **Expanded search** | Pages + programs + 25 cells indexed |
+| **OpenAPI stub** | `GET /api/openapi` |
+| **/admin/settings** | CMS shortcuts for site contact |
 | **LMC archive** | All nomination PDFs on `/leadership` |
 | **Supabase admin login** | `/admin/login` + `ADMIN_EMAIL_ALLOWLIST` (Basic Auth still works) |
 | **Registration thank-you** | `/registrationForm/thank-you` |
