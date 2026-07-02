@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import toast from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
+import { trackGaEvent } from "@/lib/analytics/ga-events";
 
 function VisitorCountSpinner() {
   return (
@@ -115,6 +116,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
 
+      trackGaEvent("generate_lead", { form_name: "contact" });
       toast.success("Message Sent Successfully");
       setEmail("");
       setMessage("");

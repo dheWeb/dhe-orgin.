@@ -29,7 +29,7 @@ const Books: React.FC = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-  const textClass = isMobile ? "text-l" : "text-l";
+  const textClass = isMobile ? "text-lg" : "text-lg";
   const textClassHeading = isMobile ? "text-2xl" : "text-2xl";
 
   return (

@@ -2,22 +2,19 @@ import Link from "next/link";
 
 const links = [
   {
-    href: "/noticeboarddata",
+    href: "/admin/notices",
     label: "Manage notices",
     desc: "Add, edit, delete notice board items",
-    alias: "/admin/notices",
   },
   {
-    href: "/donationdatadekh",
+    href: "/admin/finance/donations",
     label: "Donation records",
     desc: "View donations, export, email receipts",
-    alias: "/admin/finance/donations",
   },
   {
     href: "/admin/inbox",
     label: "Form inbox",
     desc: "Feedback and contact messages",
-    alias: "/admin/feedback",
   },
   {
     href: "/admin/cms",
@@ -25,10 +22,9 @@ const links = [
     desc: "Edit all site snippets and JSON registries",
   },
   {
-    href: "/WD",
+    href: "/admin/finance/workshops",
     label: "Workshop registrations",
     desc: "View workshop sign-ups",
-    alias: "/admin/finance/workshops",
   },
   {
     href: "/admin/memberships",
@@ -71,9 +67,6 @@ export default function AdminHubPage() {
             >
               <span className="font-medium text-gray-900">{item.label}</span>
               <span className="block text-sm text-gray-600 mt-1">{item.desc}</span>
-              {"alias" in item && item.alias ? (
-                <span className="block text-xs text-gray-400 mt-1">Also: {item.alias}</span>
-              ) : null}
             </Link>
           </li>
         ))}

@@ -63,5 +63,12 @@ export async function POST(req: NextRequest) {
     fields: { email, message },
   });
 
+  try {
+    const { sendContactAckEmail } = await import("@/lib/email/send-form-ack");
+    await sendContactAckEmail({ toEmail: email });
+  } catch (emailErr) {
+    console.error("[contact] ack email", emailErr);
+  }
+
   return NextResponse.json({ success: true });
 }

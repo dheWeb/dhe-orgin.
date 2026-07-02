@@ -1,16 +1,5 @@
-import { createPageMetadata } from "@/lib/seo/build-metadata";
+import { redirect } from "next/navigation";
 
-export const metadata = createPageMetadata("comingsoon");
-
-
-import ContactUs from "@/components/forms/ContactForm";
-import CommingSoon from "@/components/sections/ComingSoon"
-
-
-export default function Committee() {
-  return (
-    <>
-    <CommingSoon/>
-  </>
-  )
+export default function ComingSoonRedirect() {
+  redirect("/structure");
 }

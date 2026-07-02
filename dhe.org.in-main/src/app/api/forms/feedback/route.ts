@@ -64,5 +64,12 @@ export async function POST(req: NextRequest) {
     fields: { name, email, mobile, affiliation, event, experience, suggestions },
   });
 
+  try {
+    const { sendFeedbackAckEmail } = await import("@/lib/email/send-form-ack");
+    await sendFeedbackAckEmail({ toEmail: email, toName: name });
+  } catch (emailErr) {
+    console.error("[feedback] ack email", emailErr);
+  }
+
   return NextResponse.json({ success: true });
 }

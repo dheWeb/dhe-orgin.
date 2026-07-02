@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
 import type { FeedbackEventOption } from "@/lib/cms/home-faq-content";
+import { trackGaEvent } from "@/lib/analytics/ga-events";
 
 const fieldClass =
   "border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400";
@@ -58,10 +59,11 @@ const FeedbackForm: React.FC<{ eventOptions?: FeedbackEventOption[] }> = ({
         throw new Error(data.error || "Submission failed");
       }
 
+      trackGaEvent("generate_lead", { form_name: "feedback" });
       router.push("/feedback/thank-you");
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      toast.error("Something broke while submitting the feedback");
+      toast.error("Could not submit feedback. Please try again.");
     } finally {
       setLoading(false);
     }

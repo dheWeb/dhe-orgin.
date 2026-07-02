@@ -4,6 +4,7 @@ import React, { useState, ChangeEvent, FormEvent, useId } from 'react';
 import toast from 'react-hot-toast';
 import RecaptchaField from '@/components/forms/RecaptchaField';
 import RazorpayDonateButton from '@/components/payments/RazorpayDonateButton';
+import { trackGaEvent } from '@/lib/analytics/ga-events';
 
 interface NgoData {
     name: string;
@@ -61,6 +62,7 @@ const MemberShipForm = () => {
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Failed');
+            trackGaEvent('generate_lead', { form_name: 'membership' });
             setApplicationId(data.applicationId ?? null);
             toast.success('Application saved. Complete payment below.');
         } catch {

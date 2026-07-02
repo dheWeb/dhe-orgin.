@@ -76,5 +76,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Failed to submit application." }, { status: 500 });
   }
 
+  try {
+    const { notifyAdminFormSubmission } = await import(
+      "@/lib/email/send-admin-notification"
+    );
+    const { sendMembershipApplicationAckEmail } = await import(
+      "@/lib/email/send-form-ack"
+    );
+    await notifyAdminFormSubmission({
+      formName: "Membership application",
+      fields: { name, email, phone, category, type, feeInr: String(feeInr) },
+    });
+    await sendMembershipApplicationAckEmail({ toEmail: email, toName: name, feeInr });
+  } catch (emailErr) {
+    console.error("[membership] email", emailErr);
+  }
+
   return NextResponse.json({ success: true, feeInr, applicationId: row.id });
 }

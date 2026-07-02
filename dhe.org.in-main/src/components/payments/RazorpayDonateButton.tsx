@@ -150,6 +150,12 @@ export default function RazorpayDonateButton({
         toast.error("Payment failed. You can retry below.");
       });
 
+      trackGaEvent("begin_checkout", {
+        value: amount,
+        currency: "INR",
+        item_category: purpose,
+      });
+
       rzp.open();
     } catch (error) {
       setPaymentFailed(true);

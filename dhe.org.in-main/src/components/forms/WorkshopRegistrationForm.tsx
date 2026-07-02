@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
+import { trackGaEvent } from "@/lib/analytics/ga-events";
 
 export default function WorkshopRegistrationForm() {
   const router = useRouter();
@@ -35,6 +36,7 @@ export default function WorkshopRegistrationForm() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Submission failed");
+      trackGaEvent("generate_lead", { form_name: "workshop_registration" });
       toast.success("Registration received.");
       router.push("/registrationForm/thank-you");
     } catch (err) {

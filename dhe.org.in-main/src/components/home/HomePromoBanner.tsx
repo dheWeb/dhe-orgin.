@@ -7,36 +7,59 @@ import { useEffect, useState } from "react";
 const DISMISS_KEY = "dhe-home-promo-banner-dismissed";
 const DISMISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
+function shouldShowBanner(): boolean {
+  try {
+    const raw = localStorage.getItem(DISMISS_KEY);
+    if (raw) {
+      const dismissedAt = Number(raw);
+      if (!Number.isNaN(dismissedAt) && Date.now() - dismissedAt < DISMISS_TTL_MS) {
+        return false;
+      }
+    }
+  } catch {
+    /* private browsing */
+  }
+  return true;
+}
+
 export default function HomePromoBanner() {
   const pathname = usePathname();
+  const onHome = pathname === "/";
   const [visible, setVisible] = useState(false);
+  const [checked, setChecked] = useState(!onHome);
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (!onHome) {
       setVisible(false);
+      setChecked(true);
       return;
     }
-    try {
-      const raw = localStorage.getItem(DISMISS_KEY);
-      if (raw) {
-        const dismissedAt = Number(raw);
-        if (!Number.isNaN(dismissedAt) && Date.now() - dismissedAt < DISMISS_TTL_MS) {
-          return;
-        }
-      }
-    } catch {
-      /* private browsing */
-    }
-    setVisible(true);
-  }, [pathname]);
+    setVisible(shouldShowBanner());
+    setChecked(true);
+  }, [onHome]);
 
-  if (!visible) return null;
+  if (!onHome) {
+    return null;
+  }
+
+  if (!checked) {
+    return (
+      <div
+        className="min-h-[3.25rem] border-b border-transparent"
+        aria-hidden
+      />
+    );
+  }
+
+  if (!visible) {
+    return null;
+  }
 
   return (
     <div
       role="region"
       aria-label="Featured program"
-      className="bg-gradient-to-r from-[#07111f] to-gray-900 text-white border-b border-orange-500/30"
+      className="bg-gradient-to-r from-[#07111f] to-gray-900 text-white border-b border-orange-500/30 min-h-[3.25rem]"
     >
       <div className="dhe-container py-2.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 justify-between">
         <p className="text-xs sm:text-sm leading-snug">

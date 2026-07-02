@@ -96,19 +96,24 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/admin/notices",
-        destination: "/noticeboarddata",
-        permanent: false,
+        source: "/noticeboarddata",
+        destination: "/admin/notices",
+        permanent: true,
       },
       {
-        source: "/admin/finance/donations",
-        destination: "/donationdatadekh",
-        permanent: false,
+        source: "/donationdatadekh",
+        destination: "/admin/finance/donations",
+        permanent: true,
       },
       {
-        source: "/admin/finance/workshops",
-        destination: "/WD",
-        permanent: false,
+        source: "/WD",
+        destination: "/admin/finance/workshops",
+        permanent: true,
+      },
+      {
+        source: "/comingsoon",
+        destination: "/structure",
+        permanent: true,
       },
       {
         source: "/admin/feedback",

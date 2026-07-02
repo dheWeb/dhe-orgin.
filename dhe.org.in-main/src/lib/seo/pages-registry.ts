@@ -172,14 +172,32 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description: "Internal notice management for authorized DHE administrators.",
     noIndex: true,
   },
+  adminNotices: {
+    path: "/admin/notices",
+    title: "Notice Board Administration",
+    description: "Internal notice management for authorized DHE administrators.",
+    noIndex: true,
+  },
   donationdatadekh: {
     path: "/donationdatadekh",
     title: "Donation Records",
     description: "Internal donation records for authorized DHE staff.",
     noIndex: true,
   },
+  adminDonations: {
+    path: "/admin/finance/donations",
+    title: "Donation Records",
+    description: "Internal donation records for authorized DHE staff.",
+    noIndex: true,
+  },
   WD: {
     path: "/WD",
+    title: "Workshop Data",
+    description: "Workshop registration data for authorized DHE staff.",
+    noIndex: true,
+  },
+  adminWorkshops: {
+    path: "/admin/finance/workshops",
     title: "Workshop Data",
     description: "Workshop registration data for authorized DHE staff.",
     noIndex: true,

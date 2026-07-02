@@ -1,5 +1,6 @@
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 import HomeStructuredData from "@/components/seo/HomeStructuredData";
+import HeroImagePreload from "@/components/home/HeroImagePreload";
 import HomePageContent from "./HomePageContent";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { parseMarqueeItems, parseStringListJson } from "@/lib/cms/cms-parsers";
@@ -58,6 +59,7 @@ export default async function Home() {
 
   return (
     <>
+      <HeroImagePreload />
       <HomeStructuredData />
       <HomePageContent
         tagline={tagline}

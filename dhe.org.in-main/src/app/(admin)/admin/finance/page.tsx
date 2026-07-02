@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const modules = [
   {
-    href: "/donationdatadekh",
+    href: "/admin/finance/donations",
     label: "Donations",
     desc: "View donations, export CSV, resend receipts",
   },
@@ -12,7 +12,7 @@ const modules = [
     desc: "Applications and CSV export",
   },
   {
-    href: "/WD",
+    href: "/admin/finance/workshops",
     label: "Workshop registrations",
     desc: "Workshop sign-up list",
   },

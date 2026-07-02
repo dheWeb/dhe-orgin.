@@ -65,7 +65,7 @@ export function CookieConsentBanner() {
           <button
             type="button"
             onClick={() => save("accepted")}
-            className="px-4 py-2 text-sm bg-orange-600 rounded-md hover:bg-orange-500"
+            className="px-4 py-2 text-sm bg-orange-700 rounded-md hover:bg-orange-600"
           >
             Accept all
           </button>
