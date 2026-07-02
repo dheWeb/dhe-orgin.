@@ -1,8 +1,5 @@
 import Link from "next/link";
-import { createPageMetadata } from "@/lib/seo/build-metadata";
 import { vbitrTrust } from "@/data/institution";
-
-export const metadata = createPageMetadata("transparency");
 
 export default function TransparencyPage() {
   return (

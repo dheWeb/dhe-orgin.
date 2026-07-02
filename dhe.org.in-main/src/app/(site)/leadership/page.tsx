@@ -1,12 +1,9 @@
-import { createPageMetadata } from "@/lib/seo/build-metadata";
 import AdvisoryCouncil from "@/components/sections/AdvisoryCouncil";
 import LmcTimeline from "@/components/sections/LmcTimeline";
 import Link from "next/link";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { getLmcMembers, getLmcPatrons } from "@/lib/cms/lmc-content";
 import { lmcDocuments } from "@/data/institution";
-
-export const metadata = createPageMetadata("leadership");
 
 const currentDoc = lmcDocuments.find((d) => d.isCurrent && d.id === "letter-12");
 

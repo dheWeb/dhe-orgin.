@@ -1,15 +1,18 @@
 import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { closingCta, relatedLinks } from "@/data/home/content";
+import { DEFAULT_SMK_SITE_URL } from "@/lib/programs/external-urls";
 
 export default function HomeClosingCta({
   titleLine1,
   titleLine2,
   body,
+  smkSiteUrl = DEFAULT_SMK_SITE_URL,
 }: {
   titleLine1?: string;
   titleLine2?: string;
   body?: string;
+  smkSiteUrl?: string;
 }) {
   const cta = {
     titleLine1: titleLine1 || closingCta.titleLine1,
@@ -41,20 +44,23 @@ export default function HomeClosingCta({
           {cta.body}
         </p>
         <div className="mt-4 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3">
-          <a
-            href="https://www.rase.co.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="dhe-btn-primary text-sm min-h-10"
-          >
-            Explore Shiksha Mahakumbh
-          </a>
+          <Link href="/programs" className="dhe-btn-primary text-sm min-h-10">
+            Explore DHE programs
+          </Link>
           <Link href="/donation" className="dhe-btn-ghost-light text-sm min-h-10">
             Support DHE
           </Link>
           <Link href="/contribute" className="dhe-btn-ghost-light text-sm min-h-10">
             Join DHE — Membership
           </Link>
+          <a
+            href={smkSiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="dhe-btn-ghost-light text-sm min-h-10"
+          >
+            Shiksha Mahakumbh (RASE)
+          </a>
           <Link href="/contact" className="dhe-btn-ghost-light text-sm min-h-10">
             Contact DHE
           </Link>

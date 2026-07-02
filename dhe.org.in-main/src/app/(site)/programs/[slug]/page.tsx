@@ -5,7 +5,7 @@ import {
   getAllProgramSlugs,
   getProgramBySlug,
 } from "@/lib/cms/programs-content";
-import { siteConfig } from "@/lib/seo/site-metadata";
+import { buildMetadataFromEntry } from "@/lib/seo/build-metadata";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -19,11 +19,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const program = await getProgramBySlug(slug);
   if (!program) return { title: "Program not found" };
 
-  return {
-    title: `${program.title} | DHE`,
+  return buildMetadataFromEntry({
+    path: `/programs/${slug}`,
+    title: program.title,
     description: program.summary,
-    alternates: { canonical: `${siteConfig.url}/programs/${slug}` },
-  };
+    ogImage: "/vi.webp",
+  });
 }
 
 export default async function ProgramDetailPage({ params }: PageProps) {
@@ -33,6 +34,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
   const ctaHref = program.href ?? (program.cellSlug ? `/cells/${program.cellSlug}` : "/programs");
   const isExternal = ctaHref.startsWith("http");
+  const registerUrl = program.externalRegistrationUrl?.trim();
 
   return (
     <div className="dhe-container py-10 max-w-3xl mx-auto">
@@ -49,12 +51,22 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         <p>{program.body}</p>
       </div>
       <div className="mt-8 flex flex-wrap gap-3">
+        {registerUrl ? (
+          <a
+            href={registerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center min-h-11 px-5 py-2 rounded-md bg-orange-600 text-white font-medium hover:bg-orange-500"
+          >
+            Register (official portal)
+          </a>
+        ) : null}
         <a
           href={ctaHref}
-          className="inline-flex items-center min-h-11 px-5 py-2 rounded-md bg-orange-600 text-white font-medium hover:bg-orange-500"
+          className="inline-flex items-center min-h-11 px-5 py-2 rounded-md border border-gray-300 text-gray-800 hover:border-orange-400 font-medium"
           {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         >
-          {isExternal ? "Open official page" : "View program"}
+          {isExternal ? "Open official site" : "View program page"}
         </a>
         {program.cellSlug ? (
           <Link

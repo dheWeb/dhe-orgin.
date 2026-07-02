@@ -19,6 +19,21 @@ const TRAIL_SEO_KEY: Record<
   contribute: "contribute",
   contact: "contact",
   people: "people",
+  donation: "donation",
+  leadership: "committee",
+  transparency: "transparency",
+  publications: "publications",
+  programs: "programs",
+  events: "events",
+  feedback: "feedback",
+  books: "books",
+  journals: "journals",
+  privacyPolicy: "privacyPolicy",
+  terms: "terms",
+  accessibility: "accessibility",
+  refundPolicy: "refundPolicy",
+  advisory: "advisory",
+  noticeboard: "noticeboard",
 };
 
 type Props = {

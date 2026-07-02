@@ -27,6 +27,7 @@ const DepartmentInfo: React.FC<{
   };
   shiksha?: { paragraph1?: string; paragraph2?: string };
   digitalDescription?: string;
+  smkSiteUrl?: string;
 }> = ({
   visionBody,
   nationalImpactBody,
@@ -34,6 +35,7 @@ const DepartmentInfo: React.FC<{
   leadership: leadershipCms,
   shiksha: shikshaCms,
   digitalDescription,
+  smkSiteUrl,
 }) => {
   const impactBody = nationalImpactBody || nationalImpact.body;
   const impactHighlights =
@@ -248,15 +250,23 @@ const DepartmentInfo: React.FC<{
             {shikshaCopy.paragraph2}
           </p>
         </div>
-        <p className="mt-4">
-          <a
-            href="https://www.rase.co.in/"
-            target="_blank"
-            rel="noopener noreferrer"
+        <p className="mt-4 flex flex-wrap gap-4">
+          <Link
+            href="/programs/shiksha-mahakumbh"
             className="text-sm font-semibold text-orange-600 hover:text-orange-700 min-h-10 inline-flex items-center"
           >
-            Learn about Shiksha Mahakumbh →
-          </a>
+            Explore Shiksha Mahakumbh program →
+          </Link>
+          {smkSiteUrl ? (
+            <a
+              href={smkSiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-gray-600 hover:text-orange-700 min-h-10 inline-flex items-center"
+            >
+              Official RASE portal ↗
+            </a>
+          ) : null}
         </p>
       </section>
     </div>

@@ -43,6 +43,7 @@ export default function HomePageContent({
   shiksha,
   digitalDescription,
   faqItems,
+  smkSiteUrl,
 }: {
   tagline?: string;
   homeIntro?: HomeIntroProps;
@@ -61,6 +62,7 @@ export default function HomePageContent({
   shiksha?: { paragraph1?: string; paragraph2?: string };
   digitalDescription?: string;
   faqItems?: { question: string; answer: string }[];
+  smkSiteUrl?: string;
 }) {
   return (
     <div className="bg-white overflow-x-hidden min-w-0">
@@ -79,6 +81,7 @@ export default function HomePageContent({
           leadership={leadership}
           shiksha={shiksha}
           digitalDescription={digitalDescription}
+          smkSiteUrl={smkSiteUrl}
         />
       </div>
 
@@ -96,6 +99,7 @@ export default function HomePageContent({
         titleLine1={closingCta?.titleLine1}
         titleLine2={closingCta?.titleLine2}
         body={closingCta?.body}
+        smkSiteUrl={smkSiteUrl}
       />
     </div>
   );

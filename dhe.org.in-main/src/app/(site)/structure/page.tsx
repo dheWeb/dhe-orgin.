@@ -1,9 +1,6 @@
 import Link from "next/link";
 import StructurePage from "@/components/sections/StructurePage";
 import { CELLS } from "@/data/cells";
-import { createPageMetadata } from "@/lib/seo/build-metadata";
-
-export const metadata = createPageMetadata("structure");
 
 export default function StructureRoutePage() {
   return (

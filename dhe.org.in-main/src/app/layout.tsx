@@ -10,6 +10,8 @@ import {
   DeferredAnalyticsScripts,
 } from "@/components/layout/DeferredThirdParty";
 
+import { getPrograms } from "@/lib/cms/programs-content";
+import { getSmkUrlsFromPrograms } from "@/lib/programs/external-urls";
 import { getSiteContent } from "@/lib/cms/site-content";
 
 const inter = Inter({
@@ -31,16 +33,24 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const content = await getSiteContent(["site_contact", "footer_mission"]);
+  const [content, programs] = await Promise.all([
+    getSiteContent(["site_contact", "footer_mission"]),
+    getPrograms(),
+  ]);
   const sitePhone = content.site_contact?.phone?.trim() || "7903431900";
   const footerMission = content.footer_mission?.text?.trim();
+  const smkUrls = getSmkUrlsFromPrograms(programs);
 
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <body
         className={`${inter.className} bg-white text-black overflow-x-hidden antialiased`}
       >
-        <RootLayoutClient sitePhone={sitePhone} footerMission={footerMission}>
+        <RootLayoutClient
+          sitePhone={sitePhone}
+          footerMission={footerMission}
+          smkUrls={smkUrls}
+        >
           <main
             id="main-content"
             className="min-h-screen bg-white min-w-0"

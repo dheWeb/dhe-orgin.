@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { createPageMetadata } from "@/lib/seo/build-metadata";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { parseUpcomingEvents } from "@/lib/cms/cms-parsers";
 import { getPastEvents } from "@/lib/cms/past-events-content";
-
-export const metadata = createPageMetadata("events");
 
 export const revalidate = 300;
 

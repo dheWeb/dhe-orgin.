@@ -1,8 +1,5 @@
-import { createPageMetadata } from "@/lib/seo/build-metadata";
 import Donation from "@/components/forms/DonationForm";
 import { getSiteContent } from "@/lib/cms/site-content";
-
-export const metadata = createPageMetadata("donation");
 
 export default async function DonationPage() {
   const content = await getSiteContent(["donation_intro"]);

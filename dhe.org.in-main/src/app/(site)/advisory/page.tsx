@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { createPageMetadata } from "@/lib/seo/build-metadata";
 import AdvisoryCouncil2 from "@/components/sections/DesAdvisory";
 import { getAdvisoryMembers } from "@/lib/cms/people-content";
-
-export const metadata = createPageMetadata("advisory");
 
 export default async function Advisory() {
   const advisoryMembers2 = await getAdvisoryMembers();

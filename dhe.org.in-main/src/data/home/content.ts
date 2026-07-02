@@ -172,7 +172,7 @@ export const relatedLinks = [
 export const homeHeroCtas = [
   { href: "/programs", label: "Explore Programs", external: false, primary: true },
   { href: "/structure", label: "Cells & Structure", external: false, primary: false },
-  { href: "https://www.rase.co.in/", label: "Shiksha Mahakumbh", external: true, primary: false },
+  { href: "/programs/shiksha-mahakumbh", label: "Shiksha Mahakumbh", external: false, primary: false },
   { href: "/contribute", label: "Join DHE", external: false, primary: false },
 ] as const;
 

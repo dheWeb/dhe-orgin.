@@ -24,18 +24,21 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Director's Message",
     description:
       "Message from the Director of the Department of Holistic Education (DHE) on holistic education and national transformation.",
+    ogImage: "/logo.webp",
   },
   structure: {
     path: "/structure",
     title: "Cells & Organizational Structure",
     description:
       "Explore the organizational structure and cells of the Department of Holistic Education (DHE).",
+    ogImage: "/logo.webp",
   },
   advisory: {
     path: "/advisory",
     title: "Advisory Council",
     description:
       "Meet the Advisory Council guiding the Department of Holistic Education (DHE).",
+    ogImage: "/logo.webp",
   },
   committee: {
     path: "/leadership",
@@ -61,6 +64,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     path: "/search",
     title: "Search",
     description: "Search pages on the DHE website.",
+    ogImage: "/logo.webp",
   },
   programs: {
     path: "/programs",
@@ -74,6 +78,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Cell Co-ordinators",
     description:
       "Cell co-ordinators and leadership across DHE initiatives and programs.",
+    ogImage: "/logo.webp",
   },
   contact: {
     path: "/contact",
@@ -87,6 +92,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Feedback",
     description:
       "Share your feedback with the Department of Holistic Education (DHE).",
+    ogImage: "/logo.webp",
   },
   donation: {
     path: "/donation",
@@ -114,36 +120,42 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Privacy Policy",
     description:
       "Privacy policy for the Department of Holistic Education (DHE) website.",
+    ogImage: "/logo.webp",
   },
   terms: {
     path: "/terms",
     title: "Terms of Use",
     description:
       "Terms of use for the Department of Holistic Education (DHE) website.",
+    ogImage: "/logo.webp",
   },
   accountdetails: {
     path: "/accountdetails",
     title: "Account Details",
     description:
       "Official account and banking details for the Department of Holistic Education (DHE).",
+    ogImage: "/logo.webp",
   },
   logos: {
     path: "/logos",
     title: "Media & Logos",
     description:
       "Download official DHE logos, media assets, and brand resources.",
+    ogImage: "/logo.webp",
   },
   books: {
     path: "/books",
     title: "Books & Publications",
     description:
       "Books and publications from the Department of Holistic Education (DHE).",
+    ogImage: "/vi.webp",
   },
   journals: {
     path: "/journals",
     title: "Journals",
     description:
       "Academic and educational journals associated with DHE.",
+    ogImage: "/vi.webp",
   },
   pastevent: {
     path: "/pastevent",
@@ -164,12 +176,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Workshops",
     description:
       "Educational workshops organized by the Department of Holistic Education (DHE).",
+    ogImage: "/vi.webp",
   },
   residentialcamps: {
     path: "/residentialcamps",
     title: "Residential Camps",
     description:
       "Residential camps and immersive learning programs by DHE.",
+    ogImage: "/vi.webp",
   },
   noticeboard: {
     path: "/noticeboard",
@@ -239,6 +253,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Accessibility Statement",
     description:
       "Accessibility commitment and contact for the Department of Holistic Education (DHE) website.",
+    ogImage: "/logo.webp",
   },
   contactThankYou: {
     path: "/contact/thank-you",
@@ -257,24 +272,28 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Verify Donation Receipt",
     description:
       "Verify an official DHE donation receipt and download the PDF for 80G records.",
+    ogImage: "/logo.webp",
   },
   publications: {
     path: "/publications",
     title: "Publications Hub",
     description:
       "Books, journals, proceedings, and knowledge outputs from DHE programs.",
+    ogImage: "/vi.webp",
   },
   refundPolicy: {
     path: "/refund-policy",
     title: "Refund & Cancellation Policy",
     description:
       "Refund and cancellation terms for DHE donations, membership, and registrations.",
+    ogImage: "/logo.webp",
   },
   hindi: {
     path: "/hi",
     title: "हिंदी — DHE",
     description:
       "होलिस्टिक शिक्षा के लिए विभाग ऑफ़ होलिस्टिक एजुकेशन (DHE) — प्रारंभिक हिंदी पृष्ठ।",
+    ogImage: "/logo.webp",
   },
   transparency: {
     path: "/transparency",
@@ -298,6 +317,7 @@ export function getCellSeoEntry(slug: string): PageSeoEntry {
     path: `/cells/${slug}`,
     title,
     description: `${objective}… Programs aligned with NEP 2020 and holistic education.`,
+    ogImage: "/logo.webp",
   };
 }
 

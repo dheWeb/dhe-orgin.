@@ -904,11 +904,11 @@ Each gets CMS entry, unique SEO, enrichment review.
 
 ### G.1 Removal checklist (Jodo)
 
-- [ ] Remove link from `DonationForm.tsx`
-- [ ] Remove link from `MembershipForm.tsx`
-- [ ] Remove “upload receipt” field — payment proof = Razorpay ID
-- [ ] Remove Jodo from docs, CMS, account cards
-- [ ] Audit no `jodo.in` in repo (grep)
+- [x] Remove link from `DonationForm.tsx`
+- [x] Remove link from `MembershipForm.tsx`
+- [x] Remove “upload receipt” field — payment proof = Razorpay ID
+- [x] Remove Jodo from docs, CMS, account cards
+- [x] Audit no `jodo.in` in repo (grep)
 
 ### G.2 Razorpay flows
 

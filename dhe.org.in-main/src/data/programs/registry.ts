@@ -4,6 +4,10 @@ export type ProgramDefinition = {
   summary: string;
   body: string;
   href?: string;
+  /** External registration (e.g. SMK on RASE) — editable via CMS programs_json */
+  externalRegistrationUrl?: string;
+  /** External program home */
+  externalSiteUrl?: string;
   external?: boolean;
   cellSlug?: string;
 };
@@ -14,7 +18,10 @@ export const PROGRAMS: ProgramDefinition[] = [
     title: "Shiksha Mahakumbh",
     summary: "National holistic education gatherings and Shiksha Mahakumbh editions.",
     body: "Shiksha Mahakumbh Abhiyan is DHE's flagship national movement bringing together educators, policymakers, scientists, and institutions for collaborative educational reform. Register for upcoming editions and explore archives of past programs.",
-    href: "/upcomingevent",
+    href: "/programs/shiksha-mahakumbh",
+    externalSiteUrl: "https://www.rase.co.in/",
+    externalRegistrationUrl:
+      "https://www.rase.co.in/registration/Single_Registration",
   },
   {
     slug: "workshops",

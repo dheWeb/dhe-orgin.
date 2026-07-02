@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { createPageMetadata } from "@/lib/seo/build-metadata";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { getPrograms } from "@/lib/cms/programs-content";
 import { siteConfig } from "@/lib/seo/site-metadata";
-
-export const metadata = createPageMetadata("programs");
 
 export default async function ProgramsPage() {
   const content = await getSiteContent(["programs_intro"]);

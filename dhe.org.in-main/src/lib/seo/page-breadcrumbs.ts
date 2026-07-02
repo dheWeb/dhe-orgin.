@@ -32,6 +32,66 @@ export const PAGE_BREADCRUMB_TRAILS = {
     { name: "Home", path: "/" },
     { name: "Cell Co-ordinators", path: "/people" },
   ],
+  donation: [
+    { name: "Home", path: "/" },
+    { name: "Donation", path: "/donation" },
+  ],
+  leadership: [
+    { name: "Home", path: "/" },
+    { name: "Leadership & LMC", path: "/leadership" },
+  ],
+  transparency: [
+    { name: "Home", path: "/" },
+    { name: "Transparency", path: "/transparency" },
+  ],
+  publications: [
+    { name: "Home", path: "/" },
+    { name: "Publications", path: "/publications" },
+  ],
+  programs: [
+    { name: "Home", path: "/" },
+    { name: "DHE Programs", path: "/programs" },
+  ],
+  events: [
+    { name: "Home", path: "/" },
+    { name: "Events", path: "/events" },
+  ],
+  feedback: [
+    { name: "Home", path: "/" },
+    { name: "Feedback", path: "/feedback" },
+  ],
+  books: [
+    { name: "Home", path: "/" },
+    { name: "Books", path: "/books" },
+  ],
+  journals: [
+    { name: "Home", path: "/" },
+    { name: "Journals", path: "/journals" },
+  ],
+  privacyPolicy: [
+    { name: "Home", path: "/" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
+  ],
+  terms: [
+    { name: "Home", path: "/" },
+    { name: "Terms of Use", path: "/terms" },
+  ],
+  accessibility: [
+    { name: "Home", path: "/" },
+    { name: "Accessibility", path: "/accessibility" },
+  ],
+  refundPolicy: [
+    { name: "Home", path: "/" },
+    { name: "Refund Policy", path: "/refund-policy" },
+  ],
+  advisory: [
+    { name: "Home", path: "/" },
+    { name: "Advisory Council", path: "/advisory" },
+  ],
+  noticeboard: [
+    { name: "Home", path: "/" },
+    { name: "Notice Board", path: "/noticeboard" },
+  ],
 } as const;
 
 export type PageBreadcrumbKey = keyof typeof PAGE_BREADCRUMB_TRAILS;

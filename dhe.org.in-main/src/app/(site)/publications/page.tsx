@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { createPageMetadata } from "@/lib/seo/build-metadata";
-
-export const metadata = createPageMetadata("publications");
 
 const hubs = [
   {

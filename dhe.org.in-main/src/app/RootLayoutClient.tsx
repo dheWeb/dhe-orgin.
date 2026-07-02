@@ -13,10 +13,12 @@ export default function RootLayoutClient({
   children,
   sitePhone = "7903431900",
   footerMission,
+  smkUrls,
 }: {
   children: React.ReactNode;
   sitePhone?: string;
   footerMission?: string;
+  smkUrls?: { siteUrl: string; registrationUrl: string };
 }) {
   return (
     <>
@@ -47,7 +49,10 @@ export default function RootLayoutClient({
         <Header />
       </header>
 
-      <HomePromoBanner />
+      <HomePromoBanner
+        smkRegistrationUrl={smkUrls?.registrationUrl}
+        smkSiteUrl={smkUrls?.siteUrl}
+      />
       <VisibleBreadcrumbs />
 
       {children}

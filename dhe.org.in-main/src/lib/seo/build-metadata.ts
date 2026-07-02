@@ -47,6 +47,11 @@ function buildFromEntry(entry: PageSeoEntry): Metadata {
   };
 }
 
+/** Build Metadata from any SEO entry (programs, cells, etc.) */
+export function buildMetadataFromEntry(entry: PageSeoEntry): Metadata {
+  return buildFromEntry(entry);
+}
+
 /** Metadata for static pages registered in PAGE_SEO */
 export function createPageMetadata(key: PageKey): Metadata {
   const entry = PAGE_SEO[key];

@@ -3,9 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  DEFAULT_SMK_REGISTRATION_URL,
+  DEFAULT_SMK_SITE_URL,
+} from "@/lib/programs/external-urls";
 
 const DISMISS_KEY = "dhe-home-promo-banner-dismissed";
 const DISMISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+
+type Props = {
+  smkRegistrationUrl?: string;
+  smkSiteUrl?: string;
+};
 
 function shouldShowBanner(): boolean {
   try {
@@ -22,7 +31,10 @@ function shouldShowBanner(): boolean {
   return true;
 }
 
-export default function HomePromoBanner() {
+export default function HomePromoBanner({
+  smkRegistrationUrl = DEFAULT_SMK_REGISTRATION_URL,
+  smkSiteUrl = DEFAULT_SMK_SITE_URL,
+}: Props) {
   const pathname = usePathname();
   const onHome = pathname === "/";
   const [visible, setVisible] = useState(false);
@@ -58,29 +70,37 @@ export default function HomePromoBanner() {
   return (
     <div
       role="region"
-      aria-label="Featured program"
+      aria-label="DHE programs highlight"
       className="bg-gradient-to-r from-[#07111f] to-gray-900 text-white border-b border-orange-500/30 min-h-[3.25rem]"
     >
       <div className="dhe-container py-2.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 justify-between">
         <p className="text-xs sm:text-sm leading-snug">
-          <strong className="text-orange-200">Shiksha Mahakumbh 6.0</strong> — NIT Hamirpur,
-          9–11 Oct 2026. Registration open on the official RASE portal.
+          <strong className="text-orange-200">DHE national programs</strong> — cells,
+          workshops, membership, and Shiksha Mahakumbh 6.0 (9–11 Oct 2026).
         </p>
-        <div className="flex items-center gap-2 shrink-0">
-          <a
-            href="https://www.rase.co.in/registration/Single_Registration"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="flex items-center gap-2 shrink-0 flex-wrap">
+          <Link
+            href="/programs"
             className="text-xs font-semibold px-3 py-1.5 rounded-md bg-orange-600 hover:bg-orange-500 min-h-9 inline-flex items-center"
           >
-            Register
-          </a>
-          <Link
-            href="/upcomingevent"
+            Explore programs
+          </Link>
+          <a
+            href={smkRegistrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-xs font-medium px-3 py-1.5 rounded-md border border-white/30 hover:bg-white/10 min-h-9 inline-flex items-center"
           >
-            All events
-          </Link>
+            SMK register
+          </a>
+          <a
+            href={smkSiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-medium px-3 py-1.5 rounded-md border border-white/20 hover:bg-white/10 min-h-9 inline-flex items-center sr-only sm:not-sr-only"
+          >
+            RASE portal
+          </a>
           <button
             type="button"
             onClick={() => {
