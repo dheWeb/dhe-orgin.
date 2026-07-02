@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdminAuthorized } from "@/lib/auth/admin-gate";
+import { isAdminRequestAuthorized } from "@/lib/auth/authorize-admin-request";
 import { sendDonationReceiptEmail } from "@/lib/email/send-donation-receipt";
 import { donationRowToReceiptData } from "@/lib/receipts/donation-receipt-from-row";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 type RouteContext = { params: Promise<{ id: string }> };
 
 export async function POST(req: NextRequest, context: RouteContext) {
-  if (!isAdminAuthorized(req.headers.get("authorization"))) {
+  if (!(await isAdminRequestAuthorized(req))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

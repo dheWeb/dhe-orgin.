@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdminAuthorized } from "@/lib/auth/admin-gate";
+import { isAdminRequestAuthorized } from "@/lib/auth/authorize-admin-request";
 import { generateDonationPdf } from "@/lib/receipts/generate-donation-pdf";
 import { donationRowToReceiptData } from "@/lib/receipts/donation-receipt-from-row";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
@@ -41,7 +41,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
     return NextResponse.json({ error: "Donation not found" }, { status: 404 });
   }
 
-  const adminOk = isAdminAuthorized(req.headers.get("authorization"));
+  const adminOk = await isAdminRequestAuthorized(req);
   const emailParam = normalizeEmail(req.nextUrl.searchParams.get("email"));
 
   if (!adminOk) {

@@ -14,8 +14,16 @@ export default function AdminHubPage() {
   return (
     <div className="dhe-container py-10 max-w-2xl mx-auto">
       <h1 className="text-2xl font-semibold text-gray-900 mb-2">DHE Admin</h1>
-      <p className="text-sm text-gray-600 mb-8">
-        Signed in via site admin credentials. Choose a module below.
+      <p className="text-sm text-gray-600 mb-4">
+        Signed in via Basic Auth or Supabase (allowlisted email). Choose a module below.
+      </p>
+      <p className="text-sm mb-8">
+        <a
+          href="/api/admin/auth/logout?redirect=/admin/login"
+          className="text-orange-700 hover:underline"
+        >
+          Sign out (Supabase session)
+        </a>
       </p>
       <ul className="space-y-3">
         {links.map((item) => (

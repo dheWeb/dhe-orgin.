@@ -224,14 +224,14 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                   </span>
                 </h2>
 
-                <p className="text-sm text-gray-300 mt-1">
+                <p className="text-sm text-gray-200 mt-1">
                   National Educational Transformation Platform
                 </p>
               </div>
             </div>
 
             {/* DESCRIPTION */}
-            <p className="text-gray-300 leading-8 text-sm">
+            <p className="text-gray-200 leading-8 text-sm">
               Advancing Bharat’s educational ecosystem through
               innovation, leadership, skill development,
               research, publications, technology-driven
@@ -297,7 +297,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
             <div className="grid grid-cols-2 gap-4 mt-10">
 
               <div className="bg-[#111827] border border-gray-700 rounded-2xl p-5">
-                <p className="text-gray-300 text-xs uppercase tracking-wider mb-2">
+                <p className="text-gray-200 text-xs uppercase tracking-wider mb-2">
                   Daily Visitors
                 </p>
 
@@ -307,7 +307,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
               </div>
 
               <div className="bg-[#111827] border border-gray-700 rounded-2xl p-5">
-                <p className="text-gray-300 text-xs uppercase tracking-wider mb-2">
+                <p className="text-gray-200 text-xs uppercase tracking-wider mb-2">
                   Total Visitors
                 </p>
 
@@ -327,7 +327,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                   DHE Ecosystem
                 </h3>
 
-                <p className="text-sm text-gray-300 mt-1">
+                <p className="text-sm text-gray-200 mt-1">
                   Integrated Educational & Innovation Network
                 </p>
               </div>
@@ -393,7 +393,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
                 National Educational Ecosystem
               </h4>
 
-              <p className="text-sm text-gray-300 leading-8">
+              <p className="text-sm text-gray-200 leading-8">
                 {footerMission}
               </p>
             </div>
@@ -496,12 +496,12 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
         {/* BOTTOM BAR */}
         <div className="py-6 flex flex-col lg:flex-row items-center justify-between gap-4">
 
-          <p className="text-sm text-gray-300 text-center lg:text-left">
+          <p className="text-sm text-gray-200 text-center lg:text-left">
             © 2026 Department of Holistic Education.
             All Rights Reserved.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-300">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-200">
 
             <Link
               href="/privacy-policy"

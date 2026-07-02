@@ -52,7 +52,7 @@ function NoticeImage({
       >
         <Image
           src={imageSrc}
-          alt=""
+          alt={event.title}
           width={160}
           height={120}
           sizes="120px"

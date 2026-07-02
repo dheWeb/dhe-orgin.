@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdminAuthorized } from "@/lib/auth/admin-gate";
+import { isAdminRequestAuthorized } from "@/lib/auth/authorize-admin-request";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { syncMarqueeFromNotices } from "@/lib/cms/merge-marquee-notices";
 import { fetchPublishedNotices } from "@/services/notices/fetch-notices";
@@ -24,7 +24,7 @@ async function afterNoticeMutation() {
 }
 
 export async function GET(req: NextRequest) {
-  if (!isAdminAuthorized(req.headers.get("authorization"))) {
+  if (!(await isAdminRequestAuthorized(req))) {
     return unauthorized();
   }
 
@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAdminAuthorized(req.headers.get("authorization"))) {
+  if (!(await isAdminRequestAuthorized(req))) {
     return unauthorized();
   }
 
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
-  if (!isAdminAuthorized(req.headers.get("authorization"))) {
+  if (!(await isAdminRequestAuthorized(req))) {
     return unauthorized();
   }
 
@@ -116,7 +116,7 @@ export async function PATCH(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  if (!isAdminAuthorized(req.headers.get("authorization"))) {
+  if (!(await isAdminRequestAuthorized(req))) {
     return unauthorized();
   }
 

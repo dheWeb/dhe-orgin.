@@ -187,6 +187,12 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       "Register for DHE programs, events, and initiatives.",
     noIndex: true,
   },
+  registrationThankYou: {
+    path: "/registrationForm/thank-you",
+    title: "Registration Received",
+    description: "Thank you for registering interest in DHE workshops.",
+    noIndex: true,
+  },
   accessibility: {
     path: "/accessibility",
     title: "Accessibility Statement",

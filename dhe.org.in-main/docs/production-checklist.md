@@ -81,7 +81,10 @@
 | P0 security & privacy | **~70%** | eval, Members, legal, cookies, headers, admin gate |
 | P0 payments | **~75%** | Razorpay donate + webhook + receipt email; membership linked |
 | Firebase → Supabase | **DONE** | SDK removed; Firestore retired; bootstrap seed script |
-| CMS | **~85%** | Programs, past events, FAQ, feedback events, LMC JSON in CMS |
+| CMS | **~95%** | All 25 registry keys in admin; JSON programs/events/FAQ/LMC/people |
+| **Supabase admin login** | `/admin/login` + `ADMIN_EMAIL_ALLOWLIST` (Basic Auth still works) |
+| **Registration thank-you** | `/registrationForm/thank-you` |
+| **Hindi hub** | Expanded `/hi` with quick links |
 | **Membership admin** | `/admin/memberships` + CSV export |
 | **Donation export all** | `GET /api/admin/donations?export=all` |
 | SEO | **~65%** | sitemap/robots, llms.txt, unique cell meta |
@@ -155,7 +158,7 @@
 | 6 | Accessibility below 100 | **MEDIUM** | Contrast fixes applied; retest Lighthouse |
 | 7 | CMS partial | **LOW** | Key snippets at `/admin/cms`; cell pages hardcoded |
 | 8 | Secrets exposed in chat | **HIGH** | **Manual** — run `npm run check-rotation` |
-| 9 | Full audit 280 items — ~15% remain | **LOW** | Lighthouse + Supabase Auth + full Hindi |
+| 9 | Full audit 280 items — ~10% remain | **LOW** | Lighthouse sign-off + owner secret rotation + live donation test |
 | 10 | `donor_address` DB column | **DONE** | Applied in Supabase SQL Editor |
 | 11 | 80G / 12A PDFs on `/accounts/*` | **DONE** | `12a-vbitr-trust.pdf`, `80g-vbitr-trust.pdf` in `public/accounts/` |
 

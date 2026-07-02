@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { isAdminAuthorized } from "@/lib/auth/admin-gate";
+import { isAdminRequestAuthorized } from "@/lib/auth/authorize-admin-request";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
@@ -19,7 +19,7 @@ function unauthorized() {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAdminAuthorized(req.headers.get("authorization"))) {
+  if (!(await isAdminRequestAuthorized(req))) {
     return unauthorized();
   }
 

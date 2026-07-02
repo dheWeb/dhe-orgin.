@@ -1,17 +1,18 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
 
 export default function WorkshopRegistrationForm() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -34,29 +35,14 @@ export default function WorkshopRegistrationForm() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Submission failed");
-      setSubmitted(true);
-      toast.success("Registration received. We will contact you shortly.");
+      toast.success("Registration received.");
+      router.push("/registrationForm/thank-you");
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Submission failed");
     } finally {
       setLoading(false);
     }
   };
-
-  if (submitted) {
-    return (
-      <div
-        className="rounded-lg border border-green-300 bg-green-50 p-6 text-green-900"
-        role="status"
-      >
-        <p className="font-semibold">Thank you for registering interest.</p>
-        <p className="mt-2 text-sm">
-          DHE will contact you at {email} with workshop details when the next
-          program opens.
-        </p>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={onSubmit} className="space-y-4 max-w-xl">

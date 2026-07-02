@@ -8,6 +8,8 @@ import {
   shikshaMahakumbh,
   digitalEcosystem,
 } from "@/data/home/content";
+import { CMS_JSON_DEFAULTS } from "@/lib/cms/cms-json-defaults";
+import { CMS_REGISTRY } from "@/lib/cms/content-registry";
 
 export type SiteContentMap = Record<string, Record<string, string>>;
 
@@ -127,9 +129,21 @@ const DEFAULTS: SiteContentMap = {
       2
     ),
   },
+  ...CMS_JSON_DEFAULTS,
 };
 
 export const CMS_CONTENT_KEYS = Object.keys(DEFAULTS);
+
+/** Full default map for every registry key (admin UI + seed parity). */
+export function getAllCmsDefaults(): SiteContentMap {
+  const merged: SiteContentMap = { ...DEFAULTS };
+  for (const def of CMS_REGISTRY) {
+    if (!merged[def.key]) {
+      merged[def.key] = {};
+    }
+  }
+  return merged;
+}
 
 export async function getSiteContent(
   keys?: string[]

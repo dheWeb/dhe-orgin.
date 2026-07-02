@@ -30,7 +30,7 @@ export default function HomeNewsSection({
           >
             News, Notices & Updates
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-gray-300">
+          <p className="mt-1 text-xs sm:text-sm text-gray-200">
             Official announcements and the latest notices from the Department of
             Holistic Education.
           </p>
