@@ -14,19 +14,23 @@ type BrevoEmailPayload = {
 };
 
 function getBrevoApiKey(): string | null {
+  return getBrevoApiKeyInfo().key;
+}
+
+export function getBrevoApiKeyInfo(): { key: string | null; source: string | null } {
   const candidates = [
-    process.env.BREVO_API_KEY,
-    process.env.SMTP_API_KEY_NEW,
-    process.env.SMTP_KEY_NEW,
-    process.env.MCP_API_KEY_NEW,
-    process.env.SMTP_PASS,
-  ];
-  for (const raw of candidates) {
+    ["BREVO_API_KEY", process.env.BREVO_API_KEY],
+    ["SMTP_API_KEY_NEW", process.env.SMTP_API_KEY_NEW],
+    ["SMTP_KEY_NEW", process.env.SMTP_KEY_NEW],
+    ["MCP_API_KEY_NEW", process.env.MCP_API_KEY_NEW],
+    ["SMTP_PASS", process.env.SMTP_PASS],
+  ] as const;
+  for (const [source, raw] of candidates) {
     const key = raw?.trim();
     if (!key) continue;
-    if (key.startsWith("xkeysib-")) return key;
+    if (key.startsWith("xkeysib-")) return { key, source };
   }
-  return null;
+  return { key: null, source: null };
 }
 
 export function isBrevoApiConfigured(): boolean {
