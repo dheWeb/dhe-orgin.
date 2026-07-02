@@ -100,7 +100,7 @@ const ResidentialCamps: React.FC = () => {
                   </div>
 
                   <div className="text-right">
-                    <p className="text-sm uppercase tracking-wider text-gray-400">
+                    <p className="text-sm uppercase tracking-wider text-gray-500">
                       Residential Program
                     </p>
 

@@ -56,6 +56,7 @@ export default function RazorpayDonateButton({
     receiptNumber?: string;
     message: string;
   } | null>(null);
+  const [paymentFailed, setPaymentFailed] = useState(false);
   const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 
   const handlePay = useCallback(async () => {
@@ -75,6 +76,7 @@ export default function RazorpayDonateButton({
     }
 
     setLoading(true);
+    setPaymentFailed(false);
 
     try {
       const orderRes = await fetch("/api/payments/razorpay/create-order", {
@@ -137,17 +139,20 @@ export default function RazorpayDonateButton({
                 "Thank you! Payment received. Your official receipt will be emailed within a few minutes.",
             });
           } else {
+            setPaymentFailed(true);
             toast.error(verifyData.error || "Payment verification failed.");
           }
         },
       });
 
       rzp.on("payment.failed", () => {
-        toast.error("Payment failed. Please try again.");
+        setPaymentFailed(true);
+        toast.error("Payment failed. You can retry below.");
       });
 
       rzp.open();
     } catch (error) {
+      setPaymentFailed(true);
       const message =
         error instanceof Error ? error.message : "Payment could not start.";
       toast.error(message);
@@ -190,6 +195,19 @@ export default function RazorpayDonateButton({
           <p className="mt-2 text-green-800">
             Check your inbox (and spam folder). Contact {email} if no receipt
             arrives within 15 minutes.
+          </p>
+        </div>
+      )}
+      {paymentFailed && !paymentSuccess && (
+        <div
+          className="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950"
+          role="alert"
+        >
+          <p className="font-semibold">Payment not completed</p>
+          <p className="mt-2">
+            No charge was confirmed. Check your UPI or card app, then tap{" "}
+            <strong>Pay securely with Razorpay</strong> to try again. For help,
+            email {email || "director@dhe.org.in"} with your name and amount.
           </p>
         </div>
       )}

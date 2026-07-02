@@ -119,7 +119,12 @@ const CMS_DEFAULTS = [
   {
     key: "site_contact",
     label: "Site contact",
-    value: { phone: "7903431900", email: "director@dhe.org.in" },
+    value: {
+      phone: "7903431900",
+      email: "director@dhe.org.in",
+      office_address:
+        "E-7, Orchid Towers, Sector 125, Sunny Enclave, SAS Nagar, Punjab-140301",
+    },
   },
   {
     key: "footer_mission",

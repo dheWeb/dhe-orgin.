@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import type { PublicContact } from "@/lib/cms/public-contact";
 import { dheOfficeAddress, dheOfficialContact } from "@/data/institution/receipt-and-lmc";
 
 interface ContactInfo {
@@ -14,15 +15,21 @@ interface ContactInfo {
   website: string;
 }
 
-const contactData: ContactInfo = {
-  name: "Department of Holistic Education",
-  title: "Official Contact Office",
-  organization: "Department of Holistic Education",
-  address: `Vidya Bharti\n${dheOfficeAddress.line1}\n${dheOfficeAddress.city}, ${dheOfficeAddress.state} – ${dheOfficeAddress.pincode}`,
-  emails: [dheOfficialContact.email],
-  phones: [dheOfficialContact.phone],
-  website: dheOfficialContact.website,
-};
+function buildContactData(contact?: PublicContact): ContactInfo {
+  const phone = contact?.phone ?? dheOfficialContact.phone;
+  const email = contact?.email ?? dheOfficialContact.email;
+  const office = contact?.officeAddress ?? dheOfficeAddress.full;
+
+  return {
+    name: "Department of Holistic Education",
+    title: "Official Contact Office",
+    organization: "Department of Holistic Education",
+    address: `Vidya Bharti\n${office.replace(/, /g, "\n")}`,
+    emails: [email],
+    phones: [phone],
+    website: contact?.website ?? dheOfficialContact.website,
+  };
+}
 
 const whyContactCards = [
   {
@@ -61,7 +68,8 @@ const assistanceLinks = [
   { href: "/people", label: "Cell Co-ordinators", description: "Coordinator contacts by cell" },
 ] as const;
 
-const ContactUs: React.FC = () => {
+const ContactUs: React.FC<{ contact?: PublicContact }> = ({ contact }) => {
+  const contactData = buildContactData(contact);
   const addressLines = contactData.address.split("\n");
 
   return (

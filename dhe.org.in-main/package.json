@@ -15,6 +15,8 @@
     "test": "vitest run",
     "verify-secrets": "node scripts/verify-secrets.mjs",
     "seed:bootstrap": "node scripts/seed-supabase-bootstrap.mjs",
+    "db:migrate": "node scripts/apply-migration.mjs",
+    "sync:assets": "node scripts/sync-public-assets.mjs",
     "strip-firebase-env": "node scripts/strip-firebase-env.mjs",
     "sync-sentry-env": "node scripts/sync-sentry-env.mjs",
     "sync-optional-env": "node scripts/sync-optional-env.mjs",

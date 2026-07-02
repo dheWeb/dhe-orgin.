@@ -19,7 +19,12 @@ const DEFAULTS: SiteContentMap = {
     title_line2: defaultHomeIntro.titleLine2,
     description: defaultHomeIntro.description,
   },
-  site_contact: { phone: "7903431900", email: "director@dhe.org.in" },
+  site_contact: {
+    phone: "7903431900",
+    email: "director@dhe.org.in",
+    office_address:
+      "E-7, Orchid Towers, Sector 125, Sunny Enclave, SAS Nagar, Punjab-140301",
+  },
   footer_mission: {
     text: "DHE integrates educational leadership, innovation, skill development, research, entrepreneurship, publications, digital transformation, and institutional collaboration into one unified ecosystem empowering Bharat towards becoming a global knowledge leader.",
   },

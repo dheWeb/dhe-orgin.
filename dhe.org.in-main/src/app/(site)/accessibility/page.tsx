@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo/build-metadata";
-import { dheOfficialContact, dheOfficeAddress } from "@/data/institution/receipt-and-lmc";
+import { getPublicContact } from "@/lib/cms/public-contact";
 
 export const metadata = createPageMetadata("accessibility");
 
-export default function AccessibilityPage() {
+export default async function AccessibilityPage() {
+  const contact = await getPublicContact();
+
   return (
     <div className="dhe-container py-8 sm:py-12 max-w-3xl prose prose-gray">
       <h1 className="text-2xl sm:text-3xl font-bold text-primary-color not-prose">
@@ -29,16 +31,18 @@ export default function AccessibilityPage() {
       <ul>
         <li>Some legacy PDFs may not be fully tagged for screen readers</li>
         <li>Third-party embeds (maps, payment checkout) follow their own accessibility profiles</li>
-        <li>Hindi content in notices may appear without a separate language toggle</li>
+        <li>
+          Hindi content is available at{" "}
+          <Link href="/hi">/hi</Link> (initial); full bilingual UI is in progress
+        </li>
       </ul>
 
       <h2>Feedback and assistance</h2>
       <p>
         If you encounter a barrier on this site, contact us at{" "}
-        <a href={`mailto:${dheOfficialContact.email}`}>{dheOfficialContact.email}</a>{" "}
-        or call{" "}
-        <a href={`tel:${dheOfficialContact.phone}`}>{dheOfficialContact.phone}</a>.
-        Office: {dheOfficeAddress.full}.
+        <a href={`mailto:${contact.email}`}>{contact.email}</a> or call{" "}
+        <a href={`tel:${contact.phone}`}>{contact.phone}</a>. Office:{" "}
+        {contact.officeAddress}.
       </p>
       <p>
         See also our{" "}

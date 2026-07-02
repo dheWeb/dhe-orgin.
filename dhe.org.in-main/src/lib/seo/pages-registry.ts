@@ -223,6 +223,12 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       "Refund and cancellation terms for DHE donations, membership, and registrations.",
   },
+  hindi: {
+    path: "/hi",
+    title: "हिंदी — DHE",
+    description:
+      "होलिस्टिक शिक्षा के लिए विभाग ऑफ़ होलिस्टिक एजुकेशन (DHE) — प्रारंभिक हिंदी पृष्ठ।",
+  },
 };
 
 import { CELLS, getCellSeoTitle, getCellBySlug } from "@/data/cells";

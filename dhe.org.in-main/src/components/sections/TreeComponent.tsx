@@ -49,7 +49,7 @@ const TreeComponent: React.FC = () => {
         <TreeNode
           label={
             <div className="text-center p-2">
-              <TreeNodeLink href="/committee">LMC Members</TreeNodeLink>
+              <TreeNodeLink href="/leadership">LMC Members</TreeNodeLink>
             </div>
           }
         />
