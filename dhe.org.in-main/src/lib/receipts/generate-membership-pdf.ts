@@ -1,5 +1,6 @@
 import { jsPDF } from "jspdf";
 import { formatReceiptHeaderLines, receiptTitles } from "@/data/institution";
+import { hindiThanks } from "@/data/institution/hindi-thanks";
 
 export type MembershipReceiptData = {
   receiptNumber: string;
@@ -62,7 +63,7 @@ export function generateMembershipPdf(data: MembershipReceiptData): Buffer {
   );
 
   y += 12;
-  doc.text("धन्यवाद — DHE सदस्यता के लिए आभार।", 14, y);
+  doc.text(hindiThanks.membershipHi, 14, y);
   y += 7;
   doc.text("Thank you for joining the holistic education movement.", 14, y);
 

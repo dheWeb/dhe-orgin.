@@ -1,3 +1,4 @@
+import { hindiThanks } from "@/data/institution/hindi-thanks";
 import { createSmtpTransporter, getSmtpConfig } from "@/lib/env/server";
 import {
   generateDonationPdf,
@@ -15,7 +16,7 @@ function buildReceiptHtml(
       <p>Thank you for your generous donation to the Department of Holistic Education.</p>
       <p>Receipt No.: <strong>${data.receiptNumber}</strong><br/>
       Amount: <strong>₹${data.amountInr.toLocaleString("en-IN")}</strong></p>
-      <p>आपके उदार दान के लिए धन्यवाद — Your support advances holistic education and Viksit Bharat.</p>
+      <p>${hindiThanks.donation}</p>
       ${downloadUrl ? `<p>Download receipt: <a href="${downloadUrl}">${downloadUrl}</a></p>` : ""}
       <p>For queries: ${dheOfficialContact.email} | ${dheOfficialContact.phone}</p>
     `;

@@ -21,7 +21,7 @@ export async function sendDonationReceiptIfNeeded(
   const { data: row, error } = await supabase
     .from("donations")
     .select(
-      "id, receipt_number, donor_name, donor_email, amount_paise, razorpay_payment_id, created_at, metadata"
+      "id, receipt_number, donor_name, donor_email, amount_paise, razorpay_payment_id, created_at, metadata, pan"
     )
     .eq("id", donationId)
     .maybeSingle();

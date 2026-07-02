@@ -14,7 +14,7 @@
     "type-check": "tsc --noEmit",
     "test": "vitest run",
     "verify-secrets": "node scripts/verify-secrets.mjs",
-    "seed:bootstrap": "node scripts/seed-supabase-bootstrap.mjs",
+    "generate:aud-status": "node scripts/generate-aud-register-status.mjs",
     "db:migrate": "node scripts/apply-migration.mjs",
     "sync:assets": "node scripts/sync-public-assets.mjs",
     "promote:razorpay-env": "node scripts/promote-razorpay-vercel-env.mjs",

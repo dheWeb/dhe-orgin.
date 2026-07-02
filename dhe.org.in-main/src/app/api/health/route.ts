@@ -14,6 +14,7 @@ export async function GET() {
     payments.configured &&
     payments.keysAligned &&
     payments.ordersTableReady &&
+    payments.membershipReceiptColumnsReady &&
     payments.razorpayAuthOk &&
     email.configured;
 

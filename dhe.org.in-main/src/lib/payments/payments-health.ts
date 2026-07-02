@@ -8,6 +8,7 @@ export type PaymentsHealth = {
   keysAligned: boolean;
   keyMismatch: string | null;
   ordersTableReady: boolean;
+  membershipReceiptColumnsReady: boolean;
   razorpayAuthOk: boolean;
   errors: string[];
 };
@@ -24,6 +25,7 @@ export async function getPaymentsHealth(): Promise<PaymentsHealth> {
   }
 
   let ordersTableReady = false;
+  let membershipReceiptColumnsReady = false;
   let razorpayAuthOk = false;
 
   const supabase = getSupabaseAdmin();
@@ -35,6 +37,19 @@ export async function getPaymentsHealth(): Promise<PaymentsHealth> {
         error.code === "42P01"
           ? "payment_orders table missing — run supabase migration 20260630120000_payments.sql"
           : `payment_orders check failed: ${error.message}`
+      );
+    }
+
+    const { error: membershipColError } = await supabase
+      .from("membership_applications")
+      .select("receipt_number, metadata")
+      .limit(1);
+    membershipReceiptColumnsReady = !membershipColError;
+    if (membershipColError) {
+      errors.push(
+        membershipColError.code === "42703"
+          ? "membership_applications.receipt_number missing — run 20260703220000_membership_receipt.sql"
+          : `membership_applications check failed: ${membershipColError.message}`
       );
     }
   } else {
@@ -59,6 +74,7 @@ export async function getPaymentsHealth(): Promise<PaymentsHealth> {
     keysAligned,
     keyMismatch,
     ordersTableReady,
+    membershipReceiptColumnsReady,
     razorpayAuthOk,
     errors,
   };

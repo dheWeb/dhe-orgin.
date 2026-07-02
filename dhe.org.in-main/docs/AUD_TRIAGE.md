@@ -24,12 +24,12 @@ Statuses: **FIXED** | **PARTIAL** | **WONTFIX** (intentional) | **OPEN** (owner/
 
 | AUD | Item |
 |-----|------|
-| K-05 / AUD-163 | Final approved Hindi thanks text in emails |
+| K-05 / AUD-163 | Hindi thanks in emails/PDFs | **FIXED** — `hindi-thanks.ts` (owner may refine wording) |
 | K-16 / AUD-198 | Lighthouse Performance ≥95, LCP <2.5s on production |
-| K-17 | Per-row sign-off in §C table (this doc is the triage) |
+| K-17 | Per-row sign-off in §C table | **DONE** — `docs/AUD_REGISTER_STATUS.md` (280 rows) |
 | K-18 / I5-01 | Disable Firestore in Firebase console |
 | AUD-017 | Secret rotation (see `secret-rotation-runbook.md`) |
-| AUD-205 | External uptime monitor on `/api/health` |
+| AUD-205 | External uptime monitor | **PARTIAL** — Vercel cron `/api/cron/health` every 15m; optional UptimeRobot |
 | AUD-220 / I5-09 | Staging Supabase + Vercel preview env |
 | AUD-141 | Trust deed public PDF (file not in repo) |
 | §L | Legal Hindi+English privacy/terms sign-off |

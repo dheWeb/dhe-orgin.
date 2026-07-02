@@ -119,6 +119,14 @@ export async function GET() {
           responses: { "200": jsonResponse },
         },
       },
+      "/api/cron/health": {
+        get: {
+          summary: "Cron health ping (Vercel cron every 15 min)",
+          tags: ["Ops"],
+          description: "Requires Authorization: Bearer CRON_SECRET when set.",
+          responses: { "200": jsonResponse },
+        },
+      },
     },
   });
 }

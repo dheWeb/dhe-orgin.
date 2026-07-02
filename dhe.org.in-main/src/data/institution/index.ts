@@ -12,3 +12,4 @@ export {
   type ReceiptType,
   type LmcMember,
 } from "./receipt-and-lmc";
+export { hindiThanks } from "./hindi-thanks";

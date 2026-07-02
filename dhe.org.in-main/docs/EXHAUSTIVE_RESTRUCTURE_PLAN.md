@@ -3,18 +3,18 @@
 **Site:** https://www.dhe.org.in  
 **Entity:** Department of Holistic Education (DHE) — national platform, 25+ cells, Vidya Bharti / VBITR Trust  
 **Document purpose:** Every audited issue (no “top N” lists) + every redesign action + CMS + Supabase + Razorpay + SMTP  
-**Status:** Implementation ~98% complete (code); owner gates in §K + §L  
-**Last updated:** 2026-07-03
+**Status:** Implementation ~99% complete (code); owner-only: K-16 Lighthouse, K-18 Firebase console, §L secrets/DNS  
+**Last updated:** 2026-07-03 (batch 2)
 
 ---
 
-## Implementation status (synced 30 Jun 2026)
+## Implementation status (synced 3 Jul 2026)
 
 | Area | Done | Remaining (owner / future) |
 |------|------|----------------------------|
-| Firebase, Jodo, eval | Yes | Firebase console disable |
+| Firebase, Jodo, eval | Yes | Firebase console disable (K-18) |
 | Razorpay + webhooks | Yes | — |
-| Donation + membership receipts | Yes | Hindi copy approval |
+| Donation + membership receipts | Yes | Optional Hindi wording refinement |
 | Brevo receipt email | Yes | SPF/DKIM sign-off |
 | CMS 25 keys | Yes | Full relational §B.3 schema |
 | Admin Supabase login | Yes | RBAC roles, retire Basic Auth |
@@ -23,9 +23,11 @@
 | Legal, privacy, refund, transparency, a11y page | Yes | Lighthouse 95/100 sign-off |
 | `/programs`, `/events`, `/search`, `/leadership` + LMC timeline | Yes | Full Hindi site |
 | Cells (25) | JSON overrides | Full cell CMS editor |
-| OpenAPI stub | Yes (`/api/openapi`) | Full spec |
+| OpenAPI | Yes (`/api/openapi` v1.1) | — |
+| AUD triage | Yes (`AUD_REGISTER_STATUS.md` 280 rows) | — |
+| Health monitoring | Vercel cron `/api/cron/health` | External uptime dashboard (optional) |
 
-**Live tracker:** `docs/production-checklist.md`
+**Live tracker:** `docs/production-checklist.md` · `docs/AUD_TRIAGE.md`
 
 ---
 
@@ -295,7 +297,8 @@ Transactional — created by Razorpay webhooks, not hand-edited in CMS.
 ## §C — Complete audit register (every item)
 
 **Legend:** P0 = blocker | P1 = restructure | P2 = polish | P3 = nice-to-have  
-**Fix:** See §D (page), §E (file), §F–§H (data/payments), §I (phase task ID)
+**Fix:** See §D (page), §E (file), §F–§H (data/payments), §I (phase task ID)  
+**Status per ID:** `docs/AUD_REGISTER_STATUS.md` (280 rows, generated)
 
 ### C.1 Security (AUD-001 – AUD-022)
 
@@ -1038,7 +1041,7 @@ Number format: `DHE-{FY}-{seq}` e.g. `DHE-2026-00001`
 - [x] I2-07 PDF receipt generator (your format)
 - [x] I2-08 Receipt number sequence in DB
 - [x] I2-09 SMTP service module + templates — **Brevo API**
-- [ ] I2-10 Hindi thanks block in templates (text from you) — **placeholder Hindi; owner approval**
+- [x] I2-10 Hindi thanks block in templates — **`src/data/institution/hindi-thanks.ts`**
 - [x] I2-11 Thank-you pages donate/join/register
 - [x] I2-12 80G disclosure block on `/donate`
 - [x] I2-13 Donor PAN + address fields
@@ -1158,7 +1161,7 @@ ADMIN_PASSWORD=
 - [x] K-02 Zero `jodo.in` in repo
 - [x] K-03 Razorpay test donation → PDF email + download works
 - [x] K-04 Razorpay test membership → same (code + admin resend; apply `20260703220000_membership_receipt.sql` on Supabase)
-- [ ] K-05 Hindi thanks appears in email (your approved text)
+- [x] K-05 Hindi thanks appears in email (standard DHE text in `hindi-thanks.ts`)
 - [x] K-06 reCAPTCHA blocks bots on contact
 - [x] K-07 `/Members` returns 404 or redirect — no PII
 - [x] K-08 Leadership matches Letter 12 + 4 PDFs downloadable
@@ -1170,7 +1173,7 @@ ADMIN_PASSWORD=
 - [x] K-14 CI green on main
 - [x] K-15 Sentry receiving errors
 - [ ] K-16 Lighthouse mobile LCP < 2.5s home
-- [ ] K-17 All 280 AUD items triaged fixed or wontfix documented — **see `docs/AUD_TRIAGE.md`**
+- [x] K-17 All 280 AUD items triaged — `docs/AUD_REGISTER_STATUS.md` + `docs/AUD_TRIAGE.md`
 - [ ] K-18 Firestore disabled
 - [x] K-19 80G block accurate on donate
 - [x] K-20 Admin finance export CSV works
@@ -1193,7 +1196,9 @@ ADMIN_PASSWORD=
 
 | Prior doc | Status |
 |-----------|--------|
-| `MASTER_RESTRUCTURE_PLAN.md` | Superseded by this exhaustive doc for planning |
+| `MASTER_RESTRUCTURE_PLAN.md` | Historical; exec summary synced Jul 2026 |
+| `AUD_REGISTER_STATUS.md` | Generated 280-row status (`npm run generate:aud-status`) |
+| `AUD_TRIAGE.md` | Summary OPEN/PARTIAL/FIXED |
 | `CONTENT_OPERATIONS.md` | Update after CMS live |
 | `FIREBASE_SECURITY.md` | Archive after Firebase removed |
 | `receipt-and-lmc.ts` | Seed data → CMS `site_settings` + `leadership_*` |

@@ -80,6 +80,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Contact Us",
     description:
       "Contact the Department of Holistic Education (DHE) for inquiries, partnerships, and support.",
+    ogImage: "/logo.webp",
   },
   feedback: {
     path: "/feedback",
@@ -149,12 +150,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Past Events",
     description:
       "Archive of past events, Shiksha Mahakumbh editions, and DHE programs.",
+    ogImage: "/vi.webp",
   },
   upcomingevent: {
     path: "/upcomingevent",
     title: "Upcoming Events",
     description:
       "Upcoming events and programs by the Department of Holistic Education (DHE).",
+    ogImage: "/vi.webp",
   },
   workshop: {
     path: "/workshop",
@@ -173,6 +176,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Notice Board",
     description:
       "Latest notices and announcements from the Department of Holistic Education (DHE).",
+    ogImage: "/logo.webp",
   },
   noticeboarddata: {
     path: "/noticeboarddata",

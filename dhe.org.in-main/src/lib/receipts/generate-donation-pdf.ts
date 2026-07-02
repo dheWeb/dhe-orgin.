@@ -1,6 +1,7 @@
 import { jsPDF } from "jspdf";
 import QRCode from "qrcode";
 import { formatReceiptHeaderLines, receiptTitles } from "@/data/institution";
+import { hindiThanks } from "@/data/institution/hindi-thanks";
 import { buildReceiptVerifyUrl } from "@/lib/receipts/receipt-verify-url";
 
 export type DonationReceiptData = {
@@ -10,6 +11,7 @@ export type DonationReceiptData = {
   amountInr: number;
   paymentId: string;
   date: string;
+  donorPan?: string;
 };
 
 export async function generateDonationPdf(data: DonationReceiptData): Promise<Buffer> {
@@ -41,6 +43,10 @@ export async function generateDonationPdf(data: DonationReceiptData): Promise<Bu
   doc.text(`Received from: ${data.donorName}`, 14, y);
   y += 7;
   doc.text(`Email: ${data.donorEmail}`, 14, y);
+  if (data.donorPan?.trim()) {
+    y += 7;
+    doc.text(`PAN: ${data.donorPan.trim()}`, 14, y);
+  }
   y += 7;
   doc.text(`Amount: INR ${data.amountInr.toLocaleString("en-IN")}`, 14, y);
 
@@ -54,7 +60,7 @@ export async function generateDonationPdf(data: DonationReceiptData): Promise<Bu
   );
 
   y += 12;
-  doc.text("धन्यवाद — आपके उदार दान के लिए हार्दिक आभार।", 14, y);
+  doc.text(hindiThanks.donationHi, 14, y);
   y += 7;
   doc.text("Thank you for supporting holistic education and Viksit Bharat.", 14, y);
 

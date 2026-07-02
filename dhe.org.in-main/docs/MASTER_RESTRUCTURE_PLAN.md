@@ -10,27 +10,27 @@
 
 ## 1. Executive summary
 
-The Department of Holistic Education (DHE) website is a **national institutional platform** (25+ cells, year-round programs) that today behaves like a **Shiksha Mahakumbh microsite** with **Firebase-backed forms**, **no CI/CD**, **weak legal/compliance**, and **no measurable conversion stack**.
+The Department of Holistic Education (DHE) website is a **national institutional platform** (25+ cells, year-round programs). **As of July 2026** the restructure is **live in production** at https://www.dhe.org.in.
 
-This plan consolidates **every audit** into one problem register and defines a **phased restructure**:
+| Pillar | Was (pre-2026) | Shipped (Jul 2026) |
+|--------|----------------|---------------------|
+| Data | Firebase client SDK | **Supabase** Postgres + Storage + RLS |
+| Payments | Jodo + manual receipt | **Razorpay** + PDF receipt + Brevo email |
+| Email | Stale workshop SMTP | **Brevo API** + Hindi thanks in receipts |
+| Content | SMK-heavy microsite | **DHE-first** `/programs`, cells, CMS (25 keys) |
+| Governance | Legal 404, `/Members` PII | Privacy, terms, LMC Letter 12, 80G block |
+| Ops | Push-only Vercel | **CI**, Sentry, `/api/health`, DR runbook, Vercel cron |
+| Leadership | Stale `/committee` | `/leadership` + 4 LMC PDFs |
 
-| Pillar | Today | Target |
-|--------|-------|--------|
-| Data | Firebase client SDK (Firestore + Storage) | **Supabase** (Postgres + Storage + Auth + RLS) |
-| Payments | Jodo link + manual receipt upload | **Razorpay** + auto PDF receipt + email |
-| Email | Stale workshop SMTP API only | **SMTP** (receipts, Hindi thanks, admin alerts) |
-| Content | SMK-heavy, stale events, no programs hub | **DHE-first** `programs/registry` + cells |
-| Governance | Broken legal links, `/Members` PII leak | Privacy, terms, LMC from Letter 12, 80G block |
-| Ops | Vercel push-only | CI + Sentry + backups + `llms.txt` |
-| Leadership | Stale `/committee` | LMC + patrons + downloadable nomination PDFs |
+**Live tracking:** `EXHAUSTIVE_RESTRUCTURE_PLAN.md` · `AUD_TRIAGE.md` · `AUD_REGISTER_STATUS.md`
 
-**North star:** One trustworthy national portal where **programs, cells, leadership, notices, donations, and membership** are first-class — not an event landing page with Firebase forms bolted on.
+**North star:** One trustworthy national portal where **programs, cells, leadership, notices, donations, and membership** are first-class.
 
 ---
 
-## 2. Consolidated problem register (all audits)
+## 2. Consolidated problem register (historical)
 
-Problems are grouped by domain. **P0** = ship-blocker / trust-risk; **P1** = restructure wave 1; **P2** = wave 2; **P3** = polish.
+> **Note:** This register describes the **pre-restructure audit (Jun 2026)**. For current status per AUD-ID see **`docs/AUD_REGISTER_STATUS.md`** (generated). Do not treat “Today” columns below as current production state.
 
 ### 2.1 Brand, content & information architecture
 
@@ -625,12 +625,11 @@ ADMIN_USERNAME / ADMIN_PASSWORD   # Until Supabase admin fully replaces Basic au
 
 ---
 
-## 16. Success criteria (go-live)
-
-- [ ] Zero Firebase references in build
 ## 16. Go-live checklist (synced Jul 2026)
 
-- [x] Donation complete with Razorpay → PDF in email + download
+- [x] Zero Firebase references in build
+- [x] Zero `jodo.in` in repository
+- [x] Donation Razorpay → PDF email + verify QR
 - [x] Membership Razorpay + receipt email (apply Supabase migration `20260703220000_membership_receipt.sql`)
 - [x] Notices load without client Firebase
 - [x] LMC page matches Letter 12; all 4 PDFs downloadable
@@ -644,27 +643,24 @@ ADMIN_USERNAME / ADMIN_PASSWORD   # Until Supabase admin fully replaces Basic au
 
 ---
 
-## 17. Document index (audit sources merged here)
+## 17. Document index (Jul 2026 — post-restructure)
 
-| Audit domain | Key P0 problems |
-|--------------|-----------------|
-| Environment | Hardcoded Firebase; admin 503 without env |
-| Content | SMK dominance; stale events; no programs registry |
-| SEO | Title bug; bad sitemap; SearchAction |
-| Communications | Brand inconsistency; no legal pages |
-| UX/Design | Competing primaries; double header |
-| Accessibility | No skip link; form labels |
-| Core Web Vitals | 1.9MB hero; CLS modal |
-| Assets/Bundles | Ant Design in root; noticeboard 416kB |
-| Security | No CSP; Members PII; eval |
-| Operations | No CI; no backups |
-| Data/API | Firestore no rules; one stale API |
-| Next.js rendering | No error boundaries; client shell |
-| CI/CD & infra | No pipelines; no monitoring |
-| Legal | No GDPR/cookies; 80G undisclosed |
-| Marketing | Untracked SMK exit; no receipts |
-| Structured/AI | No llms.txt; client notices |
-| Governance | LMC outdated; receipt header ready in code |
+| Audit domain | Status |
+|--------------|--------|
+| Environment | Supabase + env.example; Firebase removed from build |
+| Content | `/programs`, CMS 25 keys, DHE-first home |
+| SEO | `app/sitemap.ts`, `llms.txt`, Event JSON-LD, unique cell meta |
+| Communications | `director@dhe.org.in`, institutional contact sync |
+| UX/Design | Single sticky nav, promo banner, skip link |
+| Accessibility | Statement at `/accessibility`; Lighthouse retest pending |
+| Core Web Vitals | Hero WebP; LCP target retest on production |
+| Security | CSP, reCAPTCHA, `/Members` redirect, no eval |
+| Operations | CI, Sentry, `/api/health`, cron `/api/cron/health` |
+| Payments | Razorpay donate + membership + receipt QR |
+| Legal | Privacy (retention), terms, cookies, 80G, Form 10BE |
+| Governance | LMC Letter 12 + PDFs on `/leadership` |
+
+**Full AUD triage:** `AUD_REGISTER_STATUS.md` (280 rows) · `AUD_TRIAGE.md` (summary)
 
 ---
 

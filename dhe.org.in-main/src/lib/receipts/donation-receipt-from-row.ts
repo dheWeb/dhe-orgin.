@@ -8,6 +8,7 @@ export type DonationRow = {
   amount_paise: number;
   razorpay_payment_id: string;
   created_at: string;
+  pan?: string | null;
 };
 
 export function donationRowToReceiptData(row: DonationRow): DonationReceiptData | null {
@@ -22,5 +23,6 @@ export function donationRowToReceiptData(row: DonationRow): DonationReceiptData 
     amountInr: row.amount_paise / 100,
     paymentId: row.razorpay_payment_id,
     date: new Date(row.created_at).toLocaleDateString("en-IN"),
+    donorPan: row.pan?.trim() || undefined,
   };
 }

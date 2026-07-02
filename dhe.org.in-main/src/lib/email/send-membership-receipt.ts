@@ -1,3 +1,4 @@
+import { hindiThanks } from "@/data/institution/hindi-thanks";
 import { createSmtpTransporter, getSmtpConfig } from "@/lib/env/server";
 import {
   generateMembershipPdf,
@@ -12,7 +13,7 @@ function buildHtml(data: MembershipReceiptData): string {
     <p>Thank you for your DHE membership payment.</p>
     <p>Receipt No.: <strong>${data.receiptNumber}</strong><br/>
     Amount: <strong>₹${data.amountInr.toLocaleString("en-IN")}</strong></p>
-    <p>धन्यवाद — आपकी सदस्यता DHE के राष्ट्रीय मिशन में योगदान करती है।</p>
+    <p>${hindiThanks.membership}</p>
     <p>For queries: ${dheOfficialContact.email} | ${dheOfficialContact.phone}</p>
   `;
 }
