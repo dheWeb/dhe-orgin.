@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@types/jspdf": "^2.0.0",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/nodemailer": "^6.4.15",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18.2.55",
