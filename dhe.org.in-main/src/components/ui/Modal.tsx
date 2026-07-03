@@ -155,7 +155,7 @@ function ModalComponent({
           "relative z-10 flex w-full max-w-3xl flex-col",
           "max-h-[min(90dvh,720px)] sm:max-h-[min(85dvh,800px)]",
           "overflow-hidden rounded-2xl sm:rounded-3xl",
-          "border border-white/10 bg-gradient-to-br from-[#07111f] via-[#0f172a] to-[#111827]",
+          "border border-white/10 bg-gradient-to-br from-dhe-navy via-dhe-navy-mid to-dhe-navy-light",
           "shadow-[0_20px_80px_rgba(0,0,0,0.45)]",
           "motion-safe:animate-modal-scale-in",
           "min-w-0",
@@ -168,7 +168,7 @@ function ModalComponent({
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-blue-500 opacity-20 blur-3xl"
+          className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-dhe-blue-accent opacity-20 blur-3xl"
           aria-hidden="true"
         />
 
@@ -181,7 +181,7 @@ function ModalComponent({
             "absolute z-20 flex min-h-11 min-w-11 items-center justify-center",
             "rounded-full border border-white/20 bg-white/10 text-lg font-bold text-white",
             "backdrop-blur-md transition-colors duration-200",
-            "hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07111f]",
+            "hover:bg-orange-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dhe-navy",
             isRtl ? "left-4 top-4 sm:left-5 sm:top-5" : "right-4 top-4 sm:right-5 sm:top-5",
           ].join(" ")}
         >

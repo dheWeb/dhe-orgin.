@@ -44,14 +44,17 @@ const config: Config = {
           'black-rgba': 'rgba(0, 0, 0, 0.557)',
       },
       colors: {
-        primary: '#A52A2A',
+        primary: '#ea580c',
         'primary-color': '#002D62',
         'primary-light': '#5072A7',
         dhe: {
           navy: '#07111f',
           'navy-mid': '#0f172a',
+          'navy-light': '#111827',
           orange: '#f97316',
           'orange-dark': '#ea580c',
+          'blue-accent': '#5072a7',
+          'blue-wash': '#eef2f7',
         },
       },
       boxShadow: {

@@ -12,7 +12,7 @@ import {
 
 const CompanyInfo: React.FC = () => {
   return (
-    <div className="w-full bg-gradient-to-r from-white via-orange-50 to-blue-50 border-b border-orange-100 shadow-sm">
+    <div className="w-full dhe-gradient-bar border-b border-orange-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Strip */}
@@ -29,7 +29,7 @@ const CompanyInfo: React.FC = () => {
             <div className="flex items-center gap-2">
               <FontAwesomeIcon
                 icon={faGlobe}
-                className="text-blue-700 w-4 h-4"
+                className="text-dhe-blue-accent w-4 h-4"
               />
               <span>Global Educational Outreach</span>
             </div>
@@ -88,7 +88,7 @@ const CompanyInfo: React.FC = () => {
                 <span className="px-2 py-0.5 rounded-md bg-orange-100 text-orange-700 text-[10px] font-semibold">
                   NEP 2020
                 </span>
-                <span className="px-2 py-0.5 rounded-md bg-blue-100 text-blue-700 text-[10px] font-semibold">
+                <span className="px-2 py-0.5 rounded-md bg-dhe-blue-wash text-dhe-blue-accent text-[10px] font-semibold">
                   National Platform
                 </span>
               </div>

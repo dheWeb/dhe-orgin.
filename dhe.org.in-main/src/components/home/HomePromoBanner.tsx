@@ -71,7 +71,7 @@ export default function HomePromoBanner({
     <div
       role="region"
       aria-label="DHE programs highlight"
-      className="bg-gradient-to-r from-[#07111f] to-gray-900 text-white border-b border-orange-500/30 min-h-[3.25rem]"
+      className="dhe-gradient-navy text-white border-b border-orange-500/30 min-h-[3.25rem]"
     >
       <div className="dhe-container py-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 justify-between">
         <p className="text-xs sm:text-sm leading-snug line-clamp-2 sm:line-clamp-none">

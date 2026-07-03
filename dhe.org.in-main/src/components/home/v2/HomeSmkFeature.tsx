@@ -30,10 +30,10 @@ export default function HomeSmkFeature({
       />
       <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
         <div className="lg:col-span-7 space-y-4">
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed line-clamp-4">
+          <p className="text-sm sm:text-base text-on-navy-muted leading-relaxed line-clamp-4">
             {p1}
           </p>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed line-clamp-3">
+          <p className="text-sm sm:text-base text-on-navy-muted leading-relaxed line-clamp-3">
             {p2}
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
@@ -58,8 +58,8 @@ export default function HomeSmkFeature({
               SMK 6.0
             </p>
             <p className="mt-2 text-2xl font-bold text-white">NIT Hamirpur</p>
-            <p className="mt-1 text-sm text-gray-300">9–11 October 2026</p>
-            <ul className="mt-5 space-y-2 text-sm text-gray-300" role="list">
+            <p className="mt-1 text-sm text-on-navy-muted">9–11 October 2026</p>
+            <ul className="mt-5 space-y-2 text-sm text-on-navy-muted" role="list">
               <li className="flex gap-2">
                 <span className="text-orange-400" aria-hidden>●</span>
                 500+ institutions engaged

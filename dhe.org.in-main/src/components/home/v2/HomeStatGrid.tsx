@@ -6,7 +6,7 @@ export default function HomeStatGrid() {
   const allStats = [...homeStats, ...homeImpactStats];
 
   return (
-    <section aria-labelledby="home-stats-heading" className="bg-gray-50/60 border-y border-gray-100">
+    <section aria-labelledby="home-stats-heading" className="bg-dhe-muted border-y border-gray-100">
       <div className="dhe-container py-8 sm:py-10">
         <h2 id="home-stats-heading" className="sr-only">
           DHE institutional statistics

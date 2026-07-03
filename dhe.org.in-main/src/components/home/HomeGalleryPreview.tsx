@@ -86,7 +86,7 @@ export default function HomeGalleryPreview({ slides }: Props) {
                 sizes="(max-width: 1024px) 50vw, 25vw"
                 className="object-cover motion-safe:transition-transform duration-500 group-hover:scale-105"
               />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gray-900/70 px-2 py-1.5 text-[10px] sm:text-xs text-gray-100 line-clamp-2 leading-tight opacity-0 group-hover:opacity-100 motion-safe:transition-opacity">
+              <figcaption className="absolute inset-x-0 bottom-0 bg-dhe-navy-light/70 px-2 py-1.5 text-[10px] sm:text-xs text-gray-100 line-clamp-2 leading-tight opacity-0 group-hover:opacity-100 motion-safe:transition-opacity">
                 {slide.legend || slide.alt}
               </figcaption>
             </figure>

@@ -22,7 +22,7 @@ export default function HomeHero({
   return (
     <section
       aria-labelledby="home-hero-heading"
-      className="relative overflow-hidden bg-gradient-to-br from-white via-orange-50/30 to-blue-50/40 border-b border-gray-200/80"
+      className="relative overflow-hidden dhe-gradient-hero border-b border-gray-200/80"
     >
       <HeroImagePreload />
       <div
@@ -30,7 +30,7 @@ export default function HomeHero({
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-blue-200/20 blur-3xl motion-safe:animate-float-slow-reverse"
+        className="pointer-events-none absolute -right-24 bottom-0 h-64 w-64 rounded-full bg-dhe-blue-accent/15 blur-3xl motion-safe:animate-float-slow-reverse"
         aria-hidden
       />
 

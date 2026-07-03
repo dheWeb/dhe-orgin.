@@ -28,10 +28,13 @@ a .svg-inline--fa {
   --dhe-navy: #07111f;
   --dhe-navy-mid: #0f172a;
   --dhe-navy-light: #111827;
-  --dhe-orange: #f97316;
-  --dhe-orange-dark: #ea580c;
+  /* CTA accent — matches dhe-btn-primary (orange-600) */
+  --dhe-orange: #ea580c;
+  --dhe-orange-bright: #f97316;
+  --dhe-orange-dark: #c2410c;
   --dhe-orange-soft: #fff7ed;
   --dhe-blue-accent: #5072a7;
+  --dhe-blue-wash: #eef2f7;
   --dhe-primary-brand: #002d62;
 
   --dhe-radius-sm: 0.75rem;
@@ -64,7 +67,35 @@ a .svg-inline--fa {
   }
 
   .dhe-btn-ghost-light {
-    @apply inline-flex min-h-11 items-center justify-center px-5 py-2.5 rounded-md font-medium border border-white/30 text-white hover:bg-white/10 motion-safe:transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#07111f];
+    @apply inline-flex min-h-11 items-center justify-center px-5 py-2.5 rounded-md font-medium border border-white/30 text-white hover:bg-white/10 motion-safe:transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-dhe-navy;
+  }
+
+  .bg-dhe-muted {
+    @apply bg-gray-50/80;
+  }
+
+  .dhe-gradient-bar {
+    @apply bg-gradient-to-r from-white via-orange-50 to-dhe-blue-wash;
+  }
+
+  .dhe-gradient-hero {
+    @apply bg-gradient-to-br from-white via-orange-50/30 to-dhe-blue-wash/60;
+  }
+
+  .dhe-gradient-trust {
+    @apply bg-gradient-to-r from-orange-50 via-white to-dhe-blue-wash;
+  }
+
+  .dhe-gradient-navy {
+    @apply bg-gradient-to-r from-dhe-navy to-dhe-navy-mid;
+  }
+
+  .text-on-navy {
+    @apply text-gray-200;
+  }
+
+  .text-on-navy-muted {
+    @apply text-gray-300;
   }
 
   .dhe-section-py {

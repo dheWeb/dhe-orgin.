@@ -74,7 +74,7 @@ export default function HindiLandingPage() {
           </ul>
         </section>
 
-        <section className="mt-10 rounded-2xl bg-[#07111f] text-white p-6 sm:p-8 shadow-dhe-lg">
+        <section className="mt-10 rounded-2xl bg-dhe-navy text-white p-6 sm:p-8 shadow-dhe-lg">
           <p className="text-xs font-semibold uppercase tracking-widest text-orange-400">
             शिक्षा महाकुंभ 6.0
           </p>

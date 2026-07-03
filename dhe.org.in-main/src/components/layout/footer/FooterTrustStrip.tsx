@@ -11,7 +11,7 @@ const trustItems = [
 
 export default function FooterTrustStrip() {
   return (
-    <div className="border-b border-gray-700/80 bg-[#0a1628]">
+    <div className="border-b border-gray-700/80 bg-dhe-navy">
       <div className="dhe-container py-4">
         <p className="text-xs font-semibold uppercase tracking-widest text-orange-400 mb-3">
           Institutional trust

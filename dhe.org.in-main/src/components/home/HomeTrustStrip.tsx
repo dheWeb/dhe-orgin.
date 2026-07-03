@@ -35,7 +35,7 @@ export default function HomeTrustStrip() {
   return (
     <section
       aria-labelledby="home-trust-strip-heading"
-      className="rounded-xl border border-orange-200 bg-gradient-to-r from-orange-50 via-white to-blue-50 p-4 sm:p-5"
+      className="rounded-xl border border-orange-200 dhe-gradient-trust p-4 sm:p-5"
     >
       <h2
         id="home-trust-strip-heading"

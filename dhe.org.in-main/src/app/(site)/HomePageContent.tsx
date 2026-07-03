@@ -8,21 +8,21 @@ import type { MarqueeItem } from "@/lib/cms/cms-parsers";
 
 import HomeStickyMobileCta from "@/components/home/v2/HomeStickyMobileCta";
 const HomeNewsSection = dynamic(() => import("@/components/home/HomeNewsSection"), {
-  loading: () => <div className="h-40 bg-[#07111f] animate-pulse" aria-hidden />,
+  loading: () => <div className="h-40 bg-dhe-navy animate-pulse" aria-hidden />,
 });
 
 const HomeGalleryPreview = dynamic(
   () => import("@/components/home/HomeGalleryPreview"),
   {
     loading: () => (
-      <div className="dhe-container h-32 animate-pulse bg-gray-50" aria-hidden />
+      <div className="dhe-container h-32 animate-pulse bg-dhe-muted" aria-hidden />
     ),
   }
 );
 
 const HomeFaqSection = dynamic(() => import("@/components/home/HomeFaqSection"), {
   loading: () => (
-    <div className="dhe-container h-48 animate-pulse bg-gray-50" aria-hidden />
+    <div className="dhe-container h-48 animate-pulse bg-dhe-muted" aria-hidden />
   ),
 });
 

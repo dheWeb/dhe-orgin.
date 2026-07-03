@@ -1,7 +1,7 @@
 export default function WaveDivider({ flip = false }: { flip?: boolean }) {
   return (
     <div
-      className={`w-full overflow-hidden leading-[0] text-gray-50 ${flip ? "rotate-180" : ""}`}
+      className={`w-full overflow-hidden leading-[0] text-gray-50/80 ${flip ? "rotate-180" : ""}`}
       aria-hidden
     >
       <svg

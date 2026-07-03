@@ -19,9 +19,9 @@ export default function HomeSectionShell({
 }: Props) {
   const bg =
     variant === "navy"
-      ? "bg-[#07111f] text-white"
+      ? "bg-dhe-navy text-white"
       : variant === "muted"
-        ? "bg-gray-50/80"
+        ? "bg-dhe-muted"
         : "bg-white";
 
   return (
@@ -42,7 +42,7 @@ export default function HomeSectionShell({
           {description ? (
             <p
               className={`mt-3 text-sm sm:text-base leading-relaxed ${
-                variant === "navy" ? "text-gray-300" : "text-gray-600"
+                variant === "navy" ? "text-on-navy-muted" : "text-gray-600"
               }`}
             >
               {description}

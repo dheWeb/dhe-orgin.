@@ -23,7 +23,7 @@ export default function FooterEcosystemStrip() {
               href={partner.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex w-28 flex-col items-center rounded-xl border border-gray-700 bg-[#111827] p-3 hover:border-orange-500/50 hover:bg-[#1a2332] motion-safe:transition-colors"
+              className="group flex w-28 flex-col items-center rounded-xl border border-gray-700 bg-dhe-navy-light p-3 hover:border-orange-500/50 hover:bg-dhe-navy-mid motion-safe:transition-colors"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/95 overflow-hidden">
                 {partner.image ? (

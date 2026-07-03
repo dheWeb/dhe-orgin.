@@ -37,7 +37,7 @@ export default function HomeIndiaMap() {
                   cx={point.x}
                   cy={point.y}
                   r={DOT_RADIUS[point.size] + 1.5}
-                  fill="#f97316"
+                  fill="var(--dhe-orange-bright)"
                   opacity="0.25"
                   className="motion-safe:animate-pulse"
                   style={{ animationDelay: `${i * 120}ms` }}
@@ -46,7 +46,7 @@ export default function HomeIndiaMap() {
                   cx={point.x}
                   cy={point.y}
                   r={DOT_RADIUS[point.size]}
-                  fill="#ea580c"
+                  fill="var(--dhe-orange)"
                   stroke="#fff"
                   strokeWidth="0.5"
                 />

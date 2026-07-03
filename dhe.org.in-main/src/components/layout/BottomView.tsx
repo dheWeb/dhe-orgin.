@@ -23,7 +23,7 @@ export default function BottomView({ footerMission, siteContact }: Props) {
   const mission = footerMission?.trim() || DEFAULT_FOOTER_MISSION;
 
   return (
-    <div className="bg-[#0f172a] text-white">
+    <div className="bg-dhe-navy-mid text-white">
       <FooterTrustStrip />
       <div className="dhe-container py-10 sm:py-12 lg:py-14">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">

@@ -40,7 +40,7 @@ const Marquees: React.FC<MarqueesProps> = ({ items = DEFAULT_MARQUEE_ITEMS }) =>
   return (
     <section
       aria-label="Announcements"
-      className="flex items-stretch min-h-10 bg-gray-900 text-white text-sm border-b border-gray-800"
+      className="flex items-stretch min-h-10 bg-dhe-navy text-white text-sm border-b border-dhe-navy-mid"
     >
       <span className="shrink-0 px-3 sm:px-4 py-2.5 bg-orange-600 text-xs font-semibold uppercase tracking-wide flex items-center">
         News

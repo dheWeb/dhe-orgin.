@@ -7,7 +7,7 @@ import type { MarqueeItem } from "@/lib/cms/cms-parsers";
 
 const Marquees = dynamic(() => import("@/components/home/Marquees"), {
   ssr: false,
-  loading: () => <div className="h-9 bg-gray-900 animate-pulse" aria-hidden />,
+  loading: () => <div className="h-9 bg-dhe-navy animate-pulse" aria-hidden />,
 });
 
 export default function HomeNewsSection({
@@ -18,7 +18,7 @@ export default function HomeNewsSection({
   return (
     <section
       aria-labelledby="news-updates-heading"
-      className="bg-[#07111f] text-white border-y border-gray-800"
+      className="bg-dhe-muted border-y border-gray-200"
     >
       <Marquees items={marqueeItems} />
 
@@ -26,17 +26,17 @@ export default function HomeNewsSection({
         <header className="mb-4 max-w-3xl">
           <h2
             id="news-updates-heading"
-            className="text-lg sm:text-xl font-semibold text-white"
+            className="text-lg sm:text-xl font-semibold text-gray-900"
           >
             News, Notices & Updates
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-gray-200">
+          <p className="mt-1 text-xs sm:text-sm text-gray-600">
             Official announcements and the latest notices from the Department of
             Holistic Education.
           </p>
         </header>
 
-        <div className="max-w-3xl border border-white/10 rounded-md bg-white text-gray-900 overflow-hidden">
+        <div className="max-w-3xl border border-gray-200 rounded-xl bg-white text-gray-900 overflow-hidden shadow-dhe-sm">
           <div className="px-3 py-2 border-b border-gray-100 flex items-center justify-between gap-2">
             <span className="text-sm font-semibold text-gray-900">
               Latest Notices
