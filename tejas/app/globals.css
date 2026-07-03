@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --tejas-saffron: #E85D04;
+    --tejas-blue: #1E3A5F;
+    --tejas-ivory: #FAF9F6;
+    --tejas-emerald: #059669;
+    --tejas-gold: #D4A017;
+    --tejas-ink: #1C1917;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-tejas-ivory text-tejas-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-tejas-saffron/20 text-tejas-ink;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

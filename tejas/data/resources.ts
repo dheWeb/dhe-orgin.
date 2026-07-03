@@ -1,0 +1,103 @@
+import type { Resource, PrepareCategory } from "@/types";
+
+export const resources: Resource[] = [
+  {
+    id: "r1",
+    title: "Mathematics — Grade 10 Syllabus Guide",
+    type: "pdf",
+    subject: "Mathematics",
+    description: "Complete syllabus breakdown with topic weightage.",
+    href: "#",
+  },
+  {
+    id: "r2",
+    title: "Science Lab Concepts — Video Series",
+    type: "video",
+    subject: "Science",
+    description: "12-part video series covering core lab concepts.",
+    href: "#",
+  },
+  {
+    id: "r3",
+    title: "English Reading Comprehension Strategies",
+    type: "article",
+    subject: "English",
+    description: "Expert tips for mastering comprehension sections.",
+    href: "#",
+  },
+  {
+    id: "r4",
+    title: "Coding Logic — Practice Set 1",
+    type: "practice",
+    subject: "Coding",
+    description: "30 algorithmic thinking questions with solutions.",
+    href: "#",
+  },
+  {
+    id: "r5",
+    title: "AI Ethics & Foundations",
+    type: "article",
+    subject: "AI",
+    description: "Introduction to responsible AI for young learners.",
+    href: "#",
+  },
+  {
+    id: "r6",
+    title: "Previous Year Papers — 2026 Collection",
+    type: "pdf",
+    subject: "All Subjects",
+    description: "Official papers from the CV Raman Edition.",
+    href: "#",
+  },
+];
+
+export const prepareCategories: PrepareCategory[] = [
+  {
+    id: "mock-tests",
+    title: "Mock Tests",
+    description: "Full-length simulated exams with instant scoring",
+    count: 48,
+    href: "/prepare/mock-tests",
+    gradient: "from-tejas-saffron to-orange-600",
+  },
+  {
+    id: "practice",
+    title: "Practice Sets",
+    description: "Topic-wise drills to strengthen fundamentals",
+    count: 120,
+    href: "/prepare",
+    gradient: "from-tejas-blue to-indigo-800",
+  },
+  {
+    id: "videos",
+    title: "Video Learning",
+    description: "Expert masterclasses and concept explainers",
+    count: 85,
+    href: "/prepare",
+    gradient: "from-tejas-emerald to-teal-700",
+  },
+  {
+    id: "question-banks",
+    title: "Question Banks",
+    description: "Curated question pools by grade and subject",
+    count: 5000,
+    href: "/prepare",
+    gradient: "from-violet-600 to-purple-800",
+  },
+  {
+    id: "papers",
+    title: "Previous Papers",
+    description: "Official papers from past TEJAS editions",
+    count: 36,
+    href: "/editions/previous",
+    gradient: "from-tejas-gold to-amber-700",
+  },
+  {
+    id: "strategies",
+    title: "Exam Strategies",
+    description: "Time management and scoring techniques",
+    count: 24,
+    href: "/prepare",
+    gradient: "from-rose-600 to-pink-800",
+  },
+];
