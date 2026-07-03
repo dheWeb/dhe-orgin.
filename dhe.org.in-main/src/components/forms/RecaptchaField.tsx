@@ -6,9 +6,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 declare global {
   interface Window {
     grecaptcha?: {
+      ready: (callback: () => void) => void;
       render: (
         el: HTMLElement,
-        opts: { sitekey: string; callback: (token: string) => void; "expired-callback": () => void }
+        opts: {
+          sitekey: string;
+          callback: (token: string) => void;
+          "expired-callback": () => void;
+        }
       ) => number;
       reset: (id?: number) => void;
     };
@@ -19,26 +24,72 @@ type RecaptchaFieldProps = {
   onToken: (token: string) => void;
 };
 
+function canRenderRecaptcha(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    typeof window.grecaptcha?.render === "function"
+  );
+}
+
 export default function RecaptchaField({ onToken }: RecaptchaFieldProps) {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetId = useRef<number | null>(null);
-  const [ready, setReady] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
 
   const renderWidget = useCallback(() => {
-    if (!siteKey || !containerRef.current || !window.grecaptcha || widgetId.current !== null) {
+    if (!siteKey || !containerRef.current || widgetId.current !== null) {
       return;
     }
-    widgetId.current = window.grecaptcha.render(containerRef.current, {
-      sitekey: siteKey,
-      callback: (token: string) => onToken(token),
-      "expired-callback": () => onToken(""),
-    });
+    if (!canRenderRecaptcha()) {
+      return;
+    }
+
+    try {
+      const mount = () => {
+        if (!containerRef.current || widgetId.current !== null) return;
+        if (!canRenderRecaptcha()) return;
+
+        widgetId.current = window.grecaptcha!.render(containerRef.current, {
+          sitekey: siteKey,
+          callback: (token: string) => onToken(token),
+          "expired-callback": () => onToken(""),
+        });
+      };
+
+      if (typeof window.grecaptcha?.ready === "function") {
+        window.grecaptcha.ready(mount);
+      } else {
+        mount();
+      }
+    } catch (error) {
+      console.error("reCAPTCHA render failed:", error);
+    }
   }, [onToken, siteKey]);
 
   useEffect(() => {
-    if (ready) renderWidget();
-  }, [ready, renderWidget]);
+    if (!scriptLoaded) return;
+
+    let cancelled = false;
+    let attempts = 0;
+
+    const tryRender = () => {
+      if (cancelled) return;
+      if (canRenderRecaptcha()) {
+        renderWidget();
+        return;
+      }
+      attempts += 1;
+      if (attempts < 30) {
+        window.setTimeout(tryRender, 100);
+      }
+    };
+
+    tryRender();
+    return () => {
+      cancelled = true;
+    };
+  }, [scriptLoaded, renderWidget]);
 
   if (!siteKey) {
     return (
@@ -53,7 +104,7 @@ export default function RecaptchaField({ onToken }: RecaptchaFieldProps) {
       <Script
         src="https://www.google.com/recaptcha/api.js?render=explicit"
         strategy="lazyOnload"
-        onReady={() => setReady(true)}
+        onLoad={() => setScriptLoaded(true)}
       />
       <div ref={containerRef} className="my-4" />
     </>
@@ -61,7 +112,7 @@ export default function RecaptchaField({ onToken }: RecaptchaFieldProps) {
 }
 
 export function resetRecaptcha(widgetId: number | null) {
-  if (widgetId !== null && window.grecaptcha) {
+  if (widgetId !== null && typeof window.grecaptcha?.reset === "function") {
     window.grecaptcha.reset(widgetId);
   }
 }
