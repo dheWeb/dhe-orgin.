@@ -3,7 +3,7 @@
 import NextTopLoader from "nextjs-toploader";
 import CompanyInfo from "@/components/layout/CompanyInfo";
 import Header from "@/components/layout/Header";
-import BottomView from "@/components/layout/BottomView";
+import BottomView, { type FooterSiteContact } from "@/components/layout/BottomView";
 import Floating from "@/components/layout/Floating";
 import VisibleBreadcrumbs from "@/components/layout/VisibleBreadcrumbs";
 import HomePromoBanner from "@/components/home/HomePromoBanner";
@@ -13,11 +13,13 @@ export default function RootLayoutClient({
   children,
   sitePhone = "7903431900",
   footerMission,
+  siteContact,
   smkUrls,
 }: {
   children: React.ReactNode;
   sitePhone?: string;
   footerMission?: string;
+  siteContact?: FooterSiteContact;
   smkUrls?: { siteUrl: string; registrationUrl: string };
 }) {
   return (
@@ -58,7 +60,7 @@ export default function RootLayoutClient({
       {children}
 
       <footer>
-        <BottomView footerMission={footerMission} />
+        <BottomView footerMission={footerMission} siteContact={siteContact} />
       </footer>
 
       <Toaster

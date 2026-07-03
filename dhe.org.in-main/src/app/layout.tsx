@@ -39,6 +39,8 @@ export default async function RootLayout({
     getPrograms(),
   ]);
   const sitePhone = content.site_contact?.phone?.trim() || "7903431900";
+  const siteEmail = content.site_contact?.email?.trim();
+  const siteOfficeAddress = content.site_contact?.office_address?.trim();
   const footerMission = content.footer_mission?.text?.trim();
   const smkUrls = getSmkUrlsFromPrograms(programs);
 
@@ -50,6 +52,11 @@ export default async function RootLayout({
         <RootLayoutClient
           sitePhone={sitePhone}
           footerMission={footerMission}
+          siteContact={{
+            phone: sitePhone,
+            email: siteEmail,
+            officeAddress: siteOfficeAddress,
+          }}
           smkUrls={smkUrls}
         >
           <main
