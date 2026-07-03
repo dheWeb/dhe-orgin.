@@ -17,6 +17,8 @@ const checks = [
   { name: "Structure", path: "/structure", expect: 200 },
   { name: "Hindi landing", path: "/hi", expect: 200 },
   { name: "Transparency", path: "/transparency", expect: 200 },
+  { name: "Director message", path: "/messages", expect: 200 },
+  { name: "Sample cell", path: "/cells/rd", expect: 200 },
   { name: "Partner logo SVG", path: "/partners/vbitr.svg", expect: 200 },
 ];
 

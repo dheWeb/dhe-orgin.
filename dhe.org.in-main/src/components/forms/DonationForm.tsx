@@ -5,6 +5,9 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import RazorpayDonateButton from "@/components/payments/RazorpayDonateButton";
 import { vbitrTrust, dheOfficialContact } from "@/data/institution";
+import PageHero from "@/components/ui/PageHero";
+import HomeFeatureCard from "@/components/ui/HomeFeatureCard";
+import { HomeIcon } from "@/components/home/HomeIcons";
 
 interface DonationData {
   name: string;
@@ -16,11 +19,46 @@ interface DonationData {
 }
 
 const contributionAreas = [
-  "Educational outreach and awareness initiatives",
-  "Workshops for students, teachers, and institutional coordinators",
-  "National conferences and collaborative academic events",
-  "Publications and knowledge-sharing through journals and proceedings",
-  "Capacity-building aligned with holistic education and NEP 2020",
+  {
+    title: "Educational outreach",
+    description: "Awareness initiatives and institutional engagement across Bharat.",
+    icon: "academic" as const,
+  },
+  {
+    title: "Workshops & training",
+    description: "Programs for students, teachers, and coordinators.",
+    icon: "events" as const,
+  },
+  {
+    title: "National conferences",
+    description: "Shiksha Mahakumbh and collaborative academic events.",
+    icon: "summit" as const,
+  },
+  {
+    title: "Publications",
+    description: "Journals, proceedings, and knowledge outputs.",
+    icon: "journal" as const,
+  },
+  {
+    title: "Capacity building",
+    description: "Holistic education aligned with NEP 2020.",
+    icon: "leadership" as const,
+  },
+] as const;
+
+const trustQuickLinks = [
+  {
+    title: "80G certificate",
+    href: vbitrTrust.approval80G.documentPath,
+    external: true,
+  },
+  {
+    title: "12A registration",
+    href: vbitrTrust.registration12A.documentPath,
+    external: true,
+  },
+  { title: "Verify receipt", href: "/receipt/verify" },
+  { title: "Transparency hub", href: "/transparency" },
 ] as const;
 
 const PAN_REGEX = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
@@ -70,75 +108,74 @@ const Donation = ({ introText }: { introText?: string }) => {
 
   return (
     <div className="bg-white mb-5 min-w-0">
-      <div className="dhe-container py-6 sm:py-10">
-        <header className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
-          <h1 className="text-2xl sm:text-3xl font-semibold text-primary-color">
-            Support the Department of Holistic Education
-          </h1>
-          <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
-            {introText ||
-              "Your contribution helps advance holistic education, national programs, and institutional initiatives led by DHE in service of educational transformation and Viksit Bharat."}
-          </p>
-        </header>
+      <PageHero
+        eyebrow="Support DHE · Section 80G"
+        title="Donate to VBITR Trust"
+        description={
+          introText ||
+          "Your contribution helps advance holistic education, national programs, and institutional initiatives led by DHE in service of Viksit Bharat."
+        }
+      />
 
+      <div className="dhe-container py-8 sm:py-10 max-w-3xl mx-auto">
         <section
-          className="max-w-3xl mx-auto mb-8 rounded-lg border border-green-200 bg-green-50 p-4 sm:p-6 text-sm text-gray-800"
+          className="mb-8 rounded-2xl border border-green-200 bg-green-50/70 p-5 sm:p-6 text-sm text-gray-800"
           aria-label="80G tax exemption information"
         >
-          <h2 className="font-semibold text-green-900 mb-2">
-            80G Tax Exemption (Provisional)
-          </h2>
+          <h2 className="font-bold text-green-900 mb-2">80G Tax Exemption</h2>
           <p>
-            Donations are received by{" "}
-            <strong>{vbitrTrust.legalName}</strong> (PAN: {vbitrTrust.pan}).
-            Provisional approval under Section 80G — Certificate No.{" "}
-            {vbitrTrust.approval80G.number}, valid for AY{" "}
+            Donations to <strong>{vbitrTrust.legalName}</strong> (PAN: {vbitrTrust.pan}).
+            Certificate No. {vbitrTrust.approval80G.number}, valid AY{" "}
             {vbitrTrust.approval80G.validAssessmentYears.join(", ")}.
           </p>
-          <p className="mt-2">
-            An official receipt will be emailed after successful payment. For
-            queries: {dheOfficialContact.email} / {dheOfficialContact.phone}.
-          </p>
-          <p className="mt-3 flex flex-wrap gap-4">
-            <a
-              href={vbitrTrust.approval80G.documentPath}
-              className="text-green-800 font-semibold underline hover:text-green-950"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download 80G certificate (PDF)
-            </a>
-            <a
-              href={vbitrTrust.registration12A.documentPath}
-              className="text-green-800 font-semibold underline hover:text-green-950"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download 12A registration (PDF)
-            </a>
-            <Link
-              href="/receipt/verify"
-              className="text-green-800 font-semibold underline hover:text-green-950"
-            >
-              Verify receipt online
-            </Link>
+          <ul className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2" role="list">
+            {trustQuickLinks.map((link) => (
+              <li key={link.href}>
+                {"external" in link && link.external ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center rounded-lg border border-green-200 bg-white px-2 py-2 text-xs font-semibold text-green-800 hover:bg-green-100 min-h-11"
+                  >
+                    {link.title} ↗
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="block text-center rounded-lg border border-green-200 bg-white px-2 py-2 text-xs font-semibold text-green-800 hover:bg-green-100 min-h-11"
+                  >
+                    {link.title}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs text-gray-600">
+            Queries: {dheOfficialContact.email} / {dheOfficialContact.phone}
           </p>
         </section>
 
-        <section className="max-w-3xl mx-auto mb-10">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">
+        <section className="mb-10" aria-labelledby="contribution-areas-heading">
+          <h2 id="contribution-areas-heading" className="text-lg font-bold text-gray-900 mb-4">
             Where your support goes
           </h2>
-          <ul className="list-disc pl-5 space-y-2 text-sm text-gray-600">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="list">
             {contributionAreas.map((area) => (
-              <li key={area}>{area}</li>
+              <li key={area.title}>
+                <HomeFeatureCard
+                  title={area.title}
+                  description={area.description}
+                  icon={<HomeIcon name={area.icon} className="w-5 h-5" />}
+                />
+              </li>
             ))}
           </ul>
         </section>
 
-        <section className="max-w-3xl mx-auto bg-slate-50 border border-gray-100 rounded-lg p-6 sm:p-8">
-          <h2 className="text-xl font-semibold text-primary-color mb-6 text-center">
-            Donation Form
+        <section className="rounded-2xl border border-gray-200 bg-slate-50 p-6 sm:p-8 shadow-dhe-sm">
+          <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">
+            Donation form
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -268,7 +305,7 @@ const Donation = ({ introText }: { introText?: string }) => {
         </section>
 
         <nav
-          className="max-w-3xl mx-auto mt-8 flex flex-wrap justify-center gap-4 text-sm"
+          className="mt-8 flex flex-wrap justify-center gap-4 text-sm"
           aria-label="Related contribution pages"
         >
           <Link

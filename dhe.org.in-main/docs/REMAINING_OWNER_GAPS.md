@@ -1,7 +1,7 @@
 # Remaining owner / enterprise gaps
 
 **Last updated:** 2026-07-03  
-**Production:** https://www.dhe.org.in — **272/272 actionable AUD items FIXED**; **8 WONTFIX**; **Phases 1–4 shipped**.
+**Production:** https://www.dhe.org.in — **Phases 1–5 shipped**.
 
 ## Phase 3 (Jul 2026) — shipped
 
@@ -12,10 +12,14 @@
 ## Phase 4 (Jul 2026) — shipped
 
 - `PageHero` + cards on `/publications`, `/leadership`, `/contact`
-- CMS testimonials (`home_testimonials_json` in admin)
-- Partner SVG logos (`public/partners/`)
-- Expanded smoke test (12 routes)
-- Font `adjustFontFallback` for LCP
+- CMS testimonials (`home_testimonials_json`)
+- Partner SVG logos; expanded smoke test; font tuning
+
+## Phase 5 (Jul 2026) — shipped
+
+- `/donation`, `/messages`, `/transparency` — card system + `PageHero`
+- All 25 cell pages — `CellPageHero` header band
+- Smoke test: `/messages`, `/cells/rd`
 
 ## Owner actions (outside repo deploy)
 
