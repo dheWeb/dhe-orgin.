@@ -48,7 +48,10 @@ export default function HomeClosingCta({
             Explore DHE programs
           </Link>
           <Link href="/donation" className="dhe-btn-ghost-light text-sm min-h-10">
-            Support DHE
+            Donate (80G)
+          </Link>
+          <Link href="/transparency" className="dhe-btn-ghost-light text-sm min-h-10">
+            Transparency
           </Link>
           <Link href="/contribute" className="dhe-btn-ghost-light text-sm min-h-10">
             Join DHE — Membership

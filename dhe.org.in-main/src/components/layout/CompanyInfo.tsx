@@ -106,10 +106,10 @@ const CompanyInfo: React.FC = () => {
             </Link>
 
             <Link
-              href="/programs/shiksha-mahakumbh"
+              href="/programs"
               className="w-full sm:w-auto text-center px-4 py-2 rounded-md border border-orange-500 text-orange-700 text-sm font-semibold hover:bg-orange-50 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
             >
-              Shiksha Mahakumbh
+              All Programs
             </Link>
           </div>
         </div>

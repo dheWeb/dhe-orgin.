@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/seo/site-metadata";
 import { getAllPublicPaths } from "@/lib/seo/pages-registry";
 
-const HOME_UPDATED = new Date("2026-06-30");
+const HOME_UPDATED = new Date("2026-07-03");
 const PROGRAMS_UPDATED = new Date("2026-06-30");
 const CELLS_UPDATED = new Date("2026-06-01");
 const LEGAL_UPDATED = new Date("2026-06-30");

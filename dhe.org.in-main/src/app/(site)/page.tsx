@@ -64,7 +64,7 @@ export default async function Home() {
   return (
     <>
       <HeroImagePreload />
-      <HomeStructuredData />
+      <HomeStructuredData faqItems={faqItems} />
       <HomePageContent
         tagline={tagline}
         homeIntro={homeIntro}

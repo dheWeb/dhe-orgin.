@@ -3,13 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { HomeSlide } from "@/data/home/slides";
+import { homeGalleryPreviewIndices } from "@/data/home/slides";
 
 type Props = {
   slides: HomeSlide[];
 };
 
 export default function HomeGalleryPreview({ slides }: Props) {
-  const preview = slides.slice(0, 4);
+  const preview = homeGalleryPreviewIndices.map((i) => slides[i]).filter(Boolean);
 
   return (
     <section
@@ -26,7 +27,8 @@ export default function HomeGalleryPreview({ slides }: Props) {
               Events & Gallery
             </h2>
             <p className="text-xs sm:text-sm text-gray-600 mt-1 max-w-xl">
-              Highlights from Shiksha Mahakumbh, institutional partnerships, and national educational initiatives.
+              DHE programs, institutional partnerships, Olympiads, workshops, and
+              Shiksha Mahakumbh highlights from across Bharat.
             </p>
           </div>
           <div className="flex gap-3 shrink-0">

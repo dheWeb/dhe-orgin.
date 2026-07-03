@@ -1,17 +1,20 @@
 # Department of Holistic Education (DHE)
 
-> National holistic education platform under Vidya Bharti / VBITR Trust — 25 cells, year-round programs, NEP 2020, Viksit Bharat. Shiksha Mahakumbh Abhiyan is the flagship annual summit (Event Management Cell), not the whole of DHE.
+> National holistic education platform under Vidya Bharti / VBITR Trust — 25 cells, year-round programs, NEP 2020, Viksit Bharat, and global academic collaboration. Shiksha Mahakumbh Abhiyan is the flagship annual summit (Event Management Cell), not the whole of DHE.
 
 ## Official site
 
-- https://www.dhe.org.in
+- https://www.dhe.org.in (English)
+- https://www.dhe.org.in/hi (Hindi hub)
 
 ## Key pages
 
 - Programs hub: https://www.dhe.org.in/programs
+- Search: https://www.dhe.org.in/search
 - Cells & structure: https://www.dhe.org.in/structure
 - Publications: https://www.dhe.org.in/publications
 - Donate (80G eligible): https://www.dhe.org.in/donation
+- Transparency & trust deed: https://www.dhe.org.in/transparency
 - Verify receipt: https://www.dhe.org.in/receipt/verify
 - Membership: https://www.dhe.org.in/contribute
 - Notices: https://www.dhe.org.in/noticeboard
@@ -23,17 +26,20 @@
 
 ## Flagship programs (owned by cells)
 
-- Shiksha Mahakumbh — Event Management Cell: https://www.dhe.org.in/programs/shiksha-mahakumbh
 - DHE Olympiads — Olympiad Cell: https://www.dhe.org.in/programs/dhe-olympiads
+- IPR & Entrepreneurship — IPR Cell: https://www.dhe.org.in/programs/ipr-entrepreneurship
+- Shiksha Mahakumbh — Event Management Cell: https://www.dhe.org.in/programs/shiksha-mahakumbh
 - Punjab Super 100 — Super 100 Cell: https://www.dhe.org.in/programs/super-100
 - Publications & journals — Publications Cell: https://pub.dhe.org.in
 - Donations & CSR — CSR Cell: https://www.dhe.org.in/donation
 - E-Cycle — Udyam Cell: https://www.dhe.org.in/programs/e-cycle
 - Multi-Track Conference — Publications Cell: https://www.dhe.org.in/programs/multi-track-conference
+- Residential camps — Event Cell: https://www.dhe.org.in/residentialcamps
 - Speaker directory (SMK): https://www.rase.co.in/speakers/directory
 
 ## External official portals
 
+- National portal: https://www.dhe.org.in
 - Shiksha Mahakumbh registration: https://www.rase.co.in/registration/Single_Registration
 - RASE program site: https://www.rase.co.in
 
@@ -45,6 +51,7 @@
 - Office: E-7, Orchid Towers, Sector 125, Sunny Enclave, SAS Nagar, Punjab-140301
 - Phone: 7903431900
 - Email: director@dhe.org.in
+- Global reach: India, South Asia, international academic partnerships
 
 ## Policies
 

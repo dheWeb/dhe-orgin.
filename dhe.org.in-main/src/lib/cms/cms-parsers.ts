@@ -13,20 +13,20 @@ export type UpcomingEventRow = {
 
 export const DEFAULT_MARQUEE_ITEMS: MarqueeItem[] = [
   {
-    text:
-      "शिक्षा महाकुंभ 6.0 — NIT Hamirpur, 9–11 October 2026. Registration open.",
-    link: "https://www.rase.co.in/registration/Single_Registration",
+    text: "DHE English Olympiad — 10,040+ students. Download brochure (PDF).",
+    link: "/documents/dhe-english-olympiad.pdf",
   },
   {
-    text:
-      "Shiksha Mahakumbh 5.0 concluded at NIPER Mohali (Oct–Nov 2025). View official photos.",
-    link:
-      "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
-  },
-  {
-    text:
-      "Join the holistic education movement — explore DHE programs and membership.",
+    text: "Explore 25 national cells and year-round DHE programs.",
     link: "/programs",
+  },
+  {
+    text: "Donate to VBITR Trust — Section 80G eligible. View transparency documents.",
+    link: "/transparency",
+  },
+  {
+    text: "Shiksha Mahakumbh 6.0 — NIT Hamirpur, 9–11 Oct 2026. Registration open.",
+    link: "https://www.rase.co.in/registration/Single_Registration",
   },
 ];
 
@@ -50,7 +50,7 @@ export const DEFAULT_UPCOMING_EVENTS: UpcomingEventRow[] = [
     external: true,
     status: "completed",
     statusLabel: "Concluded",
-    statusNote: "284 papers, 10,400+ Olympiad students — official photos on Drive.",
+    statusNote: "284 papers at this edition; 1,200+ cumulative across SMK editions.",
   },
   {
     title: "Shiksha Mahakumbh 4.0",

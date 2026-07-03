@@ -78,16 +78,20 @@ const DEFAULTS: SiteContentMap = {
     json: JSON.stringify(
       [
         {
+          text: "DHE English Olympiad — 10,040+ students. Download brochure (PDF).",
+          link: "/documents/dhe-english-olympiad.pdf",
+        },
+        {
+          text: "Explore 25 national cells and year-round DHE programs.",
+          link: "/programs",
+        },
+        {
+          text: "Donate to VBITR Trust — Section 80G eligible. Transparency documents.",
+          link: "/transparency",
+        },
+        {
           text: "Shiksha Mahakumbh 6.0 — NIT Hamirpur, 9–11 Oct 2026. Registration open.",
           link: "https://www.rase.co.in/registration/Single_Registration",
-        },
-        {
-          text: "Shiksha Mahakumbh 5.0 concluded at NIPER Mohali. View photos.",
-          link: "https://drive.google.com/drive/folders/1c2CKx2Z9IaN-dsoW-Ymw6Npx1EOTFcsA",
-        },
-        {
-          text: "Join the holistic education movement — explore DHE programs.",
-          link: "/programs",
         },
       ],
       null,

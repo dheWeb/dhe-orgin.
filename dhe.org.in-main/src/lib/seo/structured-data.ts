@@ -1,9 +1,10 @@
-import { homeFaq } from "@/data/home/content";
+import type { FaqItem } from "@/lib/cms/home-faq-content";
 import {
   dheOfficialContact,
   dheOfficeAddress,
   vbitrTrust,
 } from "@/data/institution/receipt-and-lmc";
+import { homeFaq } from "@/data/home/content";
 import { siteConfig } from "./site-metadata";
 
 export function getOrganizationSchema() {
@@ -12,7 +13,7 @@ export function getOrganizationSchema() {
     "@type": "EducationalOrganization",
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.name,
-    alternateName: siteConfig.shortName,
+    alternateName: [siteConfig.shortName, "DHE", "Vidya Bharti DHE"],
     url: siteConfig.url,
     logo: siteConfig.ogImage,
     description: defaultMetadataDescription(),
@@ -41,10 +42,12 @@ export function getOrganizationSchema() {
       "https://www.rase.co.in",
       "https://pub.dhe.org.in",
     ],
-    areaServed: {
-      "@type": "Country",
-      name: "India",
-    },
+    areaServed: [
+      { "@type": "Country", name: "India" },
+      { "@type": "AdministrativeArea", name: "South Asia" },
+      { "@type": "Place", name: "Worldwide" },
+    ],
+    availableLanguage: ["en", "hi"],
     knowsAbout: [
       "Holistic Education",
       "NEP 2020",
@@ -57,6 +60,7 @@ export function getOrganizationSchema() {
       "Educational Research",
       "Academic Publications",
       "Vidya Bharati",
+      "International Education Collaboration",
     ],
   };
 }
@@ -69,7 +73,15 @@ export function getWebSiteSchema() {
     url: siteConfig.url,
     name: siteConfig.name,
     publisher: { "@id": `${siteConfig.url}/#organization` },
-    inLanguage: ["en", "hi"],
+    inLanguage: ["en-IN", "hi-IN"],
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -88,11 +100,11 @@ export function getBreadcrumbSchema() {
   };
 }
 
-export function getHomeFaqSchema() {
+export function getHomeFaqSchema(items: FaqItem[] = [...homeFaq]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: homeFaq.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -103,18 +115,19 @@ export function getHomeFaqSchema() {
   };
 }
 
-export function getHomePageGraph() {
+export function getHomePageGraph(faqItems?: FaqItem[]) {
+  const faq = faqItems?.length ? faqItems : [...homeFaq];
   return {
     "@context": "https://schema.org",
     "@graph": [
       getOrganizationSchema(),
       getWebSiteSchema(),
       getBreadcrumbSchema(),
-      getHomeFaqSchema(),
+      getHomeFaqSchema(faq),
     ],
   };
 }
 
 function defaultMetadataDescription() {
-  return "Department of Holistic Education (DHE) advances holistic learning, innovation, leadership, research, Bharatiya values, NEP 2020, and Shiksha Mahakumbh Abhiyan for Viksit Bharat.";
+  return "Department of Holistic Education (DHE) advances holistic learning, innovation, leadership, research, and Bharatiya values through 25 national cells, year-round programs, NEP 2020 alignment, and Shiksha Mahakumbh Abhiyan for Viksit Bharat and global academic collaboration.";
 }

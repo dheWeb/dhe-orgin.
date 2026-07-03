@@ -21,7 +21,7 @@ export const homeStats = [
 /** Quantified outcomes from DHE programs (brochure + SMK editions) */
 export const homeImpactStats = [
   { value: "500+", label: "Institutions engaged" },
-  { value: "1,200+", label: "Research papers presented" },
+  { value: "1,200+", label: "Research papers (SMK editions cumulative)" },
   { value: "10,040", label: "DHE English Olympiad students" },
   { value: "14+", label: "States & UTs represented" },
 ] as const;
@@ -46,7 +46,7 @@ export const leadership = {
   title: "Leadership & Thought Direction",
   bodyPrefix: "At the helm of DHE is",
   leaderName: "Dr. Thakur S. K. R.",
-  leaderUrl: "http://www.drthakurskr.com",
+  leaderUrl: "https://www.drthakurskr.com",
   bodySuffix:
     ", senior scientist at ISRO and pioneer in educational experimentation. His vision promotes character, competence, creativity, leadership, innovation, and globally relevant education rooted in Bharatiya civilization ethos.",
   visionTitle: "Vision Statement",
@@ -67,6 +67,18 @@ export const digitalEcosystem = {
   description:
     "DHE actively develops impact-driven digital platforms that transform educational vision into practical, scalable, and sustainable systems.",
   cards: [
+    {
+      title: "dhe.org.in",
+      desc: "National DHE portal — cells, programs, and institutional hub",
+      icon: "digital" as const,
+      href: "https://www.dhe.org.in",
+    },
+    {
+      title: "Shiksha Mahakumbh (RASE)",
+      desc: "Flagship national summit — editions 1.0–6.0",
+      icon: "summit" as const,
+      href: "https://www.rase.co.in",
+    },
     {
       title: "Tredul",
       desc: "Experiential learning & educational tourism platform",
@@ -139,16 +151,34 @@ export const homeFaq = [
     answer:
       "The 6th Edition of Shiksha Mahakumbh Abhiyan will be held at NIT Hamirpur from 9th October to 11th October 2026. Register on the official RASE portal linked from dhe.org.in/programs/shiksha-mahakumbh.",
   },
+  {
+    question: "How are DHE's 25 national cells organized?",
+    answer:
+      "DHE advances holistic education through 25 national cells — from R&D, ATL, and Udyam to Publications, Event Management, CSR, Olympiad, and more. Explore the organizational chart and cell pages at dhe.org.in/structure.",
+  },
+  {
+    question: "Where can I find publications and transparency documents?",
+    answer:
+      "Journals, proceedings, and souvenirs are at dhe.org.in/publications and pub.dhe.org.in. Trust deed, 80G/12A certificates, and program PDFs are on dhe.org.in/transparency.",
+  },
+  {
+    question: "Does DHE engage internationally?",
+    answer:
+      "DHE convenes educators, researchers, and institutions across India and welcomes global academic collaboration aligned with NEP 2020 and Viksit Bharat. International partners may contact director@dhe.org.in or use the contact form at dhe.org.in/contact.",
+  },
 ] as const;
 
 /** Featured programs for homepage strip */
 export const homeProgramHighlights = [
   { slug: "dhe-olympiads", title: "DHE Olympiads", stat: "10,040+ students" },
+  { slug: "ipr-entrepreneurship", title: "IPR & Entrepreneurship", stat: "CSIR–CSIO workshops" },
   { slug: "super-100", title: "Punjab Super 100", stat: "~700 active scholars" },
-  { slug: "shiksha-mahakumbh", title: "Shiksha Mahakumbh", stat: "500+ institutions" },
-  { slug: "donations-csr", title: "Donate (80G eligible)", stat: "CSR Cell" },
   { slug: "publications", title: "Journals & Proceedings", stat: "pub.dhe.org.in" },
-  { slug: "digital-platforms", title: "Digital Ecosystem", stat: "IT Cell platforms" },
+  { slug: "e-cycle", title: "E-Cycle Initiative", stat: "Udyam Cell pilots" },
+  { slug: "residential-camps", title: "Residential Camps", stat: "Immersive learning" },
+  { slug: "donations-csr", title: "Donate (80G eligible)", stat: "VBITR Trust" },
+  { slug: "multi-track-conference", title: "Multi-Track Conference", stat: "15 research tracks" },
+  { slug: "shiksha-mahakumbh", title: "Shiksha Mahakumbh", stat: "Flagship summit" },
 ] as const;
 
 /** Research → innovation → entrepreneurship → publications → events → community */
@@ -196,12 +226,16 @@ export const participationPathways = {
 
 export const relatedLinks = [
   { href: "/structure", label: "Cells & Structure" },
+  { href: "/programs", label: "All Programs" },
+  { href: "/publications", label: "Publications" },
+  { href: "/leadership", label: "Leadership & LMC" },
+  { href: "/transparency", label: "Transparency" },
   { href: "/messages", label: "Director's Message" },
   { href: "/people", label: "Cell Co-ordinators" },
   { href: "/upcomingevent", label: "Upcoming Events" },
-  { href: "/pastevent", label: "Past Events" },
   { href: "/noticeboard", label: "Notice Board" },
   { href: "/contribute", label: "Join DHE — Membership" },
+  { href: "/hi", label: "हिंदी" },
   { href: "/contact", label: "Contact DHE" },
 ];
 

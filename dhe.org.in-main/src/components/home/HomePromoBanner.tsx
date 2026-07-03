@@ -75,8 +75,9 @@ export default function HomePromoBanner({
     >
       <div className="dhe-container py-2.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 justify-between">
         <p className="text-xs sm:text-sm leading-snug">
-          <strong className="text-orange-200">DHE national programs</strong> — cells,
-          workshops, membership, and Shiksha Mahakumbh 6.0 (9–11 Oct 2026).
+          <strong className="text-orange-200">DHE national programs</strong> — 25 cells,
+          Olympiads, publications, membership, and workshops year-round.
+          Shiksha Mahakumbh 6.0: 9–11 Oct 2026, NIT Hamirpur.
         </p>
         <div className="flex items-center gap-2 shrink-0 flex-wrap">
           <Link

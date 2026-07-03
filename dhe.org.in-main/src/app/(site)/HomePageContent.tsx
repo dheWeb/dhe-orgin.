@@ -3,8 +3,8 @@ import HomeHero from "@/components/home/HomeHero";
 import MiddleComponent from "@/components/home/MiddleComponent";
 import HomeClosingCta from "@/components/home/HomeClosingCta";
 import HomeFaqSection from "@/components/home/HomeFaqSection";
+import HomeTrustStrip from "@/components/home/HomeTrustStrip";
 import { homeSlides } from "@/data/home/slides";
-import AdSlot from "@/components/ui/AdSlot";
 import type { MarqueeItem } from "@/lib/cms/cms-parsers";
 
 const HomeNewsSection = dynamic(() => import("@/components/home/HomeNewsSection"), {
@@ -86,7 +86,7 @@ export default function HomePageContent({
       </div>
 
       <div className="dhe-container dhe-section-py">
-        <AdSlot slotId="home-mid-1" minHeight={120} label="Advertisement placeholder" />
+        <HomeTrustStrip />
       </div>
 
       <HomeNewsSection marqueeItems={marqueeItems} />

@@ -19,12 +19,23 @@ function buildFromEntry(entry: PageSeoEntry): Metadata {
         }
       : entry.title;
 
+  const alternates: Metadata["alternates"] = {
+    canonical: canonicalPath,
+    ...(entry.path === "/"
+      ? {
+          languages: {
+            "en-IN": siteConfig.url,
+            "hi-IN": `${siteConfig.url}/hi`,
+            "x-default": siteConfig.url,
+          },
+        }
+      : {}),
+  };
+
   return {
     title,
     description: entry.description,
-    alternates: {
-      canonical: canonicalPath,
-    },
+    alternates,
     robots: entry.noIndex
       ? { index: false, follow: false }
       : { index: true, follow: true },
