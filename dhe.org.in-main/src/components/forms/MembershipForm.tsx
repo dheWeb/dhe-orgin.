@@ -3,6 +3,8 @@
 import React, { useState, ChangeEvent, FormEvent, useId } from 'react';
 import toast from 'react-hot-toast';
 import RecaptchaField from '@/components/forms/RecaptchaField';
+import HoneypotField from '@/components/forms/HoneypotField';
+import { HONEYPOT_FIELD } from '@/lib/security/honeypot';
 import RazorpayDonateButton from '@/components/payments/RazorpayDonateButton';
 import { trackGaEvent } from '@/lib/analytics/ga-events';
 
@@ -31,6 +33,7 @@ const MemberShipForm = () => {
     const [formData, setFormData] = useState<NgoData>(initialFormData);
     const [loading, setLoading] = useState(false);
     const [recaptchaToken, setRecaptchaToken] = useState('');
+    const [honeypot, setHoneypot] = useState('');
     const [applicationId, setApplicationId] = useState<string | null>(null);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -58,6 +61,7 @@ const MemberShipForm = () => {
                     phone: formData.PhoneNumber,
                     address: formData.Address,
                     recaptchaToken,
+                    [HONEYPOT_FIELD]: honeypot,
                 }),
             });
             const data = await res.json();
@@ -87,8 +91,9 @@ const MemberShipForm = () => {
     return (
         <div className='bg-white mb-5'>
             <div className='shadow-md rounded-md md:w-1/3 mx-auto pt-8 bg-white text-black'>
-                <h1 className='text-primary text-center text-xl'>Membership Form</h1>
-                <form onSubmit={handleSubmit} className='bg-white p-4'>
+                <h2 className='text-primary text-center text-xl'>Membership application</h2>
+                <form onSubmit={handleSubmit} className='bg-white p-4 relative'>
+                    <HoneypotField value={honeypot} onChange={setHoneypot} />
                     <div className="mb-4">
                         <label htmlFor={`${fieldId}-name`} className="block text-sm font-medium text-gray-600">Name</label>
                         <input id={`${fieldId}-name`} type="text" name="name" value={formData.name} onChange={handleInputChange} required className="mt-4 p-2 block w-full rounded-md border border-gray-300 text-black" />

@@ -100,19 +100,17 @@ const CompanyInfo: React.FC = () => {
             
             <Link
               href="/structure"
-              className="w-full sm:w-auto text-center px-4 py-2 rounded-md border border-orange-500 text-orange-700 text-sm font-semibold hover:bg-orange-50 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
+              className="w-full sm:w-auto text-center px-4 py-2 rounded-md bg-orange-600 text-white text-sm font-semibold hover:bg-orange-700 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
             >
               Explore DHE
             </Link>
 
-            <a
-              href="https://www.rase.co.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto text-center px-4 py-2 rounded-md bg-orange-600 text-white text-sm font-semibold hover:bg-orange-700 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
+            <Link
+              href="/programs/shiksha-mahakumbh"
+              className="w-full sm:w-auto text-center px-4 py-2 rounded-md border border-orange-500 text-orange-700 text-sm font-semibold hover:bg-orange-50 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
             >
               Shiksha Mahakumbh
-            </a>
+            </Link>
           </div>
         </div>
       </div>

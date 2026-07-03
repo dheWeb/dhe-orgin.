@@ -3,6 +3,7 @@ import { verifyRecaptchaToken } from "@/lib/recaptcha/verify";
 import { checkRateLimit, getClientIp } from "@/lib/security/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { notifyAdminFormSubmission } from "@/lib/email/send-admin-notification";
+import { isHoneypotTripped } from "@/lib/security/honeypot";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,6 +27,10 @@ export async function POST(req: NextRequest) {
     body = (await req.json()) as Record<string, unknown>;
   } catch {
     return NextResponse.json({ error: "Invalid JSON." }, { status: 400 });
+  }
+
+  if (isHoneypotTripped(body)) {
+    return NextResponse.json({ success: true });
   }
 
   if (!(await verifyRecaptchaToken(String(body.recaptchaToken ?? "")))) {

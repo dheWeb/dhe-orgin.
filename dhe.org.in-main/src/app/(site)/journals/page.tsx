@@ -1,15 +1,8 @@
 import { createPageMetadata } from "@/lib/seo/build-metadata";
+import Journals from "@/components/sections/Journals";
 
 export const metadata = createPageMetadata("journals");
 
-
-import Journals from "@/components/sections/Journals";
-
-
-export default function page() {
-  return (
-    <>
-    <Journals/>
-  </>
-  )
+export default function JournalsPage() {
+  return <Journals />;
 }

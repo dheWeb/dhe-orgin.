@@ -9,7 +9,7 @@ const ResidentialCamps: React.FC = () => {
         "राष्ट्रीय शिक्षण, नेतृत्व एवं संगठनात्मक विकास प्रशिक्षण शिविर",
       date: "07–08 September 2024",
       venue: "IIT Ropar",
-      link: "/residentialcamps/DHE_प्रथम _आवासीय_आवास_वर्ग.pdf",
+      link: "/residentialcamps/dhe-first-residential-camp.pdf",
       color: "from-orange-500 to-orange-400",
     },
     {

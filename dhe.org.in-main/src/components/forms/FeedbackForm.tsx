@@ -4,6 +4,8 @@ import React, { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
+import HoneypotField from "@/components/forms/HoneypotField";
+import { HONEYPOT_FIELD } from "@/lib/security/honeypot";
 import type { FeedbackEventOption } from "@/lib/cms/home-faq-content";
 import { trackGaEvent } from "@/lib/analytics/ga-events";
 
@@ -23,6 +25,7 @@ const FeedbackForm: React.FC<{ eventOptions?: FeedbackEventOption[] }> = ({
   const [suggestions, setSuggestions] = useState("");
   const [loading, setLoading] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -52,6 +55,7 @@ const FeedbackForm: React.FC<{ eventOptions?: FeedbackEventOption[] }> = ({
           experience,
           suggestions,
           recaptchaToken,
+          [HONEYPOT_FIELD]: honeypot,
         }),
       });
       const data = await res.json();
@@ -71,8 +75,9 @@ const FeedbackForm: React.FC<{ eventOptions?: FeedbackEventOption[] }> = ({
 
   return (
     <div className="text-primary border rounded-lg px-8 py-6 mx-auto my-8 max-w-2xl border-gray-100 bg-slate-50">
-      <h2 className="text-center text-2xl font-medium mb-4">Feedback Form</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="text-center text-xl font-semibold mb-4">Your feedback</h2>
+      <form onSubmit={handleSubmit} className="relative">
+        <HoneypotField value={honeypot} onChange={setHoneypot} />
         <div className="mb-4 moving-border">
           <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
             Name<span className="text-red-500">*</span>

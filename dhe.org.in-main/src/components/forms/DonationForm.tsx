@@ -23,6 +23,8 @@ const contributionAreas = [
   "Capacity-building aligned with holistic education and NEP 2020",
 ] as const;
 
+const PAN_REGEX = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+
 const Donation = ({ introText }: { introText?: string }) => {
   const initialFormData: DonationData = {
     name: "",
@@ -49,15 +51,22 @@ const Donation = ({ introText }: { introText?: string }) => {
       !formData.name ||
       !formData.email ||
       !formData.PhoneNumber ||
-      !formData.Amount
+      !formData.Amount ||
+      !formData.pan
     ) {
       toast.error("Please fill in all required fields.");
+      return;
+    }
+    const pan = formData.pan.trim().toUpperCase();
+    if (!PAN_REGEX.test(pan)) {
+      toast.error("Enter a valid PAN (e.g. ABCDE1234F) for your 80G receipt.");
       return;
     }
     toast("Use the Razorpay button below to complete your donation.");
   };
 
   const amount = Number(formData.Amount);
+  const panValid = PAN_REGEX.test(formData.pan.trim().toUpperCase());
 
   return (
     <div className="bg-white mb-5 min-w-0">
@@ -210,7 +219,7 @@ const Donation = ({ introText }: { introText?: string }) => {
                 htmlFor="donation-pan"
                 className="block text-sm font-medium text-gray-600"
               >
-                PAN (optional, for 80G receipt)
+                PAN (required for 80G receipt)<span className="text-red-500">*</span>
               </label>
               <input
                 id="donation-pan"
@@ -221,6 +230,9 @@ const Donation = ({ introText }: { introText?: string }) => {
                 onChange={handleInputChange}
                 className="mt-2 p-2 block w-full rounded-md border border-gray-300 text-black min-h-11 uppercase"
                 placeholder="ABCDE1234F"
+                required
+                pattern="[A-Za-z]{5}[0-9]{4}[A-Za-z]"
+                title="Enter a valid 10-character PAN"
               />
             </div>
 
@@ -250,7 +262,7 @@ const Donation = ({ introText }: { introText?: string }) => {
               pan={formData.pan}
               address={formData.address}
               thankYouPath="/donation/thank-you"
-              disabled={!formData.name || !formData.email || !amount}
+              disabled={!formData.name || !formData.email || !amount || !panValid}
             />
           </form>
         </section>

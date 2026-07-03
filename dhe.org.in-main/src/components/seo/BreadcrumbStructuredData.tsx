@@ -34,6 +34,12 @@ const TRAIL_SEO_KEY: Record<
   refundPolicy: "refundPolicy",
   advisory: "advisory",
   noticeboard: "noticeboard",
+  hindi: "hindi",
+  search: "search",
+  receiptVerify: "receiptVerify",
+  accountdetails: "accountdetails",
+  residentialcamps: "residentialcamps",
+  logos: "logos",
 };
 
 type Props = {

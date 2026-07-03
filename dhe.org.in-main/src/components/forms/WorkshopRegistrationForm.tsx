@@ -4,6 +4,8 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
+import HoneypotField from "@/components/forms/HoneypotField";
+import { HONEYPOT_FIELD } from "@/lib/security/honeypot";
 import { trackGaEvent } from "@/lib/analytics/ga-events";
 
 export default function WorkshopRegistrationForm() {
@@ -13,6 +15,7 @@ export default function WorkshopRegistrationForm() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: FormEvent) => {
@@ -32,6 +35,7 @@ export default function WorkshopRegistrationForm() {
           phone,
           address,
           recaptchaToken,
+          [HONEYPOT_FIELD]: honeypot,
         }),
       });
       const data = await res.json();
@@ -47,7 +51,8 @@ export default function WorkshopRegistrationForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 max-w-xl">
+    <form onSubmit={onSubmit} className="space-y-4 max-w-xl relative">
+      <HoneypotField value={honeypot} onChange={setHoneypot} />
       <div>
         <label htmlFor="ws-name" className="block text-sm font-medium text-gray-700">
           Full name

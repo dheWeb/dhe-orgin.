@@ -17,6 +17,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import toast from "react-hot-toast";
 import RecaptchaField from "@/components/forms/RecaptchaField";
+import HoneypotField from "@/components/forms/HoneypotField";
+import { HONEYPOT_FIELD } from "@/lib/security/honeypot";
 import { trackGaEvent } from "@/lib/analytics/ga-events";
 
 function VisitorCountSpinner() {
@@ -40,6 +42,7 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
   const [dailyVisitors, setDailyVisitors] = useState<number | null>(null);
   const [totalVisitors, setTotalVisitors] = useState<number | null>(null);
@@ -111,7 +114,12 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
       const res = await fetch("/api/forms/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, message, recaptchaToken }),
+        body: JSON.stringify({
+          email,
+          message,
+          recaptchaToken,
+          [HONEYPOT_FIELD]: honeypot,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
@@ -416,7 +424,8 @@ const BottomView: React.FC<{ footerMission?: string }> = ({
             </h3>
 
             {/* FORM */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 relative">
+              <HoneypotField value={honeypot} onChange={setHoneypot} />
 
               <label htmlFor="footer-contact-email" className="sr-only">
                 Your email address

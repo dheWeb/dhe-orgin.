@@ -92,6 +92,30 @@ export const PAGE_BREADCRUMB_TRAILS = {
     { name: "Home", path: "/" },
     { name: "Notice Board", path: "/noticeboard" },
   ],
+  hindi: [
+    { name: "Home", path: "/" },
+    { name: "हिंदी", path: "/hi" },
+  ],
+  search: [
+    { name: "Home", path: "/" },
+    { name: "Search", path: "/search" },
+  ],
+  receiptVerify: [
+    { name: "Home", path: "/" },
+    { name: "Verify Donation Receipt", path: "/receipt/verify" },
+  ],
+  accountdetails: [
+    { name: "Home", path: "/" },
+    { name: "Account Details", path: "/accountdetails" },
+  ],
+  residentialcamps: [
+    { name: "Home", path: "/" },
+    { name: "Residential Camps", path: "/residentialcamps" },
+  ],
+  logos: [
+    { name: "Home", path: "/" },
+    { name: "Media & Logos", path: "/logos" },
+  ],
 } as const;
 
 export type PageBreadcrumbKey = keyof typeof PAGE_BREADCRUMB_TRAILS;
