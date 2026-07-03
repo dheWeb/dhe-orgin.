@@ -3,6 +3,11 @@
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 
+export type NoticeEmbeddedHeader = {
+  title: string;
+  viewAllHref: string;
+};
+
 const NoticeBoard = dynamic(
   () => import("@/components/notices/NoticeBoard"),
   {
@@ -16,10 +21,14 @@ const NoticeBoard = dynamic(
   }
 );
 
+type Props = {
+  embeddedHeader?: NoticeEmbeddedHeader;
+};
+
 /**
  * Defers NoticeBoard until the news section nears the viewport.
  */
-export default function HomeNoticeLazy() {
+export default function HomeNoticeLazy({ embeddedHeader }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
@@ -49,7 +58,7 @@ export default function HomeNoticeLazy() {
   return (
     <div ref={containerRef} className="min-h-[140px]">
       {shouldLoad ? (
-        <NoticeBoard embedded />
+        <NoticeBoard embedded embeddedHeader={embeddedHeader} />
       ) : (
         <div
           className="min-h-[140px] animate-pulse bg-gray-50 rounded-md"

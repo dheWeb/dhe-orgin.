@@ -15,6 +15,10 @@ type Event = {
 type NoticeBoardProps = {
   embedded?: boolean;
   initialNotices?: Event[];
+  embeddedHeader?: {
+    title: string;
+    viewAllHref: string;
+  };
 };
 
 const FALLBACK_NOTICE_IMAGE = "/logo.webp";
@@ -123,6 +127,7 @@ function NoticeList({
 const NoticeBoard: React.FC<NoticeBoardProps> = ({
   embedded = false,
   initialNotices = [],
+  embeddedHeader,
 }) => {
   const [events, setEvents] = useState<Event[]>(initialNotices);
   const [loading, setLoading] = useState(initialNotices.length === 0);
@@ -175,6 +180,8 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({
     </button>
   );
 
+  const inactiveTabClass = embedded ? "text-gray-500" : "text-gray-700";
+
   const tabs = (
     <div>
       <div
@@ -189,7 +196,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({
           className={`px-3 py-2 text-sm font-medium min-h-10 ${
             activeTab === "current"
               ? "text-orange-600 border-b-2 border-orange-600"
-              : "text-gray-700"
+              : inactiveTabClass
           }`}
           onClick={() => setActiveTab("current")}
         >
@@ -202,7 +209,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({
           className={`px-3 py-2 text-sm font-medium min-h-10 ${
             activeTab === "past"
               ? "text-orange-600 border-b-2 border-orange-600"
-              : "text-gray-700"
+              : inactiveTabClass
           }`}
           onClick={() => setActiveTab("past")}
         >
@@ -210,7 +217,10 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({
         </button>
       </div>
 
-      <div role="tabpanel" className="max-h-52 overflow-y-auto">
+      <div
+        role="tabpanel"
+        className={`max-h-60 overflow-y-auto dhe-scroll-thin ${embedded ? "pr-1" : ""}`}
+      >
         {loading ? (
           <div className="space-y-3 py-2" aria-busy="true">
             {[1, 2, 3].map((i) => (
@@ -278,7 +288,24 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({
   if (embedded) {
     return (
       <div className="min-w-0">
-        <div className="flex items-center justify-end mb-1">{refreshButton}</div>
+        {embeddedHeader ? (
+          <div className="flex items-center justify-between gap-2 border-b border-gray-100 pb-2 mb-2">
+            <h3 className="text-sm font-semibold text-gray-900 m-0">
+              {embeddedHeader.title}
+            </h3>
+            <div className="flex items-center gap-1 shrink-0">
+              <Link
+                href={embeddedHeader.viewAllHref}
+                className="text-xs font-semibold text-orange-600 hover:text-orange-700 min-h-10 inline-flex items-center px-2"
+              >
+                View all →
+              </Link>
+              {refreshButton}
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-end mb-1">{refreshButton}</div>
+        )}
         {error && (
           <p className="text-xs text-red-700 bg-red-50 border border-red-200 rounded px-2 py-1 mb-2" role="alert">
             {error}

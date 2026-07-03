@@ -31,7 +31,7 @@ const Marquees: React.FC<MarqueesProps> = ({ items = DEFAULT_MARQUEE_ITEMS }) =>
       {...(item.link.startsWith("http")
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className="mx-4 sm:mx-6 text-white hover:text-orange-200 min-h-11 inline-flex items-center text-xs sm:text-sm"
+      className="mx-4 sm:mx-6 text-white hover:text-orange-200 inline-flex items-center text-xs sm:text-sm leading-normal whitespace-nowrap"
     >
       {item.text}
     </Link>
@@ -40,16 +40,18 @@ const Marquees: React.FC<MarqueesProps> = ({ items = DEFAULT_MARQUEE_ITEMS }) =>
   return (
     <section
       aria-label="Announcements"
-      className="flex items-stretch min-h-10 bg-dhe-navy text-white text-sm border-b border-dhe-navy-mid"
+      className="flex min-h-11 items-stretch bg-dhe-navy text-white text-sm border-b-2 border-orange-500/25"
     >
-      <span className="shrink-0 px-3 sm:px-4 py-2.5 bg-orange-600 text-xs font-semibold uppercase tracking-wide flex items-center">
+      <span className="shrink-0 px-3 sm:px-4 bg-orange-600 text-xs font-semibold uppercase tracking-wide flex items-center self-stretch">
         News
       </span>
-      <div className="flex-1 min-w-0 py-1">
+      <div className="flex-1 min-w-0 flex items-center overflow-hidden py-2">
         {reduceMotion ? (
-          <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-1 px-2 py-1" role="list">
+          <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-1 px-2" role="list">
             {marquees.map((item, index) => (
-              <li key={index}>{links[index]}</li>
+              <li key={index} className="flex items-center min-h-9">
+                {links[index]}
+              </li>
             ))}
           </ul>
         ) : (

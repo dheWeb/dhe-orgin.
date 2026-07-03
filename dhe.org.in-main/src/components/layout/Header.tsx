@@ -12,6 +12,7 @@ import {
 type Menu = {
   path: string;
   title: string;
+  navTitle?: string;
   subMenu?: Menu[];
 };
 
@@ -93,11 +94,17 @@ const Header: React.FC = () => {
     },
 
     { path: "/donation", title: "Donation" },
-    { path: "/logos", title: "Media & Logos" },
-    { path: "/accountdetails", title: "Accounts" },
-    { path: "/feedback", title: "Feedback" },
+    { path: "/logos", title: "Media", navTitle: "Media & Logos" },
+    {
+      path: "/accountdetails",
+      title: "More",
+      subMenu: [
+        { path: "/accountdetails", title: "Accounts" },
+        { path: "/feedback", title: "Feedback" },
+        { path: "/hi", title: "हिंदी" },
+      ],
+    },
     { path: "/contact", title: "Contact" },
-    { path: "/hi", title: "हिंदी" },
   ];
 
   const closeMobileMenu = useCallback(() => {
@@ -143,7 +150,8 @@ const Header: React.FC = () => {
                   {!item.subMenu ? (
                     <Link
                       href={item.path}
-                      className="px-4 py-3 text-[15px] font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50"
+                      title={item.navTitle}
+                      className="px-3 py-2.5 text-sm font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50 whitespace-nowrap"
                     >
                       {item.title}
                     </Link>
@@ -151,7 +159,7 @@ const Header: React.FC = () => {
                     <>
                       <button
                         type="button"
-                        className="flex items-center gap-1 px-4 py-3 text-[15px] font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50"
+                        className="flex items-center gap-1 px-3 py-2.5 text-sm font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50 whitespace-nowrap"
                         aria-haspopup="true"
                         aria-expanded={isOpen}
                         aria-controls={submenuId}
