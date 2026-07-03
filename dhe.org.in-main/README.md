@@ -14,6 +14,15 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Related products
+
+**TEJAS** (Talent Evaluation & Joint Assessment Series) is a separate product and repository:
+
+- Site: [tejas.dhe.org.in](https://tejas.dhe.org.in)
+- Repo: [github.com/dheWeb/tejas](https://github.com/dheWeb/tejas)
+
+Do not import TEJAS code into this codebase.
+
 ## Deploy on Vercel
 
 Monorepo root contains `vercel.json` that builds `dhe.org.in-main/`.
