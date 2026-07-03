@@ -17,22 +17,22 @@ export default function FooterConnect({
 
   return (
     <div>
-      <h3 className="text-lg font-bold text-orange-200">Connect</h3>
+      <h3 className="text-lg font-bold text-heading-on-dark">Connect</h3>
       <ul className="mt-4 space-y-3 text-sm text-gray-300">
         <li>
-          <span className="block text-xs uppercase tracking-wide text-gray-500">Email</span>
-          <a href={`mailto:${email}`} className="text-orange-300 hover:underline font-medium">
+          <span className="block text-xs uppercase tracking-wide text-gray-400">Email</span>
+          <a href={`mailto:${email}`} className="text-accent-on-dark hover:underline font-medium">
             {email}
           </a>
         </li>
         <li>
-          <span className="block text-xs uppercase tracking-wide text-gray-500">Phone / WhatsApp</span>
-          <a href={`tel:${phone}`} className="text-orange-300 hover:underline font-medium">
+          <span className="block text-xs uppercase tracking-wide text-gray-400">Phone / WhatsApp</span>
+          <a href={`tel:${phone}`} className="text-accent-on-dark hover:underline font-medium">
             +91 {phone}
           </a>
         </li>
         <li>
-          <span className="block text-xs uppercase tracking-wide text-gray-500">Office</span>
+          <span className="block text-xs uppercase tracking-wide text-gray-400">Office</span>
           <span className="leading-relaxed">{officeAddress}</span>
         </li>
       </ul>
@@ -51,7 +51,7 @@ export default function FooterConnect({
         </a>
       </div>
 
-      <p className="mt-3 text-xs text-gray-500">
+      <p className="mt-3 text-xs text-gray-400">
         For institutional inquiries use the official contact page — maps opens externally.
       </p>
     </div>

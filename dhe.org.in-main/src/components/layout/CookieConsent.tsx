@@ -43,13 +43,13 @@ export function CookieConsentBanner() {
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className="fixed bottom-0 inset-x-0 z-[100] p-4 bg-gray-900/95 text-white shadow-lg"
+      className="fixed bottom-0 inset-x-0 z-[100] p-4 bg-dhe-navy-mid/95 text-white shadow-lg border-t border-gray-700/80"
     >
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
         <p className="text-sm leading-relaxed">
           We use cookies and third-party scripts (analytics, chat) to improve
           your experience. See our{" "}
-          <a href="/privacy-policy" className="underline text-orange-100 hover:text-white">
+          <a href="/privacy-policy" className="underline text-accent-on-dark hover:text-white">
             Privacy Policy
           </a>
           .
@@ -65,7 +65,7 @@ export function CookieConsentBanner() {
           <button
             type="button"
             onClick={() => save("accepted")}
-            className="px-4 py-2 text-sm bg-orange-700 rounded-md hover:bg-orange-600"
+            className="px-4 py-2 text-sm bg-orange-600 rounded-md hover:bg-orange-700 text-white"
           >
             Accept all
           </button>

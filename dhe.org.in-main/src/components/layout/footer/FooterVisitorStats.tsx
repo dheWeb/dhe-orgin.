@@ -72,19 +72,19 @@ export default function FooterVisitorStats() {
     <div ref={ref} className="grid grid-cols-2 gap-3 mt-6">
       <div className="rounded-xl border border-gray-700 bg-dhe-navy-light p-4">
         <p className="text-xs uppercase tracking-wide text-gray-400">Today</p>
-        <p className="mt-1 text-2xl font-bold text-orange-300 tabular-nums">
+        <p className="mt-1 text-2xl font-bold text-accent-on-dark tabular-nums">
           {loading ? <VisitorCountSpinner /> : dailyVisitors}
         </p>
       </div>
       <div className="rounded-xl border border-gray-700 bg-dhe-navy-light p-4">
         <p className="text-xs uppercase tracking-wide text-gray-400">Total</p>
-        <p className="mt-1 text-2xl font-bold text-orange-300 tabular-nums">
+        <p className="mt-1 text-2xl font-bold text-accent-on-dark tabular-nums">
           {loading ? <VisitorCountSpinner /> : totalVisitors}
         </p>
       </div>
-      <p className="col-span-2 text-xs text-gray-500">
+      <p className="col-span-2 text-xs text-gray-400">
         Approximate counts — see{" "}
-        <a href="/privacy-policy" className="text-orange-400 hover:underline">
+        <a href="/privacy-policy" className="text-accent-on-dark hover:underline">
           Privacy Policy
         </a>
         .

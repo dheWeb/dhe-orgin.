@@ -9,7 +9,7 @@ export default function FooterNavColumns() {
     >
       {footerNavColumns.map((column) => (
         <div key={column.title}>
-          <h3 className="text-sm font-bold uppercase tracking-wide text-orange-300">
+          <h3 className="text-sm font-bold uppercase tracking-wide text-heading-on-dark">
             {column.title}
           </h3>
           <ul className="mt-3 space-y-2" role="list">

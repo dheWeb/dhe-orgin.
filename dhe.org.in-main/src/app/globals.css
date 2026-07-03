@@ -94,8 +94,16 @@ a .svg-inline--fa {
     @apply text-gray-200;
   }
 
-  .text-on-navy-muted {
-    @apply text-gray-300;
+  .dhe-btn-secondary {
+    @apply inline-flex min-h-11 items-center justify-center px-5 py-2.5 rounded-md font-medium border border-orange-600 text-orange-700 bg-white hover:bg-orange-50 motion-safe:transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2;
+  }
+
+  .text-accent-on-dark {
+    @apply text-orange-400;
+  }
+
+  .text-heading-on-dark {
+    @apply text-orange-200;
   }
 
   .dhe-section-py {

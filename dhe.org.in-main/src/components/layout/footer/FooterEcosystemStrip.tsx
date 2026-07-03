@@ -6,7 +6,7 @@ export default function FooterEcosystemStrip() {
     <section aria-labelledby="footer-ecosystem-heading" className="border-t border-gray-700/80 pt-8">
       <h3
         id="footer-ecosystem-heading"
-        className="text-lg font-bold text-orange-200"
+        className="text-lg font-bold text-heading-on-dark"
       >
         DHE ecosystem
       </h3>
@@ -23,7 +23,7 @@ export default function FooterEcosystemStrip() {
               href={partner.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex w-28 flex-col items-center rounded-xl border border-gray-700 bg-dhe-navy-light p-3 hover:border-orange-500/50 hover:bg-dhe-navy-mid motion-safe:transition-colors"
+              className="group flex w-28 flex-col items-center rounded-xl border border-gray-700 bg-dhe-navy-light p-3 hover:border-orange-500/50 hover:bg-dhe-navy motion-safe:transition-colors"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/95 overflow-hidden">
                 {partner.image ? (
@@ -45,7 +45,7 @@ export default function FooterEcosystemStrip() {
                   </span>
                 )}
               </div>
-              <span className="mt-2 text-center text-[11px] sm:text-xs font-medium text-gray-300 leading-snug group-hover:text-orange-200 line-clamp-2">
+              <span className="mt-2 text-center text-[11px] sm:text-xs font-medium text-gray-300 leading-snug group-hover:text-heading-on-dark line-clamp-2">
                 {partner.name}
               </span>
             </a>

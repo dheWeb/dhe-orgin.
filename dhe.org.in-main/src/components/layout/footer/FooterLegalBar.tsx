@@ -4,7 +4,7 @@ export default function FooterLegalBar() {
       <p className="text-sm text-gray-400 text-center lg:text-left">
         © {new Date().getFullYear()} Department of Holistic Education. All rights reserved.
       </p>
-      <p className="text-xs text-gray-500 text-center lg:text-right max-w-md">
+      <p className="text-xs text-gray-400 text-center lg:text-right max-w-md">
         Operated under VBITR Trust · NEP 2020 aligned · Section 80G donations
       </p>
     </div>

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   faFacebook,
   faInstagram,
@@ -15,31 +14,26 @@ const socialLinks = [
     href: "https://www.facebook.com/profile.php?id=100090170940886",
     label: "DHE on Facebook",
     icon: faFacebook,
-    hover: "hover:text-blue-400",
   },
   {
     href: "https://www.linkedin.com/company/department-of-holistic-education/",
     label: "DHE on LinkedIn",
     icon: faLinkedin,
-    hover: "hover:text-blue-300",
   },
   {
     href: "https://www.instagram.com/dhebharat",
     label: "DHE on Instagram",
     icon: faInstagram,
-    hover: "hover:text-pink-400",
   },
   {
     href: "https://twitter.com/DHEBharat1",
     label: "DHE on X",
     icon: faXTwitter,
-    hover: "hover:text-sky-400",
   },
   {
     href: "https://www.youtube.com/@DepartmentofHolisticEducation",
     label: "DHE on YouTube",
     icon: faYoutube,
-    hover: "hover:text-red-500",
   },
 ] as const;
 
@@ -60,7 +54,7 @@ export default function FooterBrand({ mission }: { mission: string }) {
         <div>
           <p className="text-xl font-bold leading-tight">
             Department of
-            <span className="block text-orange-300">Holistic Education</span>
+            <span className="block text-heading-on-dark">Holistic Education</span>
           </p>
           <p className="text-sm text-gray-400 mt-0.5">
             National Educational Transformation Platform
@@ -78,7 +72,7 @@ export default function FooterBrand({ mission }: { mission: string }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={item.label}
-            className={`text-gray-300 ${item.hover} motion-safe:transition-colors min-h-11 min-w-11 inline-flex items-center justify-center`}
+            className="text-gray-300 hover:text-accent-on-dark motion-safe:transition-colors min-h-11 min-w-11 inline-flex items-center justify-center"
           >
             <FontAwesomeIcon icon={item.icon} className="h-5 w-5" />
           </a>
