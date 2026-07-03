@@ -1,7 +1,16 @@
 # Remaining owner / enterprise gaps
 
 **Last updated:** 2026-07-03  
-**Production:** https://www.dhe.org.in — **272/272 actionable AUD items FIXED** in code; **8 WONTFIX** by design.
+**Production:** https://www.dhe.org.in — **272/272 actionable AUD items FIXED**; **8 WONTFIX**; **Homepage Phases 1–3 shipped**.
+
+## Phase 3 (Jul 2026) — shipped in repo
+
+- Testimonials section on homepage
+- Scroll-reveal on major homepage sections
+- Slim mobile chrome (CompanyInfo + promo banner)
+- Card system on `/programs`, `/structure`, `/hi`
+- Removed dead `MiddleComponent.tsx`, `HeroFirstSlide.tsx`
+- `node scripts/smoke-test-production.mjs` for post-deploy checks
 
 ## Owner actions (outside repo deploy)
 

@@ -1,25 +1,27 @@
-import Link from "next/link";
 import StructurePage from "@/components/sections/StructurePage";
 import { CELLS } from "@/data/cells";
+import CellCardGrid from "@/components/ui/CellCardGrid";
 
 export default function StructureRoutePage() {
   return (
     <>
       <StructurePage />
-      <section className="dhe-container pb-10 max-w-3xl mx-auto">
-        <h2 className="text-lg font-semibold text-primary-color">All DHE cells</h2>
-        <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm" role="list">
-          {CELLS.map((cell) => (
-            <li key={cell.slug}>
-              <Link
-                href={`/cells/${cell.slug}`}
-                className="text-orange-700 hover:underline min-h-10 inline-flex items-center"
-              >
-                {cell.displayTitle}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <section
+        aria-labelledby="all-cells-heading"
+        className="dhe-container pb-12 sm:pb-16 max-w-6xl mx-auto"
+      >
+        <header className="mb-6 sm:mb-8">
+          <h2
+            id="all-cells-heading"
+            className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight"
+          >
+            All 25 national cells
+          </h2>
+          <p className="mt-2 text-sm text-gray-600 max-w-2xl">
+            Research, innovation, publications, events, Olympiads, and community outreach — open any cell for objectives and programs.
+          </p>
+        </header>
+        <CellCardGrid cells={CELLS} />
       </section>
     </>
   );

@@ -44,8 +44,8 @@ const CompanyInfo: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Header */}
-        <div className="flex flex-col lg:flex-row items-center justify-between py-3 lg:py-4 gap-3">
+        {/* Main Header — compact on mobile */}
+        <div className="flex flex-col lg:flex-row items-center justify-between py-2 sm:py-3 lg:py-4 gap-2 sm:gap-3">
           
           {/* Left Section */}
           <div className="flex items-center gap-4 w-full lg:w-auto">
@@ -71,13 +71,13 @@ const CompanyInfo: React.FC = () => {
               >
                 <p className="text-base sm:text-xl lg:text-2xl font-bold text-gray-900 leading-tight group-hover:text-orange-700 transition duration-300">
                   Department of
-                  <span className="block text-orange-600">
+                  <span className="block text-orange-600 sm:inline sm:ml-1">
                     Holistic Education
                   </span>
                 </p>
               </Link>
 
-              <p className="text-xs sm:text-sm lg:text-base text-gray-600 mt-1 leading-relaxed max-w-2xl">
+              <p className="hidden sm:block text-xs sm:text-sm lg:text-base text-gray-600 mt-1 leading-relaxed max-w-2xl">
                 Advancing Bharat’s educational transformation through
                 innovation, leadership, research, and holistic learning aligned
                 with NEP 2020.
@@ -95,21 +95,20 @@ const CompanyInfo: React.FC = () => {
             </div>
           </div>
 
-          {/* Right CTA Section */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
-            
+          {/* Right CTA Section — primary only on xs */}
+          <div className="flex flex-row items-center gap-2 w-full lg:w-auto justify-end">
             <Link
-              href="/structure"
-              className="w-full sm:w-auto text-center px-4 py-2 rounded-md bg-orange-600 text-white text-sm font-semibold hover:bg-orange-700 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
+              href="/programs"
+              className="text-center px-4 py-2 rounded-md bg-orange-600 text-white text-sm font-semibold hover:bg-orange-700 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
             >
-              Explore DHE
+              Programs
             </Link>
 
             <Link
-              href="/programs"
-              className="w-full sm:w-auto text-center px-4 py-2 rounded-md border border-orange-500 text-orange-700 text-sm font-semibold hover:bg-orange-50 motion-safe:transition-colors min-h-10 inline-flex items-center justify-center"
+              href="/structure"
+              className="hidden sm:inline-flex text-center px-4 py-2 rounded-md border border-orange-500 text-orange-700 text-sm font-semibold hover:bg-orange-50 motion-safe:transition-colors min-h-10 items-center justify-center"
             >
-              All Programs
+              Explore DHE
             </Link>
           </div>
         </div>

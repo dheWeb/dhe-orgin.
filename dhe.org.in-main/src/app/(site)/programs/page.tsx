@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { getSiteContent } from "@/lib/cms/site-content";
 import { getPrograms } from "@/lib/cms/programs-content";
 import { siteConfig } from "@/lib/seo/site-metadata";
+import ProgramCardGrid from "@/components/ui/ProgramCardGrid";
+import Link from "next/link";
 
 export default async function ProgramsPage() {
   const content = await getSiteContent(["programs_intro"]);
@@ -32,37 +33,32 @@ export default async function ProgramsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(programsJsonLd) }}
       />
-      <div className="dhe-container py-10 max-w-4xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold text-primary-color">
-        DHE Programs
-      </h1>
-      <p className="mt-3 text-gray-600 text-sm sm:text-base leading-relaxed">
-        {intro}
-      </p>
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2" role="list">
-        {programs.map((item) => {
-          const detailHref = `/programs/${item.slug}`;
-          const external = item.href?.startsWith("http");
-          return (
-            <li key={item.slug}>
-              <Link
-                href={detailHref}
-                className="block h-full rounded-lg border border-gray-200 p-5 hover:border-orange-400 transition"
-              >
-                <span className="font-semibold text-gray-900">{item.title}</span>
-                <span className="mt-2 block text-sm text-gray-600">
-                  {item.summary}
-                </span>
-                {item.href ? (
-                  <span className="mt-3 inline-block text-xs font-medium text-orange-700">
-                    {external ? "Includes external portal →" : "View program page →"}
-                  </span>
-                ) : null}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="bg-gradient-to-b from-orange-50/40 to-white border-b border-gray-100">
+        <div className="dhe-container py-10 sm:py-14 max-w-6xl mx-auto">
+          <p className="text-xs font-semibold uppercase tracking-widest text-orange-600">
+            Year-round initiatives
+          </p>
+          <h1 className="mt-2 text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+            DHE Programs
+          </h1>
+          <p className="mt-4 text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+            {intro}
+          </p>
+        </div>
+      </div>
+      <div className="dhe-container py-10 sm:py-12 max-w-6xl mx-auto">
+        <ProgramCardGrid programs={programs} />
+        <p className="mt-8 flex flex-wrap gap-3">
+          <Link href="/structure" className="dhe-btn-primary text-sm">
+            Explore cells &amp; structure
+          </Link>
+          <Link
+            href="/contribute"
+            className="inline-flex min-h-11 items-center px-5 py-2 rounded-xl border border-gray-300 text-sm font-medium text-gray-800 hover:border-orange-300"
+          >
+            Join DHE
+          </Link>
+        </p>
       </div>
     </>
   );

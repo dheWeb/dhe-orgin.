@@ -135,3 +135,24 @@ export const homePartnerLogos = [
     color: "#be123c",
   },
 ] as const;
+
+export const homeTestimonials = [
+  {
+    quote:
+      "DHE Olympiads and workshops gave our students a national stage beyond classroom exams — structured, values-aligned, and measurable.",
+    name: "School Principal",
+    role: "Punjab · DHE English Olympiad partner",
+  },
+  {
+    quote:
+      "Shiksha Mahakumbh brings policymakers, scientists, and educators into one forum — rare for an institution rooted in Bharatiya values.",
+    name: "Faculty delegate",
+    role: "SMK 5.0 · academic conclave",
+  },
+  {
+    quote:
+      "Transparent trust documents and 80G donation pathways build confidence for institutions partnering with VBITR Trust.",
+    name: "Institutional donor",
+    role: "CSR & membership engagement",
+  },
+] as const;

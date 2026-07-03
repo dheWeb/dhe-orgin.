@@ -7,8 +7,10 @@ import HomeIndiaMap from "./HomeIndiaMap";
 import HomeCellsGrid from "./HomeCellsGrid";
 import HomeDigitalGrid from "./HomeDigitalGrid";
 import HomeLeadershipCard from "./HomeLeadershipCard";
+import HomeTestimonials from "./HomeTestimonials";
 import HomePartnersStrip from "./HomePartnersStrip";
 import HomeParticipationStrip from "./HomeParticipationStrip";
+import HomeReveal from "./HomeReveal";
 import WaveDivider from "./WaveDivider";
 
 type Props = {
@@ -40,25 +42,40 @@ export default function HomeMainSections({
   return (
     <>
       <HomeStatGrid />
-      <HomePillarCards />
+      <HomeReveal>
+        <HomePillarCards />
+      </HomeReveal>
       <WaveDivider />
-      <HomeProgramCards />
+      <HomeReveal>
+        <HomeProgramCards />
+      </HomeReveal>
       <HomeSmkFeature
         paragraph1={shiksha?.paragraph1}
         paragraph2={shiksha?.paragraph2}
         smkSiteUrl={smkSiteUrl}
       />
       <WaveDivider flip />
-      <HomeJourneyTimeline />
-      <HomeIndiaMap />
-      <HomeCellsGrid />
-      <HomeDigitalGrid digitalDescription={digitalDescription} />
-      <HomeLeadershipCard
-        visionBody={visionBody}
-        nationalImpactBody={nationalImpactBody}
-        nationalImpactHighlights={nationalImpactHighlights}
-        leadershipCms={leadership}
-      />
+      <HomeReveal>
+        <HomeJourneyTimeline />
+      </HomeReveal>
+      <HomeReveal>
+        <HomeIndiaMap />
+      </HomeReveal>
+      <HomeReveal>
+        <HomeCellsGrid />
+      </HomeReveal>
+      <HomeReveal>
+        <HomeDigitalGrid digitalDescription={digitalDescription} />
+      </HomeReveal>
+      <HomeReveal>
+        <HomeLeadershipCard
+          visionBody={visionBody}
+          nationalImpactBody={nationalImpactBody}
+          nationalImpactHighlights={nationalImpactHighlights}
+          leadershipCms={leadership}
+        />
+      </HomeReveal>
+      <HomeTestimonials />
       <HomePartnersStrip />
       <HomeParticipationStrip />
     </>
