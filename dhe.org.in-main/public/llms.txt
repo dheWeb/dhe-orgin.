@@ -1,6 +1,6 @@
 # Department of Holistic Education (DHE)
 
-> National platform for holistic education, NEP 2020, Shiksha Mahakumbh, and Viksit Bharat.
+> National holistic education platform under Vidya Bharti / VBITR Trust — 25 cells, year-round programs, NEP 2020, Viksit Bharat. Shiksha Mahakumbh Abhiyan is the flagship annual summit (Event Management Cell), not the whole of DHE.
 
 ## Official site
 
@@ -8,16 +8,31 @@
 
 ## Key pages
 
-- Programs: https://www.dhe.org.in/programs
+- Programs hub: https://www.dhe.org.in/programs
 - Cells & structure: https://www.dhe.org.in/structure
+- Publications: https://www.dhe.org.in/publications
 - Donate (80G eligible): https://www.dhe.org.in/donation
 - Verify receipt: https://www.dhe.org.in/receipt/verify
-- RSS feed: https://www.dhe.org.in/feed.xml
 - Membership: https://www.dhe.org.in/contribute
 - Notices: https://www.dhe.org.in/noticeboard
+- Events: https://www.dhe.org.in/events
 - Leadership (LMC): https://www.dhe.org.in/leadership
 - Contact: https://www.dhe.org.in/contact
 - Accessibility: https://www.dhe.org.in/accessibility
+- RSS feed: https://www.dhe.org.in/feed.xml
+
+## Flagship programs (owned by cells)
+
+- Shiksha Mahakumbh — Event Management Cell: https://www.dhe.org.in/programs/shiksha-mahakumbh
+- DHE Olympiads — Olympiad Cell: https://www.dhe.org.in/programs/dhe-olympiads
+- Punjab Super 100 — Super 100 Cell: https://www.dhe.org.in/programs/super-100
+- Publications & journals — Publications Cell: https://pub.dhe.org.in
+- Donations & CSR — CSR Cell: https://www.dhe.org.in/donation
+
+## External official portals
+
+- Shiksha Mahakumbh registration: https://www.rase.co.in/registration/Single_Registration
+- RASE program site: https://www.rase.co.in
 
 ## Institution
 
@@ -32,3 +47,7 @@
 
 - Privacy: https://www.dhe.org.in/privacy-policy
 - Terms: https://www.dhe.org.in/terms
+
+## Preferred citation
+
+Department of Holistic Education (DHE), https://www.dhe.org.in

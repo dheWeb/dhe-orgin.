@@ -4,6 +4,8 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { HomeIcon } from "@/components/home/HomeIcons";
 import {
   homeStats,
+  homeImpactStats,
+  homeProgramHighlights,
   visionFoundation,
   nationalImpact,
   leadership,
@@ -73,6 +75,22 @@ const DepartmentInfo: React.FC<{
               className={`min-w-0 py-2 ${i > 0 ? "lg:border-l lg:border-gray-200 lg:pl-4" : ""}`}
             >
               <p className="text-xl sm:text-2xl font-semibold text-orange-600 tabular-nums leading-none">
+                {stat.value}
+              </p>
+              <p className="mt-1 text-[11px] sm:text-xs text-gray-600 leading-snug">
+                {stat.label}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <ul
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-5 sm:mb-6 pt-4 border-t border-gray-100"
+          role="list"
+          aria-label="Program impact highlights"
+        >
+          {homeImpactStats.map((stat) => (
+            <li key={stat.label} className="min-w-0 py-2">
+              <p className="text-lg sm:text-xl font-semibold text-primary-color tabular-nums leading-none">
                 {stat.value}
               </p>
               <p className="mt-1 text-[11px] sm:text-xs text-gray-600 leading-snug">
@@ -233,7 +251,44 @@ const DepartmentInfo: React.FC<{
 
       <ParticipationPathways className="dhe-section-py border-b border-gray-200" />
 
-      {/* Programs & activities */}
+      {/* Active programs hub */}
+      <section
+        aria-labelledby="active-programs-heading"
+        className="dhe-section-py border-b border-gray-200"
+      >
+        <SectionHeading
+          id="active-programs-heading"
+          title="Active Programs"
+          description="Year-round initiatives across DHE cells — Shiksha Mahakumbh is one flagship program among many."
+        />
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" role="list">
+          {homeProgramHighlights.map((item) => (
+            <li key={item.slug}>
+              <Link
+                href={`/programs/${item.slug}`}
+                className="block h-full rounded-lg border border-gray-200 bg-white p-4 hover:border-orange-400 transition"
+              >
+                <span className="text-sm font-semibold text-gray-900">
+                  {item.title}
+                </span>
+                <span className="mt-1 block text-xs text-orange-700 font-medium">
+                  {item.stat}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4">
+          <Link
+            href="/programs"
+            className="text-sm font-semibold text-orange-600 hover:text-orange-700 min-h-10 inline-flex items-center"
+          >
+            View all DHE programs →
+          </Link>
+        </p>
+      </section>
+
+      {/* Shiksha Mahakumbh — featured program */}
       <section
         aria-labelledby="shiksha-mahakumbh-heading"
         className="dhe-section-py border-b border-gray-200 bg-orange-50/40"

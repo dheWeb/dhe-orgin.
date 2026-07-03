@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import type { CellDefinition } from "@/data/cells/types";
 import CellInfo from "@/components/cells/CellInfo";
 import CellEnrichmentSections from "@/components/cells/CellEnrichmentSections";
+import CellProgramsSection from "@/components/cells/CellProgramsSection";
 
 const SlideShow = dynamic(() => import("@/components/gallery/SlideShow"), {
   ssr: false,
@@ -60,6 +61,7 @@ export default function CellPageView({ cell, sharedIntro }: Props) {
           />
         ))}
         <CellEnrichmentSections cell={cell} />
+        <CellProgramsSection cellSlug={cell.slug} />
       </div>
     );
   }
@@ -78,6 +80,7 @@ export default function CellPageView({ cell, sharedIntro }: Props) {
         />
       ))}
       <CellEnrichmentSections cell={cell} />
+      <CellProgramsSection cellSlug={cell.slug} />
     </div>
   );
 }

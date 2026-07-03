@@ -16,7 +16,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     path: "/",
     title: "Holistic Educational Transformation of Bharat",
     description:
-      "Department of Holistic Education (DHE) — national platform for holistic learning, Shiksha Mahakumbh, NEP 2020, innovation, leadership, and Viksit Bharat.",
+      "Department of Holistic Education (DHE) — national platform with 25 cells, year-round programs, Olympiads, publications, NEP 2020, and Viksit Bharat. Shiksha Mahakumbh is the flagship summit under Event Management Cell.",
     ogImage: "/2024K/1.webp",
   },
   messages: {

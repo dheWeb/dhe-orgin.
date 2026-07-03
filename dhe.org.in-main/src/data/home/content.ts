@@ -1,5 +1,8 @@
 /** Homepage copy — preserved for i18n and SEO consistency */
 
+import type { CellDefinition } from "@/data/cells/types";
+import cellRegistry from "@/data/cells/registry.json";
+
 export const homeIntro = {
   badge: "Transforming Education for Viksit Bharat",
   titleLine1: "Department of",
@@ -11,9 +14,17 @@ export const homeIntro = {
 export const homeStats = [
   { value: "2021", label: "Founded", icon: "calendar" as const },
   { value: "2023", label: "National Expansion", icon: "globe" as const },
-  { value: "NEP", label: "Aligned Vision", icon: "academic" as const },
-  { value: "India", label: "National Reach", icon: "flag" as const },
+  { value: "25", label: "National Cells", icon: "academic" as const },
+  { value: "NEP", label: "Aligned Vision", icon: "flag" as const },
 ];
+
+/** Quantified outcomes from DHE programs (brochure + SMK editions) */
+export const homeImpactStats = [
+  { value: "500+", label: "Institutions engaged" },
+  { value: "1,200+", label: "Research papers presented" },
+  { value: "10,040", label: "DHE English Olympiad students" },
+  { value: "14+", label: "States & UTs represented" },
+] as const;
 
 export const visionFoundation = {
   title: "Vision & Foundation",
@@ -24,10 +35,10 @@ export const nationalImpact = {
   title: "National Impact",
   body: "DHE functions as the intellectual and operational nerve center for advancing educational discourse and implementation across Bharat. Through policy dialogue, institutional collaboration, leadership development, research initiatives, conferences, and digital platforms, DHE empowers educators, institutions, students, policymakers, and communities.",
   highlights: [
-    "National Educational Conferences & Summits",
-    "Innovation & Entrepreneurship Ecosystem",
-    "Digital Educational Platforms & Solutions",
-    "Leadership & Skill Development Initiatives",
+    "500+ institutions and 1,200+ research papers across SMK editions",
+    "DHE English Olympiad — 10,040 students (2025 inaugural edition)",
+    "Digital platforms: Tredul, Sarvatra, Jobs 360°, TuDu, Swadeshi Bazaar",
+    "25 national cells delivering year-round programs beyond annual summits",
   ],
 };
 
@@ -44,7 +55,7 @@ export const leadership = {
 };
 
 export const shikshaMahakumbh = {
-  title: "Shiksha Mahakumbh Abhiyan",
+  title: "Flagship Program — Shiksha Mahakumbh Abhiyan",
   paragraph1:
     "Through the Shiksha Mahakumbh Abhiyan, DHE has created a transformative national movement that brings together educators, policymakers, scientists, industry leaders, social reformers, institutions, startups, researchers, and youth from across Bharat and beyond.",
   paragraph2:
@@ -90,7 +101,7 @@ export const digitalEcosystem = {
       title: "Viksit Bharat & Viksit India",
       desc: "Quarterly educational research & policy journals",
       icon: "journal" as const,
-      href: "https://pub.rase.co.in",
+      href: "https://pub.dhe.org.in",
     },
   ],
 };
@@ -106,18 +117,38 @@ export const homeFaq = [
   {
     question: "What is the Department of Holistic Education (DHE)?",
     answer:
-      "The Department of Holistic Education (DHE) is a national educational transformation platform dedicated to building Bharat as a global knowledge leader through value-based education, innovation, research, entrepreneurship, and holistic human development aligned with NEP 2020.",
+      "The Department of Holistic Education (DHE) is a national educational transformation platform under the Vidya Bharti Institute of Training and Research Trust, advancing holistic learning, innovation, leadership, research, entrepreneurship, and Bharatiya values aligned with NEP 2020 and Viksit Bharat 2047.",
+  },
+  {
+    question: "What programs does DHE run beyond Shiksha Mahakumbh?",
+    answer:
+      "DHE runs year-round programs through 25 national cells — including DHE Olympiads, Punjab Super 100, IPR and entrepreneurship workshops, publications and journals, CSR donations, student innovation projects, residential camps, and digital platforms. Explore dhe.org.in/programs for the full hub.",
+  },
+  {
+    question: "How can I join DHE or donate with tax benefit?",
+    answer:
+      "Membership is at dhe.org.in/contribute. Donations to Vidya Bharti Institute of Training and Research Trust may qualify under Section 80G for eligible assessment years — see dhe.org.in/donation and account details for VBITR Trust banking and certificates.",
   },
   {
     question: "What is Shiksha Mahakumbh Abhiyan?",
     answer:
-      "Shiksha Mahakumbh Abhiyan is a transformative national movement by DHE that brings together educators, policymakers, scientists, industry leaders, institutions, researchers, and youth for collaborative educational reform, policy innovation, research dissemination, and leadership building.",
+      "Shiksha Mahakumbh Abhiyan is DHE's flagship national summit, owned by the Event Management Cell. It convenes educators, policymakers, scientists, and institutions — while Olympiads, publications, conclaves, and other cell programs also operate independently between editions.",
   },
   {
     question: "When is Shiksha Mahakumbh 6th Edition?",
     answer:
-      "The 6th Edition of Shiksha Mahakumbh Abhiyan will be held at NIT Hamirpur from 9th October to 11th October 2026.",
+      "The 6th Edition of Shiksha Mahakumbh Abhiyan will be held at NIT Hamirpur from 9th October to 11th October 2026. Register on the official RASE portal linked from dhe.org.in/programs/shiksha-mahakumbh.",
   },
+] as const;
+
+/** Featured programs for homepage strip */
+export const homeProgramHighlights = [
+  { slug: "dhe-olympiads", title: "DHE Olympiads", stat: "10,040+ students" },
+  { slug: "super-100", title: "Punjab Super 100", stat: "~700 active scholars" },
+  { slug: "shiksha-mahakumbh", title: "Shiksha Mahakumbh", stat: "500+ institutions" },
+  { slug: "donations-csr", title: "Donate (80G eligible)", stat: "CSR Cell" },
+  { slug: "publications", title: "Journals & Proceedings", stat: "pub.dhe.org.in" },
+  { slug: "digital-platforms", title: "Digital Ecosystem", stat: "IT Cell platforms" },
 ] as const;
 
 /** Research → innovation → entrepreneurship → publications → events → community */
@@ -135,6 +166,11 @@ export const participationPathways = {
   intro:
     "DHE publishes programs through the notice board and events pages. Schools, educators, and institutions may follow official announcements, explore membership, or contact coordinators when initiatives are open.",
   links: [
+    {
+      href: "/programs",
+      label: "DHE Programs",
+      description: "Olympiads, Super 100, publications, SMK, and more",
+    },
     {
       href: "/noticeboard",
       label: "DHE Notice Board",
@@ -176,14 +212,8 @@ export const homeHeroCtas = [
   { href: "/contribute", label: "Join DHE", external: false, primary: false },
 ] as const;
 
-/** Quick links for cells / departments strip on homepage */
-export const homeCellLinks = [
-  { href: "/structure", label: "Organizational Structure" },
-  { href: "/cells/rd", label: "R & D Cell" },
-  { href: "/cells/atl", label: "ATL Cell" },
-  { href: "/cells/udyam", label: "Udyam Cell" },
-  { href: "/cells/publication", label: "Publication Cell" },
-  { href: "/cells/event", label: "Event Management Cell" },
-  { href: "/cells/csr", label: "CSR Cell" },
-  { href: "/cells/hei", label: "HEI Cell" },
-] as const;
+/** Quick links — all 25 national cells */
+export const homeCellLinks = (cellRegistry as CellDefinition[]).map((cell) => ({
+  href: `/cells/${cell.slug}`,
+  label: cell.displayTitle.trim(),
+}));

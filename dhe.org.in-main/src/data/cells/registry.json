@@ -2,7 +2,7 @@
   {
     "slug": "art",
     "displayTitle": "Art Cell",
-    "seoTitle": "Art Sale Cell",
+    "seoTitle": "Art Cell",
     "layoutVariant": "slideshow",
     "blocks": [
       {
@@ -96,7 +96,7 @@
       {
         "title": "Event Management Cell",
         "objective": "The Event Management Cell is dedicated to designing education-related events of national and international fame, aiming to establish Vidya Bharti's leadership in this dynamic field.",
-        "footnote": " Cultivating managerial skills and a sense of cultural pride along with opportunities to start starups."
+        "footnote": "Cultivating managerial skills and cultural pride, including Shiksha Mahakumbh Abhiyan and national residential camps."
       }
     ],
     "slides": [
@@ -175,7 +175,7 @@
       {
         "title": "Industry Co-ordination Cell",
         "objective": "The Industry Coordination Cell envisions making school education skillful by forging partnerships with companies and startups across the country affiliated with Vidya Bharti.",
-        "footnote": " Nurturing global perspectives and cross-cultural understanding."
+        "footnote": "Industry internships, startup partnerships, and SMK conclaves linking schools with the national economy."
       }
     ],
     "slides": []
@@ -245,7 +245,7 @@
       {
         "title": "Parenting Cell",
         "objective": "The Parenting Cell conducts programs that bridge the gap between school and home, fostering collaborative efforts between parents and educators for the holistic development of students.",
-        "footnote": "Parenting Cell"
+        "footnote": "Including the Model Couple Program for collaborative home-school holistic development."
       }
     ],
     "slides": []
@@ -272,8 +272,8 @@
     "blocks": [
       {
         "title": "Publications and Promotions Cell",
-        "objective": "Inclusive education, the cornerstone of our vision, transcends traditional boundaries. It embodies the essence of equality and empowerment, ensuring a collective learning experience for all. ",
-        "footnote": "Showcasing and celebrating academic achievements."
+        "objective": "The Publications and Promotions Cell advances DHE's research and outreach through Viksit India and Viksit Bharat journals, Multi-Track Conference proceedings, SMK souvenirs and books, Bal Shodh Patrika, and open-access knowledge on pub.dhe.org.in.",
+        "footnote": "Peer-reviewed outputs, proceedings, and national promotion of holistic education research."
       }
     ],
     "slides": []

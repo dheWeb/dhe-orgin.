@@ -5,6 +5,8 @@ import {
   getAllProgramSlugs,
   getProgramBySlug,
 } from "@/lib/cms/programs-content";
+import { getProgramCellSlugs } from "@/data/programs/registry";
+import { getCellSeoTitle } from "@/data/cells";
 import { buildMetadataFromEntry } from "@/lib/seo/build-metadata";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -35,6 +37,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   const ctaHref = program.href ?? (program.cellSlug ? `/cells/${program.cellSlug}` : "/programs");
   const isExternal = ctaHref.startsWith("http");
   const registerUrl = program.externalRegistrationUrl?.trim();
+  const owningCells = getProgramCellSlugs(program);
 
   return (
     <div className="dhe-container py-10 max-w-3xl mx-auto">
@@ -76,6 +79,17 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             Cell page
           </Link>
         ) : null}
+        {owningCells
+          .filter((slug) => slug !== program.cellSlug)
+          .map((slug) => (
+            <Link
+              key={slug}
+              href={`/cells/${slug}`}
+              className="inline-flex items-center min-h-11 px-5 py-2 rounded-md border border-gray-300 text-gray-800 hover:border-orange-400"
+            >
+              {getCellSeoTitle(slug)}
+            </Link>
+          ))}
       </div>
     </div>
   );

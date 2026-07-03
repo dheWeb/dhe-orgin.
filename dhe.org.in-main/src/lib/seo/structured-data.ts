@@ -1,4 +1,9 @@
 import { homeFaq } from "@/data/home/content";
+import {
+  dheOfficialContact,
+  dheOfficeAddress,
+  vbitrTrust,
+} from "@/data/institution/receipt-and-lmc";
 import { siteConfig } from "./site-metadata";
 
 export function getOrganizationSchema() {
@@ -11,12 +16,30 @@ export function getOrganizationSchema() {
     url: siteConfig.url,
     logo: siteConfig.ogImage,
     description: defaultMetadataDescription(),
+    foundingDate: "2021",
+    parentOrganization: {
+      "@type": "Organization",
+      name: vbitrTrust.legalName,
+      alternateName: vbitrTrust.shortName,
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: dheOfficeAddress.line1,
+      addressLocality: dheOfficeAddress.city,
+      addressRegion: dheOfficeAddress.state,
+      postalCode: dheOfficeAddress.pincode,
+      addressCountry: "IN",
+    },
+    telephone: dheOfficialContact.phone,
+    email: dheOfficialContact.email,
     sameAs: [
       "https://www.facebook.com/profile.php?id=100090170940886",
       "https://www.linkedin.com/company/department-of-holistic-education/",
       "https://www.instagram.com/dhebharat",
       "https://twitter.com/DHEBharat1",
       "https://www.youtube.com/@DepartmentofHolisticEducation",
+      "https://www.rase.co.in",
+      "https://pub.dhe.org.in",
     ],
     areaServed: {
       "@type": "Country",
@@ -25,15 +48,15 @@ export function getOrganizationSchema() {
     knowsAbout: [
       "Holistic Education",
       "NEP 2020",
+      "Viksit Bharat",
+      "Vishwa Guru Bharat",
+      "DHE Olympiads",
+      "Punjab Super 100",
       "Shiksha Mahakumbh",
       "Educational Innovation",
       "Educational Research",
-      "School Entrepreneurship",
       "Academic Publications",
-      "Educational Events",
-      "Community Outreach in Education",
-      "Academic Quality in Schools",
-      "Viksit Bharat",
+      "Vidya Bharati",
     ],
   };
 }
