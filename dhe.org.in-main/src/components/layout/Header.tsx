@@ -2,110 +2,69 @@
 
 import React, { useCallback, useEffect, useId, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faTimes,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  headerNavItems,
+  isNavItemActive,
+  isNavPathExternal,
+  type NavItem,
+} from "@/data/header-nav";
 
-type Menu = {
-  path: string;
-  title: string;
-  navTitle?: string;
-  subMenu?: Menu[];
-};
+function navLinkClass(active: boolean, extra = "") {
+  return [
+    "px-3 py-2 text-sm font-semibold rounded-lg whitespace-nowrap motion-safe:transition-colors",
+    active
+      ? "text-orange-700 bg-orange-50"
+      : "text-gray-700 hover:text-orange-600 hover:bg-orange-50",
+    extra,
+  ].join(" ");
+}
+
+function SubNavLink({
+  item,
+  onNavigate,
+  className,
+}: {
+  item: NavItem;
+  onNavigate?: () => void;
+  className: string;
+}) {
+  const external = item.external ?? isNavPathExternal(item.path);
+  const label = external ? `${item.title} ↗` : item.title;
+
+  if (external) {
+    return (
+      <a
+        href={item.path}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        onClick={onNavigate}
+      >
+        {label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={item.path} className={className} onClick={onNavigate}>
+      {label}
+    </Link>
+  );
+}
 
 const Header: React.FC = () => {
+  const pathname = usePathname();
   const [mobileMenu, setMobileMenu] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const mobilePanelId = useId();
-
-  const menus: Menu[] = [
-    { path: "/", title: "Home" },
-    { path: "/programs", title: "Programs" },
-
-    {
-      path: "/structure",
-      title: "About DHE",
-      subMenu: [
-        { path: "/messages", title: "Director Message" },
-        { path: "/structure", title: "Cells & Structure" },
-        { path: "/advisory", title: "Advisory Council" },
-        { path: "/leadership", title: "LMC Members" },
-        { path: "/people", title: "Cell Co-ordinators" },
-      ],
-    },
-
-    {
-      path: "/publications",
-      title: "Publications",
-      subMenu: [
-        { path: "/publications", title: "Publications Hub" },
-        { path: "/books", title: "Books" },
-        { path: "/journals", title: "Journals" },
-        { path: "https://pub.dhe.org.in", title: "pub.dhe.org.in" },
-      ],
-    },
-
-    {
-      path: "/upcomingevent",
-      title: "Events",
-      subMenu: [
-        { path: "/events", title: "All Events" },
-        { path: "/noticeboard", title: "Notice Board" },
-        { path: "/upcomingevent", title: "Upcoming Events" },
-        { path: "/pastevent", title: "Past Events" },
-        { path: "/workshop", title: "Workshops" },
-        { path: "/residentialcamps", title: "Residential Camps" },
-      ],
-    },
-
-    {
-      path: "https://ep.sarvatr.co.in/public/careers/8d8a9c3384a936495a752596fe2a0b4d",
-      title: "Careers",
-      subMenu: [
-        {
-          path: "https://ep.sarvatr.co.in/public/careers/8d8a9c3384a936495a752596fe2a0b4d",
-          title: "Open Positions",
-        },
-        {
-          path: "/Recruitment-Policy.pdf",
-          title: "Recruitment Policy",
-        },
-      ],
-    },
-
-    {
-      path: "https://nitsri.dhe.org.in",
-      title: "DHE Chapters",
-      subMenu: [
-        { path: "https://nitsri.dhe.org.in", title: "NIT Srinagar" },
-        { path: "https://iitrpr.dhe.org.in", title: "IIT Ropar" },
-        { path: "https://nitj.dhe.org.in", title: "NIT Jalandhar" },
-        { path: "https://nitkkr.dhe.org.in", title: "NIT Kurukshetra" },
-      ],
-    },
-
-    {
-      path: "/contribute",
-      title: "Membership",
-      subMenu: [{ path: "/contribute", title: "Join DHE" }],
-    },
-
-    { path: "/donation", title: "Donation" },
-    { path: "/logos", title: "Media", navTitle: "Media & Logos" },
-    {
-      path: "/accountdetails",
-      title: "More",
-      subMenu: [
-        { path: "/accountdetails", title: "Accounts" },
-        { path: "/feedback", title: "Feedback" },
-        { path: "/hi", title: "हिंदी" },
-      ],
-    },
-    { path: "/contact", title: "Contact" },
-  ];
 
   const closeMobileMenu = useCallback(() => {
     setMobileMenu(false);
@@ -116,9 +75,7 @@ const Header: React.FC = () => {
     if (!mobileMenu) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeMobileMenu();
-      }
+      if (event.key === "Escape") closeMobileMenu();
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -128,22 +85,38 @@ const Header: React.FC = () => {
   const getSubmenuId = (index: number) => `${mobilePanelId}-submenu-${index}`;
 
   return (
-    <div className="w-full bg-white/95 backdrop-blur-lg border-b border-orange-100 shadow-sm">
-      {/* Main Navbar */}
+    <div className="w-full bg-white/95 backdrop-blur-lg border-b border-orange-100">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-14">
+          <Link
+            href="/"
+            className="lg:hidden flex items-center gap-2 min-h-11 shrink-0"
+            aria-label="Department of Holistic Education — Home"
+          >
+            <Image
+              src="/logo.webp"
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 object-contain"
+              aria-hidden
+            />
+            <span className="text-sm font-bold text-orange-600">DHE</span>
+          </Link>
+
           <nav
-            className="hidden lg:flex items-center gap-1 w-full justify-center"
+            className="hidden lg:flex items-center gap-0.5 flex-1 justify-center"
             aria-label="Primary"
           >
-            {menus.map((item, index) => {
+            {headerNavItems.map((item, index) => {
               const submenuId = getSubmenuId(index);
               const isOpen = activeDropdown === index;
+              const active = isNavItemActive(pathname, item);
 
               return (
                 <div
-                  key={index}
-                  className="relative group"
+                  key={item.title}
+                  className="relative"
                   onMouseEnter={() => item.subMenu && setActiveDropdown(index)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
@@ -151,7 +124,8 @@ const Header: React.FC = () => {
                     <Link
                       href={item.path}
                       title={item.navTitle}
-                      className="px-3 py-2.5 text-sm font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50 whitespace-nowrap"
+                      className={navLinkClass(active, "inline-flex min-h-11 items-center")}
+                      aria-current={active ? "page" : undefined}
                     >
                       {item.title}
                     </Link>
@@ -159,13 +133,14 @@ const Header: React.FC = () => {
                     <>
                       <button
                         type="button"
-                        className="flex items-center gap-1 px-3 py-2.5 text-sm font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50 whitespace-nowrap"
+                        className={navLinkClass(
+                          active,
+                          "inline-flex min-h-11 items-center gap-1"
+                        )}
                         aria-haspopup="true"
                         aria-expanded={isOpen}
                         aria-controls={submenuId}
-                        onClick={() =>
-                          setActiveDropdown(isOpen ? null : index)
-                        }
+                        onClick={() => setActiveDropdown(isOpen ? null : index)}
                       >
                         {item.title}
                         <FontAwesomeIcon
@@ -180,21 +155,19 @@ const Header: React.FC = () => {
                       <div
                         id={submenuId}
                         hidden={!isOpen}
-                        className={`absolute left-0 top-full mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-orange-100 overflow-hidden transition-all duration-300 ${
+                        className={`absolute left-0 top-full mt-1 w-72 max-h-[min(70vh,24rem)] overflow-y-auto dhe-scroll-thin bg-white rounded-xl shadow-dhe-lg border border-orange-100 transition-all duration-200 ${
                           isOpen
                             ? "opacity-100 visible translate-y-0"
-                            : "opacity-0 invisible -translate-y-2"
+                            : "opacity-0 invisible -translate-y-1"
                         }`}
                       >
-                        <div className="py-3">
-                          {item.subMenu.map((subItem, subIndex) => (
-                            <Link
-                              key={subIndex}
-                              href={subItem.path}
-                              className="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-200"
-                            >
-                              {subItem.title}
-                            </Link>
+                        <div className="py-2">
+                          {item.subMenu.map((subItem) => (
+                            <SubNavLink
+                              key={subItem.path + subItem.title}
+                              item={subItem}
+                              className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                            />
                           ))}
                         </div>
                       </div>
@@ -222,28 +195,31 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         id={mobilePanelId}
-        className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          mobileMenu ? "max-h-screen" : "max-h-0"
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+          mobileMenu ? "max-h-[85vh] overflow-y-auto" : "max-h-0"
         }`}
         aria-hidden={!mobileMenu}
       >
         <nav
-          className="bg-white border-t border-orange-100 px-4 py-4 space-y-2 shadow-xl"
+          className="bg-white border-t border-orange-100 px-4 py-3 space-y-1 shadow-xl"
           aria-label="Mobile primary"
         >
-          {menus.map((item, index) => {
+          {headerNavItems.map((item, index) => {
             const submenuId = getSubmenuId(index);
             const isOpen = activeDropdown === index;
+            const active = isNavItemActive(pathname, item);
 
             return (
-              <div key={index} className="border-b border-gray-100 pb-2">
+              <div key={item.title} className="border-b border-gray-100 pb-2 last:border-0">
                 {!item.subMenu ? (
                   <Link
                     href={item.path}
-                    className="block py-3 text-gray-700 font-semibold hover:text-orange-600"
+                    className={`block py-2.5 font-semibold ${
+                      active ? "text-orange-700" : "text-gray-700 hover:text-orange-600"
+                    }`}
+                    aria-current={active ? "page" : undefined}
                     onClick={closeMobileMenu}
                   >
                     {item.title}
@@ -252,10 +228,10 @@ const Header: React.FC = () => {
                   <>
                     <button
                       type="button"
-                      onClick={() =>
-                        setActiveDropdown(isOpen ? null : index)
-                      }
-                      className="w-full flex items-center justify-between py-3 text-gray-700 font-semibold hover:text-orange-600"
+                      onClick={() => setActiveDropdown(isOpen ? null : index)}
+                      className={`w-full flex items-center justify-between py-2.5 font-semibold ${
+                        active ? "text-orange-700" : "text-gray-700 hover:text-orange-600"
+                      }`}
                       aria-haspopup="true"
                       aria-expanded={isOpen}
                       aria-controls={submenuId}
@@ -274,19 +250,17 @@ const Header: React.FC = () => {
                       id={submenuId}
                       hidden={!isOpen}
                       className={`overflow-hidden transition-all duration-300 ${
-                        isOpen ? "max-h-96 mt-2" : "max-h-0"
+                        isOpen ? "max-h-[28rem] mt-1" : "max-h-0"
                       }`}
                     >
-                      <div className="pl-4 border-l-2 border-orange-200 space-y-1">
-                        {item.subMenu.map((subItem, subIndex) => (
-                          <Link
-                            key={subIndex}
-                            href={subItem.path}
+                      <div className="pl-3 border-l-2 border-orange-200 space-y-0.5 pb-1">
+                        {item.subMenu.map((subItem) => (
+                          <SubNavLink
+                            key={subItem.path + subItem.title}
+                            item={subItem}
+                            onNavigate={closeMobileMenu}
                             className="block py-2 text-sm text-gray-600 hover:text-orange-600"
-                            onClick={closeMobileMenu}
-                          >
-                            {subItem.title}
-                          </Link>
+                          />
                         ))}
                       </div>
                     </div>
@@ -298,10 +272,10 @@ const Header: React.FC = () => {
 
           <Link
             href="/contribute"
-            className="block w-full text-center mt-5 bg-gradient-to-r from-orange-600 to-orange-500 text-white py-3 rounded-xl font-semibold shadow-lg hover:scale-[1.02] transition duration-300"
+            className="block w-full text-center mt-3 bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-700 min-h-11"
             onClick={closeMobileMenu}
           >
-            Join DHE Movement
+            Join DHE
           </Link>
         </nav>
       </div>

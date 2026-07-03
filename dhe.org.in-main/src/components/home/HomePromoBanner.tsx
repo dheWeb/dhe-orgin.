@@ -56,10 +56,7 @@ export default function HomePromoBanner({
 
   if (!checked) {
     return (
-      <div
-        className="min-h-[3.25rem] border-b border-transparent"
-        aria-hidden
-      />
+      <div className="min-h-[2.75rem] border-b border-transparent" aria-hidden />
     );
   }
 
@@ -70,37 +67,30 @@ export default function HomePromoBanner({
   return (
     <div
       role="region"
-      aria-label="DHE programs highlight"
-      className="dhe-gradient-navy text-white border-b border-orange-500/30 min-h-[3.25rem]"
+      aria-label="Shiksha Mahakumbh announcement"
+      className="bg-orange-600 text-white border-b border-orange-700/30"
     >
-      <div className="dhe-container py-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 justify-between">
-        <p className="text-xs sm:text-sm leading-snug line-clamp-2 sm:line-clamp-none">
-          <strong className="text-orange-200">DHE national programs</strong> — 25 cells,
-          Olympiads, publications, membership, and workshops year-round.
-          Shiksha Mahakumbh 6.0: 9–11 Oct 2026, NIT Hamirpur.
+      <div className="dhe-container py-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 justify-between">
+        <p className="text-xs sm:text-sm leading-snug">
+          <strong className="font-semibold">Shiksha Mahakumbh 6.0</strong>
+          {" — "}9–11 Oct 2026, NIT Hamirpur. National summit by DHE Event Management Cell.
         </p>
-        <div className="flex items-center gap-2 shrink-0 flex-wrap">
-          <Link
-            href="/programs"
-            className="text-xs font-semibold px-3 py-1.5 rounded-md bg-orange-600 hover:bg-orange-500 min-h-9 inline-flex items-center"
-          >
-            Explore programs
-          </Link>
+        <div className="flex items-center gap-2 shrink-0">
           <a
             href={smkRegistrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium px-3 py-1.5 rounded-md border border-white/30 hover:bg-white/10 min-h-9 inline-flex items-center"
+            className="text-xs font-semibold px-3 py-1.5 rounded-md bg-white text-orange-700 hover:bg-orange-50 min-h-9 inline-flex items-center"
           >
-            SMK register
+            SMK register ↗
           </a>
           <a
             href={smkSiteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium px-3 py-1.5 rounded-md border border-white/20 hover:bg-white/10 min-h-9 inline-flex items-center sr-only sm:not-sr-only"
+            className="text-xs font-medium px-3 py-1.5 rounded-md border border-white/40 hover:bg-white/10 min-h-9 inline-flex items-center"
           >
-            RASE portal
+            RASE portal ↗
           </a>
           <button
             type="button"
@@ -112,7 +102,7 @@ export default function HomePromoBanner({
                 /* ignore */
               }
             }}
-            className="text-xs px-2 py-1.5 rounded-md hover:bg-white/10 min-h-9 min-w-9"
+            className="inline-flex items-center justify-center rounded-md hover:bg-white/10 min-h-9 min-w-9 text-sm"
             aria-label="Dismiss announcement"
           >
             ✕

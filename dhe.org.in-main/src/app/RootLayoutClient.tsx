@@ -45,10 +45,11 @@ export default function RootLayoutClient({
 
       <Floating sitePhone={sitePhone} />
 
-      <CompanyInfo />
-
-      <header className="sticky top-0 z-50 bg-white shadow-sm" role="banner">
-        <Header />
+      <header role="banner">
+        <CompanyInfo />
+        <div className="sticky top-0 z-50 bg-white shadow-sm">
+          <Header />
+        </div>
       </header>
 
       <HomePromoBanner
