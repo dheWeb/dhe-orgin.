@@ -90,6 +90,19 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         </section>
       ) : null}
       <div className="mt-8 flex flex-wrap gap-3">
+        {program.externalSiteUrl ? (
+          <a
+            href={program.externalSiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center min-h-11 px-5 py-2 rounded-md bg-orange-600 text-white font-medium hover:bg-orange-500"
+          >
+            {program.externalSiteLabel ?? "Open official site"}
+            <span className="ml-1.5" aria-hidden>
+              ↗
+            </span>
+          </a>
+        ) : null}
         {registerUrl ? (
           <a
             href={registerUrl}

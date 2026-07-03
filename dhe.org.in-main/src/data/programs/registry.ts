@@ -15,6 +15,8 @@ export type ProgramDefinition = {
   externalRegistrationUrl?: string;
   /** External program home */
   externalSiteUrl?: string;
+  /** Label for externalSiteUrl CTA (default: "Open official site") */
+  externalSiteLabel?: string;
   external?: boolean;
   /** Primary owning cell */
   cellSlug?: string;
@@ -43,10 +45,12 @@ export const PROGRAMS: ProgramDefinition[] = [
     title: "DHE Olympiads",
     summary:
       "English, Maths, Tech, and Sanskriti olympiads — 10,040+ students in the inaugural English Olympiad (2025).",
-    body: "The Olympiad Cell conducts national DHE Olympiads for school students. The 1st DHE English Olympiad (Oct 2025) engaged 10,040 participants across 25 schools in Punjab, Haryana, and Chandigarh, with felicitation at SMK 5.0. SMK 6.0 expands English 2.0, Maths, Tech, and Sanskriti streams.",
+    body: "The Olympiad Cell conducts national DHE Olympiads for school students. The 1st DHE English Olympiad (Oct 2025) engaged 10,040 participants across 25 schools in Punjab, Haryana, and Chandigarh, with felicitation at SMK 5.0. SMK 6.0 expands English 2.0, Maths, Tech, and Sanskriti streams. TEJAS (Talent Evaluation & Joint Assessment Series) is the dedicated national talent platform at tejas.dhe.org.in.",
     href: "/programs/dhe-olympiads",
     cellSlug: "olympiad",
     smkConvergence: true,
+    externalSiteUrl: "https://tejas.dhe.org.in",
+    externalSiteLabel: "Enter TEJAS",
     documents: [
       {
         label: "DHE English Olympiad brochure (PDF)",
