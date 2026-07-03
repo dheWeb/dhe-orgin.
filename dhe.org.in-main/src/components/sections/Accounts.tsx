@@ -48,6 +48,7 @@ const assistanceCtas = [
   { href: "/contact", label: "Contact DHE" },
   { href: "/donation", label: "Donation Page" },
   { href: "/contribute", label: "Membership Page" },
+  { href: "/transparency", label: "Trust deed & 80G documents" },
 ] as const;
 
 const beforeContributionChecklist = [

@@ -53,9 +53,18 @@ function SlideImage({
 
 const SlideShow: React.FC<SlideShowProps> = ({ slides, deferNonFirst }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const [visibleSlides, setVisibleSlides] = useState<HomeSlide[]>(() =>
     deferNonFirst ? slides.slice(0, 1) : slides
   );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     if (!deferNonFirst || slides.length <= 1) return;
@@ -68,9 +77,10 @@ const SlideShow: React.FC<SlideShowProps> = ({ slides, deferNonFirst }) => {
   }, [visibleSlides.length]);
 
   useEffect(() => {
+    if (reduceMotion || visibleSlides.length <= 1) return;
     const intervalId = setInterval(nextSlide, 5000);
     return () => clearInterval(intervalId);
-  }, [nextSlide]);
+  }, [nextSlide, reduceMotion, visibleSlides.length]);
 
   return (
     <div className="min-w-0" role="region" aria-label="Featured event slideshow">

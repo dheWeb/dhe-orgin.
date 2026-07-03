@@ -12,8 +12,15 @@ function buildFromEntry(entry: PageSeoEntry): Metadata {
     ? ogImagePath
     : `${siteConfig.url}${ogImagePath.startsWith("/") ? ogImagePath : `/${ogImagePath}`}`;
 
+  const title: Metadata["title"] =
+    entry.path === "/"
+      ? {
+          absolute: `${entry.title} | ${siteConfig.name}`,
+        }
+      : entry.title;
+
   return {
-    title: entry.title,
+    title,
     description: entry.description,
     alternates: {
       canonical: canonicalPath,
@@ -31,8 +38,8 @@ function buildFromEntry(entry: PageSeoEntry): Metadata {
       images: [
         {
           url: ogImageUrl,
-          width: 512,
-          height: 512,
+          width: 1200,
+          height: 630,
           alt: entry.title,
         },
       ],

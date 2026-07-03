@@ -56,6 +56,12 @@ export default function PrivacyPolicyPage() {
         and Google AdSense (after consent) may collect usage data per their
         policies. Disable non-essential cookies to limit this processing.
       </p>
+      <p>
+        <strong>Botpress chat:</strong> Messages you send in chat may be stored by
+        Botpress (EU/US infrastructure) for up to 90 days for support and quality
+        purposes. Do not share sensitive personal or payment data in chat — use the
+        official contact or donation forms instead.
+      </p>
 
       <h2>Retention</h2>
       <p>

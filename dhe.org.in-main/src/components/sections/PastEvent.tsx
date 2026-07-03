@@ -60,18 +60,21 @@ const PastEvent: React.FC<{ events: PastEventRow[] }> = ({ events }) => {
           </h2>
           <div className="overflow-x-auto mb-2">
             <table className="w-full min-w-[640px] table-auto py-2">
+              <caption className="sr-only">
+                Archive of past DHE and Shiksha Mahakumbh events with dates, venues, and links
+              </caption>
               <thead>
                 <tr className="bg-primary-color">
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     Title
                   </th>
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     Date
                   </th>
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     Venue
                   </th>
-                  <th className="px-2 py-2 border text-left text-white text-sm">
+                  <th scope="col" className="px-2 py-2 border text-left text-white text-sm">
                     More Information
                   </th>
                 </tr>

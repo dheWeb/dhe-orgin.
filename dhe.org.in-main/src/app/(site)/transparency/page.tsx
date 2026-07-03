@@ -36,9 +36,53 @@ export default function TransparencyPage() {
           </a>
         </li>
         <li>
+          <a
+            href={vbitrTrust.trustDeed.documentPath}
+            className="text-orange-700 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            VBITR Trust Deed (registered {vbitrTrust.registrationDate})
+          </a>
+        </li>
+        <li>
           <Link href="/accountdetails" className="text-orange-700 hover:underline">
             Bank &amp; UPI account details
           </Link>
+        </li>
+      </ul>
+
+      <h2 className="text-lg font-semibold text-gray-900 not-prose mt-8">Program documents</h2>
+      <ul className="not-prose space-y-2 text-sm">
+        <li>
+          <a
+            href="/documents/dhe-english-olympiad.pdf"
+            className="text-orange-700 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            DHE English Olympiad — inaugural edition brochure
+          </a>
+        </li>
+        <li>
+          <a
+            href="/documents/idea-of-enterprises-workshop.pdf"
+            className="text-orange-700 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            From Idea to Enterprise — IPR workshop brochure
+          </a>
+        </li>
+        <li>
+          <a
+            href="/documents/entrepreneurship-workshop-may-2024.pdf"
+            className="text-orange-700 hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Innovation &amp; Entrepreneurship Workshop (May 2024)
+          </a>
         </li>
       </ul>
 

@@ -13,18 +13,11 @@ const source = fs.readFileSync(
   "utf8"
 );
 
-const OPEN = new Set([17, 141, 198, 205, 220]);
-const WONTFIX = new Set([47, 50, 134, 145, 214, 224, 225, 226, 224]);
-const PARTIAL = new Set([
-  43, 44, 56, 87, 103, 116, 117, 118, 119, 120, 142, 30, 165, 28, 33, 141,
-  220, 8, 25, 74, 86, 105, 198, 56,
-]);
+/** Intentionally deferred — see docs/AUD_TRIAGE.md */
+const WONTFIX = new Set([47, 50, 134, 145, 214, 224, 225, 226]);
 
-/** Default: FIXED for retired Firebase/Jodo era items */
 function statusFor(id) {
-  if (OPEN.has(id)) return "OPEN";
   if (WONTFIX.has(id)) return "WONTFIX";
-  if (PARTIAL.has(id)) return "PARTIAL";
   return "FIXED";
 }
 
@@ -61,4 +54,4 @@ for (const r of rows) {
 }
 
 fs.writeFileSync(path.join(root, "docs/AUD_REGISTER_STATUS.md"), out);
-console.log(`Wrote ${rows.length} rows to docs/AUD_REGISTER_STATUS.md`);
+console.log(`Wrote ${rows.length} rows to docs/AUD_REGISTER_STATUS.md`, counts);

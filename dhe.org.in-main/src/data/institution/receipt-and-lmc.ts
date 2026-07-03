@@ -46,6 +46,9 @@ export const vbitrTrust = {
     validAssessmentYears: ["2024-25", "2025-26", "2026-27"] as const,
     documentPath: "/accounts/80g-vbitr-trust.pdf",
   },
+  trustDeed: {
+    documentPath: "/documents/trust-deed-vbitr.pdf",
+  },
 } as const;
 
 /**

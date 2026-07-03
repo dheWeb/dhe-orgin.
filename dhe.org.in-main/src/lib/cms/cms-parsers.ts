@@ -40,7 +40,7 @@ export const DEFAULT_UPCOMING_EVENTS: UpcomingEventRow[] = [
     status: "planned",
     statusLabel: "Registration Open",
     statusNote:
-      "6th edition of Shiksha Mahakumbh — register on the official RASE portal.",
+      "6th edition — Meeting of the Minds. Register on the official RASE portal.",
   },
   {
     title: "Shiksha Mahakumbh 5.0",
@@ -50,17 +50,17 @@ export const DEFAULT_UPCOMING_EVENTS: UpcomingEventRow[] = [
     external: true,
     status: "completed",
     statusLabel: "Concluded",
-    statusNote: "Official photos and materials available via Google Drive.",
+    statusNote: "284 papers, 10,400+ Olympiad students — official photos on Drive.",
   },
   {
-    title: "Indian Education System for Global Development",
-    date: "December 16–17, 2024",
+    title: "Shiksha Mahakumbh 4.0",
+    date: "16–17 December 2024",
     venue: "Kurukshetra University",
     href: "https://www.shikshamahakumbh.com/",
     external: true,
     status: "completed",
     statusLabel: "Archived",
-    statusNote: "Historical reference — see past events for more archives.",
+    statusNote: "91 papers, 21 conclaves — see past events for full archive.",
   },
 ];
 

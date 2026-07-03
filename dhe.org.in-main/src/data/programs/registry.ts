@@ -1,8 +1,15 @@
+export type ProgramDocument = {
+  label: string;
+  href: string;
+};
+
 export type ProgramDefinition = {
   slug: string;
   title: string;
   summary: string;
   body: string;
+  /** Downloadable brochures, proceedings, or official PDFs */
+  documents?: ProgramDocument[];
   href?: string;
   /** External registration (e.g. SMK on RASE) — editable via CMS programs_json */
   externalRegistrationUrl?: string;
@@ -40,6 +47,12 @@ export const PROGRAMS: ProgramDefinition[] = [
     href: "/programs/dhe-olympiads",
     cellSlug: "olympiad",
     smkConvergence: true,
+    documents: [
+      {
+        label: "DHE English Olympiad brochure (PDF)",
+        href: "/documents/dhe-english-olympiad.pdf",
+      },
+    ],
   },
   {
     slug: "super-100",
@@ -68,6 +81,12 @@ export const PROGRAMS: ProgramDefinition[] = [
     body: "The IPR Cell organises workshops on patent drafting, design registration, and enterprise formation in collaboration with CSIR–CSIO and higher-education institutions, building an IPR culture across schools.",
     href: "/programs/ipr-entrepreneurship",
     cellSlug: "ipr",
+    documents: [
+      {
+        label: "From Idea to Enterprise — workshop brochure (PDF)",
+        href: "/documents/idea-of-enterprises-workshop.pdf",
+      },
+    ],
   },
   {
     slug: "student-projects",
@@ -142,6 +161,12 @@ export const PROGRAMS: ProgramDefinition[] = [
     summary: "Faculty development, IPR, spoken English, and innovation workshops.",
     body: "DHE cells conduct workshops on innovation, entrepreneurship, IPR, and holistic education for students, teachers, and institutions. View the workshop archive and upcoming training opportunities.",
     href: "/workshop",
+    documents: [
+      {
+        label: "Innovation & Entrepreneurship Workshop — May 2024 (PDF)",
+        href: "/documents/entrepreneurship-workshop-may-2024.pdf",
+      },
+    ],
   },
   {
     slug: "residential-camps",
@@ -165,6 +190,80 @@ export const PROGRAMS: ProgramDefinition[] = [
     body: "The R&D Cell coordinates research initiatives, pilot projects, and innovation ecosystems including Surbhi products, recycling programs, and Viksit Bharat 2047 school models.",
     cellSlug: "rd",
     href: "/cells/rd",
+  },
+  {
+    slug: "e-cycle",
+    title: "E-Cycle Initiative",
+    summary: "Udyam Cell — electric mobility pilots with IIT Delhi, RGIPT, and partner schools.",
+    body: "The Udyam Cell advances the E-cycle program with IIT Delhi, RGIPT, NPI, and Silverline partnerships — piloting e-mobility in schools and establishing e-vehicle testing infrastructure.",
+    href: "/cells/udyam",
+    cellSlug: "udyam",
+  },
+  {
+    slug: "multi-track-conference",
+    title: "Multi-Track Conference (MTC)",
+    summary: "15 hybrid research tracks — proceedings and souvenirs by Publications Cell.",
+    body: "The Publications & Promotions Cell coordinates the Multi-Track Conference at Shiksha Mahakumbh with Microsoft CMT peer review and pathways to SCI/Scopus indexing.",
+    href: "/publications",
+    cellSlug: "publication",
+    smkConvergence: true,
+  },
+  {
+    slug: "excellence-awards",
+    title: "Excellence Awards",
+    summary: "National recognition for schools and educators at Shiksha Mahakumbh.",
+    body: "Excellence Awards at Shiksha Mahakumbh recognise outstanding institutions, educators, and programs advancing holistic education and Viksit Bharat 2047 models.",
+    href: "/programs/shiksha-mahakumbh",
+    cellSlugs: ["publication", "premiumschool", "rd"],
+    smkConvergence: true,
+  },
+  {
+    slug: "speaker-directory",
+    title: "Speaker Directory",
+    summary: "202+ distinguished speakers across SMK editions 1.0–5.0.",
+    body: "The Event Management Cell maintains the national speaker directory for Shiksha Mahakumbh — educators, scientists, policymakers, and industry leaders who have addressed DHE's flagship summit.",
+    href: "https://www.rase.co.in/speakers/directory",
+    external: true,
+    cellSlug: "event",
+    smkConvergence: true,
+  },
+  {
+    slug: "hawan-spiritual",
+    title: "Hawan & Spiritual Programmes",
+    summary: "Spiritual Cell — values-based ceremonies aligned with holistic education.",
+    body: "The Spiritual Cell coordinates Hawan and spiritual programmes that integrate Bharatiya values with holistic student development at DHE events and partner institutions.",
+    href: "/cells/spritual",
+    cellSlug: "spritual",
+    smkConvergence: true,
+  },
+  {
+    slug: "smk-exhibition",
+    title: "SMK Exhibition & Innovation Showcase",
+    summary:
+      "Student projects, ATL demos, and school innovation exhibits at Shiksha Mahakumbh.",
+    body: "The Event Management Cell, ATL Cell, and Environment/R&D cells converge school innovation exhibitions at Shiksha Mahakumbh — showcasing student projects, ATL labs, recycling pilots, and Viksit Bharat school models on the national stage.",
+    href: "/programs/student-projects",
+    cellSlugs: ["event", "atl", "rd", "environment"],
+    smkConvergence: true,
+  },
+  {
+    slug: "cultural-programmes",
+    title: "Cultural Programmes",
+    summary: "Art Cell — school arts, cultural expression, and SMK cultural showcases.",
+    body: "The Art Sale Cell coordinates cultural programmes and school arts exhibitions that celebrate Bharatiya cultural expression within DHE's holistic education framework, including showcases at Shiksha Mahakumbh.",
+    href: "/cells/art",
+    cellSlugs: ["art", "event"],
+    smkConvergence: true,
+  },
+  {
+    slug: "best-practices",
+    title: "Best Practices & School Excellence",
+    summary:
+      "Premium School and R&D cells — Viksit Bharat 2047 school models and excellence frameworks.",
+    body: "The Premium School Cell and R&D Cell document and disseminate best practices for holistic, value-based schooling aligned with NEP 2020 and Viksit Bharat 2047 — including excellence awards and pilot school models.",
+    href: "/programs/excellence-awards",
+    cellSlugs: ["premiumschool", "rd"],
+    smkConvergence: true,
   },
 ];
 

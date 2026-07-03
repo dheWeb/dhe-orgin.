@@ -152,7 +152,7 @@ const Header: React.FC = () => {
                       <button
                         type="button"
                         className="flex items-center gap-1 px-4 py-3 text-[15px] font-semibold text-gray-700 hover:text-orange-600 transition-all duration-300 rounded-xl hover:bg-orange-50"
-                        aria-haspopup="menu"
+                        aria-haspopup="true"
                         aria-expanded={isOpen}
                         aria-controls={submenuId}
                         onClick={() =>
@@ -171,7 +171,7 @@ const Header: React.FC = () => {
 
                       <div
                         id={submenuId}
-                        role="menu"
+                        hidden={!isOpen}
                         className={`absolute left-0 top-full mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-orange-100 overflow-hidden transition-all duration-300 ${
                           isOpen
                             ? "opacity-100 visible translate-y-0"
@@ -183,7 +183,6 @@ const Header: React.FC = () => {
                             <Link
                               key={subIndex}
                               href={subItem.path}
-                              role="menuitem"
                               className="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-all duration-200"
                             >
                               {subItem.title}
@@ -249,7 +248,7 @@ const Header: React.FC = () => {
                         setActiveDropdown(isOpen ? null : index)
                       }
                       className="w-full flex items-center justify-between py-3 text-gray-700 font-semibold hover:text-orange-600"
-                      aria-haspopup="menu"
+                      aria-haspopup="true"
                       aria-expanded={isOpen}
                       aria-controls={submenuId}
                     >
@@ -265,7 +264,7 @@ const Header: React.FC = () => {
 
                     <div
                       id={submenuId}
-                      role="menu"
+                      hidden={!isOpen}
                       className={`overflow-hidden transition-all duration-300 ${
                         isOpen ? "max-h-96 mt-2" : "max-h-0"
                       }`}
@@ -275,7 +274,6 @@ const Header: React.FC = () => {
                           <Link
                             key={subIndex}
                             href={subItem.path}
-                            role="menuitem"
                             className="block py-2 text-sm text-gray-600 hover:text-orange-600"
                             onClick={closeMobileMenu}
                           >

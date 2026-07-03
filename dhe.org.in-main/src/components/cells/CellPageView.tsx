@@ -20,14 +20,9 @@ type Props = {
 
 function CellPageHeader({ title }: { title: string }) {
   return (
-    <>
-      <p className="text-center text-lg sm:text-2xl font-bold pt-4 text-primary-color">
-        Cells
-      </p>
-      <h1 className="text-center sm:text-left text-2xl sm:text-3xl font-bold text-primary-color px-2 sm:px-4 mb-4">
-        {title}
-      </h1>
-    </>
+    <h1 className="text-center sm:text-left text-2xl sm:text-3xl font-bold text-primary-color px-2 sm:px-4 mb-4">
+      {title}
+    </h1>
   );
 }
 

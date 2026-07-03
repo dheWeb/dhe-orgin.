@@ -8,6 +8,9 @@ import {
 import { getProgramCellSlugs } from "@/data/programs/registry";
 import { getCellSeoTitle } from "@/data/cells";
 import { buildMetadataFromEntry } from "@/lib/seo/build-metadata";
+import PageStructuredData from "@/components/seo/PageStructuredData";
+import { getBreadcrumbSchema } from "@/lib/seo/breadcrumb-schema";
+import { getWebPageSchema } from "@/lib/seo/cell-schema";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -38,8 +41,20 @@ export default async function ProgramDetailPage({ params }: PageProps) {
   const isExternal = ctaHref.startsWith("http");
   const registerUrl = program.externalRegistrationUrl?.trim();
   const owningCells = getProgramCellSlugs(program);
+  const programPath = `/programs/${slug}`;
 
   return (
+    <>
+      <PageStructuredData
+        graph={[
+          getBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "DHE Programs", path: "/programs" },
+            { name: program.title, path: programPath },
+          ]),
+          getWebPageSchema(programPath, program.title, program.summary),
+        ]}
+      />
     <div className="dhe-container py-10 max-w-3xl mx-auto">
       <p className="text-sm text-gray-500 mb-2">
         <Link href="/programs" className="text-orange-700 hover:underline">
@@ -53,6 +68,27 @@ export default async function ProgramDetailPage({ params }: PageProps) {
       <div className="mt-6 prose prose-slate max-w-none">
         <p>{program.body}</p>
       </div>
+      {program.documents?.length ? (
+        <section className="mt-8" aria-labelledby="program-documents-heading">
+          <h2 id="program-documents-heading" className="text-lg font-semibold text-gray-900">
+            Downloads
+          </h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            {program.documents.map((doc) => (
+              <li key={doc.href}>
+                <a
+                  href={doc.href}
+                  className="text-orange-700 font-medium hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {doc.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
       <div className="mt-8 flex flex-wrap gap-3">
         {registerUrl ? (
           <a
@@ -92,5 +128,6 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           ))}
       </div>
     </div>
+    </>
   );
 }

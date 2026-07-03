@@ -1,13 +1,13 @@
 # AUD register status (AUD-001 … AUD-280)
 
-**Generated:** 2026-07-02  
+**Generated:** 2026-07-03  
 **Source:** `EXHAUSTIVE_RESTRUCTURE_PLAN.md` §C — run `node scripts/generate-aud-register-status.mjs` to refresh.
 
 | Status | Count |
 |--------|-------|
-| FIXED | 247 |
-| PARTIAL | 20 |
-| OPEN | 5 |
+| FIXED | 272 |
+| PARTIAL | 0 |
+| OPEN | 0 |
 | WONTFIX | 8 |
 
 | ID | Status |
@@ -19,7 +19,7 @@
 | AUD-005 | FIXED |
 | AUD-006 | FIXED |
 | AUD-007 | FIXED |
-| AUD-008 | PARTIAL |
+| AUD-008 | FIXED |
 | AUD-009 | FIXED |
 | AUD-010 | FIXED |
 | AUD-011 | FIXED |
@@ -28,7 +28,7 @@
 | AUD-014 | FIXED |
 | AUD-015 | FIXED |
 | AUD-016 | FIXED |
-| AUD-017 | OPEN |
+| AUD-017 | FIXED |
 | AUD-018 | FIXED |
 | AUD-019 | FIXED |
 | AUD-020 | FIXED |
@@ -36,15 +36,15 @@
 | AUD-022 | FIXED |
 | AUD-023 | FIXED |
 | AUD-024 | FIXED |
-| AUD-025 | PARTIAL |
+| AUD-025 | FIXED |
 | AUD-026 | FIXED |
 | AUD-027 | FIXED |
-| AUD-028 | PARTIAL |
+| AUD-028 | FIXED |
 | AUD-029 | FIXED |
-| AUD-030 | PARTIAL |
+| AUD-030 | FIXED |
 | AUD-031 | FIXED |
 | AUD-032 | FIXED |
-| AUD-033 | PARTIAL |
+| AUD-033 | FIXED |
 | AUD-034 | FIXED |
 | AUD-035 | FIXED |
 | AUD-036 | FIXED |
@@ -54,8 +54,8 @@
 | AUD-040 | FIXED |
 | AUD-041 | FIXED |
 | AUD-042 | FIXED |
-| AUD-043 | PARTIAL |
-| AUD-044 | PARTIAL |
+| AUD-043 | FIXED |
+| AUD-044 | FIXED |
 | AUD-045 | FIXED |
 | AUD-046 | FIXED |
 | AUD-047 | WONTFIX |
@@ -67,7 +67,7 @@
 | AUD-053 | FIXED |
 | AUD-054 | FIXED |
 | AUD-055 | FIXED |
-| AUD-056 | PARTIAL |
+| AUD-056 | FIXED |
 | AUD-057 | FIXED |
 | AUD-058 | FIXED |
 | AUD-059 | FIXED |
@@ -85,7 +85,7 @@
 | AUD-071 | FIXED |
 | AUD-072 | FIXED |
 | AUD-073 | FIXED |
-| AUD-074 | PARTIAL |
+| AUD-074 | FIXED |
 | AUD-075 | FIXED |
 | AUD-076 | FIXED |
 | AUD-077 | FIXED |
@@ -97,8 +97,8 @@
 | AUD-083 | FIXED |
 | AUD-084 | FIXED |
 | AUD-085 | FIXED |
-| AUD-086 | PARTIAL |
-| AUD-087 | PARTIAL |
+| AUD-086 | FIXED |
+| AUD-087 | FIXED |
 | AUD-088 | FIXED |
 | AUD-089 | FIXED |
 | AUD-090 | FIXED |
@@ -114,9 +114,9 @@
 | AUD-100 | FIXED |
 | AUD-101 | FIXED |
 | AUD-102 | FIXED |
-| AUD-103 | PARTIAL |
+| AUD-103 | FIXED |
 | AUD-104 | FIXED |
-| AUD-105 | PARTIAL |
+| AUD-105 | FIXED |
 | AUD-106 | FIXED |
 | AUD-107 | FIXED |
 | AUD-108 | FIXED |
@@ -127,11 +127,11 @@
 | AUD-113 | FIXED |
 | AUD-114 | FIXED |
 | AUD-115 | FIXED |
-| AUD-116 | PARTIAL |
-| AUD-117 | PARTIAL |
-| AUD-118 | PARTIAL |
-| AUD-119 | PARTIAL |
-| AUD-120 | PARTIAL |
+| AUD-116 | FIXED |
+| AUD-117 | FIXED |
+| AUD-118 | FIXED |
+| AUD-119 | FIXED |
+| AUD-120 | FIXED |
 | AUD-121 | FIXED |
 | AUD-122 | FIXED |
 | AUD-123 | FIXED |
@@ -152,8 +152,8 @@
 | AUD-138 | FIXED |
 | AUD-139 | FIXED |
 | AUD-140 | FIXED |
-| AUD-141 | OPEN |
-| AUD-142 | PARTIAL |
+| AUD-141 | FIXED |
+| AUD-142 | FIXED |
 | AUD-143 | FIXED |
 | AUD-144 | FIXED |
 | AUD-145 | WONTFIX |
@@ -176,7 +176,7 @@
 | AUD-162 | FIXED |
 | AUD-163 | FIXED |
 | AUD-164 | FIXED |
-| AUD-165 | PARTIAL |
+| AUD-165 | FIXED |
 | AUD-166 | FIXED |
 | AUD-167 | FIXED |
 | AUD-168 | FIXED |
@@ -209,14 +209,14 @@
 | AUD-195 | FIXED |
 | AUD-196 | FIXED |
 | AUD-197 | FIXED |
-| AUD-198 | OPEN |
+| AUD-198 | FIXED |
 | AUD-199 | FIXED |
 | AUD-200 | FIXED |
 | AUD-201 | FIXED |
 | AUD-202 | FIXED |
 | AUD-203 | FIXED |
 | AUD-204 | FIXED |
-| AUD-205 | OPEN |
+| AUD-205 | FIXED |
 | AUD-206 | FIXED |
 | AUD-207 | FIXED |
 | AUD-208 | FIXED |
@@ -231,7 +231,7 @@
 | AUD-217 | FIXED |
 | AUD-218 | FIXED |
 | AUD-219 | FIXED |
-| AUD-220 | OPEN |
+| AUD-220 | FIXED |
 | AUD-221 | FIXED |
 | AUD-222 | FIXED |
 | AUD-223 | FIXED |

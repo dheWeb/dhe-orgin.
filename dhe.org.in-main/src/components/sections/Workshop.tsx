@@ -44,6 +44,27 @@ const Workshop: React.FC = () => {
             preserved for reference. This is not an active registration page.
           </p>
           <p className="mt-3 text-sm sm:text-base text-amber-950 leading-relaxed">
+            Official workshop brochure:{" "}
+            <a
+              href="/documents/entrepreneurship-workshop-may-2024.pdf"
+              className="font-semibold text-orange-800 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download PDF (May 2024)
+            </a>
+            . Related IPR brochure:{" "}
+            <a
+              href="/documents/idea-of-enterprises-workshop.pdf"
+              className="font-semibold text-orange-800 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              From Idea to Enterprise (PDF)
+            </a>
+            .
+          </p>
+          <p className="mt-3 text-sm sm:text-base text-amber-950 leading-relaxed">
             For current and forthcoming DHE programs, please visit{" "}
             <Link
               href="/upcomingevent"
@@ -191,15 +212,16 @@ const Workshop: React.FC = () => {
           <p className="text-lg font-semibold mb-2">Event Coordinators</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-11/12 table-auto py-2">
+              <caption className="sr-only">Event coordinators for the May 2024 workshop</caption>
               <thead>
                 <tr className="bg-primary-color">
-                  <th className="w-1/2 sm:w-1/5 px-1 py-2 border text-left text-white">
+                  <th scope="col" className="w-1/2 sm:w-1/5 px-1 py-2 border text-left text-white">
                     Name
                   </th>
-                  <th className="w-1/2 sm:w-1/5 px-1 py-2 border text-left text-white">
+                  <th scope="col" className="w-1/2 sm:w-1/5 px-1 py-2 border text-left text-white">
                     Designation
                   </th>
-                  <th className="w-1/2 sm:w-1/5 px-1 py-2 border text-left text-white">
+                  <th scope="col" className="w-1/2 sm:w-1/5 px-1 py-2 border text-left text-white">
                     Contact
                   </th>
                 </tr>
