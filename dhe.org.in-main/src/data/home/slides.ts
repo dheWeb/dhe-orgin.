@@ -53,5 +53,5 @@ export const homeSlides: HomeSlide[] = [
   },
 ];
 
-/** Gallery preview indices — diverse DHE + one SMK highlight */
-export const homeGalleryPreviewIndices = [0, 1, 2, 3] as const;
+/** Gallery preview indices — diverse DHE + SMK highlights for mosaic layout */
+export const homeGalleryPreviewIndices = [0, 1, 2, 4, 5, 6] as const;

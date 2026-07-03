@@ -1,4 +1,5 @@
 import { homeFaq } from "@/data/home/content";
+import HomeFaqAccordion from "@/components/home/v2/HomeFaqAccordion";
 
 /** Visible FAQ — text matches homepage FAQPage JSON-LD when CMS not overridden. */
 export default function HomeFaqSection({
@@ -7,37 +8,25 @@ export default function HomeFaqSection({
   items?: { question: string; answer: string }[];
 }) {
   const faq = items?.length ? items : homeFaq;
+
   return (
     <section
       aria-labelledby="home-faq-heading"
-      className="dhe-section-py border-b border-gray-200 bg-white"
+      className="py-10 sm:py-14 border-t border-gray-200 bg-white"
     >
       <div className="dhe-container max-w-3xl">
         <h2
           id="home-faq-heading"
-          className="text-lg font-semibold text-gray-900"
+          className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight"
         >
           Frequently Asked Questions
         </h2>
-        <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-          Answers about DHE&apos;s national role and Shiksha Mahakumbh Abhiyan—aligned
-          with the institutional overview above.
+        <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
+          Quick answers about DHE&apos;s national role, programs, and Shiksha Mahakumbh.
         </p>
-        <dl className="mt-5 space-y-4">
-          {faq.map((item) => (
-            <div
-              key={item.question}
-              className="rounded-lg border border-gray-100 bg-gray-50/80 p-4"
-            >
-              <dt className="text-sm font-semibold text-gray-900">
-                {item.question}
-              </dt>
-              <dd className="mt-2 text-sm text-gray-700 leading-relaxed">
-                {item.answer}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <div className="mt-8">
+          <HomeFaqAccordion items={[...faq]} />
+        </div>
       </div>
     </section>
   );

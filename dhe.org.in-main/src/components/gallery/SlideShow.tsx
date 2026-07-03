@@ -11,14 +11,20 @@ const FALLBACK_SRC = "/logo.webp";
 interface SlideShowProps {
   slides: HomeSlide[];
   deferNonFirst?: boolean;
+  imageClassName?: string;
 }
+
+const DEFAULT_IMAGE_CLASS =
+  "w-full h-auto max-h-[200px] sm:max-h-[240px] lg:max-h-[280px] object-cover";
 
 function SlideImage({
   slide,
   priority,
+  imageClassName,
 }: {
   slide: HomeSlide;
   priority?: boolean;
+  imageClassName: string;
 }) {
   const [useFallback, setUseFallback] = useState(false);
 
@@ -32,7 +38,7 @@ function SlideImage({
         height={750}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        className="w-full h-auto max-h-[200px] sm:max-h-[240px] lg:max-h-[280px] object-cover"
+        className={imageClassName}
       />
     );
   }
@@ -45,13 +51,17 @@ function SlideImage({
       height={750}
       priority={priority}
       sizes="(max-width: 1024px) 100vw, 58vw"
-      className="w-full h-auto max-h-[200px] sm:max-h-[240px] lg:max-h-[280px] object-cover"
+      className={imageClassName}
       onError={() => setUseFallback(true)}
     />
   );
 }
 
-const SlideShow: React.FC<SlideShowProps> = ({ slides, deferNonFirst }) => {
+const SlideShow: React.FC<SlideShowProps> = ({
+  slides,
+  deferNonFirst,
+  imageClassName = DEFAULT_IMAGE_CLASS,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [visibleSlides, setVisibleSlides] = useState<HomeSlide[]>(() =>
@@ -100,7 +110,11 @@ const SlideShow: React.FC<SlideShowProps> = ({ slides, deferNonFirst }) => {
             key={`${slide.src}-${index}`}
             className="relative min-h-[160px] sm:min-h-[200px] lg:min-h-[220px]"
           >
-            <SlideImage slide={slide} priority={index === 0} />
+            <SlideImage
+              slide={slide}
+              priority={index === 0}
+              imageClassName={imageClassName}
+            />
 
             {(slide.legend || slide.alt) && (
               <div

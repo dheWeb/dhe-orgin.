@@ -1,12 +1,12 @@
 import dynamic from "next/dynamic";
 import HomeHero from "@/components/home/HomeHero";
-import MiddleComponent from "@/components/home/MiddleComponent";
+import HomeMainSections from "@/components/home/v2/HomeMainSections";
 import HomeClosingCta from "@/components/home/HomeClosingCta";
-import HomeFaqSection from "@/components/home/HomeFaqSection";
 import HomeTrustStrip from "@/components/home/HomeTrustStrip";
 import { homeSlides } from "@/data/home/slides";
 import type { MarqueeItem } from "@/lib/cms/cms-parsers";
 
+import HomeStickyMobileCta from "@/components/home/v2/HomeStickyMobileCta";
 const HomeNewsSection = dynamic(() => import("@/components/home/HomeNewsSection"), {
   loading: () => <div className="h-40 bg-[#07111f] animate-pulse" aria-hidden />,
 });
@@ -20,6 +20,12 @@ const HomeGalleryPreview = dynamic(
   }
 );
 
+const HomeFaqSection = dynamic(() => import("@/components/home/HomeFaqSection"), {
+  loading: () => (
+    <div className="dhe-container h-48 animate-pulse bg-gray-50" aria-hidden />
+  ),
+});
+
 type HomeIntroProps = {
   badge: string;
   titleLine1: string;
@@ -28,8 +34,8 @@ type HomeIntroProps = {
 };
 
 /**
- * Homepage flow:
- * Hero → Overview & stats → Achievements → Cells/ecosystem → Programs → News → Gallery → CTA
+ * Homepage flow (v2):
+ * Hero → Trust → Stats → Why DHE → Programs → SMK → Journey → Cells → Digital → Leadership → Partners → News → Gallery → FAQ → CTA
  */
 export default function HomePageContent({
   tagline,
@@ -65,29 +71,28 @@ export default function HomePageContent({
   smkSiteUrl?: string;
 }) {
   return (
-    <div className="bg-white overflow-x-hidden min-w-0">
+    <div className="bg-white overflow-x-hidden min-w-0 pb-20 md:pb-0">
       <HomeHero homeIntro={homeIntro} />
+
       {tagline ? (
-        <p className="dhe-container text-center text-sm sm:text-base text-gray-600 -mt-2 mb-4 px-4">
+        <p className="dhe-container text-center text-sm sm:text-base text-gray-500 py-3 px-4 border-b border-gray-100">
           {tagline}
         </p>
       ) : null}
 
-      <div className="dhe-container">
-        <MiddleComponent
-          visionBody={visionBody}
-          nationalImpactBody={nationalImpactBody}
-          nationalImpactHighlights={nationalImpactHighlights}
-          leadership={leadership}
-          shiksha={shiksha}
-          digitalDescription={digitalDescription}
-          smkSiteUrl={smkSiteUrl}
-        />
-      </div>
-
-      <div className="dhe-container dhe-section-py">
+      <div className="dhe-container py-8 sm:py-10">
         <HomeTrustStrip />
       </div>
+
+      <HomeMainSections
+        visionBody={visionBody}
+        nationalImpactBody={nationalImpactBody}
+        nationalImpactHighlights={nationalImpactHighlights}
+        leadership={leadership}
+        shiksha={shiksha}
+        digitalDescription={digitalDescription}
+        smkSiteUrl={smkSiteUrl}
+      />
 
       <HomeNewsSection marqueeItems={marqueeItems} />
 
@@ -101,6 +106,8 @@ export default function HomePageContent({
         body={closingCta?.body}
         smkSiteUrl={smkSiteUrl}
       />
+
+      <HomeStickyMobileCta />
     </div>
   );
 }

@@ -68,7 +68,11 @@ a .svg-inline--fa {
   }
 
   .dhe-section-py {
-    @apply py-4 sm:py-5;
+    @apply py-8 sm:py-10 lg:py-12;
+  }
+
+  .home-card {
+    @apply rounded-2xl border border-gray-200/80 bg-white shadow-dhe-sm hover:shadow-dhe-md motion-safe:transition-shadow;
   }
 }
 
@@ -84,7 +88,16 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .motion-safe\:animate-modal-fade-in,
-  .motion-safe\:animate-modal-scale-in {
+  .motion-safe\:animate-modal-scale-in,
+  .motion-safe\:animate-fade-up,
+  .motion-safe\:animate-float-slow,
+  .motion-safe\:animate-float-slow-reverse,
+  .motion-safe\:animate-pulse,
+  .motion-safe\:transition-all,
+  .motion-safe\:transition-transform,
+  .motion-safe\:transition-shadow,
+  .motion-safe\:transition-opacity {
     animation: none !important;
+    transition: none !important;
   }
 }

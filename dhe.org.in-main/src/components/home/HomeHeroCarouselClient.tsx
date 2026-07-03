@@ -8,10 +8,15 @@ const SlideShow = dynamic(() => import("@/components/gallery/SlideShow"), {
   loading: () => null,
 });
 
+const HERO_IMAGE_CLASS =
+  "w-full h-auto min-h-[220px] sm:min-h-[280px] lg:min-h-[380px] max-h-[420px] object-cover";
+
 export default function HomeHeroCarouselClient() {
   return (
-    <div className="absolute inset-0 z-10">
-      <SlideShow slides={homeSlides} deferNonFirst />
-    </div>
+    <SlideShow
+      slides={homeSlides}
+      deferNonFirst
+      imageClassName={HERO_IMAGE_CLASS}
+    />
   );
 }

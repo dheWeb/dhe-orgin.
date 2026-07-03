@@ -17,10 +17,25 @@ const config: Config = {
           from: { opacity: '0', transform: 'scale(0.96) translateY(8px)' },
           to: { opacity: '1', transform: 'scale(1) translateY(0)' },
         },
+        fadeUp: {
+          from: { opacity: '0', transform: 'translateY(12px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        floatSlow: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+        floatSlowReverse: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(10px)' },
+        },
       },
       animation: {
         'modal-fade-in': 'modalFadeIn 0.2s ease-out forwards',
         'modal-scale-in': 'modalScaleIn 0.25s ease-out forwards',
+        'fade-up': 'fadeUp 0.5s ease-out forwards',
+        'float-slow': 'floatSlow 8s ease-in-out infinite',
+        'float-slow-reverse': 'floatSlowReverse 10s ease-in-out infinite',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
