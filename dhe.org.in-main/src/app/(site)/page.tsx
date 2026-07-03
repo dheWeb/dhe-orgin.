@@ -7,6 +7,7 @@ import { parseMarqueeItems, parseStringListJson } from "@/lib/cms/cms-parsers";
 import { mergeMarqueeWithNotices } from "@/lib/cms/merge-marquee-notices";
 import { fetchPublishedNotices } from "@/services/notices/fetch-notices";
 import { getHomeFaq } from "@/lib/cms/home-faq-content";
+import { getHomeTestimonials } from "@/lib/cms/home-testimonials-content";
 import { getPrograms } from "@/lib/cms/programs-content";
 import { getSmkUrlsFromPrograms } from "@/lib/programs/external-urls";
 import {
@@ -21,7 +22,7 @@ export const metadata = createPageMetadata("home");
 export const revalidate = 300;
 
 export default async function Home() {
-  const [content, notices, faqItems, programs] = await Promise.all([
+  const [content, notices, faqItems, programs, testimonials] = await Promise.all([
     getSiteContent([
       "home_tagline",
       "home_intro",
@@ -36,6 +37,7 @@ export default async function Home() {
     fetchPublishedNotices(8),
     getHomeFaq(),
     getPrograms(),
+    getHomeTestimonials(),
   ]);
   const smkUrls = getSmkUrlsFromPrograms(programs);
 
@@ -87,6 +89,7 @@ export default async function Home() {
         digitalDescription={content.home_digital_ecosystem?.description?.trim()}
         faqItems={faqItems}
         smkSiteUrl={smkUrls.siteUrl}
+        testimonials={testimonials}
       />
     </>
   );

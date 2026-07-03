@@ -1,16 +1,21 @@
 # Remaining owner / enterprise gaps
 
 **Last updated:** 2026-07-03  
-**Production:** https://www.dhe.org.in — **272/272 actionable AUD items FIXED**; **8 WONTFIX**; **Homepage Phases 1–3 shipped**.
+**Production:** https://www.dhe.org.in — **272/272 actionable AUD items FIXED**; **8 WONTFIX**; **Phases 1–4 shipped**.
 
-## Phase 3 (Jul 2026) — shipped in repo
+## Phase 3 (Jul 2026) — shipped
 
-- Testimonials section on homepage
-- Scroll-reveal on major homepage sections
-- Slim mobile chrome (CompanyInfo + promo banner)
+- Testimonials, scroll-reveal, slim mobile chrome
 - Card system on `/programs`, `/structure`, `/hi`
-- Removed dead `MiddleComponent.tsx`, `HeroFirstSlide.tsx`
-- `node scripts/smoke-test-production.mjs` for post-deploy checks
+- Dead code removed; smoke test script
+
+## Phase 4 (Jul 2026) — shipped
+
+- `PageHero` + cards on `/publications`, `/leadership`, `/contact`
+- CMS testimonials (`home_testimonials_json` in admin)
+- Partner SVG logos (`public/partners/`)
+- Expanded smoke test (12 routes)
+- Font `adjustFontFallback` for LCP
 
 ## Owner actions (outside repo deploy)
 

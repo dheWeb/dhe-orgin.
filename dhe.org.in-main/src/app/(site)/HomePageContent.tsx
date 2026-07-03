@@ -50,6 +50,7 @@ export default function HomePageContent({
   digitalDescription,
   faqItems,
   smkSiteUrl,
+  testimonials,
 }: {
   tagline?: string;
   homeIntro?: HomeIntroProps;
@@ -69,6 +70,7 @@ export default function HomePageContent({
   digitalDescription?: string;
   faqItems?: { question: string; answer: string }[];
   smkSiteUrl?: string;
+  testimonials?: { quote: string; name: string; role: string }[];
 }) {
   return (
     <div className="bg-white overflow-x-hidden min-w-0 pb-20 md:pb-0">
@@ -92,6 +94,7 @@ export default function HomePageContent({
         shiksha={shiksha}
         digitalDescription={digitalDescription}
         smkSiteUrl={smkSiteUrl}
+        testimonials={testimonials}
       />
 
       <HomeNewsSection marqueeItems={marqueeItems} />

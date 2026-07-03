@@ -91,6 +91,7 @@ export const homePartnerLogos = [
     abbr: "VB",
     context: "National education network",
     color: "#ea580c",
+    logoPath: "/partners/vidya-bharati.svg",
   },
   {
     id: "vbitr",
@@ -98,6 +99,7 @@ export const homePartnerLogos = [
     abbr: "VBITR",
     context: "Governing trust · 80G",
     color: "#002d62",
+    logoPath: "/partners/vbitr.svg",
   },
   {
     id: "csir",
@@ -105,6 +107,7 @@ export const homePartnerLogos = [
     abbr: "CSIR",
     context: "Innovation workshops",
     color: "#0f766e",
+    logoPath: "/partners/csir.svg",
   },
   {
     id: "nit",
@@ -112,6 +115,7 @@ export const homePartnerLogos = [
     abbr: "NIT",
     context: "SMK 6.0 host · 2026",
     color: "#7c3aed",
+    logoPath: "/partners/nit.svg",
   },
   {
     id: "iit-ini",
@@ -119,6 +123,7 @@ export const homePartnerLogos = [
     abbr: "INI",
     context: "Academic conclaves",
     color: "#0369a1",
+    logoPath: "/partners/ini.svg",
   },
   {
     id: "isro",
@@ -126,6 +131,7 @@ export const homePartnerLogos = [
     abbr: "ISRO",
     context: "Research leadership",
     color: "#b45309",
+    logoPath: "/partners/isro.svg",
   },
   {
     id: "pub",
@@ -133,6 +139,7 @@ export const homePartnerLogos = [
     abbr: "PUB",
     context: "Research journals",
     color: "#be123c",
+    logoPath: "/partners/pub-dhe.svg",
   },
 ] as const;
 

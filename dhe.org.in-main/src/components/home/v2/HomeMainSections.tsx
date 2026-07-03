@@ -27,6 +27,7 @@ type Props = {
   shiksha?: { paragraph1?: string; paragraph2?: string };
   digitalDescription?: string;
   smkSiteUrl?: string;
+  testimonials?: { quote: string; name: string; role: string }[];
 };
 
 /** Homepage body — card-first sections in conversion-optimized order */
@@ -38,6 +39,7 @@ export default function HomeMainSections({
   shiksha,
   digitalDescription,
   smkSiteUrl,
+  testimonials,
 }: Props) {
   return (
     <>
@@ -75,7 +77,7 @@ export default function HomeMainSections({
           leadershipCms={leadership}
         />
       </HomeReveal>
-      <HomeTestimonials />
+      <HomeTestimonials items={testimonials} />
       <HomePartnersStrip />
       <HomeParticipationStrip />
     </>

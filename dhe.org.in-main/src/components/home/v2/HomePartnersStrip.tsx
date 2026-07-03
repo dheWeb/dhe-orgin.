@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { homePartnerHighlights, homePartnerLogos, homeTrustBadges } from "@/data/home/redesign-content";
 
 export default function HomePartnersStrip() {
@@ -12,7 +13,7 @@ export default function HomePartnersStrip() {
             id="partners-heading"
             className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight"
           >
-            Partners &amp; Recognition
+            Partners & Recognition
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Collaborations with national research bodies, academic institutions, and the Vidya Bharati network.
@@ -30,9 +31,8 @@ export default function HomePartnersStrip() {
           ))}
         </div>
 
-        {/* Logo-style partner strip */}
         <ul
-          className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-thin"
+          className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
           role="list"
           aria-label="Institutional partners"
         >
@@ -41,12 +41,15 @@ export default function HomePartnersStrip() {
               key={partner.id}
               className="snap-start shrink-0 w-36 sm:w-40 rounded-2xl border border-gray-200 bg-gray-50/80 p-4 text-center shadow-dhe-sm hover:shadow-dhe-md hover:border-orange-200 motion-safe:transition-all"
             >
-              <div
-                className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl text-sm font-bold text-white shadow-sm"
-                style={{ backgroundColor: partner.color }}
-                aria-hidden
-              >
-                {partner.abbr}
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm overflow-hidden">
+                <Image
+                  src={partner.logoPath}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-10 w-10 object-contain"
+                  aria-hidden
+                />
               </div>
               <p className="mt-3 text-sm font-semibold text-gray-900 leading-tight">
                 {partner.name}

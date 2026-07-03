@@ -17,6 +17,7 @@ import { getSiteContent } from "@/lib/cms/site-content";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  adjustFontFallback: true,
   variable: "--font-inter",
 });
 

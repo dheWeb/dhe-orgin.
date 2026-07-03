@@ -5,6 +5,7 @@
 
 import { PROGRAMS } from "@/data/programs/registry";
 import { homeFaq } from "@/data/home/content";
+import { homeTestimonials } from "@/data/home/redesign-content";
 import {
   DEFAULT_COORDINATORS,
   DEFAULT_ADVISORY,
@@ -33,6 +34,7 @@ export const CMS_JSON_DEFAULTS: Record<string, Record<string, string>> = {
   programs_json: { json: JSON.stringify(PROGRAMS, null, 2) },
   past_events_json: { json: JSON.stringify(DEFAULT_PAST_EVENTS, null, 2) },
   home_faq_json: { json: JSON.stringify([...homeFaq], null, 2) },
+  home_testimonials_json: { json: JSON.stringify([...homeTestimonials], null, 2) },
   feedback_events_json: { json: DEFAULT_FEEDBACK_EVENTS_JSON },
   people_json: { json: JSON.stringify(DEFAULT_COORDINATORS, null, 2) },
   advisory_json: { json: JSON.stringify(DEFAULT_ADVISORY, null, 2) },

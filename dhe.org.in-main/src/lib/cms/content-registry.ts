@@ -250,6 +250,18 @@ export const CMS_REGISTRY: CmsKeyDef[] = [
     ],
   },
   {
+    key: "home_testimonials_json",
+    label: "Homepage testimonials (JSON array)",
+    fields: [
+      {
+        name: "json",
+        label: 'JSON: [{"quote","name","role"}]',
+        type: "textarea",
+        rows: 10,
+      },
+    ],
+  },
+  {
     key: "feedback_events_json",
     label: "Feedback form event options (JSON array)",
     fields: [
