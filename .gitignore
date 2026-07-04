@@ -9,5 +9,8 @@
 **/.next/
 **/.vercel/
 
+# Stale nested copy — TEJAS lives in github.com/dheWeb/tejas
+dhe.org.in-main/tejas/
+
 .vercel
 .env*
