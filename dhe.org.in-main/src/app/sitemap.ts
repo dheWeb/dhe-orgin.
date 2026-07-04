@@ -25,6 +25,8 @@ function pathLastModified(path: string): Date {
   return HOME_UPDATED;
 }
 
+export const revalidate = 86400;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return getAllPublicPaths().map((path) => ({
     url: `${siteConfig.url}${path === "/" ? "" : path}`,
