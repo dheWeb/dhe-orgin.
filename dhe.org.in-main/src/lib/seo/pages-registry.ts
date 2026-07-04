@@ -65,6 +65,7 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     title: "Search",
     description: "Search pages on the DHE website.",
     ogImage: "/logo.webp",
+    noIndex: true,
   },
   programs: {
     path: "/programs",
@@ -259,6 +260,18 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     path: "/contact/thank-you",
     title: "Message Received",
     description: "Thank you for contacting DHE.",
+    noIndex: true,
+  },
+  donationThankYou: {
+    path: "/donation/thank-you",
+    title: "Donation Received",
+    description: "Thank you for your donation to DHE.",
+    noIndex: true,
+  },
+  contributeThankYou: {
+    path: "/contribute/thank-you",
+    title: "Membership Received",
+    description: "Thank you for joining DHE.",
     noIndex: true,
   },
   feedbackThankYou: {

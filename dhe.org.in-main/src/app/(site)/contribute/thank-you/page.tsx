@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 
-export const metadata = createPageMetadata("contribute");
+export const metadata = createPageMetadata("contributeThankYou");
 
 export default function ContributeThankYouPage() {
   return (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo/build-metadata";
 
-export const metadata = createPageMetadata("donation");
+export const metadata = createPageMetadata("donationThankYou");
 
 type PageProps = {
   searchParams: Promise<{ receipt?: string }>;

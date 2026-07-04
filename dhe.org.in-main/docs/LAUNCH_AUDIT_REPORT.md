@@ -1,13 +1,13 @@
 # DHE Launch Audit Report
 
-Generated: 2026-07-04T20:29:49.531Z
+Generated: 2026-07-04T21:39:11.326Z
 Production: https://www.dhe.org.in
 
 ## Executive Summary
 
 | Check | Result |
 |-------|--------|
-| Sitemap crawl | 79/79 URLs → 200 |
+| Sitemap crawl | 78/78 URLs → 200 |
 | Redirect chains | 1 (review below) |
 | Broken links | 0 |
 | Rich Results schema | 6/6 pages pass expected types |
@@ -40,7 +40,7 @@ Rich Results Test links:
 
 ---
 
-## Crawl (79/79)
+## Crawl (78/78)
 
 - [x] 200 https://www.dhe.org.in → https://www.dhe.org.in/
 - [x] 200 https://www.dhe.org.in/messages
@@ -48,7 +48,6 @@ Rich Results Test links:
 - [x] 200 https://www.dhe.org.in/advisory
 - [x] 200 https://www.dhe.org.in/leadership
 - [x] 200 https://www.dhe.org.in/events
-- [x] 200 https://www.dhe.org.in/search
 - [x] 200 https://www.dhe.org.in/programs
 - [x] 200 https://www.dhe.org.in/people
 - [x] 200 https://www.dhe.org.in/contact

@@ -98,6 +98,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/publication",
+        destination: "/publications",
+        permanent: true,
+      },
+      {
+        source: "/members",
+        destination: "/contribute",
+        permanent: true,
+      },
+      {
         source: "/join",
         destination: "/contribute",
         permanent: true,
@@ -109,8 +119,8 @@ const nextConfig = {
       },
       {
         source: "/VibhagRoute/:path*",
-        destination: "https://www.dhe.org.in/VibhagRoute/:path*",
-        permanent: false,
+        destination: "/structure",
+        permanent: true,
       },
       {
         source: "/cells/spiritual",
