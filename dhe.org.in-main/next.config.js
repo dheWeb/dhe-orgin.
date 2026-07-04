@@ -88,6 +88,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/Publication",
+        destination: "/publications",
+        permanent: true,
+      },
+      {
+        source: "/Publications",
+        destination: "/publications",
+        permanent: true,
+      },
+      {
         source: "/join",
         destination: "/contribute",
         permanent: true,

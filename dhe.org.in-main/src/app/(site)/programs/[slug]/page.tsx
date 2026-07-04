@@ -19,10 +19,12 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const program = await getProgramBySlug(slug);
-  if (!program) return { title: "Program not found" };
+  if (!program) notFound();
 
   return buildMetadataFromEntry({
     path: `/programs/${slug}`,

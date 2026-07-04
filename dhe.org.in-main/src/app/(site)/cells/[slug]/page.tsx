@@ -23,6 +23,8 @@ export function generateStaticParams() {
   return getAllCellSlugs().map((slug) => ({ slug }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -30,10 +32,7 @@ export async function generateMetadata({
   const cell = getCellBySlug(slug);
 
   if (!cell) {
-    return {
-      title: "Cell Not Found",
-      robots: { index: false, follow: false },
-    };
+    notFound();
   }
 
   return createCellMetadata(slug);
