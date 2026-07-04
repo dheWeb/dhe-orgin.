@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 
 const siteUrl = "https://www.dhe.org.in";
+const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 export const siteConfig = {
   name: "Department of Holistic Education (DHE)",
   shortName: "DHE Bharat",
   url: siteUrl,
-  ogImage: `${siteUrl}/logo.webp`,
+  ogImage: `${siteUrl}/opengraph-image`,
   locale: "en_IN",
   twitterHandle: "@DHEBharat1",
 } as const;
@@ -69,7 +70,7 @@ export const defaultMetadata: Metadata = {
       "Empowering Bharat through holistic education, 25 national cells, Olympiads, publications, innovation, and global academic collaboration.",
     images: [
       {
-        url: `${siteConfig.url}/12.webp`,
+        url: `${siteConfig.url}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Department of Holistic Education — national platform",
@@ -81,10 +82,11 @@ export const defaultMetadata: Metadata = {
     title: "Department of Holistic Education (DHE)",
     description:
       "National Educational Transformation Platform for Viksit Bharat.",
-    images: [siteConfig.ogImage],
+    images: [`${siteConfig.url}/opengraph-image`],
   },
   icons: {
     icon: "/dhe.webp",
   },
   category: "education",
+  ...(gscVerification && { verification: { google: gscVerification } }),
 };

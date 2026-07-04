@@ -14,6 +14,7 @@ export default function robots(): MetadataRoute.Robots {
           "/Members",
           "/registrationForm",
           "/comingsoon",
+          "/beta",
         ],
       },
     ],

@@ -14,6 +14,8 @@
     "type-check": "tsc --noEmit",
     "test": "vitest run",
     "smoke:prod": "node scripts/smoke-test-production.mjs",
+    "post-launch": "node scripts/post-launch.mjs",
+    "launch-audit": "node scripts/launch-audit.mjs",
     "verify-secrets": "node scripts/verify-secrets.mjs",
     "generate:aud-status": "node scripts/generate-aud-register-status.mjs",
     "db:migrate": "node scripts/apply-migration.mjs",
