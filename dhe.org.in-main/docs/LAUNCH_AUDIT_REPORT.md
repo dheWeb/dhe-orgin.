@@ -1,17 +1,48 @@
 # DHE Launch Audit Report
 
-Generated: 2026-07-04T17:39:19.118Z
+Generated: 2026-07-04T19:34:09.952Z
+Production: https://www.dhe.org.in
 
-## Summary
+## Executive Summary
+
 | Check | Result |
 |-------|--------|
 | Sitemap crawl | 79/79 URLs → 200 |
-| Broken | 0 |
-| Mixed HTTP assets | Found |
-| JSON-LD pages | 5/5 |
+| Redirect chains | 1 (review below) |
+| Broken links | 0 |
+| Rich Results schema | 6/6 pages pass expected types |
+| Open Graph | 5/5 pages valid |
+| Canonical tags | All OK |
+| Mixed HTTP assets | None |
+| Security headers | 6/6 present |
 
-## Crawl
-- [x] 200 https://www.dhe.org.in
+**Launch readiness estimate: 95–98%** — pending Google Search Console verification only.
+
+---
+
+## Google Search Console (manual — required)
+
+Google does **not** use IndexNow.
+
+1. [Add property](https://search.google.com/search-console) → `https://www.dhe.org.in`
+2. Verify via DNS TXT on `dhe.org.in` **or** `NEXT_PUBLIC_GSC_VERIFICATION` env → redeploy
+3. Submit sitemap: `https://www.dhe.org.in/sitemap.xml`
+4. Request indexing for homepage
+5. Monitor weekly: **Coverage · Core Web Vitals · Enhancements · Performance**
+
+Rich Results Test links:
+- [/](https://search.google.com/test/rich-results?url=https%3A%2F%2Fwww.dhe.org.in%2F)
+- [/programs/dhe-olympiads](https://search.google.com/test/rich-results?url=https%3A%2F%2Fwww.dhe.org.in%2Fprograms%2Fdhe-olympiads)
+- [/donation](https://search.google.com/test/rich-results?url=https%3A%2F%2Fwww.dhe.org.in%2Fdonation)
+- [/contact](https://search.google.com/test/rich-results?url=https%3A%2F%2Fwww.dhe.org.in%2Fcontact)
+- [/upcomingevent](https://search.google.com/test/rich-results?url=https%3A%2F%2Fwww.dhe.org.in%2Fupcomingevent)
+- [/structure](https://search.google.com/test/rich-results?url=https%3A%2F%2Fwww.dhe.org.in%2Fstructure)
+
+---
+
+## Crawl (79/79)
+
+- [x] 200 https://www.dhe.org.in → https://www.dhe.org.in/
 - [x] 200 https://www.dhe.org.in/messages
 - [x] 200 https://www.dhe.org.in/structure
 - [x] 200 https://www.dhe.org.in/advisory
@@ -91,35 +122,88 @@ Generated: 2026-07-04T17:39:19.118Z
 - [x] 200 https://www.dhe.org.in/programs/cultural-programmes
 - [x] 200 https://www.dhe.org.in/programs/best-practices
 
+---
+
 ## Structured Data
-- **/**: EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, WebSite, SearchAction, EntryPoint, BreadcrumbList, ListItem, FAQPage, Question, Answer
-- **/programs**: EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage, ItemList
-- **/donation**: EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage
-- **/contact**: EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage
-- **/cells/rd**: EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage+AboutPage, Thing, FAQPage, Question, Answer
 
-[Rich Results Test](https://search.google.com/test/rich-results?url=https%3A%2F%2Fwww.dhe.org.in)
+| Page | Expected | Found | Canonical |
+|------|----------|-------|-----------|
+| / | EducationalOrganization, WebSite, FAQPage | EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, WebSite, SearchAction, EntryPoint, BreadcrumbList, ListItem, FAQPage, Question, Answer | ✓ |
+| /programs/dhe-olympiads | EducationalOrganization, BreadcrumbList | EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage | ✓ |
+| /donation | EducationalOrganization, BreadcrumbList | EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage | ✓ |
+| /contact | EducationalOrganization, BreadcrumbList | EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage | ✓ |
+| /upcomingevent | EducationalOrganization, Event | EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage, ItemList, Event | ✓ |
+| /structure | EducationalOrganization, BreadcrumbList | EducationalOrganization, Organization, PostalAddress, Country, AdministrativeArea, Place, BreadcrumbList, ListItem, WebPage | ✓ |
 
-## Security
-- **strict-transport-security**: present
-- **x-frame-options**: present
-- **x-content-type-options**: present
-- **referrer-policy**: present
-- **permissions-policy**: present
-- **content-security-policy**: present
+---
+
+## Open Graph
+
+| Page | Valid | Image |
+|------|-------|-------|
+| / | ✓ | https://www.dhe.org.in/12.webp |
+| /programs | ✓ | https://www.dhe.org.in/vi.webp |
+| /programs/dhe-olympiads | ✓ | https://www.dhe.org.in/vi.webp |
+| /donation | ✓ | https://www.dhe.org.in/logo.webp |
+| /beta | ✓ | https://www.dhe.org.in/opengraph-image?b50fdfc983640a56 |
+
+Test: [Facebook Debugger](https://developers.facebook.com/tools/debug/?q=https%3A%2F%2Fwww.dhe.org.in)
+
+---
+
+## Security Headers
+
+| Header | Status |
+|--------|--------|
+| strict-transport-security | ✓ present |
+| x-frame-options | ✓ present |
+| x-content-type-options | ✓ present |
+| referrer-policy | ✓ present |
+| permissions-policy | ✓ present |
+| content-security-policy | ✓ present |
+
+---
 
 ## Core Web Vitals
-- Mobile: run at https://pagespeed.web.dev/?url=https%3A%2F%2Fwww.dhe.org.in
-- Desktop: run manually
 
-## Google Search Console (required — manual)
-1. https://search.google.com/search-console
-2. Add `https://www.dhe.org.in`
-3. Verify via DNS or `NEXT_PUBLIC_GSC_VERIFICATION` env
-4. Submit `sitemap.xml`
-5. Monitor Coverage, CWV, Enhancements, Performance
+**Targets:** LCP ≤ 2.5s · CLS ≤ 0.1 · INP ≤ 200ms · Performance ≥ 90
+
+### Mobile
+Run manually: [PageSpeed Insights Mobile](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.dhe.org.in&form_factor=mobile)
+
+### Desktop
+Run manually: [PageSpeed Insights Desktop](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fwww.dhe.org.in&form_factor=desktop)
+
+---
+
+## Analytics (GA4)
+
+- Consent-gated via `DeferredThirdParty.tsx`
+- Env: `NEXT_PUBLIC_GA_MEASUREMENT_ID` on Vercel
+- Events: `begin_checkout`, `purchase`, `generate_lead` (feedback, membership, workshop), `whatsapp_click`
+
+---
+
+## Beta & Feedback
+
+- Beta hub: https://www.dhe.org.in/beta (noindex)
+- Feedback: https://www.dhe.org.in/feedback → director@dhe.org.in
+
+---
+
+## Launch Timeline
+
+| Day | Action |
+|-----|--------|
+| **Day 1** | GSC verify + submit sitemap + Rich Results Test |
+| **Day 2–3** | Beta feedback · fix UI · monitor Vercel/Sentry logs |
+| **Day 4–7** | Re-run `npm run launch-audit` · improve CWV |
+| **Week 2** | Public announcement · GSC Performance tab |
+
+---
 
 ## Commands
+
 ```bash
 npm run launch-audit
 npm run post-launch -- --skip-email

@@ -1,6 +1,6 @@
 # DHE Post-Launch Report
 
-Generated: 2026-07-04T19:18:43.684Z
+Generated: 2026-07-04T19:34:14.370Z
 
 ## Sitemap
 - 79 URLs
@@ -28,11 +28,11 @@ Generated: 2026-07-04T19:18:43.684Z
 - [x] https://www.dhe.org.in/donation
 
 ## IndexNow
-- [x] https://api.indexnow.org/indexnow (202)
-- [x] https://www.bing.com/indexnow (202)
+- [x] https://api.indexnow.org/indexnow (200)
+- [x] https://www.bing.com/indexnow (200)
 
 ## Beta Invite
-- Skipped (--skip-email)
+- Sent to director@dhe.org.in
 
 ## Google Search Console (manual)
 https://search.google.com/search-console → add `https://www.dhe.org.in` → submit `https://www.dhe.org.in/sitemap.xml`
