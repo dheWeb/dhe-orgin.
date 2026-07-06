@@ -315,6 +315,34 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       "Trust documents, 80G/12A certificates, policies, and accountability information for DHE.",
     ogImage: "/logo.webp",
   },
+  nitsri: {
+    path: "/nitsri",
+    title: "DHE Chapter — NIT Srinagar",
+    description:
+      "Department of Holistic Education chapter at NIT Srinagar, Jammu & Kashmir.",
+    ogImage: "/logo.webp",
+  },
+  nitkkr: {
+    path: "/nitkkr",
+    title: "DHE Chapter — NIT Kurukshetra",
+    description:
+      "Department of Holistic Education chapter at NIT Kurukshetra, Haryana.",
+    ogImage: "/logo.webp",
+  },
+  nitj: {
+    path: "/nitj",
+    title: "DHE Chapter — NIT Jalandhar",
+    description:
+      "Department of Holistic Education chapter at NIT Jalandhar, Punjab.",
+    ogImage: "/logo.webp",
+  },
+  iitrpr: {
+    path: "/iitrpr",
+    title: "DHE Chapter — IIT Ropar",
+    description:
+      "Department of Holistic Education chapter at IIT Ropar, Punjab.",
+    ogImage: "/logo.webp",
+  },
 };
 
 import { CELLS, getCellSeoTitle, getCellBySlug } from "@/data/cells";

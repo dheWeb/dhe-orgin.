@@ -57,5 +57,37 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "nitsri.dhe.org.in" }],
+      "destination": "https://www.dhe.org.in/nitsri",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "nitkkr.dhe.org.in" }],
+      "destination": "https://www.dhe.org.in/nitkkr",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "nitj.dhe.org.in" }],
+      "destination": "https://www.dhe.org.in/nitj",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "iitr.dhe.org.in" }],
+      "destination": "https://www.dhe.org.in/iitrpr",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "iitrpr.dhe.org.in" }],
+      "destination": "https://www.dhe.org.in/iitrpr",
+      "permanent": true
+    }
   ]
 }
