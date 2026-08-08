@@ -45,7 +45,7 @@
     "exceljs": "^4.4.0",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
-    "next": "15.5.19",
+    "next": "16.2.10",
     "next-qrcode": "^2.5.1",
     "nextjs-toploader": "^1.5.3",
     "nodemailer": "^9.0.2",
